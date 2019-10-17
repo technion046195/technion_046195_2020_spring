@@ -7,15 +7,15 @@ title: "MLE, MAP & Estimation Errors"
 
 In contrast to evaluating the distribution of a random variable in a non-parametric way, a much more popular approach is to assume some known form of the distribution, up to some unknown parameters. For example, a commonly used assumption is that a random variable has a normal distribution with some unknown mean value and standard deviation. We will refer to the form of the distribution, which is assumed to be known, as the model, and our task will be to estimate the values of the unknown model's parameters.
 
-We would usually denote the vector of model parameters as $\boldsymbol{\theta}$.
+We would usually denote the vector of model parameters as $$\boldsymbol{\theta}$$.
 
 There are two main approaches for doing parametric estimation. We will describe them both.
 
 ## 👨 Bayesian Inference
 
-Under this approach, we assume that the unknown model parameters $\boldsymbol{\tilde{\theta}}$ are random variables which have been drawn from some known distribution $p_\boldsymbol{\tilde{\theta}}$, called the **prior distribution** (or the **a priori distribution**).
+Under this approach, we assume that the unknown model parameters $$\boldsymbol{\tilde{\theta}}$$ are random variables which have been drawn from some known distribution $$p_\boldsymbol{\tilde{\theta}}$$, called the **prior distribution** (or the **a priori distribution**).
 
-Under the Bayesian approach, our model for the distribution of the data $\boldsymbol{x}$, given the parameters, is described through the conditional probability $p_{\boldsymbol{X}|\boldsymbol{\tilde{\theta}}}$
+Under the Bayesian approach, our model for the distribution of the data $$\boldsymbol{x}$$, given the parameters, is described through the conditional probability $$p_{\boldsymbol{X}|\boldsymbol{\tilde{\theta}}}$$
 
 Based on the data, we would update our belief of the distribution of the parameters using Bayes' rule:
 
@@ -27,21 +27,21 @@ p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)
 }
 $$
 
-(Here $\boldsymbol{\tilde{\theta}}$ is a vector of random variables and $\boldsymbol{\theta}$ is a realization of it)
+(Here $$\boldsymbol{\tilde{\theta}}$$ is a vector of random variables and $$\boldsymbol{\theta}$$ is a realization of it)
 
-The conditional probability $p_{\boldsymbol{\tilde{\theta}}|\boldsymbol{X}}$ is called the **posterior distribution** (or the **a posteriori distribution**).
+The conditional probability $$p_{\boldsymbol{\tilde{\theta}}|\boldsymbol{X}}$$ is called the **posterior distribution** (or the **a posteriori distribution**).
 
 Let us give an interpretation to each of the terms:
 
-- $p_{\boldsymbol{X}|\boldsymbol{\tilde{\theta}}}\left(\boldsymbol{x}|\boldsymbol{\theta}\right)$ - The likelihood: How good a given $\boldsymbol{\theta}$ explains the measured data.
-- $p_{\boldsymbol{\tilde{\theta}}}\left(\boldsymbol{\theta}\right)$ - The prior distribution: How probable is it for the random variable $\boldsymbol{\tilde{\theta}}$ to be equal to a specific set of values $\boldsymbol{\theta}$.
-- $p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)$ - The model evidence: How probable is it for the random variable $\boldsymbol{X}$ to be equal to the actual measured data $\boldsymbol{x}$. This is based on the complete model, unrelated related to any specific value of $\boldsymbol{\theta}$. This term is simply the normalization factor which is necessary for making the posterior distribution a valid probability
+- $$p_{\boldsymbol{X}|\boldsymbol{\tilde{\theta}}}\left(\boldsymbol{x}|\boldsymbol{\theta}\right)$$ - The likelihood: How good a given $$\boldsymbol{\theta}$$ explains the measured data.
+- $$p_{\boldsymbol{\tilde{\theta}}}\left(\boldsymbol{\theta}\right)$$ - The prior distribution: How probable is it for the random variable $$\boldsymbol{\tilde{\theta}}$$ to be equal to a specific set of values $$\boldsymbol{\theta}$$.
+- $$p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)$$ - The model evidence: How probable is it for the random variable $$\boldsymbol{X}$$ to be equal to the actual measured data $$\boldsymbol{x}$$. This is based on the complete model, unrelated related to any specific value of $$\boldsymbol{\theta}$$. This term is simply the normalization factor which is necessary for making the posterior distribution a valid probability
 
-There are a few methods for selecting the optimal model parameters $\boldsymbol{\theta}^*$ based upon the posterior distribution. We will describe one of them
+There are a few methods for selecting the optimal model parameters $$\boldsymbol{\theta}^*$$ based upon the posterior distribution. We will describe one of them
 
 ### Maximum A Posteriori Estimation (MAP)
 
-In MAP estimation we will select the optimal model parameters $\boldsymbol{\theta}^*$ as the parameters which maximize the posterior distribution:
+In MAP estimation we will select the optimal model parameters $$\boldsymbol{\theta}^*$$ as the parameters which maximize the posterior distribution:
 
 $$
 \boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg\max}\ p_{\boldsymbol{\Theta}|\boldsymbol{X}}\left(\boldsymbol{\theta}|\boldsymbol{x}\right)=\underset{\boldsymbol{\theta}}{\arg\max}\ \frac{
@@ -50,14 +50,14 @@ p_{\boldsymbol{\Theta}}\left(\boldsymbol{\theta}\right)}{
 p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)}
 $$
 
-We will note that the term $p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)$ has no effect on the result of $\underset{\boldsymbol{\theta}}{\arg\max}$, therefore:
+We will note that the term $$p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)$$ has no effect on the result of $$\underset{\boldsymbol{\theta}}{\arg\max}$$, therefore:
 
 $$
 \boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg\max}\ p_{\boldsymbol{X}|\boldsymbol{\Theta}}\left(\boldsymbol{x}|\boldsymbol{\theta}\right)
 p_{\boldsymbol{\Theta}}\left(\boldsymbol{\theta}\right)
 $$
 
-An intuitive interpretation is that we would like to select the optimal $\boldsymbol{\theta}$ which can both explain the measured data (high likelihood) and has a high prior probability.
+An intuitive interpretation is that we would like to select the optimal $$\boldsymbol{\theta}$$ which can both explain the measured data (high likelihood) and has a high prior probability.
 
 In practice we would usually solve:
 $$
@@ -70,25 +70,25 @@ p_{\boldsymbol{\Theta}}\left(\boldsymbol{\theta}\right) \\
 \end{align*}
 $$
 
-Here, the second equality is due to the monotonically increasing nature of the $\log$ function and results in an expression which is usually simpler to use.
+Here, the second equality is due to the monotonically increasing nature of the $$\log$$ function and results in an expression which is usually simpler to use.
 
 ## ⏳️ Frequentist Inference
 
-Under this approach, we assume that the unknown model parameters are some constant unknown parameters without any distribution related to them. Under the frequentist approach, our model for the distribution of the data based on the parameters is described as a parametric probability function $p_{\boldsymbol{X}}\left(\boldsymbol{x}\ ;\boldsymbol{\theta}\right)$
+Under this approach, we assume that the unknown model parameters are some constant unknown parameters without any distribution related to them. Under the frequentist approach, our model for the distribution of the data based on the parameters is described as a parametric probability function $$p_{\boldsymbol{X}}\left(\boldsymbol{x}\ ;\boldsymbol{\theta}\right)$$
 
-**A comment**: Since in this case $\boldsymbol{\theta}$ is no longer a random variable, we have used here  $p\left(\cdot;\cdot\right)$ to emphasize that $\boldsymbol{\theta}$ is a prameter of $p$. In the Bayesian case we have used $p\left(\cdot|\cdot\right)$ to donate the conditional probability. This distinction is not always made and in the lectures for example we will be using $p\left(\cdot|\cdot\right)$ for both cases.
+**A comment**: Since in this case $$\boldsymbol{\theta}$$ is no longer a random variable, we have used here  $$p\left(\cdot;\cdot\right)$$ to emphasize that $$\boldsymbol{\theta}$$ is a prameter of $$p$$. In the Bayesian case we have used $$p\left(\cdot|\cdot\right)$$ to donate the conditional probability. This distinction is not always made and in the lectures for example we will be using $$p\left(\cdot|\cdot\right)$$ for both cases.
 
-Based on the data $\boldsymbol{x}$, the likelihood function is defined as $\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)=p_{\boldsymbol{X}}\left(\boldsymbol{x}\ ;\boldsymbol{\theta}\right)$.
+Based on the data $$\boldsymbol{x}$$, the likelihood function is defined as $$\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)=p_{\boldsymbol{X}}\left(\boldsymbol{x}\ ;\boldsymbol{\theta}\right)$$.
 
-This is merely a change of notation to distinguish the change of roles between $\boldsymbol{x}$ and $\boldsymbol{\theta}$. While the probability function is a function of $\boldsymbol{x}$, and we assume that $\boldsymbol{\theta}$ is known, the likelihood function is a function of $\boldsymbol{\theta}$, and we assume that $\boldsymbol{x}$ is known.
+This is merely a change of notation to distinguish the change of roles between $$\boldsymbol{x}$$ and $$\boldsymbol{\theta}$$. While the probability function is a function of $$\boldsymbol{x}$$, and we assume that $$\boldsymbol{\theta}$$ is known, the likelihood function is a function of $$\boldsymbol{\theta}$$, and we assume that $$\boldsymbol{x}$$ is known.
 
-For simplicity we would also define the log-likelihood function: $l\left(\boldsymbol{\theta};\boldsymbol{x}\right)=\log\left(\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)\right)$
+For simplicity we would also define the log-likelihood function: $$l\left(\boldsymbol{\theta};\boldsymbol{x}\right)=\log\left(\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)\right)$$
 
-Here as well, there are a few methods for selecting the optimal model parameters $\boldsymbol{\theta}^*$ based upon the data, we will describe one of them.
+Here as well, there are a few methods for selecting the optimal model parameters $$\boldsymbol{\theta}^*$$ based upon the data, we will describe one of them.
 
 ### Maximum Likelihood Estimation (MLE)
 
-In MLE we select the optimal model parameters $\boldsymbol{\theta}^*$ as the parameters which maximizes the likelihood function:
+In MLE we select the optimal model parameters $$\boldsymbol{\theta}^*$$ as the parameters which maximizes the likelihood function:
 
 $$
 \begin{align*}
@@ -138,7 +138,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection (Reminder)
@@ -154,14 +154,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=100000$</p>
+Number of rows in the dataset: $$N=100000$$
 
 
 
@@ -425,7 +425,7 @@ test_set = dataset.iloc[test_indices]
 
 ## 💡 Model & Learning Method Suggestion 1 : Normal Distribution + MLE
 
-In this case we will suggest a **normal distribution** as our model. A general normal distribution is define by 2 parameters, it's mean value $\mu$ and it's standard deviation $\sigma$.
+In this case we will suggest a **normal distribution** as our model. A general normal distribution is define by 2 parameters, it's mean value $$\mu$$ and it's standard deviation $$\sigma$$.
 
 In addition, in this step we would want to decide on a method for selecting the model's parameters, in this case we will take the **MLE (Maximum Likelihood Estimation)** approach. This special case of MLE and a normal distribution can be solve analytically. Sadly, this is will not be true in the general case, and we will have to resort to numerical solutions.
 
@@ -442,16 +442,16 @@ In addition, in this step we would want to decide on a method for selecting the 
 (Solution seen in the lecture, appears here only for completeness)
 
 Se shall denote:
-- $p_\text{normal}\left(x;\mu,\sigma\right)$ - The PDF of a normal distribution with mean $\mu$ and standard deviation $\sigma$.
-- $\boldsymbol{\theta}$ - the vector $\boldsymbol{\theta}=\left[\mu,\sigma\right]^T$.
-- $N$ - The number of samples points in the train set.
+- $$p_\text{normal}\left(x;\mu,\sigma\right)$$ - The PDF of a normal distribution with mean $$\mu$$ and standard deviation $$\sigma$$.
+- $$\boldsymbol{\theta}$$ - the vector $$\boldsymbol{\theta}=\left[\mu,\sigma\right]^T$$.
+- $$N$$ - The number of samples points in the train set.
 
 The Normal distribution is defined by:
 $$
 p_\text{normal}\left(x;\boldsymbol{\theta}\right)=p_\text{normal}\left(x;\mu,\sigma\right)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{\left(x-\mu\right)^2}{2\sigma^2}\right)
 $$
 
-Given a set of independent sample $\left\lbrace x_i\right\rbrace$, the likelihood function is given as:
+Given a set of independent sample $$\left\lbrace x_i\right\rbrace$$, the likelihood function is given as:
 
 $$
 \mathcal{L}_\text{normal}\left(\boldsymbol{\theta}\right\{x\}) 
@@ -471,7 +471,7 @@ l_\text{normal}\left(\boldsymbol{\theta};\{x\}\right)
 $$
 
 
-Under the MLE approach, the optimal parameters $\boldsymbol{\theta}^*$ for the model are given by
+Under the MLE approach, the optimal parameters $$\boldsymbol{\theta}^*$$ for the model are given by
 
 $$
 \begin{align*}
@@ -481,7 +481,7 @@ $$
 \end{align*}
 $$
 
-We shall find $\boldsymbol{\theta}^*$ by comparing the derivative of the log-likelihood function to zero.
+We shall find $$\boldsymbol{\theta}^*$$ by comparing the derivative of the log-likelihood function to zero.
 
 $$
 \begin{align*}
@@ -512,16 +512,16 @@ x = train_set['duration'].values
 mu = np.sum(x) / len(x)
 sigma = np.sqrt(np.sum((x - mu) ** 2) / len(x))
 
-print_math('$\\mu = {:.01f}\\ \\text{{min}}$'.format(mu))
-print_math('$\\sigma = {:.01f}\\ \\text{{min}}$'.format(sigma))
+print_math('$$\\mu = {:.01f}\\ \\text{{min}}$$'.format(mu))
+print_math('$$\\sigma = {:.01f}\\ \\text{{min}}$$'.format(sigma))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$\mu = 11.4\ \text{min}$</p>
+$$\mu = 11.4\ \text{min}$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$\sigma = 7.0\ \text{min}$</p>
+$$\sigma = 7.0\ \text{min}$$
 
 
 From here on we will use [np.mean](http://lagrange.univ-lyon1.fr/docs/numpy/1.11.0/reference/generated/numpy.mean.html) and [np.std](http://lagrange.univ-lyon1.fr/docs/numpy/1.11.0/reference/generated/numpy.std.html) functions to calculate the mean and standard deviation.
@@ -572,13 +572,13 @@ Let us try to propose a better model in order to get a better approximation.
 
 ## 💡 Model & Learning Method Suggestion 2 : Rayleigh Distribution + MLE
 
-The Rayleigh distribution describes the distribution of the magnitude of a 2D Gaussian vector with zero mean and no correlation between it's two components. I.e. if $Z$ has the following distribution:
+The Rayleigh distribution describes the distribution of the magnitude of a 2D Gaussian vector with zero mean and no correlation between it's two components. I.e. if $$Z$$ has the following distribution:
 
 $$
 \boldsymbol{Z}\sim N\left(\begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma & 0 \\ 0 & \sigma \end{bmatrix}\right)
 $$
 
-Than $\left\lVert\boldsymbol{Z}\right\rVert_2=\sqrt{Z_x^2+Z_y^2}$ has a Rayleigh distribution.
+Than $$\left\lVert\boldsymbol{Z}\right\rVert_2=\sqrt{Z_x^2+Z_y^2}$$ has a Rayleigh distribution.
 
 The PDF of the Rayleigh distribution is given by:
 
@@ -586,29 +586,29 @@ $$
 p_\text{Rayleigh}\left(z;\sigma\right)=\frac{z}{\sigma^2}\exp\left({-\frac{z^2}{2\sigma^2}}\right), \quad z\geq0
 $$
 
-Notice that here the distribution is only defined for positive values. The Rayleigh distribution has only one parameter $\sigma$ which is called the scale parameter. Unlike in case of the normal distribution, here $\sigma$ is not equal to the standard deviation.
+Notice that here the distribution is only defined for positive values. The Rayleigh distribution has only one parameter $$\sigma$$ which is called the scale parameter. Unlike in case of the normal distribution, here $$\sigma$$ is not equal to the standard deviation.
 
-For consistency we will denote the 1D vector of parameters: $\boldsymbol{\theta}=\left[\sigma\right]$
+For consistency we will denote the 1D vector of parameters: $$\boldsymbol{\theta}=\left[\sigma\right]$$
 
 We will now give a short motivation for preferring the Rayleigh distribution. This section can be skipped, and the Rayleigh distribution can be assumed to be simply selected as a good guess.
 
 ### Motivation For Using Rayleigh Distribution
 
-We have started with an assumption that the duration a taxi ride is normally distributed. Let us instead assume that the quantity which is normally distributed is the 2D distance $\boldsymbol{D}$, between the pickup location to the drop off location.
+We have started with an assumption that the duration a taxi ride is normally distributed. Let us instead assume that the quantity which is normally distributed is the 2D distance $$\boldsymbol{D}$$, between the pickup location to the drop off location.
 
-I.e., we are assuming that the random variable $\boldsymbol{D}$ is a 2D Gaussian vector. For simplicity, we will also assume that the $x$ and $y$ components of $\boldsymbol{D}$ are uncorrelated with equal variance and zero mean. I.e. we assume that:
+I.e., we are assuming that the random variable $$\boldsymbol{D}$$ is a 2D Gaussian vector. For simplicity, we will also assume that the $$x$$ and $$y$$ components of $$\boldsymbol{D}$$ are uncorrelated with equal variance and zero mean. I.e. we assume that:
 
 $$
 \boldsymbol{D}\sim N\left(\begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_D & 0 \\ 0 & \sigma_D \end{bmatrix}\right)
 $$
 
-In addition, let us also assume that the taxis speed, $v$ is constant. Therefore the relation between the ride duration $X$ and the distance vector $\boldsymbol{D}$ is:
+In addition, let us also assume that the taxis speed, $$v$$ is constant. Therefore the relation between the ride duration $$X$$ and the distance vector $$\boldsymbol{D}$$ is:
 
 $$
 X = \frac{\left\lVert D\right\rVert_2}{v}
 $$
 
-In this case $x$ will have a Rayleigh distribution with a scale parameter $\sigma=\frac{\sigma_D}{v}$
+In this case $$x$$ will have a Rayleigh distribution with a scale parameter $$\sigma=\frac{\sigma_D}{v}$$
 
 ## ⚙️ Learning
 
@@ -627,7 +627,7 @@ l_\text{rayleigh}\left(\boldsymbol{\theta}|\{x\}\right)
 \end{align*}
 $$
 
-Under the MLE approach,optimal parameters, are defined by $\boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg\min}\ -l_\text{rayleigh}\left(\boldsymbol{\theta}|\{x\}\right)$.
+Under the MLE approach,optimal parameters, are defined by $$\boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg\min}\ -l_\text{rayleigh}\left(\boldsymbol{\theta}|\{x\}\right)$$.
 
 Like before, we will solve this by differentiating and comparing to zero:
 
@@ -647,7 +647,7 @@ from scipy.stats import rayleigh
 ## Find the model's parameters using SciPy
 _, sigma = rayleigh.fit(x, floc=0)  ## equivalent to running: sigma = np.sqrt(np.sum(x ** 2) / len(x) / 2)
 
-print_math('$\\sigma = {:.01f}$'.format(sigma))
+print_math('$$\\sigma = {:.01f}$$'.format(sigma))
 
 ## Define the Rayleigh distribution object
 rayleigh_dist = rayleigh(0, sigma)
@@ -667,7 +667,7 @@ ax.legend();
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$\sigma = 9.5$</p>
+$$\sigma = 9.5$$
 
 
 
@@ -688,9 +688,9 @@ p_\text{gengamma}\left(z;\sigma,a,c\right)=
 , \quad z\geq0
 $$
 
-($\Gamma$ here is the [gamma function](https://en.wikipedia.org/wiki/Gamma_function))
+($$\Gamma$$ here is the [gamma function](https://en.wikipedia.org/wiki/Gamma_function))
 
-For $c=2$ and $a=1$ we get the Rayleigh distribution.
+For $$c=2$$ and $$a=1$$ we get the Rayleigh distribution.
 
 Unlike the case of the normal and Rayleigh distributions, here we will not be able to find a simple analytic solution for the optimal MLE parameters. However we can use numerical methods for finding the optimal parameters. In practice we will use [SciPy's model for the General Gamma distribution](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gengamma.html#scipy.stats.gengamma) to find the optimal parameters.
 
@@ -710,9 +710,9 @@ from scipy.stats import gengamma
 ## Find the model's parameters using SciPy
 a, c, _, sigma  = gengamma.fit(x, floc=0)
 
-print_math('$a = {:.01f}$'.format(a))
-print_math('$c = {:.01f}$'.format(c))
-print_math('$\\sigma = {:.01f}$'.format(sigma))
+print_math('$$a = {:.01f}$$'.format(a))
+print_math('$$c = {:.01f}$$'.format(c))
+print_math('$$\\sigma = {:.01f}$$'.format(sigma))
 
 ## Define the generalized gamma distribution object
 gengamma_dist = gengamma(a, c, 0, sigma)
@@ -733,15 +733,15 @@ ax.legend();
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$a = 4.4$</p>
+$$a = 4.4$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$c = 0.8$</p>
+$$c = 0.8$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$\sigma = 1.6$</p>
+$$\sigma = 1.6$$
 
 
 
@@ -753,24 +753,24 @@ The Generalized Gamma distribution results in a distribution with a PDF which is
 ## 🧸 Toy Model
 
 In this exercise we will take a look at a very simple toy example. Consider the following process:
-1. A random number $a$ is generated once following the normal distribution: $a \sim N\left(0, \sigma_A^2\right)$
-2. A series of random numbers $\left\lbrace x_i\right\rbrace$ is then generated independently following the normal distribution: $X \sim N\left(a, \sigma_X^2\right)$
+1. A random number $$a$$ is generated once following the normal distribution: $$a \sim N\left(0, \sigma_A^2\right)$$
+2. A series of random numbers $$\left\lbrace x_i\right\rbrace$$ is then generated independently following the normal distribution: $$X \sim N\left(a, \sigma_X^2\right)$$
 
-We would look at a few cases of estimating the distribution of $X$.
+We would look at a few cases of estimating the distribution of $$X$$.
 
 ### ✍️ Exercise 3.4 - MAP and a Toy Model
 
-1. Start by using the exact model which generates the data, i.e. a normal distribution with a known standard deviation of $\sigma_X$ and mean value which is normally distributed with mean value 0 and a standard deviation of $\sigma_A$. Use the  MAP approach to estimate the distribution of $X$ given a dataset $\left\lbrace x_i\right\rbrace$.
+1. Start by using the exact model which generates the data, i.e. a normal distribution with a known standard deviation of $$\sigma_X$$ and mean value which is normally distributed with mean value 0 and a standard deviation of $$\sigma_A$$. Use the  MAP approach to estimate the distribution of $$X$$ given a dataset $$\left\lbrace x_i\right\rbrace$$.
 
-2. Use $\sigma_A=1$ and $\sigma_X=3$ to randomly generate the dataset $\left\lbrace x_i\right\rbrace$ with a size of 10 samples. Using the MAP estimation, calculate the actual parameters and the estimation error between the true and the estimated mean value of $X$.
+2. Use $$\sigma_A=1$$ and $$\sigma_X=3$$ to randomly generate the dataset $$\left\lbrace x_i\right\rbrace$$ with a size of 10 samples. Using the MAP estimation, calculate the actual parameters and the estimation error between the true and the estimated mean value of $$X$$.
 
 3. Compare it to an estimation based on MLE.
 
-4. MAP works great when we have a good prior distribution. Let us see what happens if our prior is not that good. Repeat the process, but this time use $\tilde{\sigma}_A=\left[0.25, 0.5, 2, 4\right]$ for calculating the MAP estimation (instead of the real value of $\sigma_A=1$)
+4. MAP works great when we have a good prior distribution. Let us see what happens if our prior is not that good. Repeat the process, but this time use $$\tilde{\sigma}_A=\left[0.25, 0.5, 2, 4\right]$$ for calculating the MAP estimation (instead of the real value of $$\sigma_A=1$$)
 
 #### Solution 3.4-1
 
-Here we assume that the entire model is known including $\sigma_A$ and $\sigma_X$. However following the MAP approach we would like to find the specific parameters of of the distribution of the data $\left\lbrace x_i\right\rbrace$ which are most probable given the prior distribution and the data. In this case, of a normal distribution with a known standard deviation, the only parameter of the model is the distribution's mean value $a$, therefore we will define the vector of parameters $\boldsymbol{\theta}=\left[a\right]$.
+Here we assume that the entire model is known including $$\sigma_A$$ and $$\sigma_X$$. However following the MAP approach we would like to find the specific parameters of of the distribution of the data $$\left\lbrace x_i\right\rbrace$$ which are most probable given the prior distribution and the data. In this case, of a normal distribution with a known standard deviation, the only parameter of the model is the distribution's mean value $$a$$, therefore we will define the vector of parameters $$\boldsymbol{\theta}=\left[a\right]$$.
 
 Under this approach we are looking for the model's optimal parameters according to:
 
@@ -785,7 +785,7 @@ $$
 \end{align*}
 $$
 
-We will find $\boldsymbol{\theta}^*$ by differentiating and compare to zero:
+We will find $$\boldsymbol{\theta}^*$$ by differentiating and compare to zero:
 
 $$
 \begin{align*}
@@ -798,7 +798,7 @@ $$
 
 #### Solution 3.4-2
 
-We shall generate the data and calculate the value of $a$ and the estimation error
+We shall generate the data and calculate the value of $$a$$ and the estimation error
 
 
 ```python
@@ -821,31 +821,31 @@ mu_hat_map = sigma_a ** 2 / (sigma_x ** 2 / n_samples + sigma_a ** 2) * np.mean(
 ## Calaulte the estimation error
 estimation_error_map = np.abs(mu_hat_map-a)
 
-print_math('The true mean value of $X$ is: $\\mu=a = {:.03f}$'.format(a))
+print_math('The true mean value of $$X$$ is: $$\\mu=a = {:.03f}$$'.format(a))
 print_math('By using MAP we get:')
-print_math('- $\\hat{{\\mu}}_\\text{{MAP}} = {:.03f}$'.format(mu_hat_map))
-print_math('- Estimation error: $\\left|\\hat{{\\mu}}_\\text{{MAP}}-\\mu\\right| = {:.03f}$'.format(estimation_error_map))
+print_math('- $$\\hat{{\\mu}}_\\text{{MAP}} = {:.03f}$$'.format(mu_hat_map))
+print_math('- Estimation error: $$\\left|\\hat{{\\mu}}_\\text{{MAP}}-\\mu\\right| = {:.03f}$$'.format(estimation_error_map))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The true mean value of $X$ is: $\mu=a = 1.764$</p>
+The true mean value of $$X$$ is: $$\mu=a = 1.764$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>By using MAP we get:</p>
+By using MAP we get:
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $\hat{\mu}_\text{MAP} = 1.838$</p>
+- $$\hat{\mu}_\text{MAP} = 1.838$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- Estimation error: $\left|\hat{\mu}_\text{MAP}-\mu\right| = 0.074$</p>
+- Estimation error: $$\left|\hat{\mu}_\text{MAP}-\mu\right| = 0.074$$
 
 
 #### Solution 3.4-3
 
-We saw earlier that based on the MLE approach, the optimal mean value of a normal distribution is equal to the average value of the samples: $\frac{1}{N}\sum_i x_i$
+We saw earlier that based on the MLE approach, the optimal mean value of a normal distribution is equal to the average value of the samples: $$\frac{1}{N}\sum_i x_i$$
 
 
 ```python
@@ -856,20 +856,20 @@ mu_hat_mle = x.mean()
 estimation_error_mle = np.abs(mu_hat_mle-a)
 
 print_math('By using MLE we get:')
-print_math('- $\\hat{{\\mu}}_\\text{{MLE}} = {:.03f}$'.format(mu_hat_mle))
-print_math('- Estimation error: $\\left|\\hat{{\\mu}}_\\text{{MLE}}-\\mu\\right| = {:.03f}$'.format(estimation_error_mle))
+print_math('- $$\\hat{{\\mu}}_\\text{{MLE}} = {:.03f}$$'.format(mu_hat_mle))
+print_math('- Estimation error: $$\\left|\\hat{{\\mu}}_\\text{{MLE}}-\\mu\\right| = {:.03f}$$'.format(estimation_error_mle))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>By using MLE we get:</p>
+By using MLE we get:
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $\hat{\mu}_\text{MLE} = 3.492$</p>
+- $$\hat{\mu}_\text{MLE} = 3.492$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- Estimation error: $\left|\hat{\mu}_\text{MLE}-\mu\right| = 1.728$</p>
+- Estimation error: $$\left|\hat{\mu}_\text{MLE}-\mu\right| = 1.728$$
 
 
 Let us plot the two estimations along with the true distribution
@@ -900,18 +900,18 @@ ax.legend();
 ![png](output_52_0.png)
 
 
-In this example, the samples, drawn according to the true distribution, happened to be more concentrated on the left side of the Gaussian. This causes the MLE to give an estimation for the mean which is slightly higher then it's real value. By using the MAP approach along with the prior on $A$, which states that $A$ is more likely to have a value closer to zero, the estimation of the mean value gets closer to zero and also closer to the real mean value.
+In this example, the samples, drawn according to the true distribution, happened to be more concentrated on the left side of the Gaussian. This causes the MLE to give an estimation for the mean which is slightly higher then it's real value. By using the MAP approach along with the prior on $$A$$, which states that $$A$$ is more likely to have a value closer to zero, the estimation of the mean value gets closer to zero and also closer to the real mean value.
 
 #### Solution 3.4-4
 
-We shall calculate the MAP estimation using $\tilde{\sigma}_A=\left[0.25, 0.5, 1, 2, 4\right]$
+We shall calculate the MAP estimation using $$\tilde{\sigma}_A=\left[0.25, 0.5, 1, 2, 4\right]$$
 
 
 ```python
 ## Define the list of sigma_a_tilde
 sigma_a_tilde_list = [0.25, 0.5, 1, 2, 4]
 
-print_math('By using MAP with different values of $\\tilde{{\\sigma}}_A$ we get:')
+print_math('By using MAP with different values of $$\\tilde{{\\sigma}}_A$$ we get:')
 for i, sigma_a_tilde in enumerate(sigma_a_tilde_list):
     ## Calaulte the MLE estimation for the mean value
     mu_hat_map_tilde = sigma_a_tilde ** 2 / (sigma_x ** 2 / n_samples + sigma_a_tilde ** 2) * np.mean(x)
@@ -919,35 +919,35 @@ for i, sigma_a_tilde in enumerate(sigma_a_tilde_list):
     ## Calaulte the estimation error
     estimation_error_map_tilde = np.abs(mu_hat_map_tilde-a)
 
-    print_math('- $\\tilde{{\\sigma}}_A={:.2f}\\quad\\Rightarrow\\hat{{\\mu}} = {:.3f},\\quad\\left|\\hat{{\\mu}}-\\mu\\right| = {:.3f}$'.format(sigma_a_tilde, mu_hat_map_tilde, estimation_error_map_tilde))
+    print_math('- $$\\tilde{{\\sigma}}_A={:.2f}\\quad\\Rightarrow\\hat{{\\mu}} = {:.3f},\\quad\\left|\\hat{{\\mu}}-\\mu\\right| = {:.3f}$$'.format(sigma_a_tilde, mu_hat_map_tilde, estimation_error_map_tilde))
 
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>By using MAP with different values of $\tilde{{\sigma}}_A$ we get:</p>
+By using MAP with different values of $$\tilde{{\sigma}}_A$$ we get:
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $\tilde{\sigma}_A=0.25\quad\Rightarrow\hat{\mu} = 0.227,\quad\left|\hat{\mu}-\mu\right| = 1.537$</p>
+- $$\tilde{\sigma}_A=0.25\quad\Rightarrow\hat{\mu} = 0.227,\quad\left|\hat{\mu}-\mu\right| = 1.537$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $\tilde{\sigma}_A=0.50\quad\Rightarrow\hat{\mu} = 0.759,\quad\left|\hat{\mu}-\mu\right| = 1.005$</p>
+- $$\tilde{\sigma}_A=0.50\quad\Rightarrow\hat{\mu} = 0.759,\quad\left|\hat{\mu}-\mu\right| = 1.005$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $\tilde{\sigma}_A=1.00\quad\Rightarrow\hat{\mu} = 1.838,\quad\left|\hat{\mu}-\mu\right| = 0.074$</p>
+- $$\tilde{\sigma}_A=1.00\quad\Rightarrow\hat{\mu} = 1.838,\quad\left|\hat{\mu}-\mu\right| = 0.074$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $\tilde{\sigma}_A=2.00\quad\Rightarrow\hat{\mu} = 2.851,\quad\left|\hat{\mu}-\mu\right| = 1.087$</p>
+- $$\tilde{\sigma}_A=2.00\quad\Rightarrow\hat{\mu} = 2.851,\quad\left|\hat{\mu}-\mu\right| = 1.087$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $\tilde{\sigma}_A=4.00\quad\Rightarrow\hat{\mu} = 3.306,\quad\left|\hat{\mu}-\mu\right| = 1.542$</p>
+- $$\tilde{\sigma}_A=4.00\quad\Rightarrow\hat{\mu} = 3.306,\quad\left|\hat{\mu}-\mu\right| = 1.542$$
 
 
-To get a bit more intuition, let us plotting $\hat{\mu}$ as a function of $\tilde{\sigma}_A$
+To get a bit more intuition, let us plotting $$\hat{\mu}$$ as a function of $$\tilde{\sigma}_A$$
 
 
 ```python
@@ -960,7 +960,7 @@ ax.plot([sigma_a_grid[0], sigma_a_grid[-1]], [mu_hat_mle, mu_hat_mle], '--', lab
 ax.plot([sigma_a_grid[0], sigma_a_grid[-1]], [a, a], '--', label='True')
 ax.set_title('Mean Value Estimation')
 ax.set_ylabel('Mean Value')
-ax.set_xlabel('$\\tilde{{\\sigma}}_A$')
+ax.set_xlabel('$$\\tilde{{\\sigma}}_A$$')
 ax.legend();
 ```
 
@@ -970,15 +970,15 @@ ax.legend();
 
 ### Interpretation
 
-In this case, of a normal distributions as a prior and a normal distribution as a model, the MAP estimation will be a weighted average between the MLE result of $\hat{\mu}=3.492$ and the mean value of the prior distribution, which is 0 in this case.
+In this case, of a normal distributions as a prior and a normal distribution as a model, the MAP estimation will be a weighted average between the MLE result of $$\hat{\mu}=3.492$$ and the mean value of the prior distribution, which is 0 in this case.
 
-Not surprisingly we get the best results when our prior is the exact the true underlying distribution with: $\tilde{\sigma}_A=\sigma_A=1$.
+Not surprisingly we get the best results when our prior is the exact the true underlying distribution with: $$\tilde{\sigma}_A=\sigma_A=1$$.
 
-When the prior is very strong, i.e. a very narrow Gaussian, $\tilde{\sigma}_A\rightarrow 0$, this dictates that the probability of the mean value to be far from 0 is very low, which results in an estimation which is very close to 0.
+When the prior is very strong, i.e. a very narrow Gaussian, $$\tilde{\sigma}_A\rightarrow 0$$, this dictates that the probability of the mean value to be far from 0 is very low, which results in an estimation which is very close to 0.
 
-When the prior is very weak, i.e. a very wide Gaussian, $\tilde{\sigma}_A\rightarrow\infty$, the prior probability becomes close to uniform in the relevant range of values. This is equal to not using a prior at all, and the MAP estimation approaches the MLE.
+When the prior is very weak, i.e. a very wide Gaussian, $$\tilde{\sigma}_A\rightarrow\infty$$, the prior probability becomes close to uniform in the relevant range of values. This is equal to not using a prior at all, and the MAP estimation approaches the MLE.
 
-In general, using a prior could also give results which are worse than the MLE. This would happen for example if as a prior we would use a normal distribution with a mean value which is very different then the true mean value of $A$.
+In general, using a prior could also give results which are worse than the MLE. This would happen for example if as a prior we would use a normal distribution with a mean value which is very different then the true mean value of $$A$$.
 
 In practice in many cases it is hard to choose a good prior, a fact which makes the MAP approach a bit more difficult to use in practice.
 

@@ -26,4 +26,6 @@ And go to: <localhost:4000>
 
 ## Known Issus
 
+- Apparently in markdown the convention is to use the double dollar sign ("$$") for both inline and display equations.
+
 - For some reason Jekyll replaces the combination "\{" with "{". This is problematic when trying to use curly brackets in LaTeX equations such as "\left\{x\right\}". A workaround is to use "\lbrace" and "rbrace" instead: "\left\brace x\right\rbrace"

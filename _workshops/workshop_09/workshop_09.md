@@ -15,11 +15,11 @@ $$
 h\left(\boldsymbol{x}\ ;\boldsymbol{\theta},b\right)=\varphi\left(\boldsymbol{\theta}^T\boldsymbol{x}+b\right)
 $$
 
-Where $\varphi$ is the non-linear function, called the activation function. Some commonly used activation functions are:
+Where $$\varphi$$ is the non-linear function, called the activation function. Some commonly used activation functions are:
 
-- The logistic function. Also commonly referred to as a sigmoid: $\varphi\left(x\right)=\frac{1}{1+e^-x}$
-- Hyperbolic tangent: $\varphi\left(x\right)=\tanh\left(x/2\right)$
-- Rectifier function (known as ReLU (Rectified Linear Unit)): $\varphi\left(x\right)=\max\left(x,0\right)$
+- The logistic function. Also commonly referred to as a sigmoid: $$\varphi\left(x\right)=\frac{1}{1+e^-x}$$
+- Hyperbolic tangent: $$\varphi\left(x\right)=\tanh\left(x/2\right)$$
+- Rectifier function (known as ReLU (Rectified Linear Unit)): $$\varphi\left(x\right)=\max\left(x,0\right)$$
 
 Units which are not connected directly to the output, i.e., are not at the end of the network, are called **hidden units**. A network which contains routes that paths which connect the input to the output through multiple hidden units are usually referred to as **Deep Neural Networks (DNN)**.
 
@@ -43,7 +43,7 @@ An MLP network is defined by:
 
 ## Naming Differences
 
-- Mathematically, the name **loss function** is broadly used to describe any objective function which is to be minimized. In this course, we have used this term to describe the penalty we get for a single prediction, $l\left(\hat{y},y\right)$. We have used the terms **risk/cost functions** as the mean, or empirical mean, of the loss function. In the context of deep learning people commonly use the term loss function in it's broader meaning, and use it to describe either the risk/cost functions themselves or to the optimization's objective function in general.
+- Mathematically, the name **loss function** is broadly used to describe any objective function which is to be minimized. In this course, we have used this term to describe the penalty we get for a single prediction, $$l\left(\hat{y},y\right)$$. We have used the terms **risk/cost functions** as the mean, or empirical mean, of the loss function. In the context of deep learning people commonly use the term loss function in it's broader meaning, and use it to describe either the risk/cost functions themselves or to the optimization's objective function in general.
 
 - Mathematically, the name **sigmoid** refers to a range of S-shaped function. In the context of deep learning, this name usually refers to the logistic function. (To be more precisely, a sigmoid function is a bounded, differentiable, real function that is defined for all real input values and has a non-negative derivative at each point).
 
@@ -101,7 +101,7 @@ $$
 y=\left(\boldsymbol{x}_1+2\boldsymbol{x}_2\right)^T\boldsymbol{x}_3/5
 $$
 
-The following code imports the PyTorch package, defines the 3 tensors and calculates $y$:
+The following code imports the PyTorch package, defines the 3 tensors and calculates $$y$$:
 
 
 ```python
@@ -136,9 +136,9 @@ To better understand how PyTorch calculated the gradients using back propagation
 <center><img src="../media/diagrams/networks/graph.png" height="300px" style="height:300px"/></center>
 
 
-Here $\left<,\right>$ is a dot product between vectors.
+Here $$\left<,\right>$$ is a dot product between vectors.
 
-The following code re-calculates $y$, this time using intermediate variables, $z_i$'s. 
+The following code re-calculates $$y$$, this time using intermediate variables, $$z_i$$'s. 
 
 *We are implementing the function this way only in order to understand the framework. This is unneeded in a general case.*
 
@@ -196,9 +196,9 @@ print('y = {}'.format(str(y)))
     y = tensor(19., grad_fn=<DivBackward0>)
 
 
-In this run PyTorch has created the forward graph for the relevant paths (startnig at $\boldsymbol{x}_1$ or $\boldsymbol{x}_3$). We can see that the relevant tensors have a **grad_fn** attached to them which tells PyTorch how they were created.
+In this run PyTorch has created the forward graph for the relevant paths (startnig at $$\boldsymbol{x}_1$$ or $$\boldsymbol{x}_3$$). We can see that the relevant tensors have a **grad_fn** attached to them which tells PyTorch how they were created.
 
-for example, the y variable which is created by dividing $\boldsymbol{z}_3$ by 5 has a grad_fn of type **DivBackward** which corresponding to a division.
+for example, the y variable which is created by dividing $$\boldsymbol{z}_3$$ by 5 has a grad_fn of type **DivBackward** which corresponding to a division.
 
 
 ```python
@@ -208,7 +208,7 @@ print('y was created using the following node: {}'.format(y.grad_fn))
     y was created using the following node: <DivBackward0 object at 0x7ff03c4514e0>
 
 
-We can further traverse the graph by looking at the property of **next_function** of grad_fn to see what were the operations which created the inputs to the division node (which in our case are the operations creating $\boldsymbol{z}_3$ and the operations creating 5, which are none)
+We can further traverse the graph by looking at the property of **next_function** of grad_fn to see what were the operations which created the inputs to the division node (which in our case are the operations creating $$\boldsymbol{z}_3$$ and the operations creating 5, which are none)
 
 
 ```python
@@ -251,7 +251,7 @@ print('      └ {}'.format(y.grad_fn.next_functions[0][0].next_functions[0][0].
           └ None
 
 
-*AccumulateGrad* is a source point of the graph. Note that the path from $\boldsymbol{x}_2$ to the sum is missing (the second input to the sum is *None*), this is due to the fact that we did not set $\boldsymbol{x}_2$'s *requires_grad* flag to true.
+*AccumulateGrad* is a source point of the graph. Note that the path from $$\boldsymbol{x}_2$$ to the sum is missing (the second input to the sum is *None*), this is due to the fact that we did not set $$\boldsymbol{x}_2$$'s *requires_grad* flag to true.
 
 ### Autograd - The Backward Graph
 
@@ -303,7 +303,7 @@ To use these optimizers we need to first initialize them with the optimization p
 
 **Important**: In addition, it is necessary to also call the optimizer's **zero_grads** function before each backward step, since by default PyTorch accumulates the gradients as long as they are not cleared.
 
-We will start with $x=1$, use a learning rate of $0.7$ and take 10 gradient steps:
+We will start with $$x=1$$, use a learning rate of $$0.7$$ and take 10 gradient steps:
 
 
 ```python
@@ -364,7 +364,7 @@ $$
 y = \theta_1\cdot x_1 + \theta_2\cdot x_2
 $$
 
-With an $L2$ loss function.
+With an $$L2$$ loss function.
 
 To generate the data, we shall use:
 
@@ -440,7 +440,7 @@ for i in range(10):
 
 ## Building on Existing Modules
 
-PyTorch comes with existing modules such an MxN linear operator, a logistic function etc. These modules also have their parameters already build in into them. PyTorch also defines some common loss functions such $L1$, $L2$, etc. 
+PyTorch comes with existing modules such an MxN linear operator, a logistic function etc. These modules also have their parameters already build in into them. PyTorch also defines some common loss functions such $$L1$$, $$L2$$, etc. 
 
 Let us re-write our linear regression model and the optimization using the following two objects:
 
@@ -524,7 +524,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -538,14 +538,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=569$</p>
+Number of rows in the dataset: $$N=569$$
 
 
 
@@ -879,7 +879,7 @@ $$
 p\left(y=1|\boldsymbol{x};\boldsymbol{\theta}\right)=1-p\left(y=0|\boldsymbol{x};\boldsymbol{\theta}\right)=g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)=\frac{1}{1+e^{-\boldsymbol{\theta}^T \boldsymbol{x}}}
 $$
 
-And would like to select $\boldsymbol{\theta}$ according to:
+And would like to select $$\boldsymbol{\theta}$$ according to:
 
 $$
 \begin{align*}
@@ -1007,7 +1007,7 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train, x_val, y_
     fig, ax = plt.subplots()
     ax.plot(steps_list, objective_list_train, label='Train')
     ax.plot(steps_list, objective_list_val, label='Validation')
-    ax.set_title('$\\alpha$={:g}, # iterations: {}'.format(alpha, i_iter))
+    ax.set_title('$$\\alpha$$={:g}, # iterations: {}'.format(alpha, i_iter))
     ax.set_xlabel('Step')
     ax.set_xlabel('Objective')
     ax.legend()
@@ -1027,11 +1027,11 @@ net = basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train, x_val, 
 test_prediction = net(x_test) > 0.5
 test_risk = (test_prediction.int() != y_test).float().mean()
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.096$</p>
+The test risk is: $$0.096$$
 
 
 
@@ -1080,11 +1080,11 @@ net = basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train, x_val, 
 test_prediction = net(x_test) > 0.5
 test_risk = (test_prediction.int() != y_test).float().mean()
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.07$</p>
+The test risk is: $$0.07$$
 
 
 

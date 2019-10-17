@@ -10,5 +10,12 @@
     },
     "[javascript]": {
         "editor.tabSize": 2
+    },
+    "search.useIgnoreFiles": false,
+    "files.exclude": {
+        "_site": true,
+        "**/.jekyll-cache": true,
+        "datasets": true,
+        "venv": true
     }
 }

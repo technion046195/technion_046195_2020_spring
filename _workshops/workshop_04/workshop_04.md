@@ -29,14 +29,14 @@ In this course, we will discuss the K-means algorithm.
 
 ## K-Means
 
-In K-means the number of clusters $K$ is selected a priori, and the objective of the algorithm is to divide the data into $K$ groups such that the sum of the averaged squared distances in each cluster is minimal.
+In K-means the number of clusters $$K$$ is selected a priori, and the objective of the algorithm is to divide the data into $$K$$ groups such that the sum of the averaged squared distances in each cluster is minimal.
 
-I.e., by denoting $S_i$ as the $i$-th cluster ($i\in [1,..,K]$), and $\left|S_i\right|$ as the number of points in the $i$-th cluster, K-mean searches for the optimal clustering $\left\lbrace S_i\right\rbrace^*$:
+I.e., by denoting $$S_i$$ as the $$i$$-th cluster ($$i\in [1,..,K]$$), and $$\left|S_i\right|$$ as the number of points in the $$i$$-th cluster, K-mean searches for the optimal clustering $$\left\lbrace S_i\right\rbrace^*$$:
 $$
 \left\lbrace S_i\right\rbrace^*=\underset{\left\lbrace S_i\right\rbrace}{\arg\min}\sum_{i=1}^K\frac{1}{2\left|S_i\right|}\sum_{\boldsymbol{x},\boldsymbol{y}\in S_i}\left\lVert \boldsymbol{x}-\boldsymbol{y} \right\rVert^2
 $$
 
-it can easily be shown that this equivalent to minimizing the sum of squared distances from each point to the center the average point of its cluster $\boldsymbol{\mu}_i=\frac{1}{\left|S_i\right|}\sum_{\boldsymbol{x}\in S_i}\boldsymbol{x}$. I.e.
+it can easily be shown that this equivalent to minimizing the sum of squared distances from each point to the center the average point of its cluster $$\boldsymbol{\mu}_i=\frac{1}{\left|S_i\right|}\sum_{\boldsymbol{x}\in S_i}\boldsymbol{x}$$. I.e.
 
 $$
 \left\lbrace S_i\right\rbrace^*=\underset{\left\lbrace S_i\right\rbrace}{\arg\min}\sum_{i=1}^K\sum_{\boldsymbol{x}\in S_i}\left\lVert \boldsymbol{x}-\boldsymbol{\mu}_i \right\rVert^2
@@ -46,17 +46,17 @@ To find the optimal clustering, K-mean works as follow:
 
 #### Initialization
 
-The algorithm is initialized by randomly selecting $K$ points, $\left\lbrace\boldsymbol{\mu}_i\right\rbrace$, which are to be used as an initial guess for the cluster's centers.
+The algorithm is initialized by randomly selecting $$K$$ points, $$\left\lbrace\boldsymbol{\mu}_i\right\rbrace$$, which are to be used as an initial guess for the cluster's centers.
 
-A common initialization is to select $K$ point for the dataset.
+A common initialization is to select $$K$$ point for the dataset.
 
 #### Iterations
 
 The algorithm then iteratively updates the clusters and the clusters' centers by repeating these two steps:
 
-1. Cluster the points by assign each point to the closest $\boldsymbol{\mu}_i$ to it, while $\left\lbrace\boldsymbol{\mu}_i\right\rbrace$ is kept fixed. The $i$-th cluster is the set of points assigned to $\boldsymbol{\mu}_i$.
+1. Cluster the points by assign each point to the closest $$\boldsymbol{\mu}_i$$ to it, while $$\left\lbrace\boldsymbol{\mu}_i\right\rbrace$$ is kept fixed. The $$i$$-th cluster is the set of points assigned to $$\boldsymbol{\mu}_i$$.
 
-2. Updated the $\left\lbrace\boldsymbol{\mu}_i\right\rbrace$ to be the new centers of each cluster, while keeping the assignments to clusters fixed.
+2. Updated the $$\left\lbrace\boldsymbol{\mu}_i\right\rbrace$$ to be the new centers of each cluster, while keeping the assignments to clusters fixed.
 
 These steps are repeated until the clusters reach a steady state (i.e., no updated in needed in the clustering stage)
 
@@ -70,7 +70,7 @@ We will use the same [dataset](https://technion046195.github.io/semester_2019_sp
 
 ## ❓️ Problem: Finding The Optimal Parking Lots Locations
 
-A taxi company is looking to rent $K$ parking lots so that their taxis can wait in them in between rides.
+A taxi company is looking to rent $$K$$ parking lots so that their taxis can wait in them in between rides.
 
 It would like to select the optimal locations to place these parking lots such that the average distance from the drop off location to the nearest parking lot will be minimal.
 
@@ -105,7 +105,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection (Reminder)
@@ -121,14 +121,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=100000$</p>
+Number of rows in the dataset: $$N=100000$$
 
 
 
@@ -379,15 +379,15 @@ A random phenomenon generating taxi rides along with there details
 
 ### The task and goal
 
-Finding locations for $K$ parking lots such that the average distance to the nearest parking lot will be minimal.
+Finding locations for $$K$$ parking lots such that the average distance to the nearest parking lot will be minimal.
 
 ### Evaluation method
 
 As stated in the goal, the quantity which we would like to minimize is given by:
 
-- $X$ as the random variable of the drop off location.
-- $\boldsymbol{c}_i$: as the location of the $i$-th parking lot.
-- $N$: The number of points in the dataset.
+- $$X$$ as the random variable of the drop off location.
+- $$\boldsymbol{c}_i$$: as the location of the $$i$$-th parking lot.
+- $$N$$: The number of points in the dataset.
 
 We would like to define and minimize the following risk function:
 
@@ -397,7 +397,7 @@ $$
 
 Therefore, this will be our risk function.
 
-As usual, since we do not know the exact distribution of $X$ so we would approximate the risk function with an empirical risk. In this case, we will replace the expectation value with the empirical mean calculated on a test set $\left\lbrace\boldsymbol{x}_j\right\rbrace$:
+As usual, since we do not know the exact distribution of $$X$$ so we would approximate the risk function with an empirical risk. In this case, we will replace the expectation value with the empirical mean calculated on a test set $$\left\lbrace\boldsymbol{x}_j\right\rbrace$$:
 
 $$
 \hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{\boldsymbol{x}_j}\min_{\boldsymbol{c}\in\left\lbrace\boldsymbol{c}\right\rbrace}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}\right\rVert
@@ -405,7 +405,7 @@ $$
 
 In fact, we can write this problem as a clustering problem. We can do so by rewriting the above summation as a summation over clusters where each cluster is defined by the location of the nearest parking lot.
 
-By denoting the cluster of points for which $c_i$ is their closet parking lot as  $S_{i}$, we can rewrite the summation as:
+By denoting the cluster of points for which $$c_i$$ is their closet parking lot as  $$S_{i}$$, we can rewrite the summation as:
 
 $$
 \hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{i=1}^K\sum_{\boldsymbol{x}_j\in S_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
@@ -441,7 +441,7 @@ test_set = dataset.iloc[test_indices]
 
 ### Model
 
-In this case the model is in fact all possible solutions which is any set of $K$ 2D points.
+In this case the model is in fact all possible solutions which is any set of $$K$$ 2D points.
 
 ### Learning Method: K-Means
 
@@ -601,7 +601,7 @@ Now let us address the topic of selecting the number of parking lots (the number
 
 Basically, to reduce the average ride distance we would like as much parking lots as possible, but in practice operating a parking lots cost money. Let us assume that:
 
-1. The price of operating a parking lot is 10k\\$ per month.
+1. The price of operating a parking lot is 10k$ per month.
 2. There will be exactly 100k rides to the parking lots per month.
 3. The estimated price per kilometer for when driving to the parking is estimated at 3$ / kilometer.
 
@@ -628,7 +628,7 @@ $$
 
 ## 💡 Model & Learning Method Suggestion
 
-Now the space of solutions is the space of all possible locations and number of parking lots. We saw how to solve it for a fixed $K$ and we can easily run over all relevant values of $K$ to find the optimal value.
+Now the space of solutions is the space of all possible locations and number of parking lots. We saw how to solve it for a fixed $$K$$ and we can easily run over all relevant values of $$K$$ to find the optimal value.
 
 This is a common case in machine learning, where we have a method for fining an optimal model configuration only after we fix some parameters of the model. We will refer to this part of the model for which we do not have an efficient way to optimally select as the **hyper-parameters** of the model.
 
@@ -660,7 +660,7 @@ Let us add the loop/iterations over the hyper-parameters to our workflow
 
 ### ✍️ Exercise 4.4
 
-Use K-means to select the number and locations of parking lots. Search over the range of $1\leq K \leq 25$. Plot the empirical train risk as a function of $K$.
+Use K-means to select the number and locations of parking lots. Search over the range of $$1\leq K \leq 25$$. Plot the empirical train risk as a function of $$K$$.
 
 #### Solution 4.4
 
@@ -752,7 +752,7 @@ print('The train risk is {:.2f} k$'.format(test_risk))
 
 ## Train-Validation-Test Separation
 
-In the above example, we have selected the optimal $K$ based upon the risk which was calculated using the train set. As we stated before this situation is problematic since the risk over the test set would be too optimistic due to overfitting. This is mainly problematic, but not limited to, the case where we have a small amount of data. For example, think about the extreme case where there were only 5 data points. In this case, the training risk will obviously be lower than the true risk and would even go down to zero for $K\geq5$.
+In the above example, we have selected the optimal $$K$$ based upon the risk which was calculated using the train set. As we stated before this situation is problematic since the risk over the test set would be too optimistic due to overfitting. This is mainly problematic, but not limited to, the case where we have a small amount of data. For example, think about the extreme case where there were only 5 data points. In this case, the training risk will obviously be lower than the true risk and would even go down to zero for $$K\geq5$$.
 
 The solution to this problem is to also divide the dataset once more. Therefore in cases, where we would also be required to optimize over some hyper-parameters, we would divide our data into three sets: a train-set a validation-set and a test-set.
 
@@ -861,7 +861,7 @@ print('The train risk is {:.2f} k$'.format(test_risk))
 ![png](output_47_1.png)
 
 
-As the same as got without the validation-split, the optimal $K$ is 12. In this case, the amount of data is large, and the apparent overfit seems to be small. In general, it will usually be hard to tell if our dataset is large enough, and how much overfit do we have in our solution.
+As the same as got without the validation-split, the optimal $$K$$ is 12. In this case, the amount of data is large, and the apparent overfit seems to be small. In general, it will usually be hard to tell if our dataset is large enough, and how much overfit do we have in our solution.
 
 
 ```python

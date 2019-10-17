@@ -16,15 +16,15 @@ Below is a table defining some of the concepts which we will be using when worki
 | name | Usually donated by | Definition | Example  |
 | :--- | --- | --- | --- |
 | **A random phenomenon**<br><br><br><br> |- | Some process which generates random outcomes |  Spilling a glass of juice on the floor and examining at the shape of the spill |
-| **A sample**<br><br><br><br> | $\omega$ | A single outcome of the process |  Some specific spill shape |
-| **Sample space**<br><br><br><br> | $\Omega$ | The space of all possible outcomes of the given process. $\Omega=\left\lbrace\forall\omega\right\rbrace$ |  The space of all possible spill shapes |
-| **Random Variables**<br><br><br><br> | $X\left(\omega\right)$,$Y\left(\omega\right)$,... | A function $X:\Omega\rightarrow\mathbb{R}$ which assigns a real number to a given sample | A function which returns the perimeter of a spill:<br>$X_1\left(\omega\right)$<br>A function which returns the area of a spill:<br> $X_2\left(\omega\right)$ |
-| **An event**<br><br><br><br> | $A$ | A collection of events, i.e., a subset of the sample space $A\subseteq\Omega$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$A=\left\lbrace\omega: X_1\left(\omega\right)<2 \right\rbrace$<br>The collection of all spills with a area larger than 1:<br>$B=\left\lbrace\omega: X_2\left(\omega\right)>1 \right\rbrace$ |
-| **Event space**<br><br><br><br> | $\mathcal{F}$ | A space of events. $A\in\mathcal{F}$  | The space of all possible collections of spills shape |
-| **Probability measure**<br><br><br><br> | $P\left(A\right)$ | A function $P:\mathcal{F}\rightarrow\left[0,1\right]$ which returns the probability of a random sample to be an element in some event $A$ | $P\left(A\right)=P\left(X_1<2\right)=0.1$<br>$P\left(X_1<0\right)=P\left(\emptyset\right)=0$<br>$P\left(0\leq X_1\right)=P\left(\Omega\right)=1$<br>$P\left(A\cup B\right)=P\left(X_1<2\ \text{or}\ X_2>1\right)=0.6$<br>$P\left(A\cap B\right)=P\left(X_1<2\ \text{and}\ X_2>1\right)=0.01$ |
-| **Conditional probability measure**<br><br><br><br> | $P\left(AǀB\right)$ | A function $P:\mathcal{F}_1\times\mathcal{F}_2\rightarrow\left[0,1\right]$ which returns the probability of a random sample to be an element in event $A$ given that it is an element in event $B$ | The probability of a spill to have a diameter smaller than 2, given that it has a area larger than 1:<br>$P\left(AǀB\right)=P\left(X_1<2ǀX_2>1\right)=0.02$ |
+| **A sample**<br><br><br><br> | $$\omega$$ | A single outcome of the process |  Some specific spill shape |
+| **Sample space**<br><br><br><br> | $$\Omega$$ | The space of all possible outcomes of the given process. $$\Omega=\left\lbrace\forall\omega\right\rbrace$$ |  The space of all possible spill shapes |
+| **Random Variables**<br><br><br><br> | $$X\left(\omega\right)$$,$$Y\left(\omega\right)$$,... | A function $$X:\Omega\rightarrow\mathbb{R}$$ which assigns a real number to a given sample | A function which returns the perimeter of a spill:<br>$$X_1\left(\omega\right)$$<br>A function which returns the area of a spill:<br> $$X_2\left(\omega\right)$$ |
+| **An event**<br><br><br><br> | $$A$$ | A collection of events, i.e., a subset of the sample space $$A\subseteq\Omega$$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$$A=\left\lbrace\omega: X_1\left(\omega\right)<2 \right\rbrace$$<br>The collection of all spills with a area larger than 1:<br>$$B=\left\lbrace\omega: X_2\left(\omega\right)>1 \right\rbrace$$ |
+| **Event space**<br><br><br><br> | $$\mathcal{F}$$ | A space of events. $$A\in\mathcal{F}$$  | The space of all possible collections of spills shape |
+| **Probability measure**<br><br><br><br> | $$P\left(A\right)$$ | A function $$P:\mathcal{F}\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in some event $$A$$ | $$P\left(A\right)=P\left(X_1<2\right)=0.1$$<br>$$P\left(X_1<0\right)=P\left(\emptyset\right)=0$$<br>$$P\left(0\leq X_1\right)=P\left(\Omega\right)=1$$<br>$$P\left(A\cup B\right)=P\left(X_1<2\ \text{or}\ X_2>1\right)=0.6$$<br>$$P\left(A\cap B\right)=P\left(X_1<2\ \text{and}\ X_2>1\right)=0.01$$ |
+| **Conditional probability measure**<br><br><br><br> | $$P\left(AǀB\right)$$ | A function $$P:\mathcal{F}_1\times\mathcal{F}_2\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in event $$A$$ given that it is an element in event $$B$$ | The probability of a spill to have a diameter smaller than 2, given that it has a area larger than 1:<br>$$P\left(AǀB\right)=P\left(X_1<2ǀX_2>1\right)=0.02$$ |
 
-In the last two rows we have used $X<2$ as a shorthand for $\left\lbrace\omega:X\left(\omega\right)<2\right\rbrace$. This is in fact a common shorthand writing and we will usually be using it from here on.
+In the last two rows we have used $$X<2$$ as a shorthand for $$\left\lbrace\omega:X\left(\omega\right)<2\right\rbrace$$. This is in fact a common shorthand writing and we will usually be using it from here on.
 
 <br>
 <center><img src="../media/diagrams/random_process/random_process.png?2" style="width:700px"/></center>
@@ -33,7 +33,7 @@ In the last two rows we have used $X<2$ as a shorthand for $\left\lbrace\omega:X
 
 
 
-**Realizations**: The outcomes of the random variable, i.e., the output value we get for a random outcome of the process, is called realization. We usually denote random variables by upper case letter and denote their realization using the equivalent lower case one, for example, the random variable $X$ and its realization $x$. 
+**Realizations**: The outcomes of the random variable, i.e., the output value we get for a random outcome of the process, is called realization. We usually denote random variables by upper case letter and denote their realization using the equivalent lower case one, for example, the random variable $$X$$ and its realization $$x$$. 
 
 In many cases, the term samples is used to refer to the realizations themselves without making the distinction between the actual samples and the result of the random variable operating in them.   
 
@@ -41,7 +41,7 @@ The distribution of a random variable describes the probability of getting reali
 
 ### The Cumulative Distribution Function (the CDF)
 
-The CDF of a random variable $X$ is usually denoted by $F_X\left(x\right)$ and is defined as:
+The CDF of a random variable $$X$$ is usually denoted by $$F_X\left(x\right)$$ and is defined as:
 $$
 F_{X}\left(x\right)=P\left(X\leq x\right)
 $$
@@ -50,13 +50,13 @@ $$
 
 *Not the documents file format* 😉
 
-The PDF of a random variable $X$ is usually denoted by $f_X\left(x\right)$ or $p_X\left(x\right)$ and is defined as a function for which:
+The PDF of a random variable $$X$$ is usually denoted by $$f_X\left(x\right)$$ or $$p_X\left(x\right)$$ and is defined as a function for which:
 
 $$
 F_X\left(x\right)=\int_{-\infty}^{x}p_X\left(x\right)dx
 $$
 
-If $F_X\left(x\right)$ is differentiable then:
+If $$F_X\left(x\right)$$ is differentiable then:
 
 $$
 p_X\left(x\right)=\frac{d}{dx}F_X\left(x\right)
@@ -64,7 +64,7 @@ $$
 
 ### The Probability Mass Function (the PMF) - For a Discrete Random Variable
 
-The PMF of a random variable $X$ is also usually denoted by $f_X\left(x\right)$ or $p_X\left(x\right)$ and is defined as:
+The PMF of a random variable $$X$$ is also usually denoted by $$f_X\left(x\right)$$ or $$p_X\left(x\right)$$ and is defined as:
 
 $$
 p_X\left(x\right)=P\left(X=x\right)
@@ -72,14 +72,14 @@ $$
 
 ## 🗜️ Expectation Value
 
-In the discrete case, the expectation value of a random variable $X$ is the weighted average of the outcomes random variable can produce, where the weights are the probability assigned to each outcome, i.e., the PMF. We will denote it by $\mathbb{E}\left[x\right]$. It is calculated by:
+In the discrete case, the expectation value of a random variable $$X$$ is the weighted average of the outcomes random variable can produce, where the weights are the probability assigned to each outcome, i.e., the PMF. We will denote it by $$\mathbb{E}\left[x\right]$$. It is calculated by:
 $$
 \mathbb{E}\left[x\right]=\sum_{x\in\left\lbrace X\left(\omega\right),\omega\in\Omega\right\rbrace} x\cdot p_X\left(x\right)
 $$
 
-Where $\left\lbrace X\left(\omega\right),\omega\in\Omega\right\rbrace$ represents the space of all possible outcomes of the random variable $X$.
+Where $$\left\lbrace X\left(\omega\right),\omega\in\Omega\right\rbrace$$ represents the space of all possible outcomes of the random variable $$X$$.
 
-It can be shown that the expectation value of the random variable $g\left(X\left(\omega\right)\right)$, for any given $g$, can be calculated as:
+It can be shown that the expectation value of the random variable $$g\left(X\left(\omega\right)\right)$$, for any given $$g$$, can be calculated as:
 
 $$
 \mathbb{E}\left[g\left(x\right)\right]=\sum_{g\left(x\right)} g\left(x\right)\cdot p_{g\left(X\right)}\left(g\left(x\right)\right)=\sum_{x} g\left(x\right)\cdot p_X\left(x\right)
@@ -96,7 +96,7 @@ $$
 
 In the context of machine learning, we would like to estimate the unknown distribution of a random variable based on a set of samples of it which we will call the dataset. **We will always assume here that the samples in the dataset are statistically independent**.
 
-We will usually denote an estimation of some value $x$ using the "hat" sign: $\hat{x}$.
+We will usually denote an estimation of some value $$x$$ using the "hat" sign: $$\hat{x}$$.
 
 ### Empirical Measure
 
@@ -104,11 +104,11 @@ Before we look at evaluating distributions, let us start by defining the empiric
 
 The empirical measure is an estimation of a probability measure given a set of samples. Using the following notation:
 
-- $N$ - the number of samples in the dataset.
-- $\omega_i$ - the $i$-th sample.
-- $I\left\lbrace\omega_i \in A\right\rbrace$ - An indicator function of whether or not $\omega_i$ is an element in event $A$.
+- $$N$$ - the number of samples in the dataset.
+- $$\omega_i$$ - the $$i$$-th sample.
+- $$I\left\lbrace\omega_i \in A\right\rbrace$$ - An indicator function of whether or not $$\omega_i$$ is an element in event $$A$$.
 
-The empirical measure of the probability measure $P\left(A\right)$ is defined as:
+The empirical measure of the probability measure $$P\left(A\right)$$ is defined as:
 
 $$
 \hat{p}_A=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace\omega_i\in A\right\rbrace
@@ -120,9 +120,9 @@ Put in words, we estimate the probability of an event as the fraction of samples
 
 The empirical mean is a way to estimates the value of an expectation value given a set of samples. Adding the following notation:
 
-- $x_i$ - the realization value of the $i$-th sample, i.e., $X\left(\omega_i\right)$. **From here on we will refer to $X_i$ is as the $X$ value of the $i$-th sample.**
+- $$x_i$$ - the realization value of the $$i$$-th sample, i.e., $$X\left(\omega_i\right)$$. **From here on we will refer to $$X_i$$ is as the $$X$$ value of the $$i$$-th sample.**
 
-The empirical mean of the expectation value $\mathbb{E}\left[f\left(x\right)\right]$ is then defined as:
+The empirical mean of the expectation value $$\mathbb{E}\left[f\left(x\right)\right]$$ is then defined as:
 
 $$
 \hat{\mu}_{f\left(x\right)}=\tfrac{1}{N}\sum_{i=1}^N f\left(x_i\right)
@@ -130,26 +130,26 @@ $$
 
 ## 📊 Estimating the PMF
 
-We can use the empirical measure we can estimate the PMF of a random variable $X$. We shall denote:
+We can use the empirical measure we can estimate the PMF of a random variable $$X$$. We shall denote:
 
-- $N$ - the number of samples in the dataset.
-- $x_i$ - the $X$ value of the $i$-th sample.
-- $I\left\lbrace x_i = x\right\rbrace$ - An indicator function of whether or not $x_i$ is equal to $x$.
+- $$N$$ - the number of samples in the dataset.
+- $$x_i$$ - the $$X$$ value of the $$i$$-th sample.
+- $$I\left\lbrace x_i = x\right\rbrace$$ - An indicator function of whether or not $$x_i$$ is equal to $$x$$.
 
-The PMF estimation of $p_{X}\left(x\right)$ is then given by:
+The PMF estimation of $$p_{X}\left(x\right)$$ is then given by:
 $$
 \hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i = x\right\rbrace
 $$
 
 ## 📈 The Empirical Cumulative Distribution Function (the ECDF)
 
-Similarly, we can estimate the CDF of a random variable $X$. We shall denote:
+Similarly, we can estimate the CDF of a random variable $$X$$. We shall denote:
 
-- $N$ - the number of samples in the dataset.
-- $x_i$ - the $X$ value of the $i$-th sample.
-- $I\left\lbrace x_i \leq x\right\rbrace$ - An indicator function of whether or not $x_i$ is smaller then $x$.
+- $$N$$ - the number of samples in the dataset.
+- $$x_i$$ - the $$X$$ value of the $$i$$-th sample.
+- $$I\left\lbrace x_i \leq x\right\rbrace$$ - An indicator function of whether or not $$x_i$$ is smaller then $$x$$.
 
-The ECDF estimation of the CDF $F_{X}\left(x\right)$ is then given by:
+The ECDF estimation of the CDF $$F_{X}\left(x\right)$$ is then given by:
 $$
 \hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i \leq x\right\rbrace
 $$
@@ -160,21 +160,21 @@ The ECDF results in a non-continuous CDF which is a sum of step functions.
 
 A histogram is constructed by dividing the range of possible outcomes a random variable can take into bins and then estimating the probability density (the value of the PDF) in each bin. The bins must be non-overlapping and to cover the full range of possible outcomes. The estimation of the probability density in each bin is estimated in a manner similar to the PMF. We shall denote:
 
-- $N$ the number of samples of the random variable $X$.
-- $x_i$ - the $X$ value of the $i$-th sample.
-- $l_k$, $r_k$ - The left and right edges of the $k$'s bin.
-- $I\left\lbrace l_k \leq x_i < r_k\right\rbrace$ - An indicator function of whether or not $x_i$ is the $k$'s bin
+- $$N$$ the number of samples of the random variable $$X$$.
+- $$x_i$$ - the $$X$$ value of the $$i$$-th sample.
+- $$l_k$$, $$r_k$$ - The left and right edges of the $$k$$'s bin.
+- $$I\left\lbrace l_k \leq x_i < r_k\right\rbrace$$ - An indicator function of whether or not $$x_i$$ is the $$k$$'s bin
 
-The histogram which estimates the PDF $p_X\left(x\right)$ is given by:
+The histogram which estimates the PDF $$p_X\left(x\right)$$ is given by:
 $$
 h_X\left(l_k \leq x < r_k\right) = \tfrac{1}{N\cdot\left(r_k-l_k\right)}\sum_{i=1}^N I\left\lbrace l_k \leq x_i < r_k\right\rbrace
 $$
 
-the additional division by $\left(r_k-l_k\right)$ is to produce a probability density from the estimated probability.
+the additional division by $$\left(r_k-l_k\right)$$ is to produce a probability density from the estimated probability.
 
 *The actual calculation for when and how good is this approximation is outside the scope of this course.* 
 
-The selection of the bins significantly effects how well the histogram approximates the PDF. A common rule of thumb for selecting the bins is to divide the range of values into $\sqrt{N}$ equal bins.
+The selection of the bins significantly effects how well the histogram approximates the PDF. A common rule of thumb for selecting the bins is to divide the range of values into $$\sqrt{N}$$ equal bins.
 
 ## 📉 Kernel Density Estimation (KDE)
 
@@ -184,26 +184,26 @@ One way of understanding the resulting PDF is by thinking of it as a PDF which w
 
 We shall denote:
 
-- $N$ the number of samples of the random variable $X$.
-- $x_i$ - the $X$ value of the $i$-th sample.
-- $\phi\left(x\right)$ - the selected Parzen window.
+- $$N$$ the number of samples of the random variable $$X$$.
+- $$x_i$$ - the $$X$$ value of the $$i$$-th sample.
+- $$\phi\left(x\right)$$ - the selected Parzen window.
 
-The KDE which estimates the PDF $p_X\left(x\right)$ is given by:
+The KDE which estimates the PDF $$p_X\left(x\right)$$ is given by:
 $$
 \hat{p}_{\phi,X}\left(x\right) = \frac{1}{N}\sum_{i=1}^N \phi\left(x-x_i\right)
 $$
 
-It is common to add a scaling factor $h$, called the bandwidth, to the Parzen window to control the width of the window. We shall denote the scaled version of the window by $\phi_h\left(x\right)=\frac{1}{h}\phi\left(\frac{x}{h}\right)$. Plugging this into the definition of the KDE, we get:
+It is common to add a scaling factor $$h$$, called the bandwidth, to the Parzen window to control the width of the window. We shall denote the scaled version of the window by $$\phi_h\left(x\right)=\frac{1}{h}\phi\left(\frac{x}{h}\right)$$. Plugging this into the definition of the KDE, we get:
 
 $$
 \hat{p}_{\phi,h,X}\left(x\right) = \frac{1}{N\cdot h}\sum_{i=1}^N \phi\left(\frac{x-x_i}{h}\right)
 $$
 
 Two common choices of the Parzen window are:
-- A Gaussian: $\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)$
-- A rectangular function $I\left\lbrace\left|x\right|\leq0.5\right\rbrace$
+- A Gaussian: $$\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)$$
+- A rectangular function $$I\left\lbrace\left|x\right|\leq0.5\right\rbrace$$
 
-A rule of thumb for selecting the bandwidth for the Gaussian window is: $\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$
+A rule of thumb for selecting the bandwidth for the Gaussian window is: $$\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$
 
 <center><h1 class="workshop-title">Workshop 2<br>Non-Parametric Density Estimation</h1></center>
 
@@ -248,7 +248,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -266,14 +266,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=100000$</p>
+Number of rows in the dataset: $$N=100000$$
 
 
 
@@ -500,13 +500,13 @@ For the random phenomenon generating the taxi rides data, define or make-up exam
 
 #### Solution 2.1
 
-- **A sample**: A single taxi ride, for example, $\omega$: A ride from downtown to central park, which began at 8:15 and took 30 minutes.
+- **A sample**: A single taxi ride, for example, $$\omega$$: A ride from downtown to central park, which began at 8:15 and took 30 minutes.
 - **Random variables**:
- - A function which returns the ride's duration in hours as a real number. (A continues random variable): $X_\text{duration}\left(\omega\right)=0.5$
-  - A function which returns the pickup hour of the day as an integer between 0 and 23. (A discrete random variable): $X_\text{hour}\left(\omega\right)=8$
-  - A function which returns 1 if the ride ended to the west of East River and 0 if it ended to the east of it. (A binary random variable): $X_\text{East River}\left(\omega\right)=1$
-- **An event**: A set of taxi rides, For example, all taxi rides which started before 11 a.m: $A=\left\lbrace\omega,X_\text{hour}(\omega)<11\right\rbrace$
-- **Probability measure**: For example, the probability of a randomly generated ride to start before 11 a.m. $P\left(A\right)=\tfrac{1}{3}$
+ - A function which returns the ride's duration in hours as a real number. (A continues random variable): $$X_\text{duration}\left(\omega\right)=0.5$$
+  - A function which returns the pickup hour of the day as an integer between 0 and 23. (A discrete random variable): $$X_\text{hour}\left(\omega\right)=8$$
+  - A function which returns 1 if the ride ended to the west of East River and 0 if it ended to the east of it. (A binary random variable): $$X_\text{East River}\left(\omega\right)=1$$
+- **An event**: A set of taxi rides, For example, all taxi rides which started before 11 a.m: $$A=\left\lbrace\omega,X_\text{hour}(\omega)<11\right\rbrace$$
+- **Probability measure**: For example, the probability of a randomly generated ride to start before 11 a.m. $$P\left(A\right)=\tfrac{1}{3}$$
 
 ### The Task and the Goal
 
@@ -616,7 +616,7 @@ ax.set_ylim(0.88, 0.9);
 
 #### Solution 2.2-2
 
-The CDF graph describes the probability of $X_\text{duration}\leq x$. We want to evaluate:
+The CDF graph describes the probability of $$X_\text{duration}\leq x$$. We want to evaluate:
 
 $$
 P\left(X_\text{duration}>20 \text{min}\right)=1 - P\left(X_\text{duration}\leq 20 \text{min}\right)=1-\hat{F}_{X}\left(20\right)=1-0.89=0.11
@@ -669,7 +669,7 @@ We shall try to estimate the PDF of the distribution using an histogram.
 1. Calculate and plot the histogram of the duration for the case of 30, 300 and 3000 bins.
 2. Split the train set into 8 equal subsets and calculate the histogram for each of the subsets. What can you say about the variability of the bins height as a function of the number of bins?
 
-*Reminder: the rule of thumb suggests to use a number of bins equal to $\sqrt{N}=\sqrt{80000}\approx 280$*
+*Reminder: the rule of thumb suggests to use a number of bins equal to $$\sqrt{N}=\sqrt{80000}\approx 280$$*
 
 #### Solution 2.4-1
 
@@ -806,11 +806,11 @@ We shall try to estimate the PDF of the distribution using an KDE.
 
 ###  ✍️ Exercise 2.5 - KDE
 
-Calculate and plot the KDE of the durations using a Gaussian Parzen window with widths ($\sigma$) of 0.08, 0.8, 8. 
+Calculate and plot the KDE of the durations using a Gaussian Parzen window with widths ($$\sigma$$) of 0.08, 0.8, 8. 
 
 Add on the same axes the plot of a histogram with 300 bins for comparison.
 
-*Reminder: the rule of thumb suggests a width of: $\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$*
+*Reminder: the rule of thumb suggests a width of: $$\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$*
 
 #### Solution 2.5
 
@@ -818,7 +818,7 @@ Add on the same axes the plot of a histogram with 300 bins for comparison.
 ```python
 ## Calculate the suggested bandwidth
 suggested_bandwidth = 1.06 * np.std(x) / n_samples ** (1 / 5.)
-print_math('The rule of thumb suggests a bandwidth of $\\left(\\frac{{4\\cdot\\text{{std}}\\left\\{{x_i\\right\\}}}}{{3N}}\\right)^\\frac{{1}}{{5}}\\approx{:.3f}$'.format(suggested_bandwidth))
+print_math('The rule of thumb suggests a bandwidth of $$\\left(\\frac{{4\\cdot\\text{{std}}\\left\\{{x_i\\right\\}}}}{{3N}}\\right)^\\frac{{1}}{{5}}\\approx{:.3f}$$'.format(suggested_bandwidth))
 
 def calculate_gaussian_kde(x, bandwidth, duration_grid):
     ## Calculate a matrix of (x_grid_j - x_i)^2 
@@ -850,7 +850,7 @@ ax.legend();
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The rule of thumb suggests a bandwidth of $\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}\approx0.775$</p>
+The rule of thumb suggests a bandwidth of $$\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}\approx0.775$$
 
 
 
@@ -867,16 +867,16 @@ Again we see behavior similar to that of the histogram. For a narrow bandwidth, 
 
 We would like to predict whether a random given ride occurred during the work hours, , which we will define as between 7 a.m. and 18 p.m., based only on the duration of the ride.
 
-For that let as define the random binary variable $Y$. The random variable $Y$ returns 1 if a ride occurred during the work hours, and 0 otherwise.
+For that let as define the random binary variable $$Y$$. The random variable $$Y$$ returns 1 if a ride occurred during the work hours, and 0 otherwise.
 
-We shall denote $p_Y\left(y\right)=P\left(Y=y\right)$
+We shall denote $$p_Y\left(y\right)=P\left(Y=y\right)$$
 
-1. Based on the data estimate $p_Y\left(0\right)$ and $p_Y\left(1\right)$, the probability of a random ride to occur on and off the work hours
-2. Which of the constant predictions, 0 or 1, would result in a larger probability guess $Y$ correctly?
+1. Based on the data estimate $$p_Y\left(0\right)$$ and $$p_Y\left(1\right)$$, the probability of a random ride to occur on and off the work hours
+2. Which of the constant predictions, 0 or 1, would result in a larger probability guess $$Y$$ correctly?
 
 #### solution 2.6-1
 
-We will estimate $p_Y\left(y\right)$ using the empirical measure estimation: $\frac{1}{N}\sum_i I\left\lbrace y_i=y\right\rbrace$
+We will estimate $$p_Y\left(y\right)$$ using the empirical measure estimation: $$\frac{1}{N}\sum_i I\left\lbrace y_i=y\right\rbrace$$
 
 
 ```python
@@ -885,30 +885,30 @@ y = (train_set['time_of_day'].values > 7) & (train_set['time_of_day'].values < 1
 
 ## Calculate the probability p_Y(1)
 prob_y1 = y.mean()
-print_math('$p_Y(1)\\approx{:.2f}$'.format(prob_y1))
+print_math('$$p_Y(1)\\approx{:.2f}$$'.format(prob_y1))
 
 ## Calculate the probability p_Y(0)
 prob_y0 = (~y).mean()
-print_math('$p_Y(0)\\approx{:.2f}$'.format(prob_y0))
+print_math('$$p_Y(0)\\approx{:.2f}$$'.format(prob_y0))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$p_Y(1)\approx0.51$</p>
+$$p_Y(1)\approx0.51$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>$p_Y(0)\approx0.49$</p>
+$$p_Y(0)\approx0.49$$
 
 
 #### solution 2.6-2
 
-Basically, we would like to select our constant prediction $\hat{y}$ such that:
+Basically, we would like to select our constant prediction $$\hat{y}$$ such that:
 
 $$
 \hat{y}=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \ P\left(Y=y\right)
 $$
 
-Which, not surprisingly, means picking the value of $Y$ with the highest probability.Since there is a slightly higher probability of $Y$ being equal to 1 our constant prediction would be:
+Which, not surprisingly, means picking the value of $$Y$$ with the highest probability.Since there is a slightly higher probability of $$Y$$ being equal to 1 our constant prediction would be:
 
 $$
 \hat{y}=1
@@ -925,11 +925,11 @@ y_test = (test_set['time_of_day'].values > 7) & (test_set['time_of_day'].values 
 
 predictions = 1
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: $R_\\text{{test}}\\{{ \\hat{{y}}=1 \\}}={:.2}$'.format(test_risk))
+print_math('The test risk is: $$R_\\text{{test}}\\{{ \\hat{{y}}=1 \\}}={:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $R_\text{test}\{ \hat{y}=1 \}=0.49$</p>
+The test risk is: $$R_\text{test}\{ \hat{y}=1 \}=0.49$$
 
 
 Similarly to the train set we we're correct 51% of the time, which is only slightly better then a 50:50 random guess.
@@ -942,8 +942,8 @@ $$
 \hat{y}\left(x\right)=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \ p_{Y|X}\left(y|x\right)
 $$
 
-1. Use Bayes rule to write $p_{Y|X}$ using $p_{X|Y}$, $p_X$ and $p_Y$
-2. Use KDE to estimate $p_{X|Y}\left(x|y=0\right)$ and $p_{X|Y}\left(x|y=1\right)$.
+1. Use Bayes rule to write $$p_{Y|X}$$ using $$p_{X|Y}$$, $$p_X$$ and $$p_Y$$
+2. Use KDE to estimate $$p_{X|Y}\left(x|y=0\right)$$ and $$p_{X|Y}\left(x|y=1\right)$$.
 3. Calculate the new predictor. 
 
 #### solution 2.7-1
@@ -955,7 +955,7 @@ $$
 
 #### solution 2.7-2
 
-To evaluate $p_{X|Y}\left(x|y=1\right)$ we will calculate a KDE using only the samples with $Y=1$, and the same for $p_{X|Y}\left(x|y=0\right)$ 
+To evaluate $$p_{X|Y}\left(x|y=1\right)$$ we will calculate a KDE using only the samples with $$Y=1$$, and the same for $$p_{X|Y}\left(x|y=0\right)$$ 
 
 
 ```python
@@ -981,8 +981,8 @@ kde_func.fit(x[~y, None])
 kde_y0 = np.exp(kde_func.score_samples(duration_grid[:, None]))  ## score_samples retuns log(p(x))
 
 fig, ax = plt.subplots()
-ax.plot(duration_grid, kde_y1, label='$p_{X|Y}(x|y=1)$')
-ax.plot(duration_grid, kde_y0, label='$p_{X|Y}(x|y=0)$')
+ax.plot(duration_grid, kde_y1, label='$$p_{X|Y}(x|y=1)$$')
+ax.plot(duration_grid, kde_y0, label='$$p_{X|Y}(x|y=0)$$')
 ax.set_title('Conditional KDE')
 ax.set_ylabel('PDF')
 ax.set_xlabel('Duration [min]')
@@ -993,7 +993,7 @@ ax.legend();
 ![png](output_67_0.png)
 
 
-We can see here that during the work hours, $Y=1$, a ride has a slightly higher probability to have a longer duration. Let us see if we can use this fact to improve our prediction.
+We can see here that during the work hours, $$Y=1$$, a ride has a slightly higher probability to have a longer duration. Let us see if we can use this fact to improve our prediction.
 
 #### solution 2.7-3
 
@@ -1025,7 +1025,7 @@ p_{Y|X}\left(1|x\right)\overset{?}{\geq}p_{Y|X}\left(0|x\right) \\
 p_{X|Y}\left(x|1\right)\cdot p_Y\left(1\right)\overset{?}{\geq}p_{X|Y}\left(x|0\right)\cdot p_Y\left(0\right)
 $$
 
-We will evaluate $\hat{y}$ numerically by substituting the quantities which we have already calculated into this inequality:
+We will evaluate $$\hat{y}$$ numerically by substituting the quantities which we have already calculated into this inequality:
 
 
 ```python
@@ -1036,7 +1036,7 @@ prediction = kde_y1 * prob_y1 >= kde_y0 * prob_y0
 fig, ax = plt.subplots()
 ax.plot(duration_grid, prediction)
 ax.set_title('Prediction')
-ax.set_ylabel('$\hat{y}$')
+ax.set_ylabel('$$\hat{y}$$')
 ax.set_xlabel('Duration [min]');
 ```
 
@@ -1064,11 +1064,11 @@ x_test = test_set['duration'].values
 
 predictions = x_test > 11.4
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: $R_\\text{{test}}\\{{ \\hat{{y}}(x) \\}}={:.2}$'.format(test_risk))
+print_math('The test risk is: $$R_\\text{{test}}\\{{ \\hat{{y}}(x) \\}}={:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $R_\text{test}\{ \hat{y}(x) \}=0.46$</p>
+The test risk is: $$R_\text{test}\{ \hat{y}(x) \}=0.46$$
 
 
 We were able to slightly improve our prediction. Although it is a very small improvement, there are cases where it can be very significant.

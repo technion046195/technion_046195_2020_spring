@@ -85,7 +85,7 @@ import matplotlib.pyplot as plt  # A plotting package
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## ⚗ Data collection
@@ -111,13 +111,13 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=1001$</p>
+Number of rows in the dataset: $$N=1001$$
 
 <div>
 <style scoped>
@@ -357,19 +357,19 @@ This process of randomly generating passengers and survival outcome can be thoug
 
 <center><img width="500px" src="../../media/diagrams/titanic_process.png?"/></center>
 
-We assume that the dataset was generate by apply this process $N$ times, with $N$ being the size of the dataset.
+We assume that the dataset was generate by apply this process $$N$$ times, with $$N$$ being the size of the dataset.
 
 ### The Task and the Goal
 
 As stated before, in this problem we would like to come up with a method, for guessing, or predicting whether or not a passenger on board the Titanic has survived the crash based on his properties.
 
-i.e., we are looking for a function which maps from the input space of gender and class, $\boldsymbol{x}$, into the binary space of the survival indicator, $y$:
+i.e., we are looking for a function which maps from the input space of gender and class, $$\boldsymbol{x}$$, into the binary space of the survival indicator, $$y$$:
 
 $$
 \hat{y}=h\left(\boldsymbol{x}\right)
 $$
 
-Where we have defined $\hat{y}$ as our prediction for the input $\boldsymbol{x}$.
+Where we have defined $$\hat{y}$$ as our prediction for the input $$\boldsymbol{x}$$.
 
 *We will later in this course define these type of problems as binary classification problems*.
 
@@ -381,9 +381,9 @@ We would usually want to be able to assign a numeric score of how **bad** a pred
 
 In this case, we will use a risk function called *the misclassification rate*. The misclassification rate is defined as the prediction errors a function makes on the data. Denoting:
 
-- $N$ - the number of sample in the dataset.
-- $\boldsymbol{x}_i$ - the person parameters in the $i$'s sample, i.e., the vector of $\left(\text{gender},\text{class}\right)$ of the $i$'s passenger.
-- $I\left\\{\text{condition}\right\\}$ - an indicator function returning 1 if the condition is true and 0 otherwise
+- $$N$$ - the number of sample in the dataset.
+- $$\boldsymbol{x}_i$$ - the person parameters in the $$i$$'s sample, i.e., the vector of $$\left(\text{gender},\text{class}\right)$$ of the $$i$$'s passenger.
+- $$I\left\lbrace\text{condition}\right\rbrace$$ - an indicator function returning 1 if the condition is true and 0 otherwise
 
 The risk would be:
 
@@ -451,7 +451,7 @@ y_test = y.iloc[test_indices]
 
 In this step, we would like to suggest a family of optional solutions for our problem. We would then have to search the space of suggested solutions to select the best solution according to our evaluation method. I.e., we would search for the solution which produces in the minimal risk. We should note here that in many cases, finding the solution with the lowest risk is not possible and we would settle for the solution with the lowest risk we can find.
 
-These solutions families will usually, but not always, be defined by a set of parameters. In such cases, we will use $\theta$ to denote these parameters.
+These solutions families will usually, but not always, be defined by a set of parameters. In such cases, we will use $$\theta$$ to denote these parameters.
 
 We refer to this family of solutions as the model.
 
@@ -461,7 +461,7 @@ There are many consideration which come into account for selecting different mod
 2. It should be a model which cover an extensive range of solutions in order to increase our chance of coming up with a solution which produces a low risk.
 3. As we will see, in many cases if the range of solution is too wide we will usually encounter a problem called overfitting, therefore in some cases we would not want the range of solutions to be too extensive. We will elaborate much more on this subject later in this course.
 
-In our example we will suggest a model for the prediction function $h\left(\boldsymbol{x}\right)$. In fact in this simple example, since  $h\left(\boldsymbol{x}\right)$ has only 6 possible inputs (2 gender x 3 classes), we can use 6 binary parameters to define the whole set of possible functions $h\left(\boldsymbol{x}\right)$.
+In our example we will suggest a model for the prediction function $$h\left(\boldsymbol{x}\right)$$. In fact in this simple example, since  $$h\left(\boldsymbol{x}\right)$$ has only 6 possible inputs (2 gender x 3 classes), we can use 6 binary parameters to define the whole set of possible functions $$h\left(\boldsymbol{x}\right)$$.
 
 $$
 h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)=\left\lbrace
@@ -476,29 +476,29 @@ h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)=\left\lbrace
 \right.
 $$
 
-**reminder**: $\boldsymbol{x}=\left(\text{gender}, \text{class}\right)$
+**reminder**: $$\boldsymbol{x}=\left(\text{gender}, \text{class}\right)$$
 
 As a more visually appealing way, we can also write it in the form of a table:
 
 | Sex \ Class |  1st class      | 2nd Class      | 3rd class      |
 | ----------- | --------------- | -------------- | -------------- |
-| Male (0)    |  $\theta_{0,1}$ | $\theta_{0,2}$ | $\theta_{0,3}$ |
-| Female (1)  |  $\theta_{1,1}$ | $\theta_{1,2}$ | $\theta_{1,3}$ |
+| Male (0)    |  $$\theta_{0,1}$$ | $$\theta_{0,2}$$ | $$\theta_{0,3}$$ |
+| Female (1)  |  $$\theta_{1,1}$$ | $$\theta_{1,2}$$ | $$\theta_{1,3}$$ |
 
-Only for demonstrating the process, we will start with an even more simplified model for $h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)$. We will start with the family of constant functions, i.e., $h_\theta\left(\boldsymbol{x}\right)=\theta$
+Only for demonstrating the process, we will start with an even more simplified model for $$h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)$$. We will start with the family of constant functions, i.e., $$h_\theta\left(\boldsymbol{x}\right)=\theta$$
 
 | Sex \ Class |  1st class  | 2nd Class  | 3rd class  |
 | ----------- | ----------- | ---------- | ---------- |
-| Male (0)    |  $\theta$   | $\theta$   | $\theta$   |
-| Female (1)  |  $\theta$   | $\theta$   | $\theta$   |
+| Male (0)    |  $$\theta$$   | $$\theta$$   | $$\theta$$   |
+| Female (1)  |  $$\theta$$   | $$\theta$$   | $$\theta$$   |
 
-Our method for finding the constant function, or equivalently the $\theta$, which produces the lowest risk would be to test all possible options. Since we are talking about a binary prediction function, there are only 2 options: $h_{\theta=0}\left(\boldsymbol{x}\right)=0$ and  $h_{\theta=1}\left(\boldsymbol{x}\right)=1$,
+Our method for finding the constant function, or equivalently the $$\theta$$, which produces the lowest risk would be to test all possible options. Since we are talking about a binary prediction function, there are only 2 options: $$h_{\theta=0}\left(\boldsymbol{x}\right)=0$$ and  $$h_{\theta=1}\left(\boldsymbol{x}\right)=1$$,
 
 ## ⚙ Learning
 
-Here we will usually apply some fancy method for selecting the best method, in this case, we simply need to evaluate the risk for the two options of $\theta=0$ and $\theta=1$ and one which produces the lower result.
+Here we will usually apply some fancy method for selecting the best method, in this case, we simply need to evaluate the risk for the two options of $$\theta=0$$ and $$\theta=1$$ and one which produces the lower result.
 
-Formally we would like to find the optimal value of $\theta$, which we will denote as $\theta^*$, for which:
+Formally we would like to find the optimal value of $$\theta$$, which we will denote as $$\theta^*$$, for which:
 
 $$
 \theta^*
@@ -506,7 +506,7 @@ $$
 =\underset{\theta\in\left\lbrace 0,1\right\rbrace}{\arg\min}\  \frac{1}{N}\sum_i I\left\lbrace\theta\neq y_i\right\rbrace
 $$
 
-Let us calculate the risk for each $\theta$ (note that we will only be using the train set for this task) :
+Let us calculate the risk for each $$\theta$$ (note that we will only be using the train set for this task) :
 
 ```python
 ## Loop over the two possible theta
@@ -515,14 +515,14 @@ for theta in [0, 1]:
     ## The number of worng prediction for theta:
     predictions = theta
     train_risk = (y_train.values != predictions).mean()
-    print_math('- $R_\\text{{train}}\\{{ h_{{ \\theta={} }} \\}}={:.2}$'.format(theta, train_risk))
+    print_math('- $$R_\\text{{train}}\\{{ h_{{ \\theta={} }} \\}}={:.2}$$'.format(theta, train_risk))
 ```
 
 The train risk for each predictor is:
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $R_\text{train}\{ h_{ \theta=0 } \}=0.42$</p>
+- $$R_\text{train}\{ h_{ \theta=0 } \}=0.42$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>- $R_\text{train}\{ h_{ \theta=1 } \}=0.58$</p>
+- $$R_\text{train}\{ h_{ \theta=1 } \}=0.58$$
 
 In this case, constantly predicting zero performs slightly better than constantly predicting one.
 
@@ -541,10 +541,10 @@ As stated before would like to do the evaluating of the risk on the test set. Le
 ## The evaluation of the final risk
 predictions = 0
 test_risk = (y_test.values != predictions).mean()
-print_math('The test risk is: $R_\\text{{test}}\\{{ h_{{ \\theta=0 }} \\}}={:.2}$'.format(test_risk))
+print_math('The test risk is: $$R_\\text{{test}}\\{{ h_{{ \\theta=0 }} \\}}={:.2}$$'.format(test_risk))
 ```
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $R_\text{test}\{ h_{ \theta=0 } \}=0.42$</p>
+The test risk is: $$R_\text{test}\{ h_{ \theta=0 } \}=0.42$$
 
 We would now want to suggest a way to improve our learning method.
 
@@ -552,9 +552,9 @@ In this case, the obvious way to get improvement is by replacing the naive model
 
 ## 💡 Model & Learning Method Suggestion - 2nd Attempt
 
-Let us now return to the full model for $h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)$ which covers all the possible all possible $2^6$ combinations for selecting $\boldsymbol{\theta}=\left(\theta_{0,1},..,\theta_{1,3}\right)^T$.
+Let us now return to the full model for $$h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)$$ which covers all the possible all possible $$2^6$$ combinations for selecting $$\boldsymbol{\theta}=\left(\theta_{0,1},..,\theta_{1,3}\right)^T$$.
 
-It could be shown that in this case, that we can find the optimal selection of the $\theta_{m,n}$'s by looking at each one of them individually and minimize the risk on the group of passengers with $X=\left(m,n\right)$. I.e.
+It could be shown that in this case, that we can find the optimal selection of the $$\theta_{m,n}$$'s by looking at each one of them individually and minimize the risk on the group of passengers with $$X=\left(m,n\right)$$. I.e.
 
 $$
 \theta_{m,n}^*
@@ -562,7 +562,7 @@ $$
 =\underset{\theta_{m,n}\in\left\lbrace 0,1\right\rbrace}{\arg\min}\ \frac{1}{N_{m,n}}\sum_{i,\boldsymbol{x}_i=\left(m,n\right)} I\left\lbrace\theta_{m,n}\neq y_i\right\rbrace
 $$
 
-with $m\in\left\\{0,1\right\\}$ (the gender) and $n\in\left\\{1,2,3\right\\}$ (the class)
+with $$m\in\left\lbrace0,1\right\rbrace$$ (the gender) and $$n\in\left\lbrace 1,2,3\right\rbrace$$ (the class)
 
 ```python
 print('The train risk for each group is:')
@@ -571,55 +571,55 @@ for gender in [0, 1]:
     ## loop over the class
     for class_ in [1, 2, 3]:  # we have used "class_" since the word "class" is already in use by python
         print('')  # An empty line
-        print_math('## For $\\{{\\boldsymbol{{x}}_i,y_i:\\boldsymbol{{x}}_i=({},{}) \\}}$'.format(gender, class_))
+        print_math('## For $$\\{{\\boldsymbol{{x}}_i,y_i:\\boldsymbol{{x}}_i=({},{}) \\}}$$'.format(gender, class_))
         ## Loop over the two possible theta
         for theta in [0, 1]:
             ## The number of worng prediction for theta:
             predictions = theta
             indices = (x_train['numeric_sex'].values == gender) & (x_train['pclass'].values == class_)
             train_risk = (y_train.values[indices] != predictions).mean()
-            print_math('-- $\\theta_{{ {},{} }}={} \Rightarrow R_{{\\text{{train}}}}\\{{h_{{ \\boldsymbol{{\\theta}} }}\\}}={:.2f}$'.format(gender, class_, theta, train_risk))
+            print_math('-- $$\\theta_{{ {},{} }}={} \Rightarrow R_{{\\text{{train}}}}\\{{h_{{ \\boldsymbol{{\\theta}} }}\\}}={:.2f}$$'.format(gender, class_, theta, train_risk))
 ```
 
 The train risk for each group is:
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>## For $\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(0,1) \}$</p>
+## For $$\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(0,1) \}$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 0,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.39$</p>
+-- $$\theta_{ 0,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.39$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 0,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.61$</p>
+-- $$\theta_{ 0,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.61$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>## For $\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(0,2) \}$</p>
+## For $$\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(0,2) \}$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 0,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.12$</p>
+-- $$\theta_{ 0,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.12$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 0,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.88$</p>
+-- $$\theta_{ 0,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.88$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>## For $\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(0,3) \}$</p>
+## For $$\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(0,3) \}$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 0,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.17$</p>
+-- $$\theta_{ 0,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.17$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 0,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.83$</p>
+-- $$\theta_{ 0,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.83$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>## For $\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(1,1) \}$</p>
+## For $$\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(1,1) \}$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 1,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.97$</p>
+-- $$\theta_{ 1,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.97$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 1,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.03$</p>
+-- $$\theta_{ 1,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.03$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>## For $\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(1,2) \}$</p>
+## For $$\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(1,2) \}$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 1,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.90$</p>
+-- $$\theta_{ 1,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.90$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 1,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.10$</p>
+-- $$\theta_{ 1,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.10$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>## For $\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(1,3) \}$</p>
+## For $$\{\boldsymbol{x}_i,y_i:\boldsymbol{x}_i=(1,3) \}$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 1,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.47$</p>
+-- $$\theta_{ 1,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.47$$
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>-- $\theta_{ 1,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.53$</p>
+-- $$\theta_{ 1,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.53$$
 
-Therefore our optimal predictor $\boldsymbol{\theta}^*$ will be constructed by choosing for each $\theta_{m,n}$ the values which minimizes the risk:
+Therefore our optimal predictor $$\boldsymbol{\theta}^*$$ will be constructed by choosing for each $$\theta_{m,n}$$ the values which minimizes the risk:
 
 | Sex \ Class |  1st class  | 2nd Class  | 3rd class  |
 | ----------- | ----------- | ---------- | ---------- |
@@ -656,10 +656,10 @@ predictions = x_test.apply(row_predictor, axis='columns')
 
 ## The evaluation of the final risk
 test_risk = (y_test.values != predictions).mean()
-print_math('The test risk is: $R_\\text{{test}}\\{{ h_{{ \\boldsymbol{{\\theta}}^* }} \\}}={:.2f}$'.format(test_risk))
+print_math('The test risk is: $$R_\\text{{test}}\\{{ h_{{ \\boldsymbol{{\\theta}}^* }} \\}}={:.2f}$$'.format(test_risk))
 ```
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $R_\text{test}\{ h_{ \boldsymbol{\theta}^* } \}=0.21$</p>
+The test risk is: $$R_\text{test}\{ h_{ \boldsymbol{\theta}^* } \}=0.21$$
 
 This mean that by using this predictor we have will be able to give a correct prediction about 77% of the time.
 

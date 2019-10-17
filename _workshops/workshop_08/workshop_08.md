@@ -5,7 +5,7 @@ title: "Linear Logistic Regression"
 {% raw %}
 ## Logistic Regression
 
-The logistic regression method tries to solve a classification problem following a discriminative approach. It seeks to estimate the conditional probability of the label given the measurements: $p\left(y|\boldsymbol{x}\right)$.
+The logistic regression method tries to solve a classification problem following a discriminative approach. It seeks to estimate the conditional probability of the label given the measurements: $$p\left(y|\boldsymbol{x}\right)$$.
 
 The logic regression algorithm tries to estimates the conditional distribution using the following model:
 
@@ -13,15 +13,15 @@ $$
 p\left(y=k|\boldsymbol{x}\right)=\frac{e^{f_k\left(\boldsymbol{x}\right)}}{\sum_\tilde{k}e^{f_\tilde{k}\left(\boldsymbol{x}\right)}}
 $$
 
-Where $f_k\left(\boldsymbol{x}\right),k\in\left\lbrace 0,1,\ldots,K-1\right\rbrace$ are $K$ pre-define functions which correspond to the $K$ possible classes which the label $y$ can take. 
+Where $$f_k\left(\boldsymbol{x}\right),k\in\left\lbrace 0,1,\ldots,K-1\right\rbrace$$ are $$K$$ pre-define functions which correspond to the $$K$$ possible classes which the label $$y$$ can take. 
 
-Usually, The functions $f_k$ are selected to be a single parametric function $f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_k\right)$ with $K$ different sets of parameters $\boldsymbol{\theta}_k$. I.e., the following model is used:
+Usually, The functions $$f_k$$ are selected to be a single parametric function $$f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_k\right)$$ with $$K$$ different sets of parameters $$\boldsymbol{\theta}_k$$. I.e., the following model is used:
 
 $$
 p\left(y=k|\boldsymbol{x}\right)=\frac{e^{f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_k\right)}}{\sum_\tilde{k}e^{f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_\tilde{k}\right)}}
 $$
 
-Because this model is only defined by the ratios between the $f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_k\right)$'s it has a large degree of freedom in selecting the parameters $\boldsymbol{\theta}_k$. This degree of freedom can be removed by setting $\boldsymbol{\theta}_0$ to some values such that $f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_0\right)=0$. We are then left to estimate only $K-1$ sets of parameters.
+Because this model is only defined by the ratios between the $$f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_k\right)$$'s it has a large degree of freedom in selecting the parameters $$\boldsymbol{\theta}_k$$. This degree of freedom can be removed by setting $$\boldsymbol{\theta}_0$$ to some values such that $$f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_0\right)=0$$. We are then left to estimate only $$K-1$$ sets of parameters.
 
 These model's parameters are usually estimated using MLE.
 
@@ -57,7 +57,7 @@ $$
 
 ## Linear Logistic Regression
 
-In the case where $f$ is selected to be a linear function of $\boldsymbol{x}$:
+In the case where $$f$$ is selected to be a linear function of $$\boldsymbol{x}$$:
 
 $$
 f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_k\right)=\boldsymbol{\theta}_k^T\boldsymbol{x}
@@ -65,40 +65,40 @@ $$
 
 The model is called linear logistic regression.
 
-In order to add a bias term to the linear function we can add a 1 to the vector of measurements $\boldsymbol{x}$, i.e. $\boldsymbol{x}=\left(x_0,x_1,\ldots,x_M\right)^T\rightarrow\left(x_0,x_1,\ldots,x_M,1\right)^T$
+In order to add a bias term to the linear function we can add a 1 to the vector of measurements $$\boldsymbol{x}$$, i.e. $$\boldsymbol{x}=\left(x_0,x_1,\ldots,x_M\right)^T\rightarrow\left(x_0,x_1,\ldots,x_M,1\right)^T$$
 
 ### Relation to LDA
 
-It is interesting to note that it can be shown that the model we get in the linear case for $p\left(y|\boldsymbol{x}\right)$, has the same form of the model which results for $p\left(y|\boldsymbol{x}\right)$ in LDA. I.e., the assumption that $p\left(\boldsymbol{x}|y=k\right)$ has a multivariate normal distribution with a covariance matrix which does not depend on $k$ leads to a model with is a special case of the linear logistic regression model.
+It is interesting to note that it can be shown that the model we get in the linear case for $$p\left(y|\boldsymbol{x}\right)$$, has the same form of the model which results for $$p\left(y|\boldsymbol{x}\right)$$ in LDA. I.e., the assumption that $$p\left(\boldsymbol{x}|y=k\right)$$ has a multivariate normal distribution with a covariance matrix which does not depend on $$k$$ leads to a model with is a special case of the linear logistic regression model.
 
 ## Gradient Descent
 
-The family of gradient descent algorithms tries to solve an $\arg\min$ optimization problem of the form:
+The family of gradient descent algorithms tries to solve an $$\arg\min$$ optimization problem of the form:
 
 $$
 \boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg\min}\ h\left(\boldsymbol{\theta}\right)
 $$
 
-They do so by starting from some random point $\boldsymbol{\theta}^{\left(0\right)}$, and then following the direction of the gradient in order to converge to some local minimum.
+They do so by starting from some random point $$\boldsymbol{\theta}^{\left(0\right)}$$, and then following the direction of the gradient in order to converge to some local minimum.
 
 In it's most basic form the algorithm is implemented as follow:
 
-1. Start from a random point $\boldsymbol{\theta}^{\left(0\right)}$
-2. In each iteration update $\boldsymbol{\theta}$ according to:
+1. Start from a random point $$\boldsymbol{\theta}^{\left(0\right)}$$
+2. In each iteration update $$\boldsymbol{\theta}$$ according to:
 $$
 \boldsymbol{\theta}^{\left(k+1\right)}=\boldsymbol{\theta}^{\left(k\right)} - \alpha\nabla_\theta h\left(\boldsymbol{\theta^{\left(k\right)}}\right)
 $$
-Where $\alpha$ is some pre-defined constant which controls the updates steps size. This parameter is called the learning rate.
+Where $$\alpha$$ is some pre-defined constant which controls the updates steps size. This parameter is called the learning rate.
 
-3. Continue until the updates result in a minor change to $f\left(\boldsymbol{\theta^{\left(k\right)}}\right)$, i.e., when:
+3. Continue until the updates result in a minor change to $$f\left(\boldsymbol{\theta^{\left(k\right)}}\right)$$, i.e., when:
 $$
 \left|h\left(\boldsymbol{\theta^{\left(k+1\right)}}\right) - h\left(\boldsymbol{\theta^{\left(k\right)}}\right)\right| < \varepsilon
 $$
-Where $\varepsilon$ is some pre-defined small constant which is usually referred to as the tolerance.
+Where $$\varepsilon$$ is some pre-defined small constant which is usually referred to as the tolerance.
 
 ### Some Known Issues 
 
-In most cases, this algorithm, in its basic form, is not very useful. This is mainly due to the problem of selecting an appropriate learning rate $\alpha$, and due to its slow convergence. As it turns out, the task of selecting the learning rate is not a simple task, a learning rate which is too large will prevent the algorithm from converging, while a learning rate which is too small will result in a very slow convergence, even up to the point where the algorithm becomes impractical to use.
+In most cases, this algorithm, in its basic form, is not very useful. This is mainly due to the problem of selecting an appropriate learning rate $$\alpha$$, and due to its slow convergence. As it turns out, the task of selecting the learning rate is not a simple task, a learning rate which is too large will prevent the algorithm from converging, while a learning rate which is too small will result in a very slow convergence, even up to the point where the algorithm becomes impractical to use.
 
 In addition, in many cases, even when using the optimal learning rate, the converges can still be very slow. This is especially common for function in high dimension.
 
@@ -150,7 +150,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -164,14 +164,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=569$</p>
+Number of rows in the dataset: $$N=569$$
 
 
 
@@ -506,13 +506,13 @@ ax.set_ylabel('Gray levels STD');
 
 For the following given random system:
 
-- Random sample: $\omega$ - A sampled tissue drawn from some unknown distribution of all possible tissues.
+- Random sample: $$\omega$$ - A sampled tissue drawn from some unknown distribution of all possible tissues.
 - Random variables:
-  - $x_0=X_0\left(\omega\right)$: The average radius of the cells in the sample.
-  - $x_1=X_1\left(\omega\right)$: The average standard deviation of gray-scale values of the cells in the sample.
-  - $y=Y\left(\omega\right)$: Whether the sample is 1 - cancerous (malignant) or 0 - not cancerous (benign).
+  - $$x_0=X_0\left(\omega\right)$$: The average radius of the cells in the sample.
+  - $$x_1=X_1\left(\omega\right)$$: The average standard deviation of gray-scale values of the cells in the sample.
+  - $$y=Y\left(\omega\right)$$: Whether the sample is 1 - cancerous (malignant) or 0 - not cancerous (benign).
 
-Find a binary discrimination function $\hat{y}=h^*\left(\boldsymbol{x}\right)$ which minimizes the misclassification rate:
+Find a binary discrimination function $$\hat{y}=h^*\left(\boldsymbol{x}\right)$$ which minimizes the misclassification rate:
 
 $$
 h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
@@ -550,7 +550,7 @@ test_set = dataset.iloc[test_indices]
 
 We will use the linear logistic regression algorithm for generating our discrimination function.
 
-We will use a basic gradient descent algorithm to find the parameters $\boldsymbol{\theta}$.
+We will use a basic gradient descent algorithm to find the parameters $$\boldsymbol{\theta}$$.
 
 In this case, the hyper-parameters of our method are the gradient descent parameters.
 
@@ -558,19 +558,19 @@ In this case, the hyper-parameters of our method are the gradient descent parame
 
 ### The MLE optimization problem
 
-Using the linear logistic regression method, we would like to estimate $p\left(y|\boldsymbol{x};\boldsymbol{\theta}\right)$ using the following model:
+Using the linear logistic regression method, we would like to estimate $$p\left(y|\boldsymbol{x};\boldsymbol{\theta}\right)$$ using the following model:
 
 $$
 p\left(y=1|\boldsymbol{x};\boldsymbol{\theta}\right)=1-p\left(y=0|\boldsymbol{x};\boldsymbol{\theta}\right)=g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)=\frac{1}{1+e^{-\boldsymbol{\theta}^T \boldsymbol{x}}}
 $$
 
-Where $g\left(x\right)=\frac{1}{1-e^{-x}}$ is the logistic function.
+Where $$g\left(x\right)=\frac{1}{1-e^{-x}}$$ is the logistic function.
 
 
 
-To find the optimal parameters $\boldsymbol{\theta}^*$ we need to solve the following MLE problem:
+To find the optimal parameters $$\boldsymbol{\theta}^*$$ we need to solve the following MLE problem:
 
-Here $\mathcal{L}$ is the likelihood function and $l$ is the log-likelihood function:
+Here $$\mathcal{L}$$ is the likelihood function and $$l$$ is the log-likelihood function:
 
 $$
 \begin{align*}
@@ -583,7 +583,7 @@ $$
 \end{align*}
 $$
 
-Just for convenience, we have added a normalization by the number of samples, $\frac{1}{N}$, which does not change the optimization problem, but prevents the objective function (and it's gradient) from scaling up with the number of samples.
+Just for convenience, we have added a normalization by the number of samples, $$\frac{1}{N}$$, which does not change the optimization problem, but prevents the objective function (and it's gradient) from scaling up with the number of samples.
 
 We have defined:
 
@@ -591,14 +591,14 @@ $$
 h\left(\boldsymbol{\theta};\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace\right)=-\frac{1}{N}\sum_i\log\left(g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)y_i + \log\left(1-g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)\left(1-y_i\right)
 $$
 
-($h$ here is not the discrimination function)
+($$h$$ here is not the discrimination function)
 
 ### Basic gradient descent
 
 To solve this optimization problem, we shall implement the basic gradient descent solver:
 
-1. Start from a random vector of parameters $\boldsymbol{\theta}^{\left(0\right)}$
-2. In each iteration update $\boldsymbol{\theta}$ according to:
+1. Start from a random vector of parameters $$\boldsymbol{\theta}^{\left(0\right)}$$
+2. In each iteration update $$\boldsymbol{\theta}$$ according to:
 $$
 \boldsymbol{\theta}^{\left(k+1\right)}=\boldsymbol{\theta}^{\left(k\right)} - \alpha\nabla_\theta h\left(\boldsymbol{\theta^{\left(k\right)}}\right)
 $$
@@ -607,12 +607,12 @@ $$
 \left|h\left(\boldsymbol{\theta^{\left(k+1\right)}}\right) - h\left(\boldsymbol{\theta^{\left(k\right)}}\right)\right| < \varepsilon
 $$
 
-To calculate $\nabla_\theta f\left(\boldsymbol{\theta^{\left(k\right)}}\right)$ we shall use the following properties:
+To calculate $$\nabla_\theta f\left(\boldsymbol{\theta^{\left(k\right)}}\right)$$ we shall use the following properties:
 
-- $\frac{d}{dx}g\left(x\right)=g\left(x\right)\left(1-g\left(x\right)\right)$
-- $\frac{d}{dx}\log\left(g\left(x\right)\right)=1-g\left(x\right)$
-- $\frac{d}{dx}\log\left(1-g\left(x\right)\right)=-g\left(x\right)$
-- $\nabla_\theta f\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)=f'\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\boldsymbol{x}$
+- $$\frac{d}{dx}g\left(x\right)=g\left(x\right)\left(1-g\left(x\right)\right)$$
+- $$\frac{d}{dx}\log\left(g\left(x\right)\right)=1-g\left(x\right)$$
+- $$\frac{d}{dx}\log\left(1-g\left(x\right)\right)=-g\left(x\right)$$
+- $$\nabla_\theta f\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)=f'\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\boldsymbol{x}$$
 
 Therefore:
 $$
@@ -721,7 +721,7 @@ def basic_gradient_decent(h, grad_h, alpha, tol, max_iter, x_tilde_train, y_trai
     ax1 = fig.add_subplot(1, 2, 1)
     ax1.plot(steps_list, objective_list_train, label='Train')
     ax1.plot(steps_list, objective_list_val, label='Validation')
-    ax1.set_title('$\\alpha$={:g}, # iterations: {}'.format(alpha, i_iter))
+    ax1.set_title('$$\\alpha$$={:g}, # iterations: {}'.format(alpha, i_iter))
     ax1.set_xlabel('Step')
     ax1.set_xlabel('Objective')
     ax1.legend()
@@ -729,9 +729,9 @@ def basic_gradient_decent(h, grad_h, alpha, tol, max_iter, x_tilde_train, y_trai
     ax2 = fig.add_subplot(1, 2, 2, projection='3d')
     ax2.plot(theta_list[:,0], theta_list[:,1], theta_list[:,2])
     ax2.plot(theta_list[:1,0], theta_list[:1,1], theta_list[:1,2], '.r', label='Starting Point')
-    ax2.set_xlabel('$\\theta_0$')
-    ax2.set_ylabel('$\\theta_1$')
-    ax2.set_zlabel('$\\theta_2$')
+    ax2.set_xlabel('$$\\theta_0$$')
+    ax2.set_ylabel('$$\\theta_1$$')
+    ax2.set_zlabel('$$\\theta_2$$')
     ax2.legend()
     
     return theta
@@ -739,9 +739,9 @@ def basic_gradient_decent(h, grad_h, alpha, tol, max_iter, x_tilde_train, y_trai
 
 ### Selecting the learning rate
 
-In order to select the learning rate we shall run the algorithm for only 1000 steps with different learning rates. We shall test the following learning rates $\alpha=10^{-1},10^{-2},10^{-3}$.
+In order to select the learning rate we shall run the algorithm for only 1000 steps with different learning rates. We shall test the following learning rates $$\alpha=10^{-1},10^{-2},10^{-3}$$.
 
-We shall use a tolerance of $10^{-6}$, which results in a reasonable runtime. Basically, we would like to select the tolerance as small as possible.
+We shall use a tolerance of $$10^{-6}$$, which results in a reasonable runtime. Basically, we would like to select the tolerance as small as possible.
 
 
 ```python
@@ -772,11 +772,11 @@ for alpha in (1e-1, 1e-2, 1e-3):
 In general, we would like to select the highest learning rate, which does not diverge.
 
 Looking at the results, it seems as if:
-- $\alpha=10^{-1}$ is too high. It results in the divergence of the algorithm. Although $\boldsymbol{\theta}$ moves in the general right direction, it keeps on jumping from side to side jumping over the area where the objective is probably low and is unable to enter that area.
-- $\alpha=10^{-3}$ is too low. It does not result in divergence, but it is 10 times slower than $\alpha=10^{-2}$. After 1000 steps it has produced the results which $\alpha=10^{-2}$ has produced after only 100 steps.
-- $\alpha=10^{-2}$ seems to be ok, and we could probably even use a slightly higher learning rate.
+- $$\alpha=10^{-1}$$ is too high. It results in the divergence of the algorithm. Although $$\boldsymbol{\theta}$$ moves in the general right direction, it keeps on jumping from side to side jumping over the area where the objective is probably low and is unable to enter that area.
+- $$\alpha=10^{-3}$$ is too low. It does not result in divergence, but it is 10 times slower than $$\alpha=10^{-2}$$. After 1000 steps it has produced the results which $$\alpha=10^{-2}$$ has produced after only 100 steps.
+- $$\alpha=10^{-2}$$ seems to be ok, and we could probably even use a slightly higher learning rate.
 
-### Running with $\alpha=10^{-2}$
+### Running with $$\alpha=10^{-2}$$
 
 
 ```python
@@ -790,11 +790,11 @@ theta = basic_gradient_decent(h, grad_h, alpha, tol, max_iter, x_tilde_train, y_
 train_prediction = x_tilde_train @ theta > 0
 train_risk = (train_prediction != y_train).mean()
 
-print_math('The train risk is: ${:.2}$'.format(train_risk))
+print_math('The train risk is: $${:.2}$$'.format(train_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The train risk is: $0.11$</p>
+The train risk is: $$0.11$$
 
 
 
@@ -836,11 +836,11 @@ ax.legend();
 test_prediction = x_tilde_test @ theta  > 0
 test_risk = (test_prediction != y_test).mean()
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.096$</p>
+The test risk is: $$0.096$$
 
 
 ## Using scikit-learn - SGDClassifier
@@ -854,12 +854,12 @@ The [sklearn.linear_model.SGDClassifier](https://scikit-learn.org/stable/modules
 This class supports a range of linear models which can be selected using the **loss** argument. The linear logistic model can be selected be setting: **loss='log'**.
 
 ### Regularization
-By default, **SGDClassifier** adds an $L2$ regularization term. Different regularization terms can be selected using the **penalty** argument, including **penalty='none'** for no regularization.
+By default, **SGDClassifier** adds an $$L2$$ regularization term. Different regularization terms can be selected using the **penalty** argument, including **penalty='none'** for no regularization.
 
 ### Adaptive learning rates
 By default, **SGDClassifier** uses a slightly more sophisticated version of the gradient descent algorithm, in which the learning rate changes over time. The manner in which the learning rate changes can be define using the **learning_rate** argument, including **learning_rate='constant'**.
 
-For **learning_rate='constant'** the value of the learning rate constant, $\alpha$, is defined by the argument **eta0**.
+For **learning_rate='constant'** the value of the learning rate constant, $$\alpha$$, is defined by the argument **eta0**.
 
 Let us re-run the algorithm using **SGDClassifier** and the same parameters:
 
@@ -890,24 +890,24 @@ print('Number of iterations performed: {}'.format(clf.n_iter_))
 train_prediction = clf.predict(x_train)
 train_risk = (train_prediction != y_train).mean()
 
-print_math('The train risk is: ${:.2}$'.format(train_risk))
+print_math('The train risk is: $${:.2}$$'.format(train_risk))
 
 ## Evaluate the risk on the test set
 test_prediction = clf.predict(x_test)
 test_risk = (test_prediction != y_test).mean()
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
     Number of iterations performed: 1238
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The train risk is: $0.11$</p>
+The train risk is: $$0.11$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.096$</p>
+The test risk is: $$0.096$$
 
 
 We got the same results as we got using our implementation (but much faster).
@@ -932,21 +932,21 @@ clf.fit(x_train, y_train)
 train_prediction = clf.predict(x_train)
 train_risk = (train_prediction != y_train).mean()
 
-print_math('The train risk is: ${:.2}$'.format(train_risk))
+print_math('The train risk is: $${:.2}$$'.format(train_risk))
 
 ## Evaluate the risk on the test set
 test_prediction = clf.predict(x_test)
 test_risk = (test_prediction != y_test).mean()
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The train risk is: $0.11$</p>
+The train risk is: $$0.11$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.096$</p>
+The test risk is: $$0.096$$
 
 
 Again, we got the same results as we got using our implementation (but much faster).
@@ -1001,7 +1001,7 @@ x_test = test_set[features_names_list[:n_features]].values
 clf.fit(x_train, y_train)
 test_prediction = clf.predict(x_test)
 test_risk = (test_prediction != y_test).mean()
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 
 fig,ax = plt.subplots()
 ax.plot(n_features_grid, train_risk_array, label='Train')
@@ -1021,7 +1021,7 @@ ax.legend();
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.026$</p>
+The test risk is: $$0.026$$
 
 
 
@@ -1030,7 +1030,7 @@ ax.legend();
 
 Similar to the result we got in the case of LDA, we can see that as we increase the number of features the models starts to overfit the data. One option is to only use the first 17 features before the results start to degrade due to the overfit. This selection is obviously not optimal since the order of the features was randomly selected and the first 17 are not necessarily the optimal sub set of features.
 
-As we was in the last workshop, we can partially reduce the overfitting by adding a regularization term to the optimization problem. Specifically by adding an $L1$ regularization, we encourage the optimization to use only a sparse set of features.
+As we was in the last workshop, we can partially reduce the overfitting by adding a regularization term to the optimization problem. Specifically by adding an $$L1$$ regularization, we encourage the optimization to use only a sparse set of features.
 
 Let us first take a look at the distribution of features coefficients (the model's parameters) without the regularization.
 
@@ -1048,7 +1048,7 @@ for i in range(len(features_names_list)):
 
 ## plot parameters
 fig, ax = plt.subplots()
-ax.set_title('$\\theta$')
+ax.set_title('$$\\theta$$')
 ax.bar(np.arange(len(clf.coef_[0])), clf.coef_[0])
 ax.grid(True)
 ax.set_xlabel('Feature index')
@@ -1097,7 +1097,7 @@ ax.set_ylabel('Feature value');
 
 We can see that the coefficient speared all over the 30 features.
 
-Let us now fit the model using an $L1$ regularization:
+Let us now fit the model using an $$L1$$ regularization:
 
 
 ```python
@@ -1141,7 +1141,7 @@ x_test = test_set[features_names_list].values
 clf.fit(x_train, y_train)
 test_prediction = clf.predict(x_test)
 test_risk = (test_prediction != y_test).mean()
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 
 fig,ax = plt.subplots()
 ax.plot(n_features_grid, train_risk_array, label='Train')
@@ -1153,7 +1153,7 @@ ax.legend();
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.017$</p>
+The test risk is: $$0.017$$
 
 
 
@@ -1173,7 +1173,7 @@ for i in range(len(features_names_list)):
 
 ## plot parameters
 fig, ax = plt.subplots()
-ax.set_title('$\\theta$')
+ax.set_title('$$\\theta$$')
 ax.bar(np.arange(len(clf.coef_[0])), clf.coef_[0])
 ax.grid(True)
 ax.set_xlabel('Feature index')
@@ -1216,7 +1216,7 @@ ax.set_ylabel('Feature value');
 ![png](output_48_1.png)
 
 
-We can see here that adding an $L1$ regularization indeed result in a sparser result.
+We can see here that adding an $$L1$$ regularization indeed result in a sparser result.
 
 
 ```python

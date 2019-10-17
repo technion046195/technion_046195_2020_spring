@@ -10,18 +10,18 @@ AdaBoost (Adaptive Boosting) is a technique for improving the performance of a g
 This technique is based on iteratively building the series of classifier while keeping a vector of weights of how good was each point classified by previous classifiers. In each step the algorithm tries to build a classifier which corrects the errors made by previous classifiers.
 
 Using the following notation:
-- $N$ - Is the size of the dataset
-- $\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$ - Are the measurements and the labels.
-- The labels $\left\lbrace y_i\right\rbrace$ have $1,-1$ values.
+- $$N$$ - Is the size of the dataset
+- $$\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$ - Are the measurements and the labels.
+- The labels $$\left\lbrace y_i\right\rbrace$$ have $$1,-1$$ values.
 
 the steps of this algorithm are as follow:
-- Initialize a uniform weights vector for each data points: $w^{\left(t=0\right)}_i=\frac{1}{N}$
-- Iterate over the following steps, with a index $t$, until reaching some stopping criteria:
-  1. Build an optimal classifier $h_t$ according to the given weighted dataest.
-  2. Calculate the prediction error of $h_t$ on the weighted dataset: $\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$
-  3. Calculate the the weight for the $h_t$ classifier according to: $\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$
-  4. Update the weights of the data according to $w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$
-  5. Normalize the weight by $Z=\sum_iw^t_i$ according to: $w^t_i=\frac{w^t_i}{Z}$
+- Initialize a uniform weights vector for each data points: $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+- Iterate over the following steps, with a index $$t$$, until reaching some stopping criteria:
+  1. Build an optimal classifier $$h_t$$ according to the given weighted dataest.
+  2. Calculate the prediction error of $$h_t$$ on the weighted dataset: $$\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
+  3. Calculate the the weight for the $$h_t$$ classifier according to: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
+  4. Update the weights of the data according to $$w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
+  5. Normalize the weight by $$Z=\sum_iw^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
 
 The final prediction will then be the following linear combination of the trained classifiers:
 $$
@@ -71,7 +71,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -87,14 +87,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=1001$</p>
+Number of rows in the dataset: $$N=1001$$
 
 
 
@@ -393,12 +393,12 @@ dataset2['weights'] = np.ones(len(dataset2)) / len(dataset2)
 
 For the following given random system:
 
-- Random sample: $\omega$ - A passenger on board the Titanic.
+- Random sample: $$\omega$$ - A passenger on board the Titanic.
 - Random variables:
-  - $\boldsymbol{x}=X\left(\omega\right)$: The passenger parameters extracted from the manifest.
-  - $y=Y\left(\omega\right)$: An indicator of whether or not the passenger survived.
+  - $$\boldsymbol{x}=X\left(\omega\right)$$: The passenger parameters extracted from the manifest.
+  - $$y=Y\left(\omega\right)$$: An indicator of whether or not the passenger survived.
 
-Find a binary discrimination function $\hat{y}=h^*\left(\boldsymbol{x}\right)$ which minimizes the misclassification rate:
+Find a binary discrimination function $$\hat{y}=h^*\left(\boldsymbol{x}\right)$$ which minimizes the misclassification rate:
 
 $$
 h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
@@ -408,7 +408,7 @@ $$
 
 We will use Stumps classifiers (one level decision trees) which are boosted using AdaBoost. 
 
-We will use the **weighted Gini index** to build our classifiers using the weighted data. For a given split of the data in to $\mathcal{C}_1$ and $\mathcal{C}_2$ and a set of weights $\left\lbrace w_i\right\rbrace$, the **weighted Gini index** will be:
+We will use the **weighted Gini index** to build our classifiers using the weighted data. For a given split of the data in to $$\mathcal{C}_1$$ and $$\mathcal{C}_2$$ and a set of weights $$\left\lbrace w_i\right\rbrace$$, the **weighted Gini index** will be:
 
 $$
 N_1=\sum_{i\in\mathcal{C}_1}w_i\\
@@ -421,7 +421,7 @@ $$
 ### Parameters:
 
 - The splitting performed by each stump.
-- The weighting of the stumps. $\alpha_i$.
+- The weighting of the stumps. $$\alpha_i$$.
 
 ### Hyper-parameters
 
@@ -801,7 +801,7 @@ adaboost.dataset.head(10)
 
 The Weighted Gini Indexes are plotted in the title. In each step we will select the feature with the lowest index. In this case this will be the **sex**.
 
-#### Iteration: $t=1$
+#### Iteration: $$t=1$$
 
 Classiffing according to the sex
 
@@ -980,15 +980,15 @@ adaboost.dataset.head(10)
 ![png](output_33_2.png)
 
 
-We will see that as we advance through the algorithm the weighted data becomes more uniformly distributed as a function of the labels, i.e. the distributions of the data with $y=1$ will be as the same as the distribution of the data with $y=-1$.
+We will see that as we advance through the algorithm the weighted data becomes more uniformly distributed as a function of the labels, i.e. the distributions of the data with $$y=1$$ will be as the same as the distribution of the data with $$y=-1$$.
 
 As a consequences of that, the classification task will become harder and the classifier's classification error will go to 0.5.
 
-In addition the weighting parameter $\alpha_t$ will decrease over time.
+In addition the weighting parameter $$\alpha_t$$ will decrease over time.
 
 Next we will classify according to the **pclass** which has the lowest index.
 
-#### Iteration $T=2$
+#### Iteration $$T=2$$
 
 
 ```python
@@ -1167,7 +1167,7 @@ adaboost.dataset.head(10)
 
 Next we will classify according to the **embarked** which has the lowest index.
 
-#### Iteration $T=3$
+#### Iteration $$T=3$$
 
 
 ```python
@@ -1519,7 +1519,7 @@ adaboost.dataset.head(10)
 ![png](output_40_2.png)
 
 
-We eventually reached a point where the classifier's classification error is very close to 0.5 and $alpha_t$ is very small.
+We eventually reached a point where the classifier's classification error is very close to 0.5 and $$alpha_t$$ is very small.
 
 ## ⏱️ Performance evaluation
 
@@ -1540,11 +1540,11 @@ predictions = adaboost.predict(test_set)
 # predictions = adaboost.stumps_list[0].predict(test_set)
 
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.3}$'.format(test_risk))
+print_math('The test risk is: $${:.3}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.225$</p>
+The test risk is: $$0.225$$
 
 
 

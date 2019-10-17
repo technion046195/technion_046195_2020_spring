@@ -7,7 +7,7 @@ title: "K-NN"
 
 1-NN is a supervised algorithm solving a classification problem. It is probably the most simple supervised classification algorithm, and it works as follow:
 
-Given a data set $\left\lbrace\boldsymbol{x}_i\right\rbrace$ with corresponding labels $\left\lbrace y_i\right\rbrace$ the algorithm maps any new vector $\tilde{\boldsymbol{x}}$ to the label corresponding to the closest $\boldsymbol{x}_i$:
+Given a data set $$\left\lbrace\boldsymbol{x}_i\right\rbrace$$ with corresponding labels $$\left\lbrace y_i\right\rbrace$$ the algorithm maps any new vector $$\tilde{\boldsymbol{x}}$$ to the label corresponding to the closest $$\boldsymbol{x}_i$$:
 
 $$
 \hat{i} = \underset{i}{\arg\min}\left\lVert \tilde{\boldsymbol{x}} - \boldsymbol{x}_i\right\lVert_2 \\
@@ -16,7 +16,7 @@ $$
 
 ## 👫👬 K-Nearest Neighbors (K-NN)
 
-K-NN is a simple extension of the basic 1-NN, where instead just using the single closest neighbor, we will use the $K$ nearest neighbors. After retrieving the $K$ nearest points we will take the majority vote (the most common label among the $K$ samples) to be our prediction.
+K-NN is a simple extension of the basic 1-NN, where instead just using the single closest neighbor, we will use the $$K$$ nearest neighbors. After retrieving the $$K$$ nearest points we will take the majority vote (the most common label among the $$K$$ samples) to be our prediction.
 
 <center><h1 class="workshop-title">Workshop 5<br>K-NN</h1></center>
 
@@ -72,7 +72,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -88,14 +88,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=569$</p>
+Number of rows in the dataset: $$N=569$$
 
 
 
@@ -482,7 +482,7 @@ It is usually convenient to describe supervised problems using conditional proba
 
 This is a supervised learning problem of binary classification.
 
-We would like to find a prediction function $h\left(\cdot\right)$, mapping form the space of $\boldsymbol{x}=\left[\text{mean_radius},\text{mean_texture}\right]^T$ to the space of labels $y$
+We would like to find a prediction function $$h\left(\cdot\right)$$, mapping form the space of $$\boldsymbol{x}=\left[\text{mean_radius},\text{mean_texture}\right]^T$$ to the space of labels $$y$$
 
 ### Evaluation Method: The Misclassification Rate
 
@@ -592,16 +592,16 @@ for i in range(len(predictions)):
     predictions[i] = one_nn(x_test[i], x, y)
 
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.14$</p>
+The test risk is: $$0.14$$
 
 
 ## 💡 Model & Learning Method Suggestion 1: K-NN
 
-We expect to be able to improve our results using the K-NN algorithm, the question is how can we select $K$? One simple way to do so is to simply test all the relevant values of $K$ and pick the best one.
+We expect to be able to improve our results using the K-NN algorithm, the question is how can we select $$K$$? One simple way to do so is to simply test all the relevant values of $$K$$ and pick the best one.
 
 This is a common case in machine learning, where we have some part of the model which we do not have an efficient way to optimally select. We call these parameters the **hyper-parameters** of the model.
 
@@ -609,7 +609,7 @@ Three more hyper-parameters which we have encountered so far are:
 
 - The number of bins in a histogram.
 - The kernel and width in KDE.
-- The $K$ in K-Means.
+- The $$K$$ in K-Means.
 
 Two optional methods for selecting the hyper-parameters:
 
@@ -634,7 +634,7 @@ Let us add the loop/iterations over the hyper-parameters to our workflow
 
 ### ✍️ Exercise 5.2
 
-Select the optimal $K$ from the range $\left[1,100\right]$. Plot the risk as a function of $K$
+Select the optimal $$K$$ from the range $$\left[1,100\right]$$. Plot the risk as a function of $$K$$
 
 Use SciKit-Learn's [KNeighborsClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html) class
 
@@ -660,23 +660,23 @@ optimal_index = np.argmin(risk_array)
 optimal_k = k_array[optimal_index]
 optimal_risk = risk_array[optimal_index]
 
-print_math('The optimal $K$ is $K={}$'.format(optimal_k))
-print_math('The test risk is: ${:.2}$'.format(optimal_risk))
+print_math('The optimal $$K$$ is $$K={}$$'.format(optimal_k))
+print_math('The test risk is: $${:.2}$$'.format(optimal_risk))
 
 fig, ax = plt.subplots()
 ax.plot(k_array, risk_array)
 ax.plot(optimal_k, optimal_risk, '.r')
-ax.set_xlabel('$K$')
+ax.set_xlabel('$$K$$')
 ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $K$');
+ax.set_title('Risk vs. $$K$$');
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The optimal $K$ is $K=12$</p>
+The optimal $$K$$ is $$K=12$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.061$</p>
+The test risk is: $$0.061$$
 
 
 
@@ -685,7 +685,7 @@ ax.set_title('Risk vs. $K$');
 
 ## Train-Validation-Test Separation
 
-In the above example, we have selected the optimal $K$ based upon the risk which was calculated using the test set. As we stated before this situation is problematic since the risk over the test set would be too optimistic due to overfitting.
+In the above example, we have selected the optimal $$K$$ based upon the risk which was calculated using the test set. As we stated before this situation is problematic since the risk over the test set would be too optimistic due to overfitting.
 
 The solution to this problem is to divide the dataset once more. Therefore in cases, where we would also be required to optimize over some hyper-parameters, we would divide our data into three sets: a train-set a validation-set and a test-set.
 
@@ -747,23 +747,23 @@ optimal_index = np.argmin(risk_array)
 optimal_k = k_array[optimal_index]
 optimal_risk = risk_array[optimal_index]
 
-print_math('The optimal $K$ is $K={}$'.format(optimal_k))
-print_math('The validation risk is: ${:.2}$'.format(optimal_risk))
+print_math('The optimal $$K$$ is $$K={}$$'.format(optimal_k))
+print_math('The validation risk is: $${:.2}$$'.format(optimal_risk))
 
 fig, ax = plt.subplots()
 ax.plot(k_array, risk_array)
 ax.plot(optimal_k, optimal_risk, '.r')
-ax.set_xlabel('$K$')
+ax.set_xlabel('$$K$$')
 ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $K$');
+ax.set_title('Risk vs. $$K$$');
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The optimal $K$ is $K=19$</p>
+The optimal $$K$$ is $$K=19$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The validation risk is: $0.097$</p>
+The validation risk is: $$0.097$$
 
 
 
@@ -779,16 +779,16 @@ knn.fit(x, y)
 
 predictions = knn.predict(x_test)
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.087$</p>
+The test risk is: $$0.087$$
 
 
 ## Cross-Validation
 
-When using a 60%-20%-20% split we are in fact using only 60% of the collected data to train our model which is a waste of good data. Cross-validation attempts to partially solve this issue. In Cross-validation we do not set a fixed portion of the data to be a validation set and instead we split all the training data (all the data which is not in the test set) in to $k$ equal groups and evaluate the risk using the following method:
+When using a 60%-20%-20% split we are in fact using only 60% of the collected data to train our model which is a waste of good data. Cross-validation attempts to partially solve this issue. In Cross-validation we do not set a fixed portion of the data to be a validation set and instead we split all the training data (all the data which is not in the test set) in to $$k$$ equal groups and evaluate the risk using the following method:
 
 - For some given hyper-parameters repeat the process of learning and evaluating the risk each time using a different group as the validation group.
 - The report the estimated risk as the average risks from the previous step.
@@ -856,23 +856,23 @@ optimal_index = np.argmin(risk_array)
 optimal_k = k_array[optimal_index]
 optimal_risk = risk_array[optimal_index]
 
-print_math('The optimal $K$ is $K={}$'.format(optimal_k))
-print_math('The validation risk is: ${:.2}$'.format(optimal_risk))
+print_math('The optimal $$K$$ is $$K={}$$'.format(optimal_k))
+print_math('The validation risk is: $${:.2}$$'.format(optimal_risk))
 
 fig, ax = plt.subplots()
 ax.plot(k_array, risk_array)
 ax.plot(optimal_k, optimal_risk, '.r')
-ax.set_xlabel('$K$')
+ax.set_xlabel('$$K$$')
 ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $K$');
+ax.set_title('Risk vs. $$K$$');
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The optimal $K$ is $K=22$</p>
+The optimal $$K$$ is $$K=22$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The validation risk is: $0.09$</p>
+The validation risk is: $$0.09$$
 
 
 
@@ -888,11 +888,11 @@ knn.fit(x, y)
 
 predictions = knn.predict(x_test)
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.079$</p>
+The test risk is: $$0.079$$
 
 
 

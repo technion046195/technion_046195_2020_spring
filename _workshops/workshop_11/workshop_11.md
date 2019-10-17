@@ -33,14 +33,14 @@ $$
 The dual problem highlights a nice property of the solution:
 
 When solving the optimization problem, each point in the training sets will obey one of the following two conditions:
-1. $\alpha_i=0$ and $y_i\left(\boldsymbol{w}_i^Tx_i+b\right)>1$
-2. $\alpha_i>0$ and $y_i\left(\boldsymbol{w}_i^Tx_i+b\right)=1$
+1. $$\alpha_i=0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)>1$$
+2. $$\alpha_i>0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)=1$$
 
-Form the equation $\boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i$, we can conclude that only the points, $\boldsymbol{x}_i$, with $\alpha_i>0$ participate in defining the value of $\boldsymbol{w}$. These points are called the support vectors, and in the general case, their number will be very small.
+Form the equation $$\boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i$$, we can conclude that only the points, $$\boldsymbol{x}_i$$, with $$\alpha_i>0$$ participate in defining the value of $$\boldsymbol{w}$$. These points are called the support vectors, and in the general case, their number will be very small.
 
 ### Soft SVM
 
-In the case where the classes are not linearly separable, we can use a modified problem by introducing a set of slack variables $\left\lbrace\xi_i\right\rbrace$ which releases the constraint for a perfect classification with a strict margin.
+In the case where the classes are not linearly separable, we can use a modified problem by introducing a set of slack variables $$\left\lbrace\xi_i\right\rbrace$$ which releases the constraint for a perfect classification with a strict margin.
 
 The primal problem is this case will be:
 $$
@@ -66,9 +66,9 @@ $$
 $$
 
 Here the points in the dataset will obey one of the three following conditions:
-1. $\alpha_i=0$ and $y_i\left(\boldsymbol{w}_i^Tx_i+b\right)>1$
-2. $C>\alpha_i>0$ and $y_i\left(\boldsymbol{w}_i^Tx_i+b\right)=1$
-2. $\alpha_i=C$ and $y_i\left(\boldsymbol{w}_i^Tx_i+b\right)<11$
+1. $$\alpha_i=0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)>1$$
+2. $$C>\alpha_i>0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)=1$$
+2. $$\alpha_i=C$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)<11$$
 
 <center><h1 class="workshop-title">Workshop 11<br>SVM</h1></center>
 
@@ -117,7 +117,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -133,14 +133,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=3168$</p>
+Number of rows in the dataset: $$N=3168$$
 
 
 
@@ -508,12 +508,12 @@ plt.tight_layout()
 
 For the following given random system:
 
-- Random sample: $\omega$ - A voice sample.
+- Random sample: $$\omega$$ - A voice sample.
 - Random variables:
-  - $\boldsymbol{x}=X\left(\omega\right)$: A list of 20 numeric features extracted for the voice recording.
-  - $y=Y\left(\omega\right)$: The gender of the speaker: -1 male & 1 female.
+  - $$\boldsymbol{x}=X\left(\omega\right)$$: A list of 20 numeric features extracted for the voice recording.
+  - $$y=Y\left(\omega\right)$$: The gender of the speaker: -1 male & 1 female.
 
-Find a binary discrimination function $\hat{y}=h^*\left(\boldsymbol{x}\right)$ which minimizes the misclassification rate:
+Find a binary discrimination function $$\hat{y}=h^*\left(\boldsymbol{x}\right)$$ which minimizes the misclassification rate:
 
 $$
 h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
@@ -525,12 +525,12 @@ We will use Soft SVM to build our classifier. We will use the [cvxpy](https://ww
 
 ### Parameters:
 
-Our model's parameters are the $\boldsymbol{w}$ and $b$ parameters which define the separation plain.
+Our model's parameters are the $$\boldsymbol{w}$$ and $$b$$ parameters which define the separation plain.
 
 
 ### Hyper-parameters
 
-The only hyper-parameter in the soft SVM algorithm is the penalty parameter $C$ of the slack variables.
+The only hyper-parameter in the soft SVM algorithm is the penalty parameter $$C$$ of the slack variables.
 
 ## Data preprocessing
 
@@ -610,7 +610,7 @@ $$
 \end{align*}
 $$
 
-We will start with $C=1$, and will later try to fine tune it.
+We will start with $$C=1$$, and will later try to fine tune it.
 
 
 ```python
@@ -646,20 +646,20 @@ print("status:", prob.status)
 
 **Remark**: note that this is not the most efficient way to solve this optimization problem, but it will do for now.
 
-Let us examine the result we got. We shell start by plotting the values of the $\alpha_i$'s for each $i$:
+Let us examine the result we got. We shell start by plotting the values of the $$\alpha_i$$'s for each $$i$$:
 
 
 ```python
 fig, ax = plt.subplots()
 ax.plot(np.arange(n_samples_train), alpha.value, 'x', markersize=2);
-ax.set_xlabel('$i$')
-ax.set_ylabel('$\\alpha$')
+ax.set_xlabel('$$i$$')
+ax.set_ylabel('$$\\alpha$$')
 ```
 
 
 
 
-    Text(0, 0.5, '$\\alpha$')
+    Text(0, 0.5, '$$\\alpha$$')
 
 
 
@@ -667,16 +667,16 @@ ax.set_ylabel('$\\alpha$')
 ![png](output_31_1.png)
 
 
-As expected, we can see that we got 3 types of values: $\alpha_i=0$, $0<\alpha_i<C$ and $\alpha_i=C$. These three types should correspond to the following three cases:
-- $\alpha_i=0$: Points that are correctly classified and are far from the margin: $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) > 1$
-- $0<\alpha_i<C$: Points which sit right on the margin: $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) = 1$
-- $\alpha_i=C$: Points which are either miss-classified (on the wrong side of the separation plain) or correctly classified but sit within the margin: $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) < 1$
+As expected, we can see that we got 3 types of values: $$\alpha_i=0$$, $$0<\alpha_i<C$$ and $$\alpha_i=C$$. These three types should correspond to the following three cases:
+- $$\alpha_i=0$$: Points that are correctly classified and are far from the margin: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) > 1$$
+- $$0<\alpha_i<C$$: Points which sit right on the margin: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) = 1$$
+- $$\alpha_i=C$$: Points which are either miss-classified (on the wrong side of the separation plain) or correctly classified but sit within the margin: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) < 1$$
 
-Let us continue to calculate $\boldsymbol{w}$ and $b$. We can calculate $\boldsymbol{w}$ by:
+Let us continue to calculate $$\boldsymbol{w}$$ and $$b$$. We can calculate $$\boldsymbol{w}$$ by:
 $$
 \boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i
 $$
-And then calculate $b$ by picking one of the points for which $0<\alpha_i<C$ and use: $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) = 1$.
+And then calculate $$b$$ by picking one of the points for which $$0<\alpha_i<C$$ and use: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) = 1$$.
 
 
 ```python
@@ -685,7 +685,7 @@ i = np.where((alpha.value > 0.1) & (alpha.value < 0.9))[0][0]
 b = y_train[i] - w @ x_train_norm[i]
 ```
 
-Let us plot the histogram of the classification rule $\boldsymbol{w}^T\boldsymbol{x}+b$ for all point and color them according the three classes we have described above:
+Let us plot the histogram of the classification rule $$\boldsymbol{w}^T\boldsymbol{x}+b$$ for all point and color them according the three classes we have described above:
 
 
 ```python
@@ -695,20 +695,20 @@ type2 = (alpha.value >= 0.001) & (alpha.value <= 0.999)
 type3 = alpha.value >= 0.999
 
 ax1.set_ylabel('Female')
-ax1.hist(x_train_norm[(y_train==1) & type1] @ w + b, np.arange(-10, 10, 0.1), label='$\\alpha=0$')
-ax1.hist(x_train_norm[(y_train==1) & type3] @ w + b, np.arange(-10, 10, 0.1), label='$\\alpha=C$')
-ax1.hist(x_train_norm[(y_train==1) & type2] @ w + b, np.arange(-10, 10, 0.1), label='$0\\geq\\alpha\\geq C$')
+ax1.hist(x_train_norm[(y_train==1) & type1] @ w + b, np.arange(-10, 10, 0.1), label='$$\\alpha=0$$')
+ax1.hist(x_train_norm[(y_train==1) & type3] @ w + b, np.arange(-10, 10, 0.1), label='$$\\alpha=C$$')
+ax1.hist(x_train_norm[(y_train==1) & type2] @ w + b, np.arange(-10, 10, 0.1), label='$$0\\geq\\alpha\\geq C$$')
 
 ax2.set_ylabel('Male')
-ax2.hist(x_train_norm[(y_train==-1) & type1] @ w + b, np.arange(-10, 10, 0.1), label='$\\alpha=1$')
-ax2.hist(x_train_norm[(y_train==-1) & type3] @ w + b, np.arange(-10, 10, 0.1), label='$\\alpha=C$')
-ax2.hist(x_train_norm[(y_train==-1) & type2] @ w + b, np.arange(-10, 10, 0.1), label='$0\\geq\\alpha\\geq C$')
+ax2.hist(x_train_norm[(y_train==-1) & type1] @ w + b, np.arange(-10, 10, 0.1), label='$$\\alpha=1$$')
+ax2.hist(x_train_norm[(y_train==-1) & type3] @ w + b, np.arange(-10, 10, 0.1), label='$$\\alpha=C$$')
+ax2.hist(x_train_norm[(y_train==-1) & type2] @ w + b, np.arange(-10, 10, 0.1), label='$$0\\geq\\alpha\\geq C$$')
 
 ax1.set_xlim(-10, 10)
 ax2.set_xlim(-10, 10)
 ax1.legend()
 ax2.legend()
-fig.suptitle('$w^Tx+b$')
+fig.suptitle('$$w^Tx+b$$')
 plt.tight_layout(rect=[0, 0, 1, 0.9])
 ```
 
@@ -726,11 +726,11 @@ Let us calculate the risk on the test set
 ```python
 predictions = ((x_test_norm @ w + b) > 0) * 2 - 1
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.3}$'.format(test_risk))
+print_math('The test risk is: $${:.3}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.0205$</p>
+The test risk is: $$0.0205$$
 
 
 ## ⚙️ Learning - Primal Problem
@@ -809,16 +809,16 @@ svc.fit(x_train_norm, y_train)
 ## Evaluate in the test set
 predictions = svc.predict(x_test_norm)
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.3}$'.format(test_risk))
+print_math('The test risk is: $${:.3}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.0205$</p>
+The test risk is: $$0.0205$$
 
 
 ## Hyper-Parameter Adjustment
 
-We will now turn to adjust the hyper-parameter $C$. We will test our results against the validation set for values in the range of $10^{-3}$ - $10^3$.
+We will now turn to adjust the hyper-parameter $$C$$. We will test our results against the validation set for values in the range of $$10^{-3}$$ - $$10^3$$.
 
 
 ```python
@@ -839,42 +839,42 @@ for i_c, c in enumerate(c_list):
 optimal_index = np.argmin(risk_array)
 optimal_c = c_list[optimal_index]
 
-print_math('The optimal $C$ is ${}$'.format(optimal_c))
+print_math('The optimal $$C$$ is $${}$$'.format(optimal_c))
 
 ## Re-learn and evalute the model with the optimal C
 svc = SVC(C = optimal_c, kernel='linear')
 svc.fit(x_train_norm, y_train)
 predictions = svc.predict(x_test_norm)
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 
 ## PLot risk vs. C
 fig, ax = plt.subplots()
 ax.set_xscale('log')
 ax.plot(c_list, risk_array)
 ax.plot(optimal_c, risk_array[optimal_index], '.r')
-ax.set_xlabel('$K$')
+ax.set_xlabel('$$K$$')
 ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $C$');
+ax.set_title('Risk vs. $$C$$');
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The optimal $C$ is $0.03162277660168379$</p>
+The optimal $$C$$ is $$0.03162277660168379$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.017$</p>
+The test risk is: $$0.017$$
 
 
 
 ![png](output_45_2.png)
 
 
-by selecting a more optimal $C$ we were able to improve our results for $0.02$ to $0.017$.
+by selecting a more optimal $$C$$ we were able to improve our results for $$0.02$$ to $$0.017$$.
 
 ## Using kernels
 
-As was described in the lecture, by using the dual problem formulation, we can replace the $\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right>$ in the objective with an arbitrary kernel. We will not elaborate about the subject here, but you can see below a slight improvement we can get by using a popular kernel called Radial Basis Function (RBF)
+As was described in the lecture, by using the dual problem formulation, we can replace the $$\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right>$$ in the objective with an arbitrary kernel. We will not elaborate about the subject here, but you can see below a slight improvement we can get by using a popular kernel called Radial Basis Function (RBF)
 
 
 ```python
@@ -890,31 +890,31 @@ for i_c, c in enumerate(c_list):
 optimal_index = np.argmin(risk_array)
 optimal_c = c_list[optimal_index]
 
-print_math('The optimal $C$ is ${}$'.format(optimal_c))
+print_math('The optimal $$C$$ is $${}$$'.format(optimal_c))
 
 ## Re-learn and evalute the model with the optimal C
 svc = SVC(C = optimal_c, kernel='rbf')
 svc.fit(x_train_norm, y_train)
 predictions = svc.predict(x_test_norm)
 test_risk = (y_test != predictions).mean()
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 
 ## PLot risk vs. C
 fig, ax = plt.subplots()
 ax.set_xscale('log')
 ax.plot(c_list, risk_array)
 ax.plot(optimal_c, risk_array[optimal_index], '.r')
-ax.set_xlabel('$K$')
+ax.set_xlabel('$$K$$')
 ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $C$');
+ax.set_title('Risk vs. $$C$$');
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The optimal $C$ is $1.0$</p>
+The optimal $$C$$ is $$1.0$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.016$</p>
+The test risk is: $$0.016$$
 
 
 

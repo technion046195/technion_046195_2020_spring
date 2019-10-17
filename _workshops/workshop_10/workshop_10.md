@@ -13,13 +13,13 @@ Convolutional Neural Networks are feed-forward ANN, which tries to make use of t
 
 ## 1D Convolutional Layer
 
-The 1D convolutional layer performs a cross-correlation operation between an input vector $\boldsymbol{x}$ and a vector of parameters $\boldsymbol{w}$ of length $K$:
+The 1D convolutional layer performs a cross-correlation operation between an input vector $$\boldsymbol{x}$$ and a vector of parameters $$\boldsymbol{w}$$ of length $$K$$:
 
 $$
 \boldsymbol{y}\left[n\right]=\sum_{m=0}^{K-1} \boldsymbol{x}\left[n+m\right]\boldsymbol{w}\left[m\right]
 $$
 
-The vector $\boldsymbol{w}$ is usually known as the **convolution kernel** or the layer's weights, and is usually a short vector of length no longer than 7.
+The vector $$\boldsymbol{w}$$ is usually known as the **convolution kernel** or the layer's weights, and is usually a short vector of length no longer than 7.
 
 Graphically this operation can be drawn as so:
 <center><img src="../media/diagrams/networks/conv_layer.png" width="300px" style="width:300px"/></center>
@@ -36,7 +36,7 @@ These two differences are usually related to the following two properties of the
 
 - Small local areas in different regions of the data, share some common properties.
 
-These two differences significantly reduce the number of parameters of the layer. While a fully connected layer would have $N_\text{inputs}\times N_\text{outputs}$ parameters, which can usually be very large, the convolutional layer has only $K$ parameters.
+These two differences significantly reduce the number of parameters of the layer. While a fully connected layer would have $$N_\text{inputs}\times N_\text{outputs}$$ parameters, which can usually be very large, the convolutional layer has only $$K$$ parameters.
 
 As stated before, the convolutional layer uses the spatial structure of the input data to reduce the number of the network's parameters significantly.
 
@@ -44,9 +44,9 @@ A more common way to plot the convolutional layer is as follow:
 
 <center><img src="../media/diagrams/networks/conv_layer.gif?3" height="250px" style="height:250px"/></center>
 
-Where $h\left(\boldsymbol{z}\right)=\boldsymbol{w}^T\boldsymbol{z}=w_1z_1+w_2z_3+w_4z_5$.
+Where $$h\left(\boldsymbol{z}\right)=\boldsymbol{w}^T\boldsymbol{z}=w_1z_1+w_2z_3+w_4z_5$$.
 
-We will usually also add an additional offset term $b$, commonly knows as the bias, to the function $h$ to get the following function:
+We will usually also add an additional offset term $$b$$, commonly knows as the bias, to the function $$h$$ to get the following function:
 
 $$
 h\left(\boldsymbol{z}\right)=\boldsymbol{w}^T\boldsymbol{z} + b
@@ -56,7 +56,7 @@ The bias term is an additional parameter of the layer.
 
 ## Activation (Non-Linear) Layers
 
-As the same as in the case of the MLP, we would usually want to have an activation function (a non-linear function) following the linear layers. The most common activation function used in CNNs is the ReLU (Rectified Linear Unit) function: $\varphi\left(x\right)=\max\left(x,0\right)$.
+As the same as in the case of the MLP, we would usually want to have an activation function (a non-linear function) following the linear layers. The most common activation function used in CNNs is the ReLU (Rectified Linear Unit) function: $$\varphi\left(x\right)=\max\left(x,0\right)$$.
 <center><img src="../media/other/relu.png" width="250px" style="width:250px"/></center>
 
 Any other activation function can be used just as well.
@@ -69,27 +69,27 @@ Non-linearity layers or activation layers are layers which take an input vector 
 
 In some cases, we would like the input of a convolutional layer to contain multiple channels. This happens when we have multiple values which correspond to a single spatial location. One example is a stereo or a multi-channel audio recording, where each point in time has multiple recordings related to it. Another example are colored imaged which have 3 color channels (usually: red, green and blue) at each spatial location.
 
-In such a case we will want each $h$ function to be a function of the inputs from all input channels:
+In such a case we will want each $$h$$ function to be a function of the inputs from all input channels:
 
 <center><img src="../media/diagrams/networks/conv_layer_multi_channel.gif" height="300px" style="height:300px"/></center>
 
-In this case, the function $h$ will perform a linear combination of all inputs. Like before, $h$ will usually also contain a bias term and will be followed by an activation layer.
+In this case, the function $$h$$ will perform a linear combination of all inputs. Like before, $$h$$ will usually also contain a bias term and will be followed by an activation layer.
 
 ## Multiple Channels Output
 
-In addition, we will usually want to use more than one $h$ function, i.e. more than one convolution kernel, in order to produce multiple output channel. The convilutional layer will now appear as follow:
+In addition, we will usually want to use more than one $$h$$ function, i.e. more than one convolution kernel, in order to produce multiple output channel. The convilutional layer will now appear as follow:
 
 <center><img src="../media/diagrams/networks/conv_layer_multi_channel2.gif?2" height="300px" style="height:300px"/></center>
 
-In this model, there is no weight sharing among the different channels, and each output layer has its own unique weights. Weight sharing exists here only regarding the spatial shifts. To make this point clearer, each arrow going into one of the $h$ in the diagram above has a unique weight associated with it. In addition, each $h$ will also have its unique bias term.
+In this model, there is no weight sharing among the different channels, and each output layer has its own unique weights. Weight sharing exists here only regarding the spatial shifts. To make this point clearer, each arrow going into one of the $$h$$ in the diagram above has a unique weight associated with it. In addition, each $$h$$ will also have its unique bias term.
 
 
-The number of parameters of this layer is: $\underbrace{C_\text{in}\times C_\text{out}\times K}_\text{the weights}+\underbrace{C_\text{out}}_\text{the bias}$
+The number of parameters of this layer is: $$\underbrace{C_\text{in}\times C_\text{out}\times K}_\text{the weights}+\underbrace{C_\text{out}}_\text{the bias}$$
 
 Where:
-- $C_\text{in}$ - the number of input channels.
-- $C_\text{out}$ - the number of out channels.
-- $K$ - The spatial length of the kernel.
+- $$C_\text{in}$$ - the number of input channels.
+- $$C_\text{out}$$ - the number of out channels.
+- $$K$$ - The spatial length of the kernel.
 
 ## Convolutional Layers' Hyper-parameters
 
@@ -103,19 +103,19 @@ We can optionally add zeros at the edges of the input to adjust the size of the 
 
 ### Stride
 
-We can optionally only use every $s$-th output. The value of $s$ is called the stride. Here is an example of stride = 2:
+We can optionally only use every $$s$$-th output. The value of $$s$$ is called the stride. Here is an example of stride = 2:
 
 <center><img src="../media/diagrams/networks/conv_layer_stride.gif" height="200px" style="height:200px"/></center>
 
 ### Dilation
 
-We can optionally dilute the input of $h$ and use every $d$-th input. The value of $d$ is called the dilation. Here is an example of dilation = 2:
+We can optionally dilute the input of $$h$$ and use every $$d$$-th input. The value of $$d$$ is called the dilation. Here is an example of dilation = 2:
 
 <center><img src="../media/diagrams/networks/conv_layer_dilation.gif" height="200px" style="height:200px"/></center>
 
 ## Max Pooling
 
-In addition to the convolutional and activation layers, CNNs usually use also special layers which reduce the spatial size of the data. One such layer is the **max pooling layer**. This layer operates in a manner similar to that of a convolutional layer, but instead of taking a linear combination of the inputs it takes the maximal value of the inputs, i.e., it replaces $h$ with a $\text{max}$ function.
+In addition to the convolutional and activation layers, CNNs usually use also special layers which reduce the spatial size of the data. One such layer is the **max pooling layer**. This layer operates in a manner similar to that of a convolutional layer, but instead of taking a linear combination of the inputs it takes the maximal value of the inputs, i.e., it replaces $$h$$ with a $$\text{max}$$ function.
 
 Bellow is an example of a max-pooling layer with size=2 and stride=2:
 
@@ -125,7 +125,7 @@ Note that this layer does not have any parameters.
 
 ## 2D Convolutional Layer
 
-In many cases, such as images for example, the data is arranged in a 2D array. In these cases, we would want to replace the 1D cross-correlation with a 2D cross-correlation. The resulting convolutional layer will behave exactly the same as for the 1D case, except for the fact that $h$ will now receive a 2D input from each channel and will also run over the two dimensions of the input.
+In many cases, such as images for example, the data is arranged in a 2D array. In these cases, we would want to replace the 1D cross-correlation with a 2D cross-correlation. The resulting convolutional layer will behave exactly the same as for the 1D case, except for the fact that $$h$$ will now receive a 2D input from each channel and will also run over the two dimensions of the input.
 
 Below are a few examples of some 2D convolutional layers with different hyper-parameters. the blue array is the input data and the green array is the output data:
 
@@ -229,7 +229,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -265,27 +265,27 @@ for i, ax in enumerate(ax_array.flat):
     ax.set_yticks([])
     ax.set_xticks([])
 
-print_math('Number of rows in the train dataset: $N={}$'.format(len(dataset_train)))
-print_math('Number of rows in the test dataset: $N={}$'.format(len(dataset_test)))
+print_math('Number of rows in the train dataset: $$N={}$$'.format(len(dataset_train)))
+print_math('Number of rows in the test dataset: $$N={}$$'.format(len(dataset_test)))
 
 print_math('Image size: {}x{}'.format(img.shape[1], img.shape[2]))
 print_math('Pixel''s value range: [{}, {}]'.format(img.min(), img.max()))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the train dataset: $N=60000$</p>
+Number of rows in the train dataset: $$N=60000$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the test dataset: $N=10000$</p>
+Number of rows in the test dataset: $$N=10000$$
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Image size: 28x28</p>
+Image size: 28x28
 
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Pixels value range: [0.0, 1.0]</p>
+Pixels value range: [0.0, 1.0]
 
 
 
@@ -296,12 +296,12 @@ print_math('Pixel''s value range: [{}, {}]'.format(img.min(), img.max()))
 
 For the following given random system:
 
-- Random sample: $\omega$ - A given handwritten digit.
+- Random sample: $$\omega$$ - A given handwritten digit.
 - Random variables:
-  - $x=X\left(\omega\right)$: An 28x28 image of the digit.
-  - $y=Y\left(\omega\right)$: The digit's value: \[0-9\].
+  - $$x=X\left(\omega\right)$$: An 28x28 image of the digit.
+  - $$y=Y\left(\omega\right)$$: The digit's value: \[0-9\].
 
-Find a discrimination function $\hat{y}=h^*\left(\boldsymbol{x}\right)$ which minimizes the misclassification rate:
+Find a discrimination function $$\hat{y}=h^*\left(\boldsymbol{x}\right)$$ which minimizes the misclassification rate:
 
 $$
 h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
@@ -510,7 +510,7 @@ def train(net, alpha, n_epoch, dataloader_train2, dataloader_validation, device_
 
 We will test 3 learning rates to set the behavior of the training process as a function of the learning rate. In practice, more then just 3 learning rates should be tested in order to fine-tune the learning rate.
 
-We will run the training process for 1 epoch with each of the following learning rates: $\alpha=10^{0},10^{-1},10^{-2}$.
+We will run the training process for 1 epoch with each of the following learning rates: $$\alpha=10^{0},10^{-1},10^{-2}$$.
 
 
 ```python
@@ -536,7 +536,7 @@ for i_alpha, alpha in enumerate(alpha_list):
     ax = axis_list.flat[i_alpha]
     ax.plot(loss_train_list, label='Train')
     ax.plot(validation_steps, loss_validation_list, label='Validation')
-    ax.set_title('$\\alpha$={:g}'.format(alpha))
+    ax.set_title('$$\\alpha$$={:g}'.format(alpha))
     ax.set_xlabel('Step')
     ax.set_ylabel('Loss')
     ax.set_ylim(0, 5)
@@ -548,13 +548,13 @@ plt.tight_layout(rect=(0, 0, 0.95, 1))
 ![png](output_34_0.png)
 
 
-We got that for a learning rate of $\alpha=10^{0}$ the system is not able to improve at all. This can be the result of either a learning rate which is too low or too high. Since we can see that for a learning rate of $\alpha=10^{-1}$ the training does improve the loss function we can conclude that a learning rate of $\alpha=10^{0}$ is too high.
+We got that for a learning rate of $$\alpha=10^{0}$$ the system is not able to improve at all. This can be the result of either a learning rate which is too low or too high. Since we can see that for a learning rate of $$\alpha=10^{-1}$$ the training does improve the loss function we can conclude that a learning rate of $$\alpha=10^{0}$$ is too high.
 
-In addition, we got that the learning rate of $\alpha=10^{-1}$ results in a much faster convergence than $10^{-2}$, therefore, from among these three learning rates it is best to pick $\alpha=10^0$.
+In addition, we got that the learning rate of $$\alpha=10^{-1}$$ results in a much faster convergence than $$10^{-2}$$, therefore, from among these three learning rates it is best to pick $$\alpha=10^0$$.
 
 ## Training
 
-We will run the training for 20 epochs using $\alpha=10^{-1}$.
+We will run the training for 20 epochs using $$\alpha=10^{-1}$$.
 
 
 ```python
@@ -604,11 +604,11 @@ with torch.no_grad():
 
 test_risk = np.sum(test_risk_tmp) / len(dataset_test)
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.0091$</p>
+The test risk is: $$0.0091$$
 
 
 We got a misclassification rate of about 1%, which means that we were able to predict the correctly digit on 99% of the test set, which is quite good. 

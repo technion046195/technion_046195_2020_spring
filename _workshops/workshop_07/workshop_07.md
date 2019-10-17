@@ -5,7 +5,7 @@ title: "Linear Regression"
 {% raw %}
 ## 🎯 Mean Squared Error (MSE) and Root MSE (RMSE)
 
-The most common risk functions for regression problems are probably the MSE and RMSE risks. The MSE uses the $L2$ distance as a loss function and is defined as:
+The most common risk functions for regression problems are probably the MSE and RMSE risks. The MSE uses the $$L2$$ distance as a loss function and is defined as:
 
 $$
 R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\mathbb{E}\left[\left(h\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)- y_i\right)^2\right]
@@ -19,7 +19,7 @@ $$
 
 ### Solution For a Known Distribution:
 
-Given the full or the conditional distribution, $p\left(x,y\right)$ or $p\left(y|x\right)$, it can be shown that the optimal prediction function, minimizing the MSE and RMSE risk, is the conditional expectation value of $y$ given $x$:
+Given the full or the conditional distribution, $$p\left(x,y\right)$$ or $$p\left(y|x\right)$$, it can be shown that the optimal prediction function, minimizing the MSE and RMSE risk, is the conditional expectation value of $$y$$ given $$x$$:
 
 $$
 h\left(x;\boldsymbol{\theta}\right)^*=\mathbb{E}\left[y|x\right]\left(=\int yp\left(y|x\right)dy\right)
@@ -35,23 +35,23 @@ $$
 
 Where:
 ]
-- $\left\lbrace\theta_i\right\rbrace$ are the model's parameters which we will try to optimally select. They are some times referred to as the weights.
-- $\left\lbrace\phi_i\left(\boldsymbol{x}\right)\right\rbrace$ are some arbitrary functions of the measurables $\boldsymbol{x}$ which we pre-selected by hand. They are usually referred to as the features of the model.
+- $$\left\lbrace\theta_i\right\rbrace$$ are the model's parameters which we will try to optimally select. They are some times referred to as the weights.
+- $$\left\lbrace\phi_i\left(\boldsymbol{x}\right)\right\rbrace$$ are some arbitrary functions of the measurables $$\boldsymbol{x}$$ which we pre-selected by hand. They are usually referred to as the features of the model.
 
 We will usually use to following notations:
 
-- $\boldsymbol{\theta}$ - The vector of parameters $\left[\theta_0, \theta_1, \ldots, \theta_n\right]^T$.
-- $\boldsymbol{\phi\left(\boldsymbol{x}\right)}$ - The vector of features $\left[\phi_0\left(\boldsymbol{x}\right), \phi_1\left(\boldsymbol{x}\right), \ldots, \phi_n\left(\boldsymbol{x}\right)\right]^T$.
-- $\boldsymbol{x}_i$ - The measured data of the $i$-th sample in the dataset.
-- $y_i$ - The label of the $i$-th sample in the dataset.
-- $\boldsymbol{y}$ - The vector all labels in the dataset $\left[y_0, y_1, \ldots, y_{N-1}\right]^T$.
-- $\Phi$ - The matrix of all features of samples in the dataset $\left[\boldsymbol{\phi}\left(\boldsymbol{x}_0\right), \boldsymbol{\phi}\left(\boldsymbol{x}_1\right), \ldots, \boldsymbol{\phi}\left(\boldsymbol{x}_{N-1}\right)\right]^T$.
+- $$\boldsymbol{\theta}$$ - The vector of parameters $$\left[\theta_0, \theta_1, \ldots, \theta_n\right]^T$$.
+- $$\boldsymbol{\phi\left(\boldsymbol{x}\right)}$$ - The vector of features $$\left[\phi_0\left(\boldsymbol{x}\right), \phi_1\left(\boldsymbol{x}\right), \ldots, \phi_n\left(\boldsymbol{x}\right)\right]^T$$.
+- $$\boldsymbol{x}_i$$ - The measured data of the $$i$$-th sample in the dataset.
+- $$y_i$$ - The label of the $$i$$-th sample in the dataset.
+- $$\boldsymbol{y}$$ - The vector all labels in the dataset $$\left[y_0, y_1, \ldots, y_{N-1}\right]^T$$.
+- $$\Phi$$ - The matrix of all features of samples in the dataset $$\left[\boldsymbol{\phi}\left(\boldsymbol{x}_0\right), \boldsymbol{\phi}\left(\boldsymbol{x}_1\right), \ldots, \boldsymbol{\phi}\left(\boldsymbol{x}_{N-1}\right)\right]^T$$.
 
 Linear regression algorithms differ by the method used for finding the optimal parameters.
 
 ## 📐 Linear Least Square
 
-A discriminative approach, in which we find the set of parameters $\left\lbrace\theta_i\right\rbrace$ of a linear model which minimizes the empirical MSE (or RMSE) risk on a given dataset:
+A discriminative approach, in which we find the set of parameters $$\left\lbrace\theta_i\right\rbrace$$ of a linear model which minimizes the empirical MSE (or RMSE) risk on a given dataset:
 
 $$
 \boldsymbol{\theta}^* 
@@ -85,9 +85,9 @@ A few examples of reasons for adding regularization terms are:
 
 We will discuss here the two most popular regularization terms.
 
-### 🔵 Tikhonov Regularization: $L2$ Penalty On the Models Parameters.
+### 🔵 Tikhonov Regularization: $$L2$$ Penalty On the Models Parameters.
 
-This is probably the most commonly used regularization term. It is achieved by using the following regularization term: $\lambda\left\lVert\boldsymbol{\theta}\right\rVert_2^2$. $\lambda$ is the regularization parameters and it controls how much affect the regularization has on the solution.
+This is probably the most commonly used regularization term. It is achieved by using the following regularization term: $$\lambda\left\lVert\boldsymbol{\theta}\right\rVert_2^2$$. $$\lambda$$ is the regularization parameters and it controls how much affect the regularization has on the solution.
 
 The Tikhonov regularization motivates the solution to keep the parameters small unless they can significantly improve (decrease) the risk function.
 
@@ -121,15 +121,15 @@ $$
 \boldsymbol{\theta}=\left(\Phi^T\Phi+R\right)^{-1}\Phi\boldsymbol{y}
 $$
 
-### 🔷 $L1$ Penalty On the Models Parameters.
+### 🔷 $$L1$$ Penalty On the Models Parameters.
 
-Another common regularization term is the $L1$ regularization which is achieved by using the following regularization term: $\lambda\left\lVert\boldsymbol{\theta}\right\rVert_1$. Here as well, $\lambda$ is the regularization parameter which controls how much the regularization affects the solution.
+Another common regularization term is the $$L1$$ regularization which is achieved by using the following regularization term: $$\lambda\left\lVert\boldsymbol{\theta}\right\rVert_1$$. Here as well, $$\lambda$$ is the regularization parameter which controls how much the regularization affects the solution.
 
-The $L1$ regularization motivates the solution to keep only the parameters which help minimize the objective the most. It, therefore, tends to create a sparse solution (a solution where many of the $\theta_i$'s are equal to 0). 
+The $$L1$$ regularization motivates the solution to keep only the parameters which help minimize the objective the most. It, therefore, tends to create a sparse solution (a solution where many of the $$\theta_i$$'s are equal to 0). 
 
 #### Least Absolute Shrinkage and Selection Operator (LASSO)
 
-A linear regression problem with an $L1$ Regularization is called LASSO. The optimization problem which is to be solved in this case is:
+A linear regression problem with an $$L1$$ Regularization is called LASSO. The optimization problem which is to be solved in this case is:
 
 $$
 \boldsymbol{\theta}^* 
@@ -180,7 +180,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -194,14 +194,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=100000$</p>
+Number of rows in the dataset: $$N=100000$$
 
 
 
@@ -477,8 +477,8 @@ ax.set_ylabel('PDF');
 
 ### The underlying process
 
-- A passenger is generated with a random pick up and drop off location. $p\left(x\right)$.
-- The duration of the ride is randomly generated, conditioned by the pickup and drop off locations.  $p\left(y|x\right)$.
+- A passenger is generated with a random pick up and drop off location. $$p\left(x\right)$$.
+- The duration of the ride is randomly generated, conditioned by the pickup and drop off locations.  $$p\left(y|x\right)$$.
 
 ### The task and goal
 
@@ -535,7 +535,7 @@ $$
 h\left(\boldsymbol{x};\boldsymbol{\theta}\right) = \theta_0\sqrt{\left(x_\text{drop off}-x_\text{pick up}\right)^2 + \left(y_\text{drop off}-y_\text{pick up}\right)^2}
 $$
 
-**Notice**: The model is not linear in the locations, and it does not have to be. The linearity is in the parameter of the model $\theta_0$
+**Notice**: The model is not linear in the locations, and it does not have to be. The linearity is in the parameter of the model $$\theta_0$$
 
 ## ⚙️ Learning
 
@@ -543,7 +543,7 @@ $$
 
 Find the optimal model parameter using linear least squares.
 
-Use [np.linalg.pinv](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.pinv.html) to calculate the Moore-Penrose pseudo inverse $\left(A^TA\right)^{-1}A^T$
+Use [np.linalg.pinv](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.pinv.html) to calculate the Moore-Penrose pseudo inverse $$\left(A^TA\right)^{-1}A^T$$
 
 (even though it is a 1D case we will use the matrix formulation for consistency) 
 
@@ -646,7 +646,7 @@ $$
 
 Repeat the learning process using the new model.
 
-Now use [np.linalg.lstsq](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.lstsq.html) instead of np.linalg.pinv to solve $Ax=b$.
+Now use [np.linalg.lstsq](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.lstsq.html) instead of np.linalg.pinv to solve $$Ax=b$$.
 
 **Numeric issues**: Calculating inverses of matrices can become highly inefficient and unstable, especially in high dimensions. It is recommended to avoid these calculations when possible. np.linalg.lstsq solves the least squares problem without calculating the inverse directly.
 
@@ -821,8 +821,8 @@ We will add regularization terms to our solution to reduce the effect of the ove
 
 ### ✍️ Exercise 7.4
 
-1. Repeat the last question using Ridge regression. Use $10^{-2}$ for the regularization parameter.
-2. Repeat the last question with the LASSO model. Use $10^{-5}$ for the regularization parameter.
+1. Repeat the last question using Ridge regression. Use $$10^{-2}$$ for the regularization parameter.
+2. Repeat the last question with the LASSO model. Use $$10^{-5}$$ for the regularization parameter.
 
 Use [sklearn.linear_model.Ridge](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html) and [sklearn.linear_model.Lasso](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html).
 
@@ -994,7 +994,7 @@ As expected LASSO have selected a sparse set of parameters to have non-zero valu
 
 ## 🏢 A Simple Example for Why L1 Creates Sparsity
 
-To understand why an $L1$ regularization term results in a sparse solution think about the following example.
+To understand why an $$L1$$ regularization term results in a sparse solution think about the following example.
 
 Say there is some big data company which wants to hire contractors to collect 1M samples of some data. Let us also assume that there are only 3 contractors, which have different efficiency:
 
@@ -1004,15 +1004,15 @@ Say there is some big data company which wants to hire contractors to collect 1M
 
 We shall look at two cases:
 
-### The $L2$ case
+### The $$L2$$ case
 
-The payment is proportional to the squared number of hours: $\alpha \cdot \text{number_of_hours}^2$.
+The payment is proportional to the squared number of hours: $$\alpha \cdot \text{number_of_hours}^2$$.
 
 In this case, since the three contractors have more or less the same efficiency, the company would prefer to spread the work more or less equally between them.
 
-### The $L1$ case
+### The $$L1$$ case
 
-The payment is linear in the number of hours: $\alpha \cdot \text{number_of_hours}$.
+The payment is linear in the number of hours: $$\alpha \cdot \text{number_of_hours}$$.
 
 In this case, the company would prefer to hire only the best worker (#3) for the job and leave out the other two others.
 
@@ -1023,7 +1023,7 @@ The analogy to our case is as follow:
 - The different workers <=> The different features we are using.
 - The payment <~> regularization term.
 
-In a similar manner to the big data company, the $L1$ regularization makes the optimization prefer to use non zero weights only on the features which contributed the most to minimize the objective function.
+In a similar manner to the big data company, the $$L1$$ regularization makes the optimization prefer to use non zero weights only on the features which contributed the most to minimize the objective function.
 
 ## 🗺️ Visualization of The Learned Location Based Correction
 

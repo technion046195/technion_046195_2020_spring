@@ -97,7 +97,7 @@ import matplotlib.pyplot as plt  # A plotting package
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ---new slide---
@@ -418,7 +418,7 @@ Number of rows in the dataset: 1001
 
 <br>
 
-A function which maps from the input space of gender and class, `$ \boldsymbol{x} $`, into the binary space of the survival indicator, `$y$`:
+A function which maps from the input space of gender and class, `$$ \boldsymbol{x} $$`, into the binary space of the survival indicator, `$$y$$`:
 
 `$$
 \hat{y}=h\left(\boldsymbol{x}\right)
@@ -444,9 +444,9 @@ $$`
 
 <br>
 
-- `$N$` - the number of sample in the dataset.
-- `$\boldsymbol{x}_i=\left(\text{gender},\text{class}\right)$` - the `$i$`'s person parameters.
-- `$I\left\lbrace\text{condition}\right\rbrace$` - an indicator function.
+- `$$N$$` - the number of sample in the dataset.
+- `$$\boldsymbol{x}_i=\left(\text{gender},\text{class}\right)$$` - the `$$i$$`'s person parameters.
+- `$$I\left\lbrace\text{condition}\right\rbrace$$` - an indicator function.
 
 <br>
 
@@ -537,7 +537,7 @@ h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)=\left\lbrace
 \right.
 $$`
 
-**reminder**: `$\boldsymbol{x}=\left(\text{gender}, \text{class}\right)$`
+**reminder**: `$$\boldsymbol{x}=\left(\text{gender}, \text{class}\right)$$`
 
 ---new slide---
 
@@ -549,8 +549,8 @@ Or viewed as a table:
 
 | Sex \ Class |  1st class      | 2nd Class      | 3rd class      |
 | ----------- | --------------- | -------------- | -------------- |
-| Male (0)    |  $\theta_{0,1}$ | $\theta_{0,2}$ | $\theta_{0,3}$ |
-| Female (1)  |  $\theta_{1,1}$ | $\theta_{1,2}$ | $\theta_{1,3}$ |
+| Male (0)    |  $$\theta_{0,1}$$ | $$\theta_{0,2}$$ | $$\theta_{0,3}$$ |
+| Female (1)  |  $$\theta_{1,1}$$ | $$\theta_{1,2}$$ | $$\theta_{1,3}$$ |
 
 ---new slide---
 
@@ -568,8 +568,8 @@ $$`
 
 | Sex \ Class |  1st class  | 2nd Class  | 3rd class  |
 | ----------- | ----------- | ---------- | ---------- |
-| Male (0)    |  $\theta$   | $\theta$   | $\theta$   |
-| Female (1)  |  $\theta$   | $\theta$   | $\theta$   |
+| Male (0)    |  $$\theta$$   | $$\theta$$   | $$\theta$$   |
+| Female (1)  |  $$\theta$$   | $$\theta$$   | $$\theta$$   |
 
 
 ---new slide---
@@ -577,8 +577,8 @@ $$`
 ## 💡 Learning Method Suggestion
 
 there are only 2 configurations for this model:
-- `$h_{\theta=0}\left(\boldsymbol{x}\right)=0$`
-- `$h_{\theta=1}\left(\boldsymbol{x}\right)=1$`
+- `$$h_{\theta=0}\left(\boldsymbol{x}\right)=0$$`
+- `$$h_{\theta=1}\left(\boldsymbol{x}\right)=1$$`
 
 <br>
 
@@ -590,7 +590,7 @@ Therefore, our learning method would be to simply check them both. (brute force)
 
 <br>
 
-We would like to find `$\theta^*$` such that:
+We would like to find `$$\theta^*$$` such that:
 
 <br>
 
@@ -613,15 +613,15 @@ for theta in [0, 1]:
     ## The number of worng prediction for theta:
     predictions = theta
     train_risk = (y_train.values != predictions).mean()
-    print_math('- $R_\\text{{train}}\\{{ h_{{ \\theta={} }} \\}}={:.2}$'.format(theta, train_risk))
+    print_math('- $$R_\\text{{train}}\\{{ h_{{ \\theta={} }} \\}}={:.2}$$'.format(theta, train_risk))
 ```
 
 <br>
 
 #### Output
 
-- `$R_\text{train}\{ h_{ \theta=0 } \}=0.42$`
-- `$R_\text{train}\{ h_{ \theta=1 } \}=0.58$`
+- `$$R_\text{train}\{ h_{ \theta=0 } \}=0.42$$`
+- `$$R_\text{train}\{ h_{ \theta=1 } \}=0.58$$`
 
 ---new slide---
 
@@ -647,31 +647,31 @@ Let us evaluate the risk on the test set.
 ## The evaluation of the final risk
 predictions = 0
 test_risk = (y_test.values != predictions).mean()
-print_math('The test risk is: $R_\\text{{test}}\\{{ h_{{ \\theta=0 }} \\}}={:.2}$'.format(test_risk))
+print_math('The test risk is: $$R_\\text{{test}}\\{{ h_{{ \\theta=0 }} \\}}={:.2}$$'.format(test_risk))
 ```
 
 <br>
 
 #### Output
 
-`$R_\text{test}\{ h_{ \theta=0 } \}=0.4$`
+`$$R_\text{test}\{ h_{ \theta=0 } \}=0.4$$`
 
 ---new slide---
 
 ## 💡 Model suggestion - 2nd Attempt
 
-- The general model with `$2^6$` possible combinations.
+- The general model with `$$2^6$$` possible combinations.
 
 <br>
 
 | Sex \ Class |  1st class      | 2nd Class      | 3rd class      |
 | ----------- | --------------- | -------------- | -------------- |
-| Male (0)    |  $\theta_{0,1}$ | $\theta_{0,2}$ | $\theta_{0,3}$ |
-| Female (1)  |  $\theta_{1,1}$ | $\theta_{1,2}$ | $\theta_{1,3}$ |
+| Male (0)    |  $$\theta_{0,1}$$ | $$\theta_{0,2}$$ | $$\theta_{0,3}$$ |
+| Female (1)  |  $$\theta_{1,1}$$ | $$\theta_{1,2}$$ | $$\theta_{1,3}$$ |
 
 <br>
 
-- We can select each `$\theta_{m,n}$` individually.
+- We can select each `$$\theta_{m,n}$$` individually.
 
 ---new slide---
 
@@ -679,7 +679,7 @@ print_math('The test risk is: $R_\\text{{test}}\\{{ h_{{ \\theta=0 }} \\}}={:.2}
 
 <br>
 
-We would like to find `$\theta_{m,n}^*$` such that:
+We would like to find `$$\theta_{m,n}^*$$` such that:
 
 <br>
 
@@ -702,14 +702,14 @@ for gender in [0, 1]:
     ## loop over the class
     for class_ in [1, 2, 3]:  # we have used "class_" since the word "class" is already in use by python
         print('')  # An empty line
-        print_math('## For $\\{{\\boldsymbol{{x}}_i,y_i:\\boldsymbol{{x}}_i=({},{}) \\}}$'.format(gender, class_))
+        print_math('## For $$\\{{\\boldsymbol{{x}}_i,y_i:\\boldsymbol{{x}}_i=({},{}) \\}}$$'.format(gender, class_))
         ## Loop over the two possible theta
         for theta in [0, 1]:
             ## The number of worng prediction for theta:
             predictions = theta
             indices = (x_train['numeric_sex'].values == gender) & (x_train['pclass'].values == class_)
             train_risk = (y_train.values[indices] != predictions).mean()
-            print_math('-- $\\theta_{{ {},{} }}={} \Rightarrow R_{{\\text{{train}}}}\\{{h_{{ \\boldsymbol{{\\theta}} }}\\}}={:.2f}$'.format(gender, class_, theta, train_risk))
+            print_math('-- $$\\theta_{{ {},{} }}={} \Rightarrow R_{{\\text{{train}}}}\\{{h_{{ \\boldsymbol{{\\theta}} }}\\}}={:.2f}$$'.format(gender, class_, theta, train_risk))
 ```
 
 <br>
@@ -720,39 +720,39 @@ for gender in [0, 1]:
 
 ---new slide---
 
-For `$\boldsymbol{x}_i=(0,1)$`
-- `$\theta_{ 0,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.39$`
-- `$\theta_{ 0,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.61$`
+For `$$\boldsymbol{x}_i=(0,1)$$`
+- `$$\theta_{ 0,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.39$$`
+- `$$\theta_{ 0,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.61$$`
 
 <br>
 
-For `$\boldsymbol{x}_i=(0,2)$`
-- `$\theta_{ 0,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.12$`
-- `$\theta_{ 0,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.88$`
+For `$$\boldsymbol{x}_i=(0,2)$$`
+- `$$\theta_{ 0,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.12$$`
+- `$$\theta_{ 0,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.88$$`
 
 <br>
 
-For `$\boldsymbol{x}_i=(0,3)$`
-- `$\theta_{ 0,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.17$`
-- `$\theta_{ 0,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.83$`
+For `$$\boldsymbol{x}_i=(0,3)$$`
+- `$$\theta_{ 0,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.17$$`
+- `$$\theta_{ 0,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.83$$`
 
 ---new slide---
 
-For `$\boldsymbol{x}_i=(1,1)$`
-- `$\theta_{ 1,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.97$`
-- `$\theta_{ 1,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.03$`
+For `$$\boldsymbol{x}_i=(1,1)$$`
+- `$$\theta_{ 1,1 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.97$$`
+- `$$\theta_{ 1,1 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.03$$`
 
 <br>
 
-For `$\boldsymbol{x}_i=(1,2)$`
-- `$\theta_{ 1,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.90$`
-- `$\theta_{ 1,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.10$`
+For `$$\boldsymbol{x}_i=(1,2)$$`
+- `$$\theta_{ 1,2 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.90$$`
+- `$$\theta_{ 1,2 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.10$$`
 
 <br>
 
-For `$\boldsymbol{x}_i=(1,3)$`
-- `$\theta_{ 1,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.47$`
-- `$\theta_{ 1,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.53$`
+For `$$\boldsymbol{x}_i=(1,3)$$`
+- `$$\theta_{ 1,3 }=0 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.47$$`
+- `$$\theta_{ 1,3 }=1 \Rightarrow R_{\text{train}}\{h_{ \boldsymbol{\theta} }\}=0.53$$`
 
 ---new slide---
 
@@ -803,14 +803,14 @@ predictions = x_test.apply(row_predictor, axis='columns')
 
 ## The evaluation of the final risk
 test_risk = (y_test.values != predictions).mean()
-print_math('The test risk is: $R_\\text{{test}}\\{{ h_{{ \\boldsymbol{{\\theta}}^* }} \\}}={:.2f}$'.format(test_risk))
+print_math('The test risk is: $$R_\\text{{test}}\\{{ h_{{ \\boldsymbol{{\\theta}}^* }} \\}}={:.2f}$$'.format(test_risk))
 ```
 
 <br>
 
 #### Output
 
-`$R_\text{test}\{ h_{ \boldsymbol{\theta}^* } \}=0.23$`
+`$$R_\text{test}\{ h_{ \boldsymbol{\theta}^* } \}=0.23$$`
 
 ---new slide---
 

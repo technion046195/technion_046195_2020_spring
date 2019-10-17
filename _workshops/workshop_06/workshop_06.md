@@ -5,25 +5,25 @@ title: "LDA & QDA"
 {% raw %}
 ## 	🔮 Supervised Learning Recap: Loss and Risk Functions
 
-In supervised learning problems, we usually assume that there exists some underlying distribution from which we jointly draw pairs of observable values $\boldsymbol{x}$ and hidden values $y$. Our goal is to come up with some prediction function which outputs a prediction $\hat{y}$ based on $x$:
+In supervised learning problems, we usually assume that there exists some underlying distribution from which we jointly draw pairs of observable values $$\boldsymbol{x}$$ and hidden values $$y$$. Our goal is to come up with some prediction function which outputs a prediction $$\hat{y}$$ based on $$x$$:
 
 $$
 \hat{y}=h\left(\boldsymbol{x}\right)
 $$
 
-for which $\hat{y}$ is as close as possible $y$. More specifically, we want $\hat{y}$ to be close to $y$ under some given distance function and in terms of expectation value:
+for which $$\hat{y}$$ is as close as possible $$y$$. More specifically, we want $$\hat{y}$$ to be close to $$y$$ under some given distance function and in terms of expectation value:
 
 $$
 \mathbb{E}\left[L\left(\hat{y},y\right)\right]
 $$
 
-We call the distance function $L\left(\hat{y},y\right)$ loss function, and the expectation value of the loss function, as a function of $h$, the risk function:
+We call the distance function $$L\left(\hat{y},y\right)$$ loss function, and the expectation value of the loss function, as a function of $$h$$, the risk function:
 
 $$
 R\left\lbrace h\right\rbrace=\mathbb{E}\left[L\left(\hat{y}=h\left(x\right),y\right)\right]
 $$
 
-So our problem is to find an optimal prediction function $h^*$ which minimizes the risk function:
+So our problem is to find an optimal prediction function $$h^*$$ which minimizes the risk function:
 
 $$
 h^*\left(x\right) = \underset{h}{\arg\min}\ R\left\lbrace h\right\rbrace= \underset{h}{\arg\min}\ \mathbb{E}\left[L\left(h\left(x\right),y\right)\right]
@@ -37,9 +37,9 @@ $$
 R\left\lbrace h\right\rbrace=\mathbb{E}\left[I\left\lbrace h\left(x\right)\neq y\right\rbrace\right]
 $$
 
-Which uses a loss function known as the **0-1 loss**: $I\left\lbrace\hat{y}\neq y\right\rbrace$. (The loss function returns 0 for success and 1 otherwise)
+Which uses a loss function known as the **0-1 loss**: $$I\left\lbrace\hat{y}\neq y\right\rbrace$$. (The loss function returns 0 for success and 1 otherwise)
 
-Given the distribution function $p\left(\boldsymbol{x},y\right)$ the solution to this problem is:
+Given the distribution function $$p\left(\boldsymbol{x},y\right)$$ the solution to this problem is:
 
 $$
 h^*\left(x\right) 
@@ -49,21 +49,21 @@ $$
 
 ## 🧰 Different Approaches for Solving Problems
 
-The problem is that we do not know the distribution $p\left(\boldsymbol{x},y\right)$, which is required for calculating the expectation value inside the risk function. This is of course solved by using the dataset, which is a known set of pairs $\left\lbrace\left(\boldsymbol{x}_i, y_i\right)\right\rbrace$.
+The problem is that we do not know the distribution $$p\left(\boldsymbol{x},y\right)$$, which is required for calculating the expectation value inside the risk function. This is of course solved by using the dataset, which is a known set of pairs $$\left\lbrace\left(\boldsymbol{x}_i, y_i\right)\right\rbrace$$.
 
 In practice, there is more than one way to do so, and we can roughly divide the different methods into 3 approaches, differing by the quantity which we are trying to estimate by using dataset.
 
-### Approach 1: Estimating $P\left(\boldsymbol{x},y\right)$
+### Approach 1: Estimating $$P\left(\boldsymbol{x},y\right)$$
 
-Under this approach, we will use the dataset to try and approximate the full joint distribution $p\left(\boldsymbol{x}_i, y_i\right)$. We can do so using the distribution estimation tools we have learned earlier in this course. We can then use the full distribution to solve:
+Under this approach, we will use the dataset to try and approximate the full joint distribution $$p\left(\boldsymbol{x}_i, y_i\right)$$. We can do so using the distribution estimation tools we have learned earlier in this course. We can then use the full distribution to solve:
 
 $$
 h^*\left(x\right) = \underset{h}{\arg\min}\ \mathbb{E}\left[L\left(h\left(x\right),y\right)\right]
 $$
 
-In many cases, it will be simpler to estimate $P\left(\boldsymbol{x}_i,y_i\right)$ as $P\left(\boldsymbol{x}_i|y_i\right)P\left(y_i\right)$ and estimate each of the two distribution individually. 
+In many cases, it will be simpler to estimate $$P\left(\boldsymbol{x}_i,y_i\right)$$ as $$P\left(\boldsymbol{x}_i|y_i\right)P\left(y_i\right)$$ and estimate each of the two distribution individually. 
 
-### Approach 2: Estimating $P\left(y|\boldsymbol{x}\right)$
+### Approach 2: Estimating $$P\left(y|\boldsymbol{x}\right)$$
 
 We can use the law of total expectation (משפט ההחלקה) to write the risk as:
 
@@ -73,21 +73,21 @@ R\left\lbrace h\right\rbrace
 =\mathbb{E}\left[\mathbb{E}\left[L\left(h\left(x\right),y\right)\right|x]\right]
 $$
 
-Therefore we can solve the problem for each $x$ independently:
+Therefore we can solve the problem for each $$x$$ independently:
 
 $$
 h^*\left(x\right) = \underset{h\left(x\right)}{\arg\min}\ \mathbb{E}\left[L\left(h\left(x\right),y\right)|x\right]
 $$
 
-Unlike in the original equation for the risk, here we freeze $x$ and the expectation is done only over $y$ using the conditional distribution $p\left(y|\boldsymbol{x}\right)$.
+Unlike in the original equation for the risk, here we freeze $$x$$ and the expectation is done only over $$y$$ using the conditional distribution $$p\left(y|\boldsymbol{x}\right)$$.
 
-Under this approach, we will use the dataset to try and approximate the conditional distribution $p\left(y|\boldsymbol{x}\right)$ using the distribution estimation tools we learn earlier in this course.
+Under this approach, we will use the dataset to try and approximate the conditional distribution $$p\left(y|\boldsymbol{x}\right)$$ using the distribution estimation tools we learn earlier in this course.
 
 ### Approach 3: Estimating the Expectation Value Directly
 
-As we saw earlier in the course, we can approximate an expectation value  $\mathbb{E}\left[f\left(x\right)\right]$ by using the empirical mean $\frac{1}{N}\sum_i f\left(x_i\right)$.
+As we saw earlier in the course, we can approximate an expectation value  $$\mathbb{E}\left[f\left(x\right)\right]$$ by using the empirical mean $$\frac{1}{N}\sum_i f\left(x_i\right)$$.
 
-Under this approach, we will use the dataset to directly search for the optimal $h^*$ minimizing the empirical risk:
+Under this approach, we will use the dataset to directly search for the optimal $$h^*$$ minimizing the empirical risk:
 
 $$
 h^*\left(x\right) = \underset{h}{\arg\min}\ \frac{1}{N}\sum_i L\left(h\left(x_i\right),y_i\right)
@@ -101,25 +101,25 @@ In this workshop, we will look at some methods which take the generative approac
 
 ## 🌗 Linear Discriminant Analysis (LDA)
 
-LDA solves a classification problem with a misclassification rate risk. Here we will only talk about the case of binary classification (with only two classes: $0$ and $1$), but this could easily be extended to any number of classes.
+LDA solves a classification problem with a misclassification rate risk. Here we will only talk about the case of binary classification (with only two classes: $$0$$ and $$1$$), but this could easily be extended to any number of classes.
 
 ### Assumption
 
-For each class $j \in \left\lbrace 0,1\right\rbrace$, we assume that $p\left(\boldsymbol{x}|y=j\right)$ has a multivariate normal distribution with some mean value $\boldsymbol{\mu}_j$ and a covariance matrix $\Sigma$. Note that $\Sigma$ has no index $j$ and is assumed to be the same for both classes.
+For each class $$j \in \left\lbrace 0,1\right\rbrace$$, we assume that $$p\left(\boldsymbol{x}|y=j\right)$$ has a multivariate normal distribution with some mean value $$\boldsymbol{\mu}_j$$ and a covariance matrix $$\Sigma$$. Note that $$\Sigma$$ has no index $$j$$ and is assumed to be the same for both classes.
 
 ### Steps
 
-We will denote by $N_j$ the number of $y_i$ in the dataset which are equal to $j$: $N_j=\sum_i I\left\lbrace y_i=j\right\rbrace$.
+We will denote by $$N_j$$ the number of $$y_i$$ in the dataset which are equal to $$j$$: $$N_j=\sum_i I\left\lbrace y_i=j\right\rbrace$$.
 
-We will start by estimating the distributions $p\left(y\right)$ and $p\left(\boldsymbol{x}|y\right)$:
+We will start by estimating the distributions $$p\left(y\right)$$ and $$p\left(\boldsymbol{x}|y\right)$$:
 
-1. estimate $p\left(y\right)$ from the dataset as:
+1. estimate $$p\left(y\right)$$ from the dataset as:
 
 $$
 p\left(y=j\right) = \frac{N_j}{N}
 $$
 
-2. For each $j$ estimate the mean of $p\left(\boldsymbol{x}|y=j\right)$ as:
+2. For each $$j$$ estimate the mean of $$p\left(\boldsymbol{x}|y=j\right)$$ as:
 
 $$
 \boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\ \text{s.t.}\ y_i=j}\boldsymbol{x}_i
@@ -148,14 +148,14 @@ h^*\left(x\right)
 $$
 
 Where:
-- $\boldsymbol{a}=\Sigma^{-1}\left(\boldsymbol{\mu}_1-\boldsymbol{\mu}_0\right)$
-- $b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p\left(y=1\right)}{p\left(y=0\right)}\right)$
+- $$\boldsymbol{a}=\Sigma^{-1}\left(\boldsymbol{\mu}_1-\boldsymbol{\mu}_0\right)$$
+- $$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p\left(y=1\right)}{p\left(y=0\right)}\right)$$
 
-The resulting linear decision rule $\boldsymbol{a}^T \boldsymbol{x} + b > 0$ gives this algorithm its name.
+The resulting linear decision rule $$\boldsymbol{a}^T \boldsymbol{x} + b > 0$$ gives this algorithm its name.
 
 ## 🌖 Quadric Discriminant Analysis (QDA)
 
-QDA is similar to LDA except for the the fact that we no longer assume that the covariance matrix $\Sigma$ is the same for all classes. The difference in the algorithm is that in the third step we independently estimate a covariance matrix for each of the class:
+QDA is similar to LDA except for the the fact that we no longer assume that the covariance matrix $$\Sigma$$ is the same for all classes. The difference in the algorithm is that in the third step we independently estimate a covariance matrix for each of the class:
 
 $$
 \Sigma_j = \frac{1}{N_j}\sum_{i\ \text{s.t.}\ y_i=j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
@@ -175,9 +175,9 @@ h^*\left(x\right)
 $$
 
 Where:
-- $C=\tfrac{1}{2}\left(\Sigma_0^{-1}-\Sigma_1^{-1}\right)$
-- $\boldsymbol{a}=\Sigma_1^{-1}\boldsymbol{\mu}_1-\Sigma_0^{-1}\boldsymbol{\mu}_0$
-- $b=\tfrac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma_1^{-1}\boldsymbol{\mu}_1 - \boldsymbol{\mu}_0^T\Sigma_0^{-1}\boldsymbol{\mu}_0\right) + \log\left(\frac{\left|\Sigma_0\right|^{1/2}p\left(y=1\right)}{\left|\Sigma_1\right|^{1/2}p\left(y=0\right)}\right)$
+- $$C=\tfrac{1}{2}\left(\Sigma_0^{-1}-\Sigma_1^{-1}\right)$$
+- $$\boldsymbol{a}=\Sigma_1^{-1}\boldsymbol{\mu}_1-\Sigma_0^{-1}\boldsymbol{\mu}_0$$
+- $$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma_1^{-1}\boldsymbol{\mu}_1 - \boldsymbol{\mu}_0^T\Sigma_0^{-1}\boldsymbol{\mu}_0\right) + \log\left(\frac{\left|\Sigma_0\right|^{1/2}p\left(y=1\right)}{\left|\Sigma_1\right|^{1/2}p\left(y=0\right)}\right)$$
 
 The resulting quadric decision rule gives this algorithm its name.
 
@@ -216,7 +216,7 @@ plt.rcParams['axes.grid'] = True  # Show grid by default in figures
 ## In a regular notebook this could simply be replaced with "display(Markdown(x))"
 from IPython.display import HTML
 def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [[\'$\',\'$\'], [\'\\\\(\',\'\\\\)\']]}});</script><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
+    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
 ```
 
 ## 🕵️ Data Inspection
@@ -230,14 +230,14 @@ dataset = pd.read_csv(data_file)
 
 ## Print the number of rows in the data set
 number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $N={}$'.format(number_of_rows))
+print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
 
 ## Show the first 10 rows
 dataset.head(10)
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>Number of rows in the dataset: $N=569$</p>
+Number of rows in the dataset: $$N=569$$
 
 
 
@@ -574,7 +574,7 @@ ax.set_ylabel('Gray levels STD');
 
 A supervised learning problem of binary classification.
 
-Find a discrimination function: a function $h\left(\cdot\right)$, mapping form the space of $\boldsymbol{x}=\left[\text{mean_radius},\text{mean_texture}\right]^T$ to the space of labels $y$
+Find a discrimination function: a function $$h\left(\cdot\right)$$, mapping form the space of $$\boldsymbol{x}=\left[\text{mean_radius},\text{mean_texture}\right]^T$$ to the space of labels $$y$$
 
 ### Evaluation Method: The Misclassification Rate
 
@@ -611,7 +611,7 @@ test_set = dataset.iloc[test_indices]
 We will use the LDA algorithm to generate our prediction function.
 
 The parameters of the model are:
-- The values of the $p\left(y\right)$.
+- The values of the $$p\left(y\right)$$.
 - The means of the two distributions.
 - The covariance matrix.
 
@@ -656,11 +656,11 @@ b = 0.5 * (mu0 @ cov_mat_inv @ mu0 - mu1 @ cov_mat_inv @ mu1) + np.log(py1 / py0
 train_prediction = (x @ a + b) > 0
 train_risk = (train_prediction != y).mean()
 
-print_math('The train risk is: ${:.2}$'.format(train_risk))
+print_math('The train risk is: $${:.2}$$'.format(train_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The train risk is: $0.12$</p>
+The train risk is: $$0.12$$
 
 
 Let us plot the normal distributions and the classifier
@@ -697,21 +697,21 @@ ax.legend();
 
 In the LDA algorithm, and in any other generative algorithm, we are selecting the classifier based on the estimated underlying distribution. Therefore we can actually predict the probability of a tissue being malignant.
 
-We saw that we can write $p\left(y=1|\boldsymbol{x}\right)$ using Bayes rule:
+We saw that we can write $$p\left(y=1|\boldsymbol{x}\right)$$ using Bayes rule:
 
 $$
 p\left(y=1|\boldsymbol{x}\right)=\frac{p\left(\boldsymbol{x}|y=1\right)p\left(y=1\right)}{p\left(\boldsymbol{x}|y=0\right)p\left(y=0\right)+p\left(\boldsymbol{x}|y=1\right)p\left(y=1\right)}
 $$
 
-and since all the above distributions are known we predict the probability of a tissue being malignant given some set of features $\boldsymbol{x}$
+and since all the above distributions are known we predict the probability of a tissue being malignant given some set of features $$\boldsymbol{x}$$
 
 #### Solution 6.1-3
 
-If $p\left(y=1\right)$ and $p\left(y=0\right)\left(=1-p\left(y=1\right)\right)$ are known we can simply use these values instead of trying to estimate them. These values appear in the expression for $b$:
+If $$p\left(y=1\right)$$ and $$p\left(y=0\right)\left(=1-p\left(y=1\right)\right)$$ are known we can simply use these values instead of trying to estimate them. These values appear in the expression for $$b$$:
 
-$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p\left(y=0\right)}{p\left(y=1\right)}\right)$
+$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p\left(y=0\right)}{p\left(y=1\right)}\right)$$
 
-This is the prediction map based on $p\left(y=1\right)=0.05$ and $p\left(y=0\right)=0.95$:
+This is the prediction map based on $$p\left(y=1\right)=0.05$$ and $$p\left(y=0\right)=0.95$$:
 
 
 ```python
@@ -765,11 +765,11 @@ clf.fit(x, y)
 train_prediction = clf.predict(x)
 train_risk = (train_prediction != y).mean()
 
-print_math('The train risk is: ${:.2}$'.format(train_risk))
+print_math('The train risk is: $${:.2}$$'.format(train_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The train risk is: $0.12$</p>
+The train risk is: $$0.12$$
 
 
 ## ⏱️ Performance evaluation
@@ -785,11 +785,11 @@ y_test = test_set['diagnosis'].values == 'M'
 test_prediction = clf.predict(x_test)
 test_risk = (test_prediction != y_test).mean()
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.096$</p>
+The test risk is: $$0.096$$
 
 
 ## 💡 Model & Learning Method Suggestion 2: QDA
@@ -797,7 +797,7 @@ print_math('The test risk is: ${:.2}$'.format(test_risk))
 We will use the QDA algorithm to generate our prediction function.
 
 The parameters of the model are:
-- The values of the $p\left(y\right)$.
+- The values of the $$p\left(y\right)$$.
 - The means of the two distributions.
 - The covariance matrices of the two distributions.
 
@@ -825,11 +825,11 @@ clf.fit(x, y)
 train_prediction = clf.predict(x)
 train_risk = (train_prediction != y).mean()
 
-print_math('The train risk is: ${:.2}$'.format(train_risk))
+print_math('The train risk is: $${:.2}$$'.format(train_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The train risk is: $0.12$</p>
+The train risk is: $$0.12$$
 
 
 
@@ -895,11 +895,11 @@ Let us calculate the risk on the test set
 test_prediction = clf.predict(x_test)
 test_risk = (test_prediction != y_test).mean()
 
-print_math('The test risk is: ${:.2}$'.format(test_risk))
+print_math('The test risk is: $${:.2}$$'.format(test_risk))
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The test risk is: $0.088$</p>
+The test risk is: $$0.088$$
 
 
 ## Using more features
@@ -959,7 +959,7 @@ ax.legend();
 ![png](output_50_0.png)
 
 
-This is a classic example of overfitting. As the model becomes more general, and the number of parameters increases, we will need more data for training it. In this case, form performing QDA with 30 features we need to estimate about $30^2$ features (mostly in the 2 covariance matrices), but the train set contains only 455 samples. 
+This is a classic example of overfitting. As the model becomes more general, and the number of parameters increases, we will need more data for training it. In this case, form performing QDA with 30 features we need to estimate about $$30^2$$ features (mostly in the 2 covariance matrices), but the train set contains only 455 samples. 
 
 As a rule of thumb, we would usually want the number of samples to be larger than the number of parameters in the model. Although this rule of thumb is true for most of the simple machine learning models, new examples from recent years, mainly in the field for neural networks, show great results in cases where this rule of thumb is violated.
 
