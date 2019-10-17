@@ -1,19 +1,15 @@
 {% capture collection_name %}{{page.collection}}{% endcapture %}
 {% if page.collection %}
   {% assign document = site[collection_name] | sort: 'number' %}
-  {% for links in document  %}
-    {% if links.title == page.title %}
+  {% for links in document  %}{% if links.title == page.title %}
       {% unless forloop.first %}
         {% assign prev_page = prev %}
       {% endunless %}
       {% unless forloop.last %}
         {% assign next_page = document[forloop.index] %}
       {% endunless %}
-    {% endif %}
-    {% assign prev = links %}
-  {% endfor %}
+  {% endif %}{% assign prev = links %}{% endfor %}
 {% endif %}
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,7 +28,7 @@
 </head>
 
 <body>
-  <div id="root" class="hide-not-hidden">
+  <div id="root" class="hide-hidden">
   
     <header>
   
@@ -57,14 +53,13 @@
             </li>
           {% endif %}
           {% assign slides_md_path = page.path | remove: '.md' | append: '_slides.md' %}
-          {% for file in site.documents %}
-            {% if file.path == slides_md_path %}
+          {% assign slides_md_file = nil %}
+          {% for file in site.documents %}{% if file.path == slides_md_path %}
               {% assign slides_md_file = site.baseurl | append: page.url | remove: '.html' | append: '_slides.md' %}
-              <li class="nav-item">
-                  <a class="nav-link int-nav-link" href="{{ site.baseurl }}/static/slides.html?md_file={{ slides_md_file | uri_encode }}&type={{ page.type }}&number={{ page.number }}&title={{ page.title | uri_escape }}" target="_blank"><img src="{{ site.baseurl }}/media/shields/slides.svg" alt="Open Slides" /></a>
-              </li>
-            {% endif %}
-          {% endfor %}
+          {% endif %}{% endfor %}
+          <li class="nav-item"{% unless slides_md_file %} style="display:none"{% endunless %}>
+            <a class="nav-link int-nav-link" href="{{ site.baseurl }}/static/slides.html?md_file={{ slides_md_file | uri_encode }}&type={{ page.type }}&number={{ page.number }}&title={{ page.title | uri_escape }}" target="_blank"><img src="{{ site.baseurl }}/media/shields/slides.svg" alt="Open Slides" /></a>
+          </li>
           <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle int-nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Dropdown
@@ -111,7 +106,7 @@
     }
     
     if (is_full){
-      document.querySelector("#root").classList.remove("hide-not-hidden");;
+      document.querySelector("#root").classList.remove("hide-hidden");;
       var links = document.querySelectorAll(".int-nav-link");
       for (var j=0;j<links.length;j++) {
         cur_link = links[j].getAttribute("href");

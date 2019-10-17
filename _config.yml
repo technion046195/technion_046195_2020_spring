@@ -17,6 +17,7 @@ defaults:
     type: "tutorials"
   values:
     layout: "tutorial"
+    excerpt_separator: <!-- excerpt_end -->
     type: "tutorial"
 - scope:
     path: ""
@@ -24,17 +25,8 @@ defaults:
   values:
     layout: "tutorial"
     type: "workshop"
-    render_with_liquid: false
-- scope:
-    path: ""
-    type: "widgets"
-  values:
-    layout: none
-- scope:
-    path: ""
-  values:
-    layout: "default"
     excerpt_separator: <!-- excerpt_end -->
+    render_with_liquid: false
 
 exclude:
 - README.md
