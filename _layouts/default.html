@@ -28,7 +28,7 @@
 </head>
 
 <body>
-  <div id="root" class="hide-hidden">
+  <div id="root" class="hide-hidden" style="display:none">
   
     <header>
   
@@ -82,13 +82,13 @@
     <main role="main"></main>
       {{ content }}
     </main>
-  </div>
 
-  <footer class="footer mt-auto py-3 bg-secondary text-center text-light">
-    <div class="container">
-      <a class="int-nav-link text-light" href="{{ site.baseurl }}/attributions.html">Attributions</a>
-    </div>
-  </footer>
+    <footer class="footer mt-auto py-3 bg-secondary text-center text-light">
+      <div class="container">
+        <a class="int-nav-link text-light" href="{{ site.baseurl }}/attributions.html">Attributions</a>
+      </div>
+    </footer>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -106,7 +106,7 @@
     }
     
     if (is_full){
-      document.querySelector("#root").classList.remove("hide-hidden");;
+      document.querySelector("#root").classList.remove("hide-hidden");
       var links = document.querySelectorAll(".int-nav-link");
       for (var j=0;j<links.length;j++) {
         cur_link = links[j].getAttribute("href");
@@ -122,6 +122,7 @@
         links[j].classList.add('disabled');
       }
     }
+    document.querySelector("#root").style.display = "";
   </script>
 </body>
 </html>
