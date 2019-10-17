@@ -1,14 +1,16 @@
 ---
 ---
 
+/* Syntax highlighting theme */
+/* ========================= */
+@import url("{{ site.baseurl }}/lib/pygments_themes/monokai.css");
+
 /* Fonts */
 /* ===== */
 @font-face {
     font-family: KG Second Chances Sketch;
     src: url("{{ site.baseurl }}/lib/fonts/KGSecondChancesSketch.ttf");
-  }
-
-@import "{{ site.baseurl }}/lib/pygments_themes/monokai.css";
+}
 
 /* Hidden sections */
 /* =============== */
