@@ -17,5 +17,6 @@
         "**/.jekyll-cache": true,
         "datasets": true,
         "venv": true
-    }
+    },
+    "mdmath.delimiters": "kramdown"
 }
