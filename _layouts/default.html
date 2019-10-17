@@ -58,7 +58,7 @@
               {% assign slides_md_file = site.baseurl | append: page.url | remove: '.html' | append: '_slides.md' %}
           {% endif %}{% endfor %}
           <li class="nav-item"{% unless slides_md_file %} style="display:none"{% endunless %}>
-            <a class="nav-link int-nav-link" href="{{ site.baseurl }}/static/slides.html?md_file={{ slides_md_file | uri_encode }}&type={{ page.type }}&number={{ page.number }}&title={{ page.title | uri_escape }}" target="_blank"><img src="{{ site.baseurl }}/media/shields/slides.svg" alt="Open Slides" /></a>
+            <a class="nav-link int-nav-link" href="{{ site.baseurl }}/static/slides.html?md_file={{ slides_md_file | uri_encode }}&type={{ page.type }}&number={{ page.number }}&title={{ page.title | uri_escape }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
           </li>
           <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle int-nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
