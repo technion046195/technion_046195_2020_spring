@@ -884,8 +884,8 @@ And would like to select $\boldsymbol{\theta}$ according to:
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
-& = \underset{\boldsymbol{\theta}}{\arg\max}\ \mathcal{L}\left(\boldsymbol{\theta};\left\{\boldsymbol{x}_i,y_i\right\}\right) \\
-& = \underset{\boldsymbol{\theta}}{\arg\min}\underbrace{-\frac{1}{N}\sum_i\log\left(g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)y_i + \log\left(1-g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)\left(1-y_i\right)}_{=h\left(\boldsymbol{\theta};\left\{\boldsymbol{x}_i,y_i\right\}\right)} \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\ \mathcal{L}\left(\boldsymbol{\theta};\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\min}\underbrace{-\frac{1}{N}\sum_i\log\left(g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)y_i + \log\left(1-g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)\left(1-y_i\right)}_{=h\left(\boldsymbol{\theta};\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace\right)} \\
 \end{align*}
 $$
 
@@ -903,7 +903,7 @@ We shall use the additional PyTorch's functions
 
 - **[torch.nn.BCELoss](https://pytorch.org/docs/stable/nn.html#bceloss)**: The Binary Cross Entropy Loss, which is the objective function which we are trying to minimize. It is defined as:
 $$
-l\left(\left\{y_i, p_i\right\}\right)=-\frac{1}{N}\sum_i\log\left(p_i\right)y_i + \log\left(1-p_i\right)\left(1-y_i\right)
+l\left(\left\lbrace y_i, p_i\right\rbrace\right)=-\frac{1}{N}\sum_i\log\left(p_i\right)y_i + \log\left(1-p_i\right)\left(1-y_i\right)
 $$
 
 Implementation:

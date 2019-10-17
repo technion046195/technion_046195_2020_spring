@@ -20,13 +20,13 @@ $$
 We call the distance function $L\left(\hat{y},y\right)$ loss function, and the expectation value of the loss function, as a function of $h$, the risk function:
 
 $$
-R\left\{h\right\}=\mathbb{E}\left[L\left(\hat{y}=h\left(x\right),y\right)\right]
+R\left\lbrace h\right\rbrace=\mathbb{E}\left[L\left(\hat{y}=h\left(x\right),y\right)\right]
 $$
 
 So our problem is to find an optimal prediction function $h^*$ which minimizes the risk function:
 
 $$
-h^*\left(x\right) = \underset{h}{\arg\min}\ R\left\{h\right\}= \underset{h}{\arg\min}\ \mathbb{E}\left[L\left(h\left(x\right),y\right)\right]
+h^*\left(x\right) = \underset{h}{\arg\min}\ R\left\lbrace h\right\rbrace= \underset{h}{\arg\min}\ \mathbb{E}\left[L\left(h\left(x\right),y\right)\right]
 $$
 
 ### 📋 Example: The 0-1 Loss (Misclassification Rate)
@@ -34,22 +34,22 @@ $$
 For classification problems we have already introduced the **misclassification rate** risk function:
 
 $$
-R\left\{h\right\}=\mathbb{E}\left[I\left\{h\left(x\right)\neq y\right\}\right]
+R\left\lbrace h\right\rbrace=\mathbb{E}\left[I\left\lbrace h\left(x\right)\neq y\right\rbrace\right]
 $$
 
-Which uses a loss function known as the **0-1 loss**: $I\left\{\hat{y}\neq y\right\}$. (The loss function returns 0 for success and 1 otherwise)
+Which uses a loss function known as the **0-1 loss**: $I\left\lbrace\hat{y}\neq y\right\rbrace$. (The loss function returns 0 for success and 1 otherwise)
 
 Given the distribution function $p\left(\boldsymbol{x},y\right)$ the solution to this problem is:
 
 $$
 h^*\left(x\right) 
-= \underset{h}{\arg\min}\ \mathbb{E}\left[I\left\{h\left(x\right)\neq y\right\}\right]
+= \underset{h}{\arg\min}\ \mathbb{E}\left[I\left\lbrace h\left(x\right)\neq y\right\rbrace\right]
 = \underset{y}{\arg\max}\ p\left(y|x\right)
 $$
 
 ## 🧰 Different Approaches for Solving Problems
 
-The problem is that we do not know the distribution $p\left(\boldsymbol{x},y\right)$, which is required for calculating the expectation value inside the risk function. This is of course solved by using the dataset, which is a known set of pairs $\left\{\left(\boldsymbol{x}_i, y_i\right)\right\}$.
+The problem is that we do not know the distribution $p\left(\boldsymbol{x},y\right)$, which is required for calculating the expectation value inside the risk function. This is of course solved by using the dataset, which is a known set of pairs $\left\lbrace\left(\boldsymbol{x}_i, y_i\right)\right\rbrace$.
 
 In practice, there is more than one way to do so, and we can roughly divide the different methods into 3 approaches, differing by the quantity which we are trying to estimate by using dataset.
 
@@ -68,7 +68,7 @@ In many cases, it will be simpler to estimate $P\left(\boldsymbol{x}_i,y_i\right
 We can use the law of total expectation (משפט ההחלקה) to write the risk as:
 
 $$
-R\left\{h\right\}
+R\left\lbrace h\right\rbrace
 =\mathbb{E}\left[L\left(h\left(x\right),y\right)\right]
 =\mathbb{E}\left[\mathbb{E}\left[L\left(h\left(x\right),y\right)\right|x]\right]
 $$
@@ -105,11 +105,11 @@ LDA solves a classification problem with a misclassification rate risk. Here we 
 
 ### Assumption
 
-For each class $j \in \left\{0,1\right\}$, we assume that $p\left(\boldsymbol{x}|y=j\right)$ has a multivariate normal distribution with some mean value $\boldsymbol{\mu}_j$ and a covariance matrix $\Sigma$. Note that $\Sigma$ has no index $j$ and is assumed to be the same for both classes.
+For each class $j \in \left\lbrace 0,1\right\rbrace$, we assume that $p\left(\boldsymbol{x}|y=j\right)$ has a multivariate normal distribution with some mean value $\boldsymbol{\mu}_j$ and a covariance matrix $\Sigma$. Note that $\Sigma$ has no index $j$ and is assumed to be the same for both classes.
 
 ### Steps
 
-We will denote by $N_j$ the number of $y_i$ in the dataset which are equal to $j$: $N_j=\sum_i I\left\{y_i=j\right\}$.
+We will denote by $N_j$ the number of $y_i$ in the dataset which are equal to $j$: $N_j=\sum_i I\left\lbrace y_i=j\right\rbrace$.
 
 We will start by estimating the distributions $p\left(y\right)$ and $p\left(\boldsymbol{x}|y\right)$:
 
@@ -579,7 +579,7 @@ Find a discrimination function: a function $h\left(\cdot\right)$, mapping form t
 ### Evaluation Method: The Misclassification Rate
 
 $$
-R\left\{h, \left\{\boldsymbol{x},y\right\}\right\}=\frac{1}{N}\sum_i I\left\{h\left(\boldsymbol{x}_i\right)\neq y_i\right\}
+R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\frac{1}{N}\sum_i I\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace
 $$
 
 ### 📚 Splitting the dataset

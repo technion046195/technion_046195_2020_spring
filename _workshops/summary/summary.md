@@ -9,7 +9,7 @@ title: "Summary"
 - **Scalar**: Non-bold lower case letter. Example $y$
 - **Column vector**: Bold lower case letter. Example $\boldsymbol{x}$
 - **Matrix**: Upper case letter. Example $A$
-- **A set of scalars/vectors**: Curly brackets. Example $\left\{\boldsymbol{x}_i\right\}$ or $\left\{y_i\right\}$
+- **A set of scalars/vectors**: Curly brackets. Example $\left\lbrace\boldsymbol{x}_i\right\rbrace$ or $\left\lbrace y_i\right\rbrace$
 - **An element of a vector, a matrix or a set**: Subscript index. Example $x_i$ or $a_{i,j}$
 - **The value in an iterative process**: Superscript index in parentheses. Example $\theta^{\left(t\right)}$
 
@@ -28,12 +28,12 @@ title: "Summary"
 - $N$ - The number of samples in a dataset.
 - $d$ The dimension of the data.
 - $\boldsymbol{x}$ - A vector of measured values related to a single sample.
-- $\left\{\boldsymbol{x}_i\right\}$ - The set of measurements in a dataset.
+- $\left\lbrace\boldsymbol{x}_i\right\rbrace$ - The set of measurements in a dataset.
 - $X$ - The matrix of measurements $\left[\boldsymbol{x}_0,\boldsymbol{x}_1,\ldots,\boldsymbol{x}_{N-1}\right]^T$.
 
  (Note that $X$ is also sometime used as the random variable generating $\boldsymbol{x}$).
 - $x_{i,j}$ - The $j$-th element of the $i$-th measurement (which is the $\left(i,j\right)$-th element of the matrix $X$).
-- $\left\{y_i\right\}$ - The set of labels in a dataset.
+- $\left\lbrace  y_i\right\rbrace$ - The set of labels in a dataset.
 - $\boldsymbol{y}$ - the vector of labels $\left[y_0,y_1,\ldots,y_{N-1}\right]^T$.
 - $y_i$ - The $i$-th label (which is the $i$-th element of the vector $\boldsymbol{y}$).
 
@@ -82,7 +82,7 @@ Notice that $h^*$ depends only on $f_{Y|X}$.
 
 | Loss Name | Risk Name | Loss Function | Optimal Predictor |
 |-----------|-----------|---------------|-------------------|
-| Zero-One loss | Misclassification rate | $l\left(y_1,y_2\right)=I\left\{y_1\neq y_2\right\}$ | $h^*\left(x\right)=\underset{y}{\arg\max}\ f_{Y\mid X}\left(y\mid X=x\right)$ |
+| Zero-One loss | Misclassification rate | $l\left(y_1,y_2\right)=I\left\lbrace  y_1\neq y_2\right\rbrace$ | $h^*\left(x\right)=\underset{y}{\arg\max}\ f_{Y\mid X}\left(y\mid X=x\right)$ |
 | L1 | Mean absolute<br>error| $l\left(y_1,y_2\right)=\left\vert y_1-y_2\right\vert$ | Median: $h^*\left(x\right)=\hat{y}$<br>$s.t.\ F_{Y\mid X}\left(\hat{y}\mid X=x\right)=0.5$ |
 | L2 | Mean squared<br>error (MSE) |$l\left(y_1,y_2\right)=\left(y_1-y_2\right)^2$ | $h^*\left(x\right)=E_{Y\mid X}\left[y\right]$ |
 
@@ -207,7 +207,7 @@ Instead of using a designated validation-set we can divide the train set into $K
 For discrete RV the PMF can be estimated by:
 
 $$
-\hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\{x_i = x\right\}
+\hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i = x\right\rbrace
 $$
 
 #### The Empirical Cumulative Distribution Function (the ECDF)
@@ -215,7 +215,7 @@ $$
 The ECDF is an estimation of the CDF and is given by:
 
 $$
-\hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\{x_i \leq x\right\}
+\hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i \leq x\right\rbrace
 $$
 
 The ECDF results in a non-continuous CDF which is a sum of step functions.
@@ -227,7 +227,7 @@ The histogram is an estimation of the PDF and is given by:
 - $l_k$, $r_k$ - The left and right edges of the $k$'s bin.
 
 $$
-h_X\left(l_k \leq x < r_k\right) = \tfrac{1}{N\cdot\left(r_k-l_k\right)}\sum_{i=1}^N I\left\{l_k \leq x_i < r_k\right\}
+h_X\left(l_k \leq x < r_k\right) = \tfrac{1}{N\cdot\left(r_k-l_k\right)}\sum_{i=1}^N I\left\lbrace l_k \leq x_i < r_k\right\rbrace
 $$
 
 A common rule of thumb for selecting the bins is to divide the range of values into $\sqrt{N}$ equal bins.
@@ -245,9 +245,9 @@ $$
 Two commonly used Parzen windows are:
 
 - A Gaussian: $\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)$
-- A rectangular function $I\left\{\left|x\right|\leq0.5\right\}$
+- A rectangular function $I\left\lbrace\left|x\right|\leq0.5\right\rbrace$
 
-A rule of thumb for selecting the bandwidth $h$ for the Gaussian window is: $\left(\frac{4\cdot\text{std}\left\{x_i\right\}}{3N}\right)^\frac{1}{5}$
+A rule of thumb for selecting the bandwidth $h$ for the Gaussian window is: $\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$
 
 ### Parametric Estimation
 
@@ -347,9 +347,9 @@ $h\left(\boldsymbol{x}\right)$ finds the $K$ euclidean nearest neighbors to $\bo
 - Solves: Classification problems
 - Approach: Generative
 - Model: $f_{X|Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left|\Sigma\right|}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$
-- Parameters: $\Sigma$ and $\left\{\boldsymbol{\mu}_k\right\}$
+- Parameters: $\Sigma$ and $\left\lbrace\boldsymbol{\mu}_k\right\rbrace$
 
-Using $N_k=\sum_i I\left\{y_i=k\right\}$
+Using $N_k=\sum_i I\left\lbrace y_i=k\right\rbrace$
 
 Find $p_Y$ using empirical measurement:
 $$
@@ -393,9 +393,9 @@ Where:
 - Solves: Classification problems
 - Approach: Generative
 - Model: $f_{X|Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left|\Sigma_y\right|}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}_y\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$
-- Parameters: $\left\{\Sigma_y\right\}$ and $\left\{\boldsymbol{\mu}_k\right\}$
+- Parameters: $\left\lbrace\Sigma_y\right\rbrace$ and $\left\lbrace\boldsymbol{\mu}_k\right\rbrace$
 
-Using $N_k=\sum_i I\left\{y_i=k\right\}$
+Using $N_k=\sum_i I\left\lbrace y_i=k\right\rbrace$
 
 Find $p_Y$ using empirical measurement:
 $$
@@ -438,7 +438,7 @@ Where:
 - Solves: Classification problems
 - Approach: Discriminative type I
 - Model: $f_{Y|X}=\frac{e^{\boldsymbol{\theta}_k^T\boldsymbol{x}}}{\sum_\tilde{k}e^{\boldsymbol{\theta}_k^T\boldsymbol{x}}}$
-- Parameters: $\left\{\boldsymbol{\theta}_k\right\}$. Without loss of generality we can set $\boldsymbol{\theta}_0=0$
+- Parameters: $\left\lbrace\boldsymbol{\theta}_k\right\rbrace$. Without loss of generality we can set $\boldsymbol{\theta}_0=0$
 - Hyper-Parameters: the optimization solver parameters.
 - Solved using gradient decent
 - For binary classification: $f_{Y|X}=\frac{1}{1+e^{-\boldsymbol{\theta}^T\boldsymbol{x}}}$

@@ -446,12 +446,12 @@ $$`
 
 - `$N$` - the number of sample in the dataset.
 - `$\boldsymbol{x}_i=\left(\text{gender},\text{class}\right)$` - the `$i$`'s person parameters.
-- `$I\left\{\text{condition}\right\}$` - an indicator function.
+- `$I\left\lbrace\text{condition}\right\rbrace$` - an indicator function.
 
 <br>
 
 `$$
-R\left\{h, \left\{\boldsymbol{x},y\right\}\right\}=\frac{1}{N}\sum_i I\left\{h\left(\boldsymbol{x}_i\right)\neq y_i\right\}
+R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\frac{1}{N}\sum_i I\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace
 $$`
 
 ---new slide---
@@ -525,7 +525,7 @@ Considerations for selecting the model:
 The most general prediction function:
 
 `$$
-h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)=\left\{
+h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)=\left\lbrace
 \begin{array}{ll}
       \theta_{0, 1} & \boldsymbol{x}=\left(0, 1\right) \\
       \theta_{0, 2} & \boldsymbol{x}=\left(0, 2\right) \\
@@ -597,8 +597,8 @@ We would like to find `$\theta^*$` such that:
 `$$
 \begin{align*}
 \theta^*
-& = \underset{\theta}{\arg\min}\  R\left\{h_{\theta}, \left\{\boldsymbol{x} ,y\right\}\right\} \\
-& = \underset{\theta}{\arg\min}\  \frac{1}{N}\sum_i I\left\{\theta\neq y_i\right\}
+& = \underset{\theta}{\arg\min}\  R\left\lbrace h_{\theta}, \left\lbrace\boldsymbol{x} ,y\right\rbrace\right\rbrace \\
+& = \underset{\theta}{\arg\min}\  \frac{1}{N}\sum_i I\left\lbrace\theta\neq y_i\right\rbrace
 \end{align*}
 $$`
 
@@ -686,8 +686,8 @@ We would like to find `$\theta_{m,n}^*$` such that:
 `$$
 \begin{align*}
 \theta_{m,n}^*
-& = \underset{\theta_{m,n}\in\left\{0,1\right\}}{\arg\min}\  R\left\{h_{\boldsymbol{\theta}}, \left\{\boldsymbol{x}_i ,y_i:\boldsymbol{x}_i=\left(m,n\right)\right\}\right\} \\
-& = \underset{\theta_{m,n}\in\left\{0,1\right\}}{\arg\min}\ \frac{1}{N_{m,n}}\sum_{i,\boldsymbol{x}_i=\left(m,n\right)} I\left\{\theta_{m,n}\neq y_i\right\}
+& = \underset{\theta_{m,n}\in\left\lbrace 0,1\right\rbrace}{\arg\min}\  R\left\lbrace h_{\boldsymbol{\theta}}, \left\lbrace\boldsymbol{x}_i ,y_i:\boldsymbol{x}_i=\left(m,n\right)\right\rbrace\right\rbrace \\
+& = \underset{\theta_{m,n}\in\left\lbrace 0,1\right\rbrace}{\arg\min}\ \frac{1}{N_{m,n}}\sum_{i,\boldsymbol{x}_i=\left(m,n\right)} I\left\lbrace\theta_{m,n}\neq y_i\right\rbrace
 \end{align*}
 $$`
 

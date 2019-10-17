@@ -388,7 +388,7 @@ In this case, we will use a risk function called *the misclassification rate*. T
 The risk would be:
 
 $$
-R\left\{h, \left\{\boldsymbol{x},y\right\}\right\}=\frac{1}{N}\sum_i I\left\{h\left(\boldsymbol{x}_i\right)\neq y_i\right\}
+R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\frac{1}{N}\sum_i I\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace
 $$
 
 **A comment about naming**: In many places, this function appears under different names. Other common names for this function are the cost function, the error function or the loss function.
@@ -464,7 +464,7 @@ There are many consideration which come into account for selecting different mod
 In our example we will suggest a model for the prediction function $h\left(\boldsymbol{x}\right)$. In fact in this simple example, since  $h\left(\boldsymbol{x}\right)$ has only 6 possible inputs (2 gender x 3 classes), we can use 6 binary parameters to define the whole set of possible functions $h\left(\boldsymbol{x}\right)$.
 
 $$
-h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)=\left\{
+h_\boldsymbol{\theta}\left(\boldsymbol{x}\right)=\left\lbrace
 \begin{array}{ll}
       \theta_{0, 1} & \boldsymbol{x}=\left(0, 1\right) \\
       \theta_{0, 2} & \boldsymbol{x}=\left(0, 2\right) \\
@@ -502,8 +502,8 @@ Formally we would like to find the optimal value of $\theta$, which we will deno
 
 $$
 \theta^*
-=\underset{\theta\in\left\{0,1\right\}}{\arg\min}\  R\left\{h_{\theta}, \left\{\boldsymbol{x} ,y\right\}\right\}
-=\underset{\theta\in\left\{0,1\right\}}{\arg\min}\  \frac{1}{N}\sum_i I\left\{\theta\neq y_i\right\}
+=\underset{\theta\in\left\lbrace 0,1\right\rbrace}{\arg\min}\  R\left\lbrace h_{\theta}, \left\lbrace\boldsymbol{x} ,y\right\rbrace\right\rbrace
+=\underset{\theta\in\left\lbrace 0,1\right\rbrace}{\arg\min}\  \frac{1}{N}\sum_i I\left\lbrace\theta\neq y_i\right\rbrace
 $$
 
 Let us calculate the risk for each $\theta$ (note that we will only be using the train set for this task) :
@@ -558,8 +558,8 @@ It could be shown that in this case, that we can find the optimal selection of t
 
 $$
 \theta_{m,n}^*
-=\underset{\theta_{m,n}\in\left\{0,1\right\}}{\arg\min}\  R\left\{h_{\boldsymbol{\theta}}, \left\{\boldsymbol{x}_i ,y_i:\boldsymbol{x}_i=\left(m,n\right)\right\}\right\}
-=\underset{\theta_{m,n}\in\left\{0,1\right\}}{\arg\min}\ \frac{1}{N_{m,n}}\sum_{i,\boldsymbol{x}_i=\left(m,n\right)} I\left\{\theta_{m,n}\neq y_i\right\}
+=\underset{\theta_{m,n}\in\left\lbrace 0,1\right\rbrace}{\arg\min}\  R\left\lbrace h_{\boldsymbol{\theta}}, \left\lbrace\boldsymbol{x}_i ,y_i:\boldsymbol{x}_i=\left(m,n\right)\right\rbrace\right\rbrace
+=\underset{\theta_{m,n}\in\left\lbrace 0,1\right\rbrace}{\arg\min}\ \frac{1}{N_{m,n}}\sum_{i,\boldsymbol{x}_i=\left(m,n\right)} I\left\lbrace\theta_{m,n}\neq y_i\right\rbrace
 $$
 
 with $m\in\left\\{0,1\right\\}$ (the gender) and $n\in\left\\{1,2,3\right\\}$ (the class)

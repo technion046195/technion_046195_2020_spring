@@ -11,14 +11,14 @@ This technique is based on iteratively building the series of classifier while k
 
 Using the following notation:
 - $N$ - Is the size of the dataset
-- $\left\{\boldsymbol{x}_i,y_i\right\}$ - Are the measurements and the labels.
-- The labels $\left\{y_i\right\}$ have $1,-1$ values.
+- $\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$ - Are the measurements and the labels.
+- The labels $\left\lbrace y_i\right\rbrace$ have $1,-1$ values.
 
 the steps of this algorithm are as follow:
 - Initialize a uniform weights vector for each data points: $w^{\left(t=0\right)}_i=\frac{1}{N}$
 - Iterate over the following steps, with a index $t$, until reaching some stopping criteria:
   1. Build an optimal classifier $h_t$ according to the given weighted dataest.
-  2. Calculate the prediction error of $h_t$ on the weighted dataset: $\varepsilon=\sum_i w^t_iI\left\{h\left(\boldsymbol{x}_i\right)\neq y_i\right\}$
+  2. Calculate the prediction error of $h_t$ on the weighted dataset: $\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$
   3. Calculate the the weight for the $h_t$ classifier according to: $\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$
   4. Update the weights of the data according to $w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$
   5. Normalize the weight by $Z=\sum_iw^t_i$ according to: $w^t_i=\frac{w^t_i}{Z}$
@@ -401,20 +401,20 @@ For the following given random system:
 Find a binary discrimination function $\hat{y}=h^*\left(\boldsymbol{x}\right)$ which minimizes the misclassification rate:
 
 $$
-h^*=\underset{h}{\arg\min}\ E\left[I\left\{h\left(\boldsymbol{x}\right)\neq y\right\}\right]
+h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
 $$
 
 ## 💡 Model & Learning Method Suggestion: Stumps + AdaBoost
 
 We will use Stumps classifiers (one level decision trees) which are boosted using AdaBoost. 
 
-We will use the **weighted Gini index** to build our classifiers using the weighted data. For a given split of the data in to $\mathcal{C}_1$ and $\mathcal{C}_2$ and a set of weights $\left\{w_i\right\}$, the **weighted Gini index** will be:
+We will use the **weighted Gini index** to build our classifiers using the weighted data. For a given split of the data in to $\mathcal{C}_1$ and $\mathcal{C}_2$ and a set of weights $\left\lbrace w_i\right\rbrace$, the **weighted Gini index** will be:
 
 $$
 N_1=\sum_{i\in\mathcal{C}_1}w_i\\
 N_2=\sum_{i\in\mathcal{C}_2}w_i\\
-p_1=\frac{1}{N_1}\sum_{i\in\mathcal{C}_1}w_iI\left\{y_i=1\right\}\\
-p_2=\frac{1}{N_2}\sum_{i\in\mathcal{C}_2}w_iI\left\{y_i=1\right\}\\
+p_1=\frac{1}{N_1}\sum_{i\in\mathcal{C}_1}w_iI\left\lbrace y_i=1\right\rbrace\\
+p_2=\frac{1}{N_2}\sum_{i\in\mathcal{C}_2}w_iI\left\lbrace y_i=1\right\rbrace\\
 G=N_1p_1\left(1-p_1\right)+N_2p_2\left(1-p_2\right)
 $$
 

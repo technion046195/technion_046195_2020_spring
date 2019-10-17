@@ -17,14 +17,14 @@ Below is a table defining some of the concepts which we will be using when worki
 | :--- | --- | --- | --- |
 | **A random phenomenon**<br><br><br><br> |- | Some process which generates random outcomes |  Spilling a glass of juice on the floor and examining at the shape of the spill |
 | **A sample**<br><br><br><br> | $\omega$ | A single outcome of the process |  Some specific spill shape |
-| **Sample space**<br><br><br><br> | $\Omega$ | The space of all possible outcomes of the given process. $\Omega=\left\{\forall\omega\right\}$ |  The space of all possible spill shapes |
+| **Sample space**<br><br><br><br> | $\Omega$ | The space of all possible outcomes of the given process. $\Omega=\left\lbrace\forall\omega\right\rbrace$ |  The space of all possible spill shapes |
 | **Random Variables**<br><br><br><br> | $X\left(\omega\right)$,$Y\left(\omega\right)$,... | A function $X:\Omega\rightarrow\mathbb{R}$ which assigns a real number to a given sample | A function which returns the perimeter of a spill:<br>$X_1\left(\omega\right)$<br>A function which returns the area of a spill:<br> $X_2\left(\omega\right)$ |
-| **An event**<br><br><br><br> | $A$ | A collection of events, i.e., a subset of the sample space $A\subseteq\Omega$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$A=\left\{\omega: X_1\left(\omega\right)<2 \right\}$<br>The collection of all spills with a area larger than 1:<br>$B=\left\{\omega: X_2\left(\omega\right)>1 \right\}$ |
+| **An event**<br><br><br><br> | $A$ | A collection of events, i.e., a subset of the sample space $A\subseteq\Omega$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$A=\left\lbrace\omega: X_1\left(\omega\right)<2 \right\rbrace$<br>The collection of all spills with a area larger than 1:<br>$B=\left\lbrace\omega: X_2\left(\omega\right)>1 \right\rbrace$ |
 | **Event space**<br><br><br><br> | $\mathcal{F}$ | A space of events. $A\in\mathcal{F}$  | The space of all possible collections of spills shape |
 | **Probability measure**<br><br><br><br> | $P\left(A\right)$ | A function $P:\mathcal{F}\rightarrow\left[0,1\right]$ which returns the probability of a random sample to be an element in some event $A$ | $P\left(A\right)=P\left(X_1<2\right)=0.1$<br>$P\left(X_1<0\right)=P\left(\emptyset\right)=0$<br>$P\left(0\leq X_1\right)=P\left(\Omega\right)=1$<br>$P\left(A\cup B\right)=P\left(X_1<2\ \text{or}\ X_2>1\right)=0.6$<br>$P\left(A\cap B\right)=P\left(X_1<2\ \text{and}\ X_2>1\right)=0.01$ |
 | **Conditional probability measure**<br><br><br><br> | $P\left(AǀB\right)$ | A function $P:\mathcal{F}_1\times\mathcal{F}_2\rightarrow\left[0,1\right]$ which returns the probability of a random sample to be an element in event $A$ given that it is an element in event $B$ | The probability of a spill to have a diameter smaller than 2, given that it has a area larger than 1:<br>$P\left(AǀB\right)=P\left(X_1<2ǀX_2>1\right)=0.02$ |
 
-In the last two rows we have used $X<2$ as a shorthand for $\left\{\omega:X\left(\omega\right)<2\right\}$. This is in fact a common shorthand writing and we will usually be using it from here on.
+In the last two rows we have used $X<2$ as a shorthand for $\left\lbrace\omega:X\left(\omega\right)<2\right\rbrace$. This is in fact a common shorthand writing and we will usually be using it from here on.
 
 <br>
 <center><img src="../media/diagrams/random_process/random_process.png?2" style="width:700px"/></center>
@@ -74,10 +74,10 @@ $$
 
 In the discrete case, the expectation value of a random variable $X$ is the weighted average of the outcomes random variable can produce, where the weights are the probability assigned to each outcome, i.e., the PMF. We will denote it by $\mathbb{E}\left[x\right]$. It is calculated by:
 $$
-\mathbb{E}\left[x\right]=\sum_{x\in\left\{X\left(\omega\right),\omega\in\Omega\right\}} x\cdot p_X\left(x\right)
+\mathbb{E}\left[x\right]=\sum_{x\in\left\lbrace X\left(\omega\right),\omega\in\Omega\right\rbrace} x\cdot p_X\left(x\right)
 $$
 
-Where $\left\{X\left(\omega\right),\omega\in\Omega\right\}$ represents the space of all possible outcomes of the random variable $X$.
+Where $\left\lbrace X\left(\omega\right),\omega\in\Omega\right\rbrace$ represents the space of all possible outcomes of the random variable $X$.
 
 It can be shown that the expectation value of the random variable $g\left(X\left(\omega\right)\right)$, for any given $g$, can be calculated as:
 
@@ -106,12 +106,12 @@ The empirical measure is an estimation of a probability measure given a set of s
 
 - $N$ - the number of samples in the dataset.
 - $\omega_i$ - the $i$-th sample.
-- $I\left\{\omega_i \in A\right\}$ - An indicator function of whether or not $\omega_i$ is an element in event $A$.
+- $I\left\lbrace\omega_i \in A\right\rbrace$ - An indicator function of whether or not $\omega_i$ is an element in event $A$.
 
 The empirical measure of the probability measure $P\left(A\right)$ is defined as:
 
 $$
-\hat{p}_A=\tfrac{1}{N}\sum_{i=1}^N I\left\{\omega_i\in A\right\}
+\hat{p}_A=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace\omega_i\in A\right\rbrace
 $$
 
 Put in words, we estimate the probability of an event as the fraction of samples in the dataset which are members of the event.
@@ -134,11 +134,11 @@ We can use the empirical measure we can estimate the PMF of a random variable $X
 
 - $N$ - the number of samples in the dataset.
 - $x_i$ - the $X$ value of the $i$-th sample.
-- $I\left\{x_i = x\right\}$ - An indicator function of whether or not $x_i$ is equal to $x$.
+- $I\left\lbrace x_i = x\right\rbrace$ - An indicator function of whether or not $x_i$ is equal to $x$.
 
 The PMF estimation of $p_{X}\left(x\right)$ is then given by:
 $$
-\hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\{x_i = x\right\}
+\hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i = x\right\rbrace
 $$
 
 ## 📈 The Empirical Cumulative Distribution Function (the ECDF)
@@ -147,11 +147,11 @@ Similarly, we can estimate the CDF of a random variable $X$. We shall denote:
 
 - $N$ - the number of samples in the dataset.
 - $x_i$ - the $X$ value of the $i$-th sample.
-- $I\left\{x_i \leq x\right\}$ - An indicator function of whether or not $x_i$ is smaller then $x$.
+- $I\left\lbrace x_i \leq x\right\rbrace$ - An indicator function of whether or not $x_i$ is smaller then $x$.
 
 The ECDF estimation of the CDF $F_{X}\left(x\right)$ is then given by:
 $$
-\hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\{x_i \leq x\right\}
+\hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i \leq x\right\rbrace
 $$
 
 The ECDF results in a non-continuous CDF which is a sum of step functions.
@@ -163,11 +163,11 @@ A histogram is constructed by dividing the range of possible outcomes a random v
 - $N$ the number of samples of the random variable $X$.
 - $x_i$ - the $X$ value of the $i$-th sample.
 - $l_k$, $r_k$ - The left and right edges of the $k$'s bin.
-- $I\left\{l_k \leq x_i < r_k\right\}$ - An indicator function of whether or not $x_i$ is the $k$'s bin
+- $I\left\lbrace l_k \leq x_i < r_k\right\rbrace$ - An indicator function of whether or not $x_i$ is the $k$'s bin
 
 The histogram which estimates the PDF $p_X\left(x\right)$ is given by:
 $$
-h_X\left(l_k \leq x < r_k\right) = \tfrac{1}{N\cdot\left(r_k-l_k\right)}\sum_{i=1}^N I\left\{l_k \leq x_i < r_k\right\}
+h_X\left(l_k \leq x < r_k\right) = \tfrac{1}{N\cdot\left(r_k-l_k\right)}\sum_{i=1}^N I\left\lbrace l_k \leq x_i < r_k\right\rbrace
 $$
 
 the additional division by $\left(r_k-l_k\right)$ is to produce a probability density from the estimated probability.
@@ -201,9 +201,9 @@ $$
 
 Two common choices of the Parzen window are:
 - A Gaussian: $\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)$
-- A rectangular function $I\left\{\left|x\right|\leq0.5\right\}$
+- A rectangular function $I\left\lbrace\left|x\right|\leq0.5\right\rbrace$
 
-A rule of thumb for selecting the bandwidth for the Gaussian window is: $\left(\frac{4\cdot\text{std}\left\{x_i\right\}}{3N}\right)^\frac{1}{5}$
+A rule of thumb for selecting the bandwidth for the Gaussian window is: $\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$
 
 <center><h1 class="workshop-title">Workshop 2<br>Non-Parametric Density Estimation</h1></center>
 
@@ -505,7 +505,7 @@ For the random phenomenon generating the taxi rides data, define or make-up exam
  - A function which returns the ride's duration in hours as a real number. (A continues random variable): $X_\text{duration}\left(\omega\right)=0.5$
   - A function which returns the pickup hour of the day as an integer between 0 and 23. (A discrete random variable): $X_\text{hour}\left(\omega\right)=8$
   - A function which returns 1 if the ride ended to the west of East River and 0 if it ended to the east of it. (A binary random variable): $X_\text{East River}\left(\omega\right)=1$
-- **An event**: A set of taxi rides, For example, all taxi rides which started before 11 a.m: $A=\left\{\omega,X_\text{hour}(\omega)<11\right\}$
+- **An event**: A set of taxi rides, For example, all taxi rides which started before 11 a.m: $A=\left\lbrace\omega,X_\text{hour}(\omega)<11\right\rbrace$
 - **Probability measure**: For example, the probability of a randomly generated ride to start before 11 a.m. $P\left(A\right)=\tfrac{1}{3}$
 
 ### The Task and the Goal
@@ -560,7 +560,7 @@ We shall calculate the ECDF over a grid of durations.
 **Reminder**, the ECDF is defined as:
 
 $$
-\hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\{x_i \leq x\right\}
+\hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i \leq x\right\rbrace
 $$
 
 
@@ -810,7 +810,7 @@ Calculate and plot the KDE of the durations using a Gaussian Parzen window with 
 
 Add on the same axes the plot of a histogram with 300 bins for comparison.
 
-*Reminder: the rule of thumb suggests a width of: $\left(\frac{4\cdot\text{std}\left\{x_i\right\}}{3N}\right)^\frac{1}{5}$*
+*Reminder: the rule of thumb suggests a width of: $\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$*
 
 #### Solution 2.5
 
@@ -850,7 +850,7 @@ ax.legend();
 ```
 
 
-<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The rule of thumb suggests a bandwidth of $\left(\frac{4\cdot\text{std}\left\{x_i\right\}}{3N}\right)^\frac{1}{5}\approx0.775$</p>
+<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML'></script>The rule of thumb suggests a bandwidth of $\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}\approx0.775$</p>
 
 
 
@@ -876,7 +876,7 @@ We shall denote $p_Y\left(y\right)=P\left(Y=y\right)$
 
 #### solution 2.6-1
 
-We will estimate $p_Y\left(y\right)$ using the empirical measure estimation: $\frac{1}{N}\sum_i I\left\{y_i=y\right\}$
+We will estimate $p_Y\left(y\right)$ using the empirical measure estimation: $\frac{1}{N}\sum_i I\left\lbrace y_i=y\right\rbrace$
 
 
 ```python
@@ -905,7 +905,7 @@ print_math('$p_Y(0)\\approx{:.2f}$'.format(prob_y0))
 Basically, we would like to select our constant prediction $\hat{y}$ such that:
 
 $$
-\hat{y}=\underset{y\in\left\{0,1\right\}}{\arg\max}\ \ P\left(Y=y\right)
+\hat{y}=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \ P\left(Y=y\right)
 $$
 
 Which, not surprisingly, means picking the value of $Y$ with the highest probability.Since there is a slightly higher probability of $Y$ being equal to 1 our constant prediction would be:
@@ -939,7 +939,7 @@ Similarly to the train set we we're correct 51% of the time, which is only sligh
 Let us now try to improve our prediction using the duration data. We would now like to make our prediction based on the the known duration of the ride, i.e., we would like to predict:
 
 $$
-\hat{y}\left(x\right)=\underset{y\in\left\{0,1\right\}}{\arg\max}\ \ p_{Y|X}\left(y|x\right)
+\hat{y}\left(x\right)=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \ p_{Y|X}\left(y|x\right)
 $$
 
 1. Use Bayes rule to write $p_{Y|X}$ using $p_{X|Y}$, $p_X$ and $p_Y$
@@ -1000,14 +1000,14 @@ We can see here that during the work hours, $Y=1$, a ride has a slightly higher 
 The result of 
 
 $$
-\hat{y}\left(x\right)=\underset{y\in\left\{0,1\right\}}{\arg\max}\ \ p_{Y|X}\left(y|x\right)
+\hat{y}\left(x\right)=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \ p_{Y|X}\left(y|x\right)
 $$
 
 will simply be:
 
 $$
 \hat{y}\left(x\right)
-=\underset{y\in\left\{0,1\right\}}{\arg\max}\ \  p_{Y|X}\left(y|x\right)
+=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \  p_{Y|X}\left(y|x\right)
 = 
 \begin{cases}
 1 & p_{Y|X}\left(y=1|x\right)\geq p_{X|Y}\left(y=0|x\right) \\

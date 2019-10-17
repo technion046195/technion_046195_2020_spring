@@ -29,22 +29,22 @@ In this course, we will discuss the K-means algorithm.
 
 In K-means the number of clusters $K$ is selected a priori, and the objective of the algorithm is to divide the data into $K$ groups such that the sum of the averaged squared distances in each cluster is minimal.
 
-I.e., by denoting $S_i$ as the $i$-th cluster ($i\in [1,..,K]$), and $\left|S_i\right|$ as the number of points in the $i$-th cluster, K-mean searches for the optimal clustering $\left\{S_i\right\}^*$:
+I.e., by denoting $S_i$ as the $i$-th cluster ($i\in [1,..,K]$), and $\left|S_i\right|$ as the number of points in the $i$-th cluster, K-mean searches for the optimal clustering $\left\lbrace S_i\right\rbrace^*$:
 $$
-\left\{S_i\right\}^*=\underset{\left\{S_i\right\}}{\arg\min}\sum_{i=1}^K\frac{1}{2\left|S_i\right|}\sum_{\boldsymbol{x},\boldsymbol{y}\in S_i}\left\lVert \boldsymbol{x}-\boldsymbol{y} \right\rVert^2
+\left\lbrace S_i\right\rbrace^*=\underset{\left\lbrace S_i\right\rbrace}{\arg\min}\sum_{i=1}^K\frac{1}{2\left|S_i\right|}\sum_{\boldsymbol{x},\boldsymbol{y}\in S_i}\left\lVert \boldsymbol{x}-\boldsymbol{y} \right\rVert^2
 $$
 
 it can easily be shown that this equivalent to minimizing the sum of squared distances from each point to the center the average point of its cluster $\boldsymbol{\mu}_i=\frac{1}{\left|S_i\right|}\sum_{\boldsymbol{x}\in S_i}\boldsymbol{x}$. I.e.
 
 $$
-\left\{S_i\right\}^*=\underset{\left\{S_i\right\}}{\arg\min}\sum_{i=1}^K\sum_{\boldsymbol{x}\in S_i}\left\lVert \boldsymbol{x}-\boldsymbol{\mu}_i \right\rVert^2
+\left\lbrace S_i\right\rbrace^*=\underset{\left\lbrace S_i\right\rbrace}{\arg\min}\sum_{i=1}^K\sum_{\boldsymbol{x}\in S_i}\left\lVert \boldsymbol{x}-\boldsymbol{\mu}_i \right\rVert^2
 $$
 
 To find the optimal clustering, K-mean works as follow:
 
 #### Initialization
 
-The algorithm is initialized by randomly selecting $K$ points, $\left\{\boldsymbol{\mu}_i\right\}$, which are to be used as an initial guess for the cluster's centers.
+The algorithm is initialized by randomly selecting $K$ points, $\left\lbrace\boldsymbol{\mu}_i\right\rbrace$, which are to be used as an initial guess for the cluster's centers.
 
 A common initialization is to select $K$ point for the dataset.
 
@@ -52,9 +52,9 @@ A common initialization is to select $K$ point for the dataset.
 
 The algorithm then iteratively updates the clusters and the clusters' centers by repeating these two steps:
 
-1. Cluster the points by assign each point to the closest $\boldsymbol{\mu}_i$ to it, while $\left\{\boldsymbol{\mu}_i\right\}$ is kept fixed. The $i$-th cluster is the set of points assigned to $\boldsymbol{\mu}_i$.
+1. Cluster the points by assign each point to the closest $\boldsymbol{\mu}_i$ to it, while $\left\lbrace\boldsymbol{\mu}_i\right\rbrace$ is kept fixed. The $i$-th cluster is the set of points assigned to $\boldsymbol{\mu}_i$.
 
-2. Updated the $\left\{\boldsymbol{\mu}_i\right\}$ to be the new centers of each cluster, while keeping the assignments to clusters fixed.
+2. Updated the $\left\lbrace\boldsymbol{\mu}_i\right\rbrace$ to be the new centers of each cluster, while keeping the assignments to clusters fixed.
 
 These steps are repeated until the clusters reach a steady state (i.e., no updated in needed in the clustering stage)
 
@@ -390,15 +390,15 @@ As stated in the goal, the quantity which we would like to minimize is given by:
 We would like to define and minimize the following risk function:
 
 $$
-R\left(\left\{\boldsymbol{c}_i\right\}\right)=\mathbb{E}\left[\min_{\boldsymbol{c}\in\left\{\boldsymbol{c}_i\right\}}\left\lVert\boldsymbol{x}-\boldsymbol{c}\right\rVert\right]
+R\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\mathbb{E}\left[\min_{\boldsymbol{c}\in\left\lbrace\boldsymbol{c}_i\right\rbrace}\left\lVert\boldsymbol{x}-\boldsymbol{c}\right\rVert\right]
 $$
 
 Therefore, this will be our risk function.
 
-As usual, since we do not know the exact distribution of $X$ so we would approximate the risk function with an empirical risk. In this case, we will replace the expectation value with the empirical mean calculated on a test set $\left\{\boldsymbol{x}_j\right\}$:
+As usual, since we do not know the exact distribution of $X$ so we would approximate the risk function with an empirical risk. In this case, we will replace the expectation value with the empirical mean calculated on a test set $\left\lbrace\boldsymbol{x}_j\right\rbrace$:
 
 $$
-\hat{R}\left(\left\{\boldsymbol{c}_i\right\}\right)=\frac{1}{N}\sum_{\boldsymbol{x}_j}\min_{\boldsymbol{c}\in\left\{\boldsymbol{c}\right\}}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{\boldsymbol{x}_j}\min_{\boldsymbol{c}\in\left\lbrace\boldsymbol{c}\right\rbrace}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}\right\rVert
 $$
 
 In fact, we can write this problem as a clustering problem. We can do so by rewriting the above summation as a summation over clusters where each cluster is defined by the location of the nearest parking lot.
@@ -406,7 +406,7 @@ In fact, we can write this problem as a clustering problem. We can do so by rewr
 By denoting the cluster of points for which $c_i$ is their closet parking lot as  $S_{i}$, we can rewrite the summation as:
 
 $$
-\hat{R}\left(\left\{\boldsymbol{c}_i\right\}\right)=\frac{1}{N}\sum_{i=1}^K\sum_{\boldsymbol{x}_j\in S_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{i=1}^K\sum_{\boldsymbol{x}_j\in S_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
 $$
 
 ### Splitting the dataset
@@ -543,7 +543,7 @@ From here on we will use the [sklearn.cluster.KMeans](https://scikit-learn.org/s
 Let us evaluate the empirical risk function on the train set:
 
 $$
-\hat{R}\left(\left\{\boldsymbol{c}_i\right\}\right)=\frac{1}{N}\sum_{\boldsymbol{x}_j}\min_{\boldsymbol{c}\in\left\{\boldsymbol{c}\right\}}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{\boldsymbol{x}_j}\min_{\boldsymbol{c}\in\left\lbrace\boldsymbol{c}\right\rbrace}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}\right\rVert
 $$
 
 
@@ -619,14 +619,14 @@ Following these assumptions write a risk function which is the expected mean tot
 The risk function would be:
 
 $$
-R\left(\left\{\boldsymbol{c}_i\right\}, K\right)= 15\cdot K+100\cdot3\cdot\mathbb{E}\left[\min_{\boldsymbol{c}\in\left\{\boldsymbol{c}_i\right\}}\left\lVert\boldsymbol{x}-\boldsymbol{c}\right\rVert\right]
+R\left(\left\lbrace\boldsymbol{c}_i\right\rbrace, K\right)= 15\cdot K+100\cdot3\cdot\mathbb{E}\left[\min_{\boldsymbol{c}\in\left\lbrace\boldsymbol{c}_i\right\rbrace}\left\lVert\boldsymbol{x}-\boldsymbol{c}\right\rVert\right]
 $$
 
 The empirical risk function would be:
 
 
 $$
-\hat{R}\left(\left\{\boldsymbol{c}_i\right\}, K\right)= 15\cdot K+300\cdot\frac{1}{N}\sum_{i=1}^K\sum_{\boldsymbol{x}_j\in S_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace, K\right)= 15\cdot K+300\cdot\frac{1}{N}\sum_{i=1}^K\sum_{\boldsymbol{x}_j\in S_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
 $$
 
 ## <img style="display:inline;height:50px" height="50px" src="https://img.icons8.com/color/96/000000/idea-sharing.png"> Model & Learning Method Suggestion

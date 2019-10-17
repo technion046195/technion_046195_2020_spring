@@ -451,7 +451,7 @@ $$
 p_\text{normal}\left(x;\boldsymbol{\theta}\right)=p_\text{normal}\left(x;\mu,\sigma\right)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{\left(x-\mu\right)^2}{2\sigma^2}\right)
 $$
 
-Given a set of independent sample $\left\{x_i\right\}$, the likelihood function is given as:
+Given a set of independent sample $\left\lbrace x_i\right\rbrace$, the likelihood function is given as:
 
 $$
 \mathcal{L}_\text{normal}\left(\boldsymbol{\theta}\right\{x\}) 
@@ -754,15 +754,15 @@ The Generalized Gamma distribution results in a distribution with a PDF which is
 
 In this exercise we will take a look at a very simple toy example. Consider the following process:
 1. A random number $a$ is generated once following the normal distribution: $a \sim N\left(0, \sigma_A^2\right)$
-2. A series of random numbers $\left\{x_i\right\}$ is then generated independently following the normal distribution: $X \sim N\left(a, \sigma_X^2\right)$
+2. A series of random numbers $\left\lbrace x_i\right\rbrace$ is then generated independently following the normal distribution: $X \sim N\left(a, \sigma_X^2\right)$
 
 We would look at a few cases of estimating the distribution of $X$.
 
 ### ✍️ Exercise 3.4 - MAP and a Toy Model
 
-1. Start by using the exact model which generates the data, i.e. a normal distribution with a known standard deviation of $\sigma_X$ and mean value which is normally distributed with mean value 0 and a standard deviation of $\sigma_A$. Use the  MAP approach to estimate the distribution of $X$ given a dataset $\left\{x_i\right\}$.
+1. Start by using the exact model which generates the data, i.e. a normal distribution with a known standard deviation of $\sigma_X$ and mean value which is normally distributed with mean value 0 and a standard deviation of $\sigma_A$. Use the  MAP approach to estimate the distribution of $X$ given a dataset $\left\lbrace x_i\right\rbrace$.
 
-2. Use $\sigma_A=1$ and $\sigma_X=3$ to randomly generate the dataset $\left\{x_i\right\}$ with a size of 10 samples. Using the MAP estimation, calculate the actual parameters and the estimation error between the true and the estimated mean value of $X$.
+2. Use $\sigma_A=1$ and $\sigma_X=3$ to randomly generate the dataset $\left\lbrace x_i\right\rbrace$ with a size of 10 samples. Using the MAP estimation, calculate the actual parameters and the estimation error between the true and the estimated mean value of $X$.
 
 3. Compare it to an estimation based on MLE.
 
@@ -770,15 +770,15 @@ We would look at a few cases of estimating the distribution of $X$.
 
 #### Solution 3.4-1
 
-Here we assume that the entire model is known including $\sigma_A$ and $\sigma_X$. However following the MAP approach we would like to find the specific parameters of of the distribution of the data $\left\{x_i\right\}$ which are most probable given the prior distribution and the data. In this case, of a normal distribution with a known standard deviation, the only parameter of the model is the distribution's mean value $a$, therefore we will define the vector of parameters $\boldsymbol{\theta}=\left[a\right]$.
+Here we assume that the entire model is known including $\sigma_A$ and $\sigma_X$. However following the MAP approach we would like to find the specific parameters of of the distribution of the data $\left\lbrace x_i\right\rbrace$ which are most probable given the prior distribution and the data. In this case, of a normal distribution with a known standard deviation, the only parameter of the model is the distribution's mean value $a$, therefore we will define the vector of parameters $\boldsymbol{\theta}=\left[a\right]$.
 
 Under this approach we are looking for the model's optimal parameters according to:
 
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
-& = \underset{\boldsymbol{\theta}}{\arg\max}\ p\left(\left\{x_i\right\}|\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right) \\
-& = \underset{\boldsymbol{\theta}}{\arg\min}\ -\log\left(p\left(\left\{x_i\right\}|\boldsymbol{\theta}\right)\right)-\log\left(p\left(\boldsymbol{\theta}\right)\right)\\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\ p\left(\left\lbrace x_i\right\rbrace|\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\min}\ -\log\left(p\left(\left\lbrace x_i\right\rbrace|\boldsymbol{\theta}\right)\right)-\log\left(p\left(\boldsymbol{\theta}\right)\right)\\
 & = \underset{\boldsymbol{\theta}}{\arg\min}\ -\sum_i\log\left(p\left(x_i|\boldsymbol{\theta}\right)\right)-\log\left(p\left(\boldsymbol{\theta}\right)\right)\\
 & = \underset{\boldsymbol{\theta}}{\arg\min}\ N\log\left(\sqrt{2\pi}\sigma_X\right)+\frac{1}{2\sigma_X^2}\sum_i\left(x_i-a\right)^2 + \log\left(\sqrt{2\pi}\sigma_A\right)+\frac{1}{2\sigma_A^2}a^2\\
 & = \underset{\boldsymbol{\theta}}{\arg\min}\ \frac{1}{2\sigma_X^2}\sum_i\left(x_i-a\right)^2 + \frac{1}{2\sigma_A^2}a^2

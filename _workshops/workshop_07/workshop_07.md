@@ -8,13 +8,13 @@ title: "Linear Regression"
 The most common risk functions for regression problems are probably the MSE and RMSE risks. The MSE uses the $L2$ distance as a loss function and is defined as:
 
 $$
-R\left\{h, \left\{\boldsymbol{x},y\right\}\right\}=\mathbb{E}\left[\left(h\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)- y_i\right)^2\right]
+R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\mathbb{E}\left[\left(h\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)- y_i\right)^2\right]
 $$
 
 In order to make the risk have meaningful units, it is more convenient to work with the root of the MSE which is RMSE and is defined as: 
 
 $$
-R\left\{h, \left\{\boldsymbol{x},y\right\}\right\}=\sqrt{\mathbb{E}\left[\left(h\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)- y_i\right)^2\right]}
+R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\sqrt{\mathbb{E}\left[\left(h\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)- y_i\right)^2\right]}
 $$
 
 ### Solution For a Known Distribution:
@@ -35,8 +35,8 @@ $$
 
 Where:
 ]
-- $\left\{\theta_i\right\}$ are the model's parameters which we will try to optimally select. They are some times referred to as the weights.
-- $\left\{\phi_i\left(\boldsymbol{x}\right)\right\}$ are some arbitrary functions of the measurables $\boldsymbol{x}$ which we pre-selected by hand. They are usually referred to as the features of the model.
+- $\left\lbrace\theta_i\right\rbrace$ are the model's parameters which we will try to optimally select. They are some times referred to as the weights.
+- $\left\lbrace\phi_i\left(\boldsymbol{x}\right)\right\rbrace$ are some arbitrary functions of the measurables $\boldsymbol{x}$ which we pre-selected by hand. They are usually referred to as the features of the model.
 
 We will usually use to following notations:
 
@@ -51,7 +51,7 @@ Linear regression algorithms differ by the method used for finding the optimal p
 
 ## 📐 Linear Least Square
 
-A discriminative approach, in which we find the set of parameters $\left\{\theta_i\right\}$ of a linear model which minimizes the empirical MSE (or RMSE) risk on a given dataset:
+A discriminative approach, in which we find the set of parameters $\left\lbrace\theta_i\right\rbrace$ of a linear model which minimizes the empirical MSE (or RMSE) risk on a given dataset:
 
 $$
 \boldsymbol{\theta}^* 
@@ -490,7 +490,7 @@ A regression problem: Find a prediction function for the ride duration based on 
 We shall use the RMSE risk function.
 
 $$
-R\left\{h, \left\{\boldsymbol{x},y\right\}\right\}=\sqrt{\frac{1}{N}\sum_i \left(h\left(\boldsymbol{x}_i\right)- y_i\right)^2}
+R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\sqrt{\frac{1}{N}\sum_i \left(h\left(\boldsymbol{x}_i\right)- y_i\right)^2}
 $$
 
 ### 📚 Splitting the dataset

@@ -19,7 +19,7 @@ $$
 
 An equivalent form of this equation is the following, which is called the dual problem:
 $$
-\left\{\alpha_i\right\}^*=\underset{\left\{\alpha_i\right\}}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
+\left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
 \begin{align*}
 \text{s.t.}\quad&\alpha_i\geq0\quad&\forall i\\
 &\sum_i\alpha_iy_i=0
@@ -40,7 +40,7 @@ Form the equation $\boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i$, we can con
 
 ### Soft SVM
 
-In the case where the classes are not linearly separable, we can use a modified problem by introducing a set of slack variables $\left\{\xi_i\right\}$ which releases the constraint for a perfect classification with a strict margin.
+In the case where the classes are not linearly separable, we can use a modified problem by introducing a set of slack variables $\left\lbrace\xi_i\right\rbrace$ which releases the constraint for a perfect classification with a strict margin.
 
 The primal problem is this case will be:
 $$
@@ -54,7 +54,7 @@ $$
 The dual problem is this case will be:
 
 $$
-\left\{\alpha_i\right\}^*=\underset{\left\{\alpha_i\right\}}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
+\left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
 \begin{align*}
 \text{s.t.}\quad&0\leq\alpha_i\leq C\quad&\forall i\\
 &\sum_i\alpha_iy_i=0
@@ -516,7 +516,7 @@ For the following given random system:
 Find a binary discrimination function $\hat{y}=h^*\left(\boldsymbol{x}\right)$ which minimizes the misclassification rate:
 
 $$
-h^*=\underset{h}{\arg\min}\ E\left[I\left\{h\left(\boldsymbol{x}\right)\neq y\right\}\right]
+h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
 $$
 
 ## 💡 Model & Learning Method Suggestion: Soft SVM
@@ -603,7 +603,7 @@ As stated before, we will use the [cvxpy](https://www.cvxpy.org/) package to def
 
 We will solve the dual problem:
 $$
-\left\{\alpha_i\right\}^*=\underset{\left\{\alpha_i\right\}}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
+\left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
 \begin{align*}
 \text{s.t.}\quad&0\leq\alpha_i\leq C\quad&\forall i\\
 &\sum_i\alpha_iy_i=0

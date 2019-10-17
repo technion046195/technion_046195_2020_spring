@@ -13,7 +13,7 @@ $$
 p\left(y=k|\boldsymbol{x}\right)=\frac{e^{f_k\left(\boldsymbol{x}\right)}}{\sum_\tilde{k}e^{f_\tilde{k}\left(\boldsymbol{x}\right)}}
 $$
 
-Where $f_k\left(\boldsymbol{x}\right),k\in\left\{0,1,\ldots,K-1\right\}$ are $K$ pre-define functions which correspond to the $K$ possible classes which the label $y$ can take. 
+Where $f_k\left(\boldsymbol{x}\right),k\in\left\lbrace 0,1,\ldots,K-1\right\rbrace$ are $K$ pre-define functions which correspond to the $K$ possible classes which the label $y$ can take. 
 
 Usually, The functions $f_k$ are selected to be a single parametric function $f\left(\boldsymbol{x}\ ;\boldsymbol{\theta}_k\right)$ with $K$ different sets of parameters $\boldsymbol{\theta}_k$. I.e., the following model is used:
 
@@ -515,7 +515,7 @@ For the following given random system:
 Find a binary discrimination function $\hat{y}=h^*\left(\boldsymbol{x}\right)$ which minimizes the misclassification rate:
 
 $$
-h^*=\underset{h}{\arg\min}\ E\left[I\left\{h\left(\boldsymbol{x}\right)\neq y\right\}\right]
+h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
 $$
 
 ### 📚 Splitting the dataset
@@ -575,11 +575,11 @@ Here $\mathcal{L}$ is the likelihood function and $l$ is the log-likelihood func
 $$
 \begin{align*}
 \boldsymbol{\theta}^*
-& = \underset{\boldsymbol{\theta}}{\arg\max}\ \mathcal{L}\left(\boldsymbol{\theta};\left\{\boldsymbol{x}_i,y_i\right\}\right) \\
-& = \underset{\boldsymbol{\theta}}{\arg\min}\ -l\left(\boldsymbol{\theta};\left\{y_i,\boldsymbol{x}_i\right\}\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\ \mathcal{L}\left(\boldsymbol{\theta};\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\min}\ -l\left(\boldsymbol{\theta};\left\lbrace y_i,\boldsymbol{x}_i\right\rbrace\right) \\
 & = \underset{\boldsymbol{\theta}}{\arg\min}-\sum_i\log\left(p\left(y_i|\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right) \\
-& = \underset{\boldsymbol{\theta}}{\arg\min}-\sum_i\log\left(p\left(1|\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)I\left\{y_i=1\right\} + \log\left(1-p\left(1|\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)I\left\{y_i=0\right\} \\
-& = \underset{\boldsymbol{\theta}}{\arg\min}\underbrace{-\frac{1}{N}\sum_i\log\left(g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)y_i + \log\left(1-g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)\left(1-y_i\right)}_{=h\left(\boldsymbol{\theta};\left\{\boldsymbol{x}_i,y_i\right\}\right)} \\
+& = \underset{\boldsymbol{\theta}}{\arg\min}-\sum_i\log\left(p\left(1|\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)I\left\lbrace y_i=1\right\rbrace + \log\left(1-p\left(1|\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)I\left\lbrace y_i=0\right\rbrace \\
+& = \underset{\boldsymbol{\theta}}{\arg\min}\underbrace{-\frac{1}{N}\sum_i\log\left(g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)y_i + \log\left(1-g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)\left(1-y_i\right)}_{=h\left(\boldsymbol{\theta};\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace\right)} \\
 \end{align*}
 $$
 
@@ -588,7 +588,7 @@ Just for convenience, we have added a normalization by the number of samples, $\
 We have defined:
 
 $$
-h\left(\boldsymbol{\theta};\left\{\boldsymbol{x}_i,y_i\right\}\right)=-\frac{1}{N}\sum_i\log\left(g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)y_i + \log\left(1-g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)\left(1-y_i\right)
+h\left(\boldsymbol{\theta};\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace\right)=-\frac{1}{N}\sum_i\log\left(g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)y_i + \log\left(1-g\left(\boldsymbol{\theta}^T \boldsymbol{x}\right)\right)\left(1-y_i\right)
 $$
 
 ($h$ here is not the discrimination function)

@@ -7,7 +7,7 @@ title: "K-NN"
 
 1-NN is a supervised algorithm solving a classification problem. It is probably the most simple supervised classification algorithm, and it works as follow:
 
-Given a data set $\left\{\boldsymbol{x}_i\right\}$ with corresponding labels $\left\{y_i\right\}$ the algorithm maps any new vector $\tilde{\boldsymbol{x}}$ to the label corresponding to the closest $\boldsymbol{x}_i$:
+Given a data set $\left\lbrace\boldsymbol{x}_i\right\rbrace$ with corresponding labels $\left\lbrace y_i\right\rbrace$ the algorithm maps any new vector $\tilde{\boldsymbol{x}}$ to the label corresponding to the closest $\boldsymbol{x}_i$:
 
 $$
 \hat{i} = \underset{i}{\arg\min}\left\lVert \tilde{\boldsymbol{x}} - \boldsymbol{x}_i\right\lVert_2 \\
@@ -487,7 +487,7 @@ We would like to find a prediction function $h\left(\cdot\right)$, mapping form 
 ### Evaluation Method: The Misclassification Rate
 
 $$
-R\left\{h, \left\{\boldsymbol{x},y\right\}\right\}=\frac{1}{N}\sum_i I\left\{h\left(\boldsymbol{x}_i\right)\neq y_i\right\}
+R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\frac{1}{N}\sum_i I\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace
 $$
 
 ### 📚 Splitting the dataset
