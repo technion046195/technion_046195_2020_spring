@@ -1,0 +1,42 @@
+# Site
+# =====
+
+baseurl: /semester_2019_winter
+
+collections:
+  tutorials:
+    output: true
+  workshops:
+    output: true
+  widgets:
+    output: true
+
+defaults:
+- scope:
+    path: ""
+    type: "tutorials"
+  values:
+    layout: "tutorial"
+    type: "tutorial"
+- scope:
+    path: ""
+    type: "workshops"
+  values:
+    layout: "tutorial"
+    type: "workshop"
+    render_with_liquid: false
+- scope:
+    path: ""
+    type: "widgets"
+  values:
+    layout: none
+- scope:
+    path: ""
+  values:
+    layout: "default"
+    excerpt_separator: <!-- excerpt_end -->
+
+exclude:
+- README.md
+- LICENSE
+- venv

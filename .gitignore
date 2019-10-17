@@ -1,0 +1,8 @@
+.jekyll-cache
+_site
+venv
+**/__pycache__/
+**/.ipynb_checkpoints/
+**/.fuse_hidden*
+**/*_gif/
+**/data

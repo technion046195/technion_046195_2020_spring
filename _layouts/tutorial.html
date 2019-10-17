@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<main role=main>
+  <section class="jumbotron jumbotron-fluid text-center bg-primary text-light">
+    <h1 class="display-4">{{ page.type | capitalize }} {{ page.number }}</h1>
+    <h1>{{ page.title }}</h1>
+  </section>
+
+  <section>
+    <div class="container">
+      {{ content }}
+    </div>
+  </section>
+</main>

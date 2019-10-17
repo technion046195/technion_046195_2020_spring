@@ -1,0 +1,95 @@
+---
+layout: none
+---
+
+/* Fonts */
+/* ===== */
+
+@font-face {
+    font-family: KG Second Chances Sketch;
+    src: url({{ site.baseurl }}/lib/fonts/KGSecondChancesSketch.ttf);
+  }
+
+@import "{{ site.baseurl }}/lib/pygments_themes/monokai.css";
+
+/* Hidden sections */
+/* =============== */
+.hide-not-hidden .hide{
+    display: none
+}
+
+/* reveal.js */
+/* ========= */
+
+/* Slides title */
+.reveal h1.slides-title{
+    font-size:100px;
+    line-height:2;
+    font-family:KG Second Chances Sketch;
+    color:white;
+    font-weight:normal;
+}
+
+/* Images */
+.reveal section img {
+    background:none !important;
+    border:none !important;
+    box-shadow:none !important;
+}
+
+/* Tables (taken from Jupyter) */
+.rendered_html th{
+    text-align:left;
+}
+
+.rendered_html td{
+    text-align:left;
+}
+
+.reveal table.dataframe {
+    background: white;
+    font-size:16px !important;
+}
+
+.reveal table.dataframe {
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: black;
+    font-size: 12px;
+    table-layout: fixed;
+}
+.reveal table.dataframe thead {
+    border-bottom: 1px solid black;
+    vertical-align: bottom;
+}
+.reveal table.dataframe tr,
+.reveal table.dataframe th,
+.reveal table.dataframe td {
+    text-align: right;
+    vertical-align: middle;
+    padding: 0.5em 0.5em;
+    line-height: normal;
+    white-space: normal;
+    max-width: none;
+    border: none;
+}
+.reveal table.dataframe th {
+    font-weight: bold;
+}
+.reveal table.dataframe tbody tr:nth-child(odd) {
+    background: #f5f5f5;
+}
+.reveal table.dataframe tbody tr:hover {
+    background: rgba(66, 165, 245, 0.2);
+}
+.reveal table.dataframe * + table {
+    margin-top: 1em;
+}
+
+/* Code Block */
+.reveal pre code {
+    max-height: 700px !important;
+}

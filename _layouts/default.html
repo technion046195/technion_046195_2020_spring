@@ -1,0 +1,132 @@
+{% capture collection_name %}{{page.collection}}{% endcapture %}
+{% if page.collection %}
+  {% assign document = site[collection_name] | sort: 'number' %}
+  {% for links in document  %}
+    {% if links.title == page.title %}
+      {% unless forloop.first %}
+        {% assign prev_page = prev %}
+      {% endunless %}
+      {% unless forloop.last %}
+        {% assign next_page = document[forloop.index] %}
+      {% endunless %}
+    {% endif %}
+    {% assign prev = links %}
+  {% endfor %}
+{% endif %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <title>{{ site.data.general.course_number }} - {{ site.data.general.course_title }}</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">    
+  <link rel="shortcut icon" type="image/png" href="{{ site.baseurl }}/favicon.ico">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+</head>
+
+<body>
+  <div id="root" class="hide-not-hidden">
+  
+    <header>
+  
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand int-nav-link" href="{{ site.baseurl }}/">
+        <img src="{{ site.baseurl }}/media/technion_logo.svg" height="30" alt="">
+        {{ site.data.general.course_number }}
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+          
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          {% if page.collection %}
+            <li class="nav-item">
+              <a class="nav-link int-nav-link{% unless prev_page %} disabled{% endunless %}{% if prev_page.hide %} hidden-nav-link {% endif %}" href="{{ site.baseurl }}{{ prev_page.url }}">&laquo;previous</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link int-nav-link{% unless next_page %} disabled{% endunless %}{% if next_page.hide %} hidden-nav-link {% endif %}" href="{{ site.baseurl }}{{ next_page.url }}">next&raquo;</a>
+            </li>
+          {% endif %}
+          {% assign slides_md_path = page.path | remove: '.md' | append: '_slides.md' %}
+          {% for file in site.documents %}
+            {% if file.path == slides_md_path %}
+              {% assign slides_md_file = site.baseurl | append: page.url | remove: '.html' | append: '_slides.md' %}
+              <li class="nav-item">
+                  <a class="nav-link int-nav-link" href="{{ site.baseurl }}/static/slides.html?md_file={{ slides_md_file | uri_encode }}&type={{ page.type }}&number={{ page.number }}&title={{ page.title | uri_escape }}" target="_blank"><img src="{{ site.baseurl }}/media/shields/slides.svg" alt="Open Slides" /></a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle int-nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item int-nav-link" href="#">Action</a>
+              <a class="dropdown-item int-nav-link" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item int-nav-link" href="#">Something else here</a>
+              </div>
+          </li> -->
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+      </div>
+    </nav>
+  
+    <main role="main"></main>
+      {{ content }}
+    </main>
+  </div>
+
+  <footer class="footer mt-auto py-3 bg-secondary text-center text-light">
+    <div class="container">
+      <a class="int-nav-link text-light" href="{{ site.baseurl }}/attributions.html">Attributions</a>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script>
+    var vars = window.location.search.substring(1).split("&");
+    var is_full = false;
+    for (var i=0;i<vars.length;i++) {
+      if (vars[i] == "full"){
+        is_full = true;
+      }
+    }
+    
+    if (is_full){
+      document.querySelector("#root").classList.remove("hide-not-hidden");;
+      var links = document.querySelectorAll(".int-nav-link");
+      for (var j=0;j<links.length;j++) {
+        cur_link = links[j].getAttribute("href");
+        if (cur_link.includes("?")) {
+          links[j].setAttribute("href", cur_link + '&full');
+        } else {
+          links[j].setAttribute("href", cur_link + '?full');
+        }
+      }
+    } else {
+      var links = document.querySelectorAll(".hidden-nav-link");
+      for (var j=0;j<links.length;j++) {
+        links[j].classList.add('disabled');
+      }
+    }
+  </script>
+</body>
+</html>
