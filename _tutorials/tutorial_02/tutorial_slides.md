@@ -1,11 +1,3 @@
----
-number: 2
-title: "Non-Parametric Probability Density Estimation" 
-hide: true
----
-
----new slide---
-
 ## Theory: Estimating Distributions
 
 - In the previous tutorial we saw how to give prediction in cases in which we know the distribution of some random variables. In this tutorial we will see how to we can estimate the distribution of the random variables from a given set of data points.
