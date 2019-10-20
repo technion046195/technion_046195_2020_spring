@@ -28,7 +28,6 @@ In the last two rows we have used $$X<2$$ as a shorthand for $$\left\lbrace\omeg
 
 <br>
 <center><img src="../media/diagrams/random_process/random_process.png?2" style="width:700px"/></center>
-
 ## 📊 Distributions
 
 
@@ -206,7 +205,6 @@ Two common choices of the Parzen window are:
 A rule of thumb for selecting the bandwidth for the Gaussian window is: $$\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$
 
 <center><h1 class="workshop-title">Workshop 2<br>Non-Parametric Density Estimation</h1></center>
-
 ## 🚖 The NYC Taxi Dataset 
 
 As part of the effort of NYC to make its data publicly available and accessible, the city releases every month the full list of all taxi rides around the city. We will be using the dataset from January 2016, which can be found [here](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
@@ -224,7 +222,6 @@ A taxi driver would like to give an estimation for the distributions of trip dur
 The workflow is then:
 
 <center><img src="../media/diagrams/workflow/workflow_density_estimation.png" width="300px" style="width:300px"/></center>
-
 ## ⤵️ Applying the Workflow
 
 We will start by importing some useful packages
@@ -288,7 +285,7 @@ Number of rows in the dataset: $$N=100000$$
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
