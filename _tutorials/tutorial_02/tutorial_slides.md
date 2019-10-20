@@ -4,6 +4,8 @@ title: "Non-Parametric Probability Density Estimation"
 hide: true
 ---
 
+---new slide---
+
 ## Theory: Estimating Distributions
 
 - In the previous tutorial we saw how to give prediction in cases in which we know the distribution of some random variables. In this tutorial we will see how to we can estimate the distribution of the random variables from a given set of data points.
@@ -44,8 +46,6 @@ $$
 \hat{\mu}_{f\left(x\right)}=\tfrac{1}{N}\sum_{i=1}^N f\left(x_i\right)
 $$
 
----new slide---
-
 ### 📊 Estimating the PMF (Probability Mass Function) - (The desecrate case)
 
 We can estimate the PMF using the empirical measure for each possible value of $$X$$:
@@ -65,8 +65,6 @@ $$
 $$
 
 **Comment**: The ECDF results in a non-continuous CDF which is a sum of step functions.
-
----new slide---
 
 ### 📶 Histogram
 
@@ -89,8 +87,6 @@ $$
 **Comment**: The selection of the bins significantly effects how well the histogram approximates the PDF.
 
 A common rule of thumb for selecting the bins is to divide the range of values into $$\sqrt{N}$$ equal bins.
-
----new slide---
 
 ### 📉 Kernel Density Estimation (KDE)
 
@@ -122,8 +118,6 @@ In the case of a Gaussian window the bandwidth is in fact the std of the Gaussia
 
 A rule of thumb for selecting the bandwidth for the Gaussian window is: $$\sigma=\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$
 
----new slide---
-
 ## Hands-on
 
 ### 🚖 The NYC Taxi Dataset
@@ -131,8 +125,6 @@ A rule of thumb for selecting the bandwidth for the Gaussian window is: $$\sigma
 As part of the effort of NYC to make its data publicly available and accessible, the city releases every month the full list of all taxi rides around the city. We will be using the dataset from January 2016, which can be found [here](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
 The full dataset includes over 10M taxi rides. In our course, we will be using a smaller subset of this dataset with only 100k rides (which has also been cleaned up a bit). The smaller dataset can be found [here](https://technion046195.github.io/semester_2019_spring/datasets/nyc_taxi_rides.csv)
-
----new slide---
 
 ### The Data Fields and Types
 
@@ -328,15 +320,11 @@ In this exercise we will only be interested in the two following columns:
 
 (A full description for each of the other columns can be found [here](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf))
 
----new slide---
-
 ### ❓️ Problem: Estimating the Distribution of Trip Duration
 
 A taxi driver would like to give an estimation for the distributions of trip durations. He has taken the course in machine learning and has figured that he can use historical rides data to estimate this distribution. Let us help the driver with his estimation.
 
 Formally, we would like to estimate the distribution of the rides durations and represent them as a CDF or a PDF.
-
----new slide---
 
 ### 💡 Method I: ECDF
 
@@ -348,8 +336,6 @@ Formally, we would like to estimate the distribution of the rides durations and 
 ![ecdf_zoom](./media/ecdf_zoom.png)
 
 *Note that the ECDF is a sum of step functions.*
-
----new slide---
 
 #### ✍️ Question
 
@@ -363,8 +349,6 @@ $$
 P\left(X_\text{duration}>20 \text{min}\right)=1 - P\left(X_\text{duration}\leq 20 \text{min}\right)=1-\hat{F}_{X}\left(20\right)=1-0.89=0.11
 $$
 
----new slide---
-
 #### The Dependency on the Dataset's size
 
 To see the dependency of the ECDF on the dataset's size we shall recalculate the EDCF using a smaller amount of data. We will randomly sample N = 10, 100 and 1000 samples from the train set and use them to calculate the ECDF.
@@ -372,8 +356,6 @@ To see the dependency of the ECDF on the dataset's size we shall recalculate the
 ![ecdf_subsets](./media/ecdf_subsets.png)
 
 Not surprisingly, we can see that as we increase the number of points, the estimation becomes smoother, and although we have not defined an evaluation method, we will note that for all the popular distribution evaluation methods the error indeed decreases.
-
----new slide---
 
 ### 💡 Method II: Histogram
 
@@ -396,15 +378,11 @@ For here we can see that:
 - **For a large number of bins**, the deviations between the subsets are large, but the bins are narrow.
 - **For the small number of bins**, the deviations between the subsets are small, but the bins are wide.
 
----new slide---
-
 #### The Sources of the Error
 
 - In the first case, the main source of error is due to the stochastic nature of the process which results in a large variance in our estimation. This error will be very significant for a small amount of data, but it will decrease as we add more data.
 
 - In the second case, the main source of estimation error will be mostly due to the model's limited representation capability. This type of error is unrelated to the amount of data.
-
----new slide---
 
 ### 💡 Method III: KDE
 
@@ -417,8 +395,6 @@ We will plot the resulting PDFs on top of the histogram with 300 bins for compar
 ![kde](./media/kde.png)
 
 Again we see behavior similar to that of the histogram. For a narrow bandwidth, we get finer details, but the estimation is more "noisy", which is related to the high variance of the estimation. For the wide bandwidth, we get fewer details, but we expect the estimation to have smaller variance.
-
----new slide---
 
 ### ❓️ Problem: Work Hours Prediction
 
@@ -434,8 +410,6 @@ ToDo:
 - Elaborate about the joint and conditional distribution of X and Y and.
 - Write the prediction given the conditional probability using Bayes rule. Why do we need Bayes?
 - Talk about splitting the data???
-
----new slide---
 
 ### 💡 Solution
 
@@ -469,8 +443,6 @@ The resulting risk is: $$R_\text{test}\{ \hat{y}=1 \}=0.49$$
 
 Which means that we will be correct 51% of the time, which is only slightly better then a 50:50 random guess.
 
----new slide---
-
 #### Step 2: Using KDE to estimate $$p_{X|Y}\left(x|y\right)$$
 
 We will estimate $$p_{X\lvert Y}\left(x\lvert y=0\right)$$ and $$p_{X\lvert Y}\left(x\lvert y=1\right)$$ independently by dividing the data into $$Y=0$$ and $$Y=1$$ and using KDE.
@@ -478,8 +450,6 @@ We will estimate $$p_{X\lvert Y}\left(x\lvert y=0\right)$$ and $$p_{X\lvert Y}\l
 ![conditional_kde](./media/conditional_kde.png)
 
 We can see here that during the work hours, $$Y=1$$, a ride has a slightly higher probability to have a longer duration. Let us see if we can use this fact to improve our prediction.
-
----new slide---
 
 #### Step 3: Prediction Based on Duration
 
@@ -517,8 +487,6 @@ p_{Y|X}\left(1|x\right)\overset{?}{\geq}p_{Y|X}\left(0|x\right) \\
 p_{X|Y}\left(x|1\right)\cdot p_Y\left(1\right)\overset{?}{\geq}p_{X|Y}\left(x|0\right)\cdot p_Y\left(0\right)
 $$
 
----new slide---
-
 Since we have a method for calculating $$p_Y\left(y\right)$$ and $$p_{X\lvert Y}\left(x\lvert y\right)$$ we can evaluate the above inequality for any given $$x$$. Let us calculate the prediction over a grid of durations:
 
 ![prediction](./media/prediction.png)
@@ -533,8 +501,6 @@ $$
 0 & \text{otherwise}
 \end{cases}
 $$
-
----new slide---
 
 #### ⏱️ Performance evaluation - Based on Duration
 
