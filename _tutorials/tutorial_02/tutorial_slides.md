@@ -4,6 +4,128 @@ title: "Non-Parametric Probability Density Estimation"
 hide: true
 ---
 
+## Theory: Estimating Distributions
+
+- In the previous tutorial we saw how to give prediction in cases in which we know the distribution of some random variables. In this tutorial we will see how to we can estimate the distribution of the random variables from a given set of data points.
+- We will call the set of data points the **dataset**.
+- **We will always assume here that the samples in the dataset are statistically independent**.
+
+Notations:
+
+- $$N$$ - the number of samples in the dataset.
+- $$\omega_i$$ - the $$i$$-th sample.
+- $$x_i=X\left(\omega_i\right)$$ - the realization $$\omega_i$$.
+- We will the "hat" sign to denote an estimation of some unknown value. For example, we shall use $$\hat{y}$$ as our estimation for $$y$$.
+- $$I\left\lbrace E\right\rbrace$$ - An indicator function of whether condition $$E$$ is ture. For example $$I\left\lbrace x<y\right\rbrace=\begin{cases}1\ \text{if}\ x<y\\0\ \text{else}\end{cases}$$.
+
+---new slide---
+
+### 🧮 Empirical Measure
+
+An estimation, $$\hat{p}_A$$, of the probability measure, $$Pr\left(A\right)$$, of some event $$A$$, given a set of samples.
+
+$$
+\hat{p}_A=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace\omega_i\in A\right\rbrace
+$$
+
+Put in words, we estimate the probability of an event as the fraction of samples in the dataset which are members of the event.
+
+### 🎯 Empirical mean
+
+An estimation, $$\hat\mu_X$$, of the expectation value, $$\mu_X=\mathbb{E}\left[X\right]$$, of some random variable $$X$$.
+
+$$
+\hat{\mu}_X=\tfrac{1}{N}\sum_{i=1}^N x_i
+$$
+
+We can of course replace $$X$$ with any function of $$X$$:
+
+$$
+\hat{\mu}_{f\left(x\right)}=\tfrac{1}{N}\sum_{i=1}^N f\left(x_i\right)
+$$
+
+---new slide---
+
+### 📊 Estimating the PMF (Probability Mass Function) - (The desecrate case)
+
+We can estimate the PMF using the empirical measure for each possible value of $$X$$:
+
+$$
+\hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i = x\right\rbrace
+$$
+
+### 📈 Estimating the CDF (Cumulative Distribution Function)
+
+Also known as **ECDF** (Empirical Cumulative Distribution Function)*
+
+We can also estimate the CDF using the empirical measure:
+
+$$
+\hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i \leq x\right\rbrace
+$$
+
+**Comment**: The ECDF results in a non-continuous CDF which is a sum of step functions.
+
+---new slide---
+
+### 📶 Histogram
+
+A histogram is a method of estimating the PDF (probability density function).
+
+The idea is as follow:
+
+- "Quantize" $$X$$ into a discrete set of values by dividing the range of values $$X$$ can take into a set of non-overlapping bins.
+- Estimate the probability of being in bin - which is a task of estimating a PMF.
+- Use a uniform distribution for the distribution of values inside each bin.
+
+Notation:
+
+- $$l_k$$, $$r_k$$ - The left and right edges of the $$k$$'s bin.
+
+$$
+h_X\left(l_k \leq x < r_k\right) = \underbrace{\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace l_k \leq x_i < r_k\right\rbrace}_\text{The probability of being in the k-th bin}\cdot\underbrace{\tfrac{1}{r_k-l_k}}_\text{Uniform distribution inside the bin}
+$$
+
+**Comment**: The selection of the bins significantly effects how well the histogram approximates the PDF.
+
+A common rule of thumb for selecting the bins is to divide the range of values into $$\sqrt{N}$$ equal bins.
+
+---new slide---
+
+### 📉 Kernel Density Estimation (KDE)
+
+KDE is another method for estimating the PDF. In KDE in KDE we produce a smooth distribution using a smoothing function called the **Parzan window** or the KDE kernel.
+
+Two common choices of the Parzen window/kernal are:
+
+- A Gaussian: $$\phi\left(x\right)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)$$
+- A rectangular function: $$\phi\left(x\right)=I\left\lbrace\left\lvert x\right\rvert\leq0.5\right\rbrace$$
+
+One way to construct this smoothed distribution is:
+
+- Start with a distribution which consists of $$N$$ delta functions of hight $$\tfrac{1}{N}$$ at the position of each sample.
+- Smooth out the distribution by convolving it with the Parzen window.
+
+The resulting distribution is given by:
+
+$$
+\hat{p}_{\phi,X}\left(x\right) = \frac{1}{N}\sum_{i=1}^N \phi\left(x-x_i\right)
+$$
+
+It is common to add a scaling factor $$h$$, called the bandwidth, to control the width of the Parzen window. We shall denote the scaled version of the window by $$\phi_h\left(x\right)=\frac{1}{h}\phi\left(\frac{x}{h}\right)$$. Plugging this into the definition of the KDE, we get:
+
+$$
+\hat{p}_{\phi,h,X}\left(x\right) = \frac{1}{N\cdot h}\sum_{i=1}^N \phi\left(\frac{x-x_i}{h}\right)
+$$
+
+In the case of a Gaussian window the bandwidth is in fact the std of the Gaussian, and is usually donated by $$\sigma$$.
+
+A rule of thumb for selecting the bandwidth for the Gaussian window is: $$\sigma=\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$
+
+---new slide---
+
+## Hands-on
+
 ### 🚖 The NYC Taxi Dataset
 
 As part of the effort of NYC to make its data publicly available and accessible, the city releases every month the full list of all taxi rides around the city. We will be using the dataset from January 2016, which can be found [here](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
@@ -11,8 +133,6 @@ As part of the effort of NYC to make its data publicly available and accessible,
 The full dataset includes over 10M taxi rides. In our course, we will be using a smaller subset of this dataset with only 100k rides (which has also been cleaned up a bit). The smaller dataset can be found [here](https://technion046195.github.io/semester_2019_spring/datasets/nyc_taxi_rides.csv)
 
 ---new slide---
-
-
 
 ### The Data Fields and Types
 
@@ -208,11 +328,15 @@ In this exercise we will only be interested in the two following columns:
 
 (A full description for each of the other columns can be found [here](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf))
 
+---new slide---
+
 ### ❓️ Problem: Estimating the Distribution of Trip Duration
 
 A taxi driver would like to give an estimation for the distributions of trip durations. He has taken the course in machine learning and has figured that he can use historical rides data to estimate this distribution. Let us help the driver with his estimation.
 
 Formally, we would like to estimate the distribution of the rides durations and represent them as a CDF or a PDF.
+
+---new slide---
 
 ### 💡 Method I: ECDF
 
@@ -224,6 +348,8 @@ Formally, we would like to estimate the distribution of the rides durations and 
 ![ecdf_zoom](./media/ecdf_zoom.png)
 
 *Note that the ECDF is a sum of step functions.*
+
+---new slide---
 
 #### ✍️ Question
 
@@ -237,6 +363,8 @@ $$
 P\left(X_\text{duration}>20 \text{min}\right)=1 - P\left(X_\text{duration}\leq 20 \text{min}\right)=1-\hat{F}_{X}\left(20\right)=1-0.89=0.11
 $$
 
+---new slide---
+
 #### The Dependency on the Dataset's size
 
 To see the dependency of the ECDF on the dataset's size we shall recalculate the EDCF using a smaller amount of data. We will randomly sample N = 10, 100 and 1000 samples from the train set and use them to calculate the ECDF.
@@ -244,6 +372,8 @@ To see the dependency of the ECDF on the dataset's size we shall recalculate the
 ![ecdf_subsets](./media/ecdf_subsets.png)
 
 Not surprisingly, we can see that as we increase the number of points, the estimation becomes smoother, and although we have not defined an evaluation method, we will note that for all the popular distribution evaluation methods the error indeed decreases.
+
+---new slide---
 
 ### 💡 Method II: Histogram
 
@@ -266,11 +396,15 @@ For here we can see that:
 - **For a large number of bins**, the deviations between the subsets are large, but the bins are narrow.
 - **For the small number of bins**, the deviations between the subsets are small, but the bins are wide.
 
+---new slide---
+
 #### The Sources of the Error
 
 - In the first case, the main source of error is due to the stochastic nature of the process which results in a large variance in our estimation. This error will be very significant for a small amount of data, but it will decrease as we add more data.
 
 - In the second case, the main source of estimation error will be mostly due to the model's limited representation capability. This type of error is unrelated to the amount of data.
+
+---new slide---
 
 ### 💡 Method III: KDE
 
@@ -283,6 +417,8 @@ We will plot the resulting PDFs on top of the histogram with 300 bins for compar
 ![kde](./media/kde.png)
 
 Again we see behavior similar to that of the histogram. For a narrow bandwidth, we get finer details, but the estimation is more "noisy", which is related to the high variance of the estimation. For the wide bandwidth, we get fewer details, but we expect the estimation to have smaller variance.
+
+---new slide---
 
 ### ❓️ Problem: Work Hours Prediction
 
@@ -298,6 +434,8 @@ ToDo:
 - Elaborate about the joint and conditional distribution of X and Y and.
 - Write the prediction given the conditional probability using Bayes rule. Why do we need Bayes?
 - Talk about splitting the data???
+
+---new slide---
 
 ### 💡 Solution
 
@@ -331,6 +469,8 @@ The resulting risk is: $$R_\text{test}\{ \hat{y}=1 \}=0.49$$
 
 Which means that we will be correct 51% of the time, which is only slightly better then a 50:50 random guess.
 
+---new slide---
+
 #### Step 2: Using KDE to estimate $$p_{X|Y}\left(x|y\right)$$
 
 We will estimate $$p_{X\lvert Y}\left(x\lvert y=0\right)$$ and $$p_{X\lvert Y}\left(x\lvert y=1\right)$$ independently by dividing the data into $$Y=0$$ and $$Y=1$$ and using KDE.
@@ -338,6 +478,8 @@ We will estimate $$p_{X\lvert Y}\left(x\lvert y=0\right)$$ and $$p_{X\lvert Y}\l
 ![conditional_kde](./media/conditional_kde.png)
 
 We can see here that during the work hours, $$Y=1$$, a ride has a slightly higher probability to have a longer duration. Let us see if we can use this fact to improve our prediction.
+
+---new slide---
 
 #### Step 3: Prediction Based on Duration
 
@@ -375,6 +517,8 @@ p_{Y|X}\left(1|x\right)\overset{?}{\geq}p_{Y|X}\left(0|x\right) \\
 p_{X|Y}\left(x|1\right)\cdot p_Y\left(1\right)\overset{?}{\geq}p_{X|Y}\left(x|0\right)\cdot p_Y\left(0\right)
 $$
 
+---new slide---
+
 Since we have a method for calculating $$p_Y\left(y\right)$$ and $$p_{X\lvert Y}\left(x\lvert y\right)$$ we can evaluate the above inequality for any given $$x$$. Let us calculate the prediction over a grid of durations:
 
 ![prediction](./media/prediction.png)
@@ -389,6 +533,8 @@ $$
 0 & \text{otherwise}
 \end{cases}
 $$
+
+---new slide---
 
 #### ⏱️ Performance evaluation - Based on Duration
 
