@@ -3,7 +3,7 @@ number: 2
 title: "Non-Parametric Probability Density Estimation" 
 hide: true
 ---
- 
+
 ## Theory: Estimating Distributions
 
 - In the previous tutorial we saw how to give prediction in cases in which we know the distribution of some random variables. In this tutorial we will see how to we can estimate the distribution of the random variables from a given set of data points.
@@ -42,7 +42,9 @@ $$
 \hat{\mu}_{f\left(x\right)}=\tfrac{1}{N}\sum_{i=1}^N f\left(x_i\right)
 $$
 
-### 📊 Estimating the PMF (Probability Mass Function) - (The desecrate case)
+### 📊 Estimating the PMF (Probability Mass Function)
+
+### 							(PDF in the discrete case)
 
 We can estimate the PMF using the empirical measure for each possible value of $$X$$:
 
@@ -130,19 +132,34 @@ Here are the first 10 rows in the dataset:
   <thead>
     <tr>
       <th></th>
-      <th>passenger_count</th>
-      <th>trip_distance</th>
-      <th>payment_type</th>
-      <th>fare_amount</th>
-      <th>tip_amount</th>
-      <th>pickup_easting</th>
-      <th>pickup_northing</th>
-      <th>dropoff_easting</th>
-      <th>dropoff_northing</th>
+      <th>passenger
+          count</th>
+      <th>trip
+          distance</th>
+      <th>payment
+          type</th>
+      <th>fare
+          amount</th>
+      <th>tip
+          amount</th>
+      <th>pickup
+          easting</th>
+      <th>pickup
+          northing</th>
+      <th>dropoff
+          easting</th>
+      <th>dropoff
+          northing</th>
       <th>duration</th>
-      <th>day_of_week</th>
-      <th>day_of_month</th>
-      <th>time_of_day</th>
+      <th>day
+          of
+          week</th>
+      <th>day
+          of
+          month</th>
+      <th>time
+          of
+          day</th>
     </tr>
   </thead>
   <tbody>
@@ -369,16 +386,18 @@ To better visualize the variance let us plot the above graphs after removing the
 
 ![historgam](./media/histograms_subsets2.png)
 
-For here we can see that:
-
 - **For a large number of bins**, the deviations between the subsets are large, but the bins are narrow.
+  - **high variance** - large deviations between different subsets
+  - **low bias** - small discretization error.
 - **For the small number of bins**, the deviations between the subsets are small, but the bins are wide.
+  - **low variance** - small deviations between different subsets.
+  - **high bias** - large discretization error (the histogram is less smooth)
 
-#### The Sources of the Error
+#### The Sources of Error
 
-- In the first case, the main source of error is due to the stochastic nature of the process which results in a large variance in our estimation. This error will be very significant for a small amount of data, but it will decrease as we add more data.
-
-- In the second case, the main source of estimation error will be mostly due to the model's limited representation capability. This type of error is unrelated to the amount of data.
+- Using a large amount of bins, the main source of error is due to the stochastic nature of the process which results in a ***high variance*** in our estimation. This error will be very significant for a small amount of data, but it will decrease as we add more data.
+- Using a small number of bins, the main source of estimation error will be mostly due to the model's limited representation capability (***high bias***). This type of error is unrelated to the amount of data.
+- We should **minimize the bias-variance tradeoff** by setting the number of bins to an intermediate value. In this sense, the middle graphs gives the best results. Notice that it is close to the value predicted by the rule of thumb.
 
 ### 💡 Method III: KDE
 
@@ -390,26 +409,51 @@ We will plot the resulting PDFs on top of the histogram with 300 bins for compar
 
 ![kde](./media/kde.png)
 
-Again we see behavior similar to that of the histogram. For a narrow bandwidth, we get finer details, but the estimation is more "noisy", which is related to the high variance of the estimation. For the wide bandwidth, we get fewer details, but we expect the estimation to have smaller variance.
+Again we see behavior similar to that of the histogram:
+
+- **For a narrow bandwidth**, we get finer details, but the estimation is more "noisy".
+
+  - **low bias**
+  - **high variance** of the estimation.
+
+- **For a wide bandwidth**, we get fewer details, but we expect the estimation to have smaller variance.
+
+  - **high bias**
+  - **low variance**
+
+  
 
 ### ❓️ Problem: Work Hours Prediction
 
-We would like to predict whether a random given ride has occurred during the work hours or not, based only on the duration of the ride. We shall define the work hours as between 7 a.m. and 18 p.m.
+We would like to predict whether a random given ride has occurred during the work hours or not, based only on the duration of the ride.
 
-For that let as define the random binary variable $$Y$$. The random variable $$Y$$ which is equal to 1 if a ride occurred during the work hours, and 0 otherwise.
+We shall define the work hours as between 7 a.m. and 18 p.m.
+
+
+
+Let define the random binary variable $$Y$$:
+
+$$Y$$ is equal to 1 if a ride occurred during the work hours, and 0 otherwise.
+
+
 
 We shall denote the PMF of $$Y$$ by $$p_Y\left(y\right)$$
 
-ToDo:
 
-- Define the risk function: miss-clasification rate. (the empirical measure of the probability of being wrong) (I will define what is a risk function in the first tutorial)
-- Elaborate about the joint and conditional distribution of X and Y and.
-- Write the prediction given the conditional probability using Bayes rule. Why do we need Bayes?
-- Talk about splitting the data???
+
+We will use the **misclassification** rate as a risk function:
+
+​													$$R(\hat y) = \frac{1}{N} \sum_{i=0}^N I\{\hat y(x_i) \neq y_i \}$$
+
+We will choose to predict $\hat y(x_i)$ by the prediction the minimizes $R(\hat y)$:
+
+​													$$\hat y = \arg\min_h R(h) = \frac{1}{N} \sum_{i=0}^N I\{h(x_i) \neq y_i \}$$			
+
+
 
 ### 💡 Solution
 
-#### Step 1: Estimating $$p_Y\left(y\right)$$
+### Solution Attempt 1: Estimating $$p_Y\left(y\right)$$
 
 Based on the data estimate $$p_Y\left(0\right)$$ and $$p_Y\left(1\right)$$, the probability of a random ride to occur on and off the work hours.
 
@@ -439,7 +483,7 @@ The resulting risk is: $$R_\text{test}\{ \hat{y}=1 \}=0.49$$
 
 Which means that we will be correct 51% of the time, which is only slightly better then a 50:50 random guess.
 
-#### Step 2: Using KDE to estimate $$p_{X|Y}\left(x|y\right)$$
+### Solution Attempt 2: Using KDE to estimate $$p_{X|Y}\left(x|y\right)$$
 
 We will estimate $$p_{X\lvert Y}\left(x\lvert y=0\right)$$ and $$p_{X\lvert Y}\left(x\lvert y=1\right)$$ independently by dividing the data into $$Y=0$$ and $$Y=1$$ and using KDE.
 
@@ -447,16 +491,24 @@ We will estimate $$p_{X\lvert Y}\left(x\lvert y=0\right)$$ and $$p_{X\lvert Y}\l
 
 We can see here that during the work hours, $$Y=1$$, a ride has a slightly higher probability to have a longer duration. Let us see if we can use this fact to improve our prediction.
 
-#### Step 3: Prediction Based on Duration
+#### Solution Attempt 2: Prediction Based on Duration
 
-Let us now try to improve our prediction using the duration data. We would now like to make our prediction based on the the known duration of the ride, i.e., we would like to predict:
+Let us now try to improve our prediction using the duration data.
 
+We would now like to make our prediction based on the the known duration of the ride:
+
+I.e., we would like to predict:
 $$
 \hat{y}\left(x\right)=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \ p_{Y|X}\left(y|x\right)
 $$
 
-Which is equivalent to:
+- Given the input data $x$ of the specific ride, what is it $y$ 
+- Instead of **predicting the same value** $\hat y$ for all the rides,
+  we predict a **prediction function** $\hat y(x)$
 
+
+
+Which is equivalent to:
 $$
 \hat{y}\left(x\right)
 =\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \  p_{Y|X}\left(y|x\right)
@@ -504,4 +556,6 @@ Let us test our full prediction method on the test set:
 
 The test risk is: $$R_\text{test}\{ \hat{y}(x) \}=0.46$$
 
-We were able to slightly improve our prediction by using the ride duration. As we add more data fildes such as the length of the ride, the location, etc. we will be able to further improve our prediction.
+We were able to slightly improve our prediction by using the ride duration.
+
+As we add more data fields such as the length of the ride, the location, etc., we will be able to further improve our prediction.

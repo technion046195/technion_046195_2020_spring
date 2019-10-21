@@ -1,12 +1,14 @@
-### 🚖 The NYC Taxi Dataset
+# 🚖 The NYC Taxi Dataset
 
 As part of the effort of NYC to make its data publicly available and accessible, the city releases every month the full list of all taxi rides around the city. We will be using the dataset from January 2016, which can be found [here](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
 The full dataset includes over 10M taxi rides. In our course, we will be using a smaller subset of this dataset with only 100k rides (which has also been cleaned up a bit). The smaller dataset can be found [here](https://technion046195.github.io/semester_2019_spring/datasets/nyc_taxi_rides.csv)
 
+
+
 ---new slide---
 
-### The Data Fields and Types
+## The Data Fields and Types
 
 Here are the first 10 rows in the dataset:
 
@@ -14,19 +16,34 @@ Here are the first 10 rows in the dataset:
   <thead>
     <tr>
       <th></th>
-      <th>passenger_count</th>
-      <th>trip_distance</th>
-      <th>payment_type</th>
-      <th>fare_amount</th>
-      <th>tip_amount</th>
-      <th>pickup_easting</th>
-      <th>pickup_northing</th>
-      <th>dropoff_easting</th>
-      <th>dropoff_northing</th>
+      <th>passenger
+          count</th>
+      <th>trip
+          distance</th>
+      <th>payment
+          type</th>
+      <th>fare
+          amount</th>
+      <th>tip
+          amount</th>
+      <th>pickup
+          easting</th>
+      <th>pickup
+          northing</th>
+      <th>dropoff
+          easting</th>
+      <th>dropoff
+          northing</th>
       <th>duration</th>
-      <th>day_of_week</th>
-      <th>day_of_month</th>
-      <th>time_of_day</th>
+      <th>day
+          of
+          week</th>
+      <th>day
+          of
+          month</th>
+      <th>time
+          of
+          day</th>
     </tr>
   </thead>
   <tbody>
@@ -200,32 +217,47 @@ In this exercise we will only be interested in the two following columns:
 
 (A full description for each of the other columns can be found [here](https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf))
 
+
+
 ---new slide---
 
-### ❓️ Problem: Estimating the Distribution of Trip Duration
+## ❓️ Problem: Estimating the Distribution of Trip Duration
 
-A taxi driver would like to give an estimation for the distributions of trip durations. He has taken the course in machine learning and has figured that he can use historical rides data to estimate this distribution. Let us help the driver with his estimation.
+A taxi driver would like to give an estimation for the distributions of trip durations. 
+
+He has taken the course in machine learning and has figured that he can use historical rides data to estimate this distribution.
+
+Let us help the driver with his estimation.
 
 Formally, we would like to estimate the distribution of the rides durations and represent them as a CDF or a PDF.
 
 ---new slide---
 
-### 💡 Method I: ECDF
+## 💡 Method I: ECDF
 
 - We shall donate the set of 100k ride durations as $$\left\lbrace x_i\right\rbrace$$
-- We shall calculate the ECDF numerically over a grid with a step size 0.001 min from $$0$$ to $$\max\left(\left\lbrace x_i\right\rbrace\right)$$
 
-![ecdf](./media/ecdf.png)
+- We shall calculate the ECDF numerically over a *grid*:
 
-![ecdf_zoom](./media/ecdf_zoom.png)
+  - Grid step size 0.001 min from $$0$$ to $$\max\left(\left\lbrace x_i\right\rbrace\right)$$
+
+  
+
+<img src="./media/ecdf.png" alt="ecdf" style="zoom:80%;" /><img src="./media/ecdf_zoom.png" alt="ecdf_zoom" style="zoom:80%;" />
+
+
 
 *Note that the ECDF is a sum of step functions.*
 
-#### ✍️ Question
+---new slide---
+
+## 
+
+### ✍️ Question
 
 According to the ECDF graph, what is the estimated probability of a ride to have a duration longer than 20 min?
 
-##### Solution
+### Solution
 
 The CDF graph describes the probability of $$X_\text{duration}\leq x$$. We want to evaluate:
 
@@ -245,7 +277,7 @@ Not surprisingly, we can see that as we increase the number of points, the estim
 
 ---new slide---
 
-### 💡 Method II: Histogram
+## 💡 Method II: Histogram
 
 We shall calculate the histogram of ride durations using 30, 300 and 3000 bins.
 
@@ -253,30 +285,41 @@ We shall calculate the histogram of ride durations using 30, 300 and 3000 bins.
 
 ![historgam](./media/histograms.png)
 
-Before we examine the results we shall run another test. We shall split the train set into 8 equal subsets and calculate the histogram for each of the subsets.
+---new slide---
+
+Before we examine the results we shall run another test:
+
+- **Split** the train set into **8 equal subsets**
+- **Calculate** the histogram for each of the subsets.
 
 ![historgam](./media/histograms_subsets.png)
+
+---new slide---
 
 To better visualize the variance let us plot the above graphs after removing the mean value:
 
 ![historgam](./media/histograms_subsets2.png)
 
-For here we can see that:
-
 - **For a large number of bins**, the deviations between the subsets are large, but the bins are narrow.
+  - **high variance** - large deviations between different subsets
+  - **low bias** - small discretization error.
 - **For the small number of bins**, the deviations between the subsets are small, but the bins are wide.
+  - **low variance** - small deviations between different subsets.
+  - **high bias** - large discretization error (the histogram is less smooth)
 
 ---new slide---
 
-#### The Sources of the Error
+#### The Sources of Error
 
-- In the first case, the main source of error is due to the stochastic nature of the process which results in a large variance in our estimation. This error will be very significant for a small amount of data, but it will decrease as we add more data.
+- Using a large amount of bins, the main source of error is due to the stochastic nature of the process which results in a ***high variance*** in our estimation. This error will be very significant for a small amount of data, but it will decrease as we add more data.
+- Using a small number of bins, the main source of estimation error will be mostly due to the model's limited representation capability (***high bias***). This type of error is unrelated to the amount of data.
+- We should **minimize the bias-variance tradeoff** by setting the number of bins to an intermediate value. In this sense, the middle graphs gives the best results. Notice that it is close to the value predicted by the rule of thumb.
 
-- In the second case, the main source of estimation error will be mostly due to the model's limited representation capability. This type of error is unrelated to the amount of data.
+
 
 ---new slide---
 
-### 💡 Method III: KDE
+## 💡 Method III: KDE
 
 We shall estimate the PDF of ride durations using KDE using a Gaussian Parzen window with bandwidth ($$\sigma$$) of 0.08, 0.8, 8.
 
@@ -286,34 +329,57 @@ We will plot the resulting PDFs on top of the histogram with 300 bins for compar
 
 ![kde](./media/kde.png)
 
-Again we see behavior similar to that of the histogram. For a narrow bandwidth, we get finer details, but the estimation is more "noisy", which is related to the high variance of the estimation. For the wide bandwidth, we get fewer details, but we expect the estimation to have smaller variance.
+Again we see behavior similar to that of the histogram:
+
+- **For a narrow bandwidth**, we get finer details, but the estimation is more "noisy".
+
+  - **low bias**
+  - **high variance** of the estimation.
+
+- **For a wide bandwidth**, we get fewer details, but we expect the estimation to have smaller variance.
+
+  - **high bias**
+  - **low variance**
+
 
 ---new slide---
 
-### ❓️ Problem: Work Hours Prediction
+## ❓️ Problem: Work Hours Prediction
 
-We would like to predict whether a random given ride has occurred during the work hours or not, based only on the duration of the ride. We shall define the work hours as between 7 a.m. and 18 p.m.
+We would like to predict whether a random given ride has occurred during the work hours or not, based only on the duration of the ride.
 
-For that let as define the random binary variable $$Y$$. The random variable $$Y$$ which is equal to 1 if a ride occurred during the work hours, and 0 otherwise.
+We shall define the work hours as between 7 a.m. and 18 p.m.
+
+
+
+Let define the random binary variable $$Y$$:
+
+$$Y$$ is equal to 1 if a ride occurred during the work hours, and 0 otherwise.
+
+
 
 We shall denote the PMF of $$Y$$ by $$p_Y\left(y\right)$$
 
----new slide---
 
-
-
-ToDo:
-
-- Define the risk function: miss-clasification rate. (the empirical measure of the probability of being wrong) (I will define what is a risk function in the first tutorial)
-- Elaborate about the joint and conditional distribution of X and Y and.
-- Write the prediction given the conditional probability using Bayes rule. Why do we need Bayes?
-- Talk about splitting the data???
 
 ---new slide---
 
-### 💡 Solution
+## Risk Function definition
 
-#### Step 1: Estimating $$p_Y\left(y\right)$$
+We will use the **misclassification** rate as a risk function:
+$$
+R(\hat y) = \frac{1}{N} \sum_{i=0}^N I\{\hat y(x_i) \neq y_i \}
+$$
+We will choose to predict $\hat y(x_i)$ by the prediction the minimizes $R(\hat y)$:
+
+$$
+\hat y = \arg\min_h R(h) = \frac{1}{N} \sum_{i=0}^N I\{h(x_i) \neq y_i \}
+$$
+​			
+
+---new slide---
+
+## Solution Attempt 1: Estimating $$p_Y\left(y\right)$$
 
 Based on the data estimate $$p_Y\left(0\right)$$ and $$p_Y\left(1\right)$$, the probability of a random ride to occur on and off the work hours.
 
@@ -325,7 +391,7 @@ $$p_Y(0)\approx0.49$$
 
 ---new slide---
 
-#### ⏱️ Performance evaluation - Blind Prediction
+### ⏱️ Performance evaluation - Blind Prediction
 
 Let us evaluate how good would be a blind (without knowing the duration) estimation.
 
@@ -347,7 +413,7 @@ Which means that we will be correct 51% of the time, which is only slightly bett
 
 ---new slide---
 
-#### Step 2: Using KDE to estimate $$p_{X|Y}\left(x|y\right)$$
+## Solution Attempt 2: Using KDE to estimate $$p_{X|Y}\left(x|y\right)$$
 
 We will estimate $$p_{X\lvert Y}\left(x\lvert y=0\right)$$ and $$p_{X\lvert Y}\left(x\lvert y=1\right)$$ independently by dividing the data into $$Y=0$$ and $$Y=1$$ and using KDE.
 
@@ -357,18 +423,24 @@ We can see here that during the work hours, $$Y=1$$, a ride has a slightly highe
 
 ---new slide---
 
+### Solution Attempt 2: Prediction Based on Duration
 
+Let us now try to improve our prediction using the duration data.
 
-#### Step 3: Prediction Based on Duration
+We would now like to make our prediction based on the the known duration of the ride:
 
-Let us now try to improve our prediction using the duration data. We would now like to make our prediction based on the the known duration of the ride, i.e., we would like to predict:
-
+I.e., we would like to predict:
 $$
 \hat{y}\left(x\right)=\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \ p_{Y|X}\left(y|x\right)
 $$
 
-Which is equivalent to:
+- Given the input data $x$ of the specific ride, what is it $y$ 
+- Instead of **predicting the same value** $\hat y$ for all the rides,
+  we predict a **prediction function** $\hat y(x)$
 
+---new slide---
+
+The prediction is equivalent to:
 $$
 \hat{y}\left(x\right)
 =\underset{y\in\left\lbrace 0,1\right\rbrace}{\arg\max}\ \  p_{Y|X}\left(y|x\right)
@@ -379,7 +451,7 @@ $$
 \end{cases}
 $$
 
-We can will use Bayes rule:
+We can use Bayes rule:
 
 $$
 p_{Y|X}\left(y|x\right)=\frac{p_{X|Y}\left(x|y\right)\cdot p_Y\left(y\right)}{p_X\left(x\right)}
@@ -391,11 +463,25 @@ $$
 p_{Y|X}\left(1|x\right)\overset{?}{\geq}p_{Y|X}\left(0|x\right) \\
 \Leftrightarrow
 \frac{p_{X|Y}\left(x|1\right)\cdot p_Y\left(1\right)}{p_X\left(x\right)}\overset{?}{\geq}\frac{p_{X|Y}\left(x|0\right)\cdot p_Y\left(0\right)}{p_X\left(x\right)} \\
-\Leftrightarrow
+\Leftrightarrow 
 p_{X|Y}\left(x|1\right)\cdot p_Y\left(1\right)\overset{?}{\geq}p_{X|Y}\left(x|0\right)\cdot p_Y\left(0\right)
 $$
 
-Since we have a method for calculating $$p_Y\left(y\right)$$ and $$p_{X\lvert Y}\left(x\lvert y\right)$$ we can evaluate the above inequality for any given $$x$$. Let us calculate the prediction over a grid of durations:
+---new slide---
+
+- Calculate $p_{Y\mid X}(y\mid x)$:
+
+  - Use Bayes rule.
+  - Calculate $$p_Y\left(y\right)$$.
+  - Calculate $$p_{X\lvert Y}\left(x\lvert y\right)$$.
+
+- For any given $$x$$, evaluate the following equality over a grid of durations:
+
+  - $$
+    p_{X|Y}\left(x|1\right)\cdot p_Y\left(1\right)\overset{?}{\geq}p_{X|Y}\left(x|0\right)\cdot p_Y\left(0\right)
+    $$
+
+- 
 
 ![prediction](./media/prediction.png)
 
@@ -410,16 +496,15 @@ $$
 \end{cases}
 $$
 
-
-
 ---new slide---
 
-
-
-#### ⏱️ Performance evaluation - Based on Duration
+### ⏱️ Performance evaluation - Based on Duration
 
 Let us test our full prediction method on the test set:
 
-The test risk is: $$R_\text{test}\{ \hat{y}(x) \}=0.46$$
+- The test risk is: $$R_\text{test}\{ \hat{y}(x) \}=0.46$$
 
-We were able to slightly improve our prediction by using the ride duration. As we add more data fildes such as the length of the ride, the location, etc. we will be able to further improve our prediction.
+- We were able to slightly improve our prediction by using the ride duration.
+
+- As we add more data fields such as the length of the ride, the location, etc., 
+  we will be able to further improve our prediction.
