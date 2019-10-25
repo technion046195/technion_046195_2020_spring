@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-{% capture collection_name %}{{page.collection}}{% endcapture %}
-{% if page.collection %}
-  {% assign document = site[collection_name] | sort: 'number' %}
+  {% capture collection_name %}{{page.collection}}{% endcapture %}
+  {% if page.collection %}
+    {% assign document = site[collection_name] | sort: 'number' %}
     {% assign document_filt = "" | split: "," %}
     {% for link in document  %}{% unless link.ignore %}
       {% assign document_filt = document_filt | push: link %}
@@ -16,7 +16,7 @@
         {% assign next_page = document_filt[forloop.index] %}
       {% endunless %}
     {% endif %}{% assign prev = link %}{% endfor %}
-{% endif %}
+  {% endif %}
   <title>{{ site.data.general.course_number }} - {{ site.data.general.course_title }}</title>
   <!-- Meta -->
   <meta charset="utf-8">
@@ -57,12 +57,14 @@
             </li>
           {% endif %}
           {% assign slides_md_path = page.path | remove: '.md' | append: '_slides.md' %}
-          {% assign slides_md_file = nil %}
+          {% assign uri_args = nil %}
           {% for file in site.documents %}{% if file.path == slides_md_path %}
-              {% assign slides_md_file = site.baseurl | append: page.url | remove: '.html' | append: '_slides.md' %}
+              {% assign filename = site.baseurl | append: page.url | remove: '.html' | append: '_slides.md' | uri_encode %}
+              {% assign uri_args = uri_args | append: 'md_file=' | append: filename %}
           {% endif %}{% endfor %}
-          <li class="nav-item"{% unless slides_md_file %} style="display:none"{% endunless %}>
-            <a class="nav-link int-nav-link" href="{{ site.baseurl }}/static/slides.html?md_file={{ slides_md_file | uri_encode }}&type={{ page.type }}&number={{ page.number }}&title={{ page.title | uri_escape }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
+          <li class="nav-item"{% unless uri_args %} style="display:none"{% endunless %}>
+            <a class="nav-link" href="{{ site.baseurl }}/static/slides.html?{{ uri_args }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
+
           </li>
           <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle int-nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
