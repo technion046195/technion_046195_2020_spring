@@ -1,18 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
 {% capture collection_name %}{{page.collection}}{% endcapture %}
 {% if page.collection %}
   {% assign document = site[collection_name] | sort: 'number' %}
-  {% for links in document  %}{% if links.title == page.title %}
+    {% assign document_filt = "" | split: "," %}
+    {% for link in document  %}{% unless link.ignore %}
+      {% assign document_filt = document_filt | push: link %}
+    {% endunless %}{% endfor %}
+    {% for link in document_filt %}{% if link.title == page.title %}
       {% unless forloop.first %}
         {% assign prev_page = prev %}
       {% endunless %}
       {% unless forloop.last %}
-        {% assign next_page = document[forloop.index] %}
+        {% assign next_page = document_filt[forloop.index] %}
       {% endunless %}
-  {% endif %}{% assign prev = links %}{% endfor %}
+    {% endif %}{% assign prev = link %}{% endfor %}
 {% endif %}
-<!doctype html>
-<html lang="en">
-<head>
   <title>{{ site.data.general.course_number }} - {{ site.data.general.course_title }}</title>
   <!-- Meta -->
   <meta charset="utf-8">
