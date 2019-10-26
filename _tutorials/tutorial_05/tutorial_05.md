@@ -455,7 +455,6 @@ Let us add the loop/iterations over the hyper-parameters to our workflow
 
 ![png](figs/workflow_clustering.png)
 
-## ⚙️ Learning
 
 ### ✍️ Exercise 5.2
 
@@ -491,7 +490,7 @@ The validation risk is: $$0.097$$
 ![png](figs/output_40_2.png)
 
 
-## ⏱️ Performance evaluation
+#### Performance evaluation
 The test risk is: $$0.087$$
 
 
@@ -521,7 +520,7 @@ The validation risk is: $$0.09$$
 
 ![png](figs/output_47_2.png)
 
-#### ⏱️ Performance evaluation
+#### Performance evaluation
 
 The test risk is: $$0.079$$
 
