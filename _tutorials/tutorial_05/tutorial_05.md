@@ -47,29 +47,7 @@ We would like to help the medical crew make the correct diagnostic by giving the
 
 ## 🕵️ Data Inspection
 
-We will start by loading the data and taking a look at it by printing out the 10 first rows.
-
-
-```python
-data_file = 'https://technion046195.github.io/semester_2019_spring/datasets/breast_cancer.csv'
-
-## Loading the data
-dataset = pd.read_csv(data_file)
-
-## Print the number of rows in the data set
-number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
-
-## Show the first 10 rows
-dataset.head(10)
-```
-
-
-Number of rows in the dataset: $$N=569$$
-
-
-
-
+After loading the data, let take a look at it by printing out the 10 first rows.
 
 <div>
 <style scoped>
@@ -358,6 +336,7 @@ Number of rows in the dataset: $$N=569$$
 <p>10 rows × 32 columns</p>
 </div>
 
+Number of rows in the dataset: $$N=569$$
 
 
 ## The Data Fields and Types
@@ -370,83 +349,28 @@ For simplicity we will not work with all the data columns and will limit ourselv
 
 (A full description for each of the other columns can be found [here](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.names))
 
-###  📉 Some Plots
+###  📉 Dataset Inspection Plots
 
 The number of malignant and benign samples in the dataset
 
-
-```python
-fig, ax = plt.subplots()
-dataset.groupby('diagnosis').size().plot.bar(ax=ax)
-ax.set_title('Diagnosis')
-ax.set_xlabel('diagnosis')
-ax.set_ylabel('Number of samples');
-```
-
-
-![png](output_14_0.png)
+![png](figs/output_14_0.png)
 
 
 Distribution of samples as a function of the measured values
 
 
-```python
-fig, ax = plt.subplots(figsize=(5, 3))
-ax.hist(dataset.query('diagnosis == "M"')['radius_mean'].values, bins=20, alpha=0.5, label='M')
-ax.hist(dataset.query('diagnosis == "B"')['radius_mean'].values, bins=20, alpha=0.5, label='B')
-ax.set_title('Radius Mean')
-ax.set_xlabel('Radius')
-ax.set_ylabel('Number of samples');
-ax.legend()
-
-fig, ax = plt.subplots(figsize=(5, 3))
-ax.hist(dataset.query('diagnosis == "M"')['texture_mean'].values, bins=20, alpha=0.5, label='M')
-ax.hist(dataset.query('diagnosis == "B"')['texture_mean'].values, bins=20, alpha=0.5, label='B')
-ax.set_title('Texture Mean')
-ax.set_xlabel('Gray levels STD')
-ax.set_ylabel('Number of samples');
-ax.legend();
-```
-
-
-![png](output_16_0.png)
+![png](figs/output_16_0.png)
 
 
 
-![png](output_16_1.png)
-
+![png](figs/output_16_1.png)
 
 And in a 2D plot
 
-
-```python
-fig, ax = plt.subplots()
-ax.grid(True)
-ax.axis('equal')
-
-ax.plot(dataset.query('diagnosis == "M"')['radius_mean'].values, 
-        dataset.query('diagnosis == "M"')['texture_mean'].values,
-        '.r', label='M')
-ax.plot(dataset.query('diagnosis == "B"')['radius_mean'].values, 
-        dataset.query('diagnosis == "B"')['texture_mean'].values,
-        '.b', label='B')
-ax.legend()
-ax.set_title('Radius Mean vs. Texture Mean')
-ax.set_xlabel('Radius')
-ax.set_ylabel('Gray levels STD');
-```
-
-
-![png](output_18_0.png)
+![png](figs/output_18_0.png)
 
 
 ## 📜 Problem Definition
-
-### The Underlying System
-
-It is usually convenient to describe supervised problems using conditional probability, where the label is generated first from the label's distribution, and then the measured data is generated based upon a distribution conditioned by the label:
-
-<center><img width="500px" src="../media/diagrams/breast_cancer_process.png?"/></center>
 
 ### The Task and the Goal
 
@@ -462,27 +386,8 @@ $$
 
 ### 📚 Splitting the dataset
 
+By the given dataset, we want to split the data to two sets, train set - $$\{\boldsymbol{X}_{train},\boldsymbol{Y}_{train}\}$$ and test set - $$\{\boldsymbol{X}_{test},\boldsymbol{Y}_{test}\}$$ in order to train our model and evaluate the performance.
 
-```python
-n_samples = len(dataset)
-
-## Generate a random generator with a fixed seed (this is important to make our result reproducible)
-rand_gen = np.random.RandomState(0)
-
-## Generating a vector of indices
-indices = np.arange(n_samples)
-
-## Shuffle the indices
-rand_gen.shuffle(indices)
-
-## Split the indices into 80% train / 20% test
-n_samples_train = int(n_samples * 0.8)
-train_indices = indices[:n_samples_train]
-test_indices = indices[n_samples_train:]
-
-train_set = dataset.iloc[train_indices]
-test_set = dataset.iloc[test_indices]
-```
 
 ## 💡 Model & Learning Method Suggestion 1: 1-NN
 
@@ -495,43 +400,8 @@ Let us plot the prediction function.
 We will also add the Voronoi Diagram to it using the [Voronoi](https://docs.scipy.org/doc/scipy-0.18.1/reference/generated/scipy.spatial.Voronoi.html) and [voronoi_plot_2d](https://docs.scipy.org/doc/scipy-0.18.1/reference/generated/scipy.spatial.voronoi_plot_2d.html) function from the SciPy package
 
 
-```python
-## Define x & y
-x = train_set[['radius_mean', 'texture_mean']].values
-y = train_set['diagnosis'].values == 'M'
 
-## Import Voronoi and voronoi_plot_2d
-from scipy.spatial import Voronoi, voronoi_plot_2d
-
-## Add some far point to make all cells colsed cell (for ploting only)
-x2 = np.concatenate([x, [[0, 1e3], [0, -1e3], [1e3, 0], [1e3, 0]]], axis=0)
-y2 = np.concatenate([y, [0, 0, 0, 0]], axis=0)
-
-# generate Voronoi tessellation
-vor = Voronoi(x)
-
-# plot Voronoi diagram, and coloer according to labels
-fig, ax = plt.subplots(figsize=(10, 10))
-
-voronoi_plot_2d(ax=ax, vor=vor, show_points=False, show_vertices=False, s=1)
-ax.set_xlim([5, 35])
-ax.set_ylim([5, 35])
-
-vor = Voronoi(x2)
-
-for r in range(len(vor.point_region)):
-    region = vor.regions[vor.point_region[r]]
-    if not -1 in region:
-        polygon = [vor.vertices[i] for i in region]
-        plt.fill(*zip(*polygon), color=('r' if y2[r] else 'b'))
-plt.plot(x[:, 0], x[:, 1], '.k', markersize=3);
-ax.set_title('Voronoi Diagram')
-ax.set_xlabel('Radius')
-ax.set_ylabel('Gray levels STD');
-```
-
-
-![png](output_25_0.png)
+![png](figs/output_25_0.png)
 
 
 ### ✍️ Exercise 5.1
@@ -549,21 +419,6 @@ def one_nn(x, stored_x, stored_y):
 ```
 
 ## ⏱️ Performance evaluation
-
-
-```python
-## Define x & y for the test set
-x_test = test_set[['radius_mean', 'texture_mean']].values
-y_test = test_set['diagnosis'].values == 'M'
-
-## Initilize the predictions vector
-predictions = np.zeros((len(x_test)))
-for i in range(len(predictions)):
-    predictions[i] = one_nn(x_test[i], x, y)
-
-test_risk = (y_test != predictions).mean()
-print_math('The test risk is: $${:.2}$$'.format(test_risk))
-```
 
 
 The test risk is: $$0.14$$
@@ -598,7 +453,7 @@ In many other cases we will simply start by setting the hyper-parameters manuall
 
 Let us add the loop/iterations over the hyper-parameters to our workflow
 
-<center><img src="../media/diagrams/workflow/workflow_clustering.png" width="300px" style="width:300px"/></center>
+![png](figs/workflow_clustering.png)
 
 ## ⚙️ Learning
 
@@ -610,52 +465,15 @@ Use SciKit-Learn's [KNeighborsClassifier](https://scikit-learn.org/stable/module
 
 #### Solution 5.2
 
-
-```python
-## import KNeighborsClassifier
-from sklearn.neighbors import KNeighborsClassifier
-
-k_array = np.arange(1, 101)
-risk_array = np.zeros((len(k_array), ))
-
-for i_k in range(len(k_array)):
-    knn = KNeighborsClassifier(n_neighbors=k_array[i_k])
-    knn.fit(x, y)
-    
-    predictions = knn.predict(x_test)
-
-    risk_array[i_k] = (y_test != predictions).mean()
-
-optimal_index = np.argmin(risk_array)
-optimal_k = k_array[optimal_index]
-optimal_risk = risk_array[optimal_index]
-
-print_math('The optimal $$K$$ is $$K={}$$'.format(optimal_k))
-print_math('The test risk is: $${:.2}$$'.format(optimal_risk))
-
-fig, ax = plt.subplots()
-ax.plot(k_array, risk_array)
-ax.plot(optimal_k, optimal_risk, '.r')
-ax.set_xlabel('$$K$$')
-ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $$K$$');
-```
-
-
 The optimal $$K$$ is $$K=12$$
-
-
-
 The test risk is: $$0.061$$
 
-
-
-![png](output_35_2.png)
+![png](figs/output_35_2.png)
 
 
 ## Train-Validation-Test Separation
 
-In the above example, we have selected the optimal $$K$$ based upon the risk which was calculated using the test set. As we stated before this situation is problematic since the risk over the test set would be too optimistic due to overfitting.
+In the above example, we have selected the optimal $$K$$ based upon the risk which was calculated using the test set. As we stated before this situation is **problematic** since the risk over the test set would be too optimistic due to **overfitting**.
 
 The solution to this problem is to divide the dataset once more. Therefore in cases, where we would also be required to optimize over some hyper-parameters, we would divide our data into three sets: a train-set a validation-set and a test-set.
 
@@ -667,97 +485,17 @@ Repeat the learning process using the 3-fold split.
 
 #### Solution 5.3
 
-We shall start by splitting the data
-
-
-```python
-## Generate a random generator with a fixed seed
-rand_gen = np.random.RandomState(0)
-
-## Generating a vector of indices
-indices = np.arange(n_samples)
-
-## Shuffle the indices
-rand_gen.shuffle(indices)
-
-## Split the indices into 60% train / 20% validation / 20% test
-n_samples_train = int(n_samples * 0.6)
-n_samples_validation = int(n_samples * 0.2)
-n_samples_test = n_samples - n_samples_train
-train_indices = indices[:n_samples_train]
-validation_indices = indices[n_samples_train:(n_samples_train + n_samples_validation)]
-test_indices = indices[(n_samples_train + n_samples_validation):]
-
-train_set = dataset.iloc[train_indices]
-x = train_set[['radius_mean', 'texture_mean']].values
-y = train_set['diagnosis'].values == 'M'
-
-validation_set = dataset.iloc[validation_indices]
-x_validation = validation_set[['radius_mean', 'texture_mean']].values
-y_validation = validation_set['diagnosis'].values == 'M'
-
-test_set = dataset.iloc[test_indices]
-x_test = test_set[['radius_mean', 'texture_mean']].values
-y_test = test_set['diagnosis'].values == 'M'
-```
-
-
-```python
-risk_array = np.zeros((len(k_array), ))
-
-for i_k in range(len(k_array)):
-    knn = KNeighborsClassifier(n_neighbors=k_array[i_k])
-    knn.fit(x, y)
-    
-    predictions = knn.predict(x_validation)
-
-    risk_array[i_k] = (y_validation != predictions).mean()
-
-optimal_index = np.argmin(risk_array)
-optimal_k = k_array[optimal_index]
-optimal_risk = risk_array[optimal_index]
-
-print_math('The optimal $$K$$ is $$K={}$$'.format(optimal_k))
-print_math('The validation risk is: $${:.2}$$'.format(optimal_risk))
-
-fig, ax = plt.subplots()
-ax.plot(k_array, risk_array)
-ax.plot(optimal_k, optimal_risk, '.r')
-ax.set_xlabel('$$K$$')
-ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $$K$$');
-```
-
-
 The optimal $$K$$ is $$K=19$$
-
-
-
 The validation risk is: $$0.097$$
 
-
-
-![png](output_40_2.png)
+![png](figs/output_40_2.png)
 
 
 ## ⏱️ Performance evaluation
-
-
-```python
-knn = KNeighborsClassifier(n_neighbors=optimal_k)
-knn.fit(x, y)
-
-predictions = knn.predict(x_test)
-test_risk = (y_test != predictions).mean()
-print_math('The test risk is: $${:.2}$$'.format(test_risk))
-```
-
-
 The test risk is: $$0.087$$
 
 
 ## Cross-Validation
-
 When using a 60%-20%-20% split we are in fact using only 60% of the collected data to train our model which is a waste of good data. Cross-validation attempts to partially solve this issue. In Cross-validation we do not set a fixed portion of the data to be a validation set and instead we split all the training data (all the data which is not in the test set) in to $$k$$ equal groups and evaluate the risk using the following method:
 
 - For some given hyper-parameters repeat the process of learning and evaluating the risk each time using a different group as the validation group.
@@ -766,8 +504,6 @@ When using a 60%-20%-20% split we are in fact using only 60% of the collected da
 <center><img src="https://scikit-learn.org/stable/_images/grid_search_cross_validation.png" width="700px" style="width:700px"/></center>
 
 *Image taken from <a href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation">SciKit Learn</a>*
-
-## ⚙️ Learning
 
 ### ✍️ Exercise 5.4
 
@@ -779,101 +515,16 @@ Use SciKit-Learn's [cross_val_score](https://scikit-learn.org/stable/modules/gen
 
 We will return to our original 80%-20% split
 
-
-```python
-## Generate a random generator with a fixed seed (this is important to make our result reproducible)
-rand_gen = np.random.RandomState(0)
-
-## Generating a vector of indices
-indices = np.arange(n_samples)
-
-## Shuffle the indices
-rand_gen.shuffle(indices)
-
-## Split the indices into 80% train / 20% test
-n_samples_train = int(n_samples * 0.8)
-train_indices = indices[:n_samples_train]
-test_indices = indices[n_samples_train:]
-
-train_set = dataset.iloc[train_indices]
-test_set = dataset.iloc[test_indices]
-
-train_set = dataset.iloc[train_indices]
-x = train_set[['radius_mean', 'texture_mean']].values
-y = train_set['diagnosis'].values == 'M'
-
-test_set = dataset.iloc[test_indices]
-x_test = test_set[['radius_mean', 'texture_mean']].values
-y_test = test_set['diagnosis'].values == 'M'
-```
-
-
-```python
-## import cross_val_score
-from sklearn.model_selection import cross_val_score
-
-number_of_cross_validation_groups = 4
-risk_array = np.zeros((len(k_array), ))
-
-for i_k in range(len(k_array)):
-    knn = KNeighborsClassifier(n_neighbors=k_array[i_k])
-    
-    risks = 1 - cross_val_score(knn, x, y, cv=number_of_cross_validation_groups)
-    
-    risk_array[i_k] = risks.mean()
-
-optimal_index = np.argmin(risk_array)
-optimal_k = k_array[optimal_index]
-optimal_risk = risk_array[optimal_index]
-
-print_math('The optimal $$K$$ is $$K={}$$'.format(optimal_k))
-print_math('The validation risk is: $${:.2}$$'.format(optimal_risk))
-
-fig, ax = plt.subplots()
-ax.plot(k_array, risk_array)
-ax.plot(optimal_k, optimal_risk, '.r')
-ax.set_xlabel('$$K$$')
-ax.set_ylabel('Risk')
-ax.set_title('Risk vs. $$K$$');
-```
-
-
 The optimal $$K$$ is $$K=22$$
-
-
-
 The validation risk is: $$0.09$$
 
 
-
-![png](output_47_2.png)
-
+![png](figs/output_47_2.png)
 
 ## ⏱️ Performance evaluation
 
-
-```python
-knn = KNeighborsClassifier(n_neighbors=optimal_k)
-knn.fit(x, y)
-
-predictions = knn.predict(x_test)
-test_risk = (y_test != predictions).mean()
-print_math('The test risk is: $${:.2}$$'.format(test_risk))
-```
-
-
 The test risk is: $$0.079$$
 
-
-
-```python
-%%html
 <link rel="stylesheet" href="../css/style.css"> <!--Setting styles - You can simply ignore this line-->
-```
-
-
-<link rel="stylesheet" href="../css/style.css"> <!--Setting styles - You can simply ignore this line-->
-
-
 
 {% endraw %}
