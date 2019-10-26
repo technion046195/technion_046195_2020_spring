@@ -68,7 +68,7 @@
       menu: {
         loadIcons: false,
         custom: [
-          { title: 'Other', icon: '<i class="fas fa-cog"></i>', content: '<ul><li><a href="' + window.location.search + '&print-pdf"<i class="fas fa-print">Print</a></li></ul>' }
+          { title: 'Other', icon: '<i class="fas fa-cog"></i>', content: '<ul><li><a href="' + window.location.href.split("?")[0].split("#")[0] + '?print-pdf"<i class="fas fa-print">Print</a></li></ul>' }
           ]
         }
     });
