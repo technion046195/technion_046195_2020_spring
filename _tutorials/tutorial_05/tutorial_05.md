@@ -418,7 +418,7 @@ def one_nn(x, stored_x, stored_y):
     return stored_y[nn_index]
 ```
 
-## ⏱️ Performance evaluation
+#### ⏱️ Performance evaluation
 
 
 The test risk is: $$0.14$$
@@ -521,7 +521,7 @@ The validation risk is: $$0.09$$
 
 ![png](figs/output_47_2.png)
 
-## ⏱️ Performance evaluation
+#### ⏱️ Performance evaluation
 
 The test risk is: $$0.079$$
 
