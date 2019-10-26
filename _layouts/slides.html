@@ -1,0 +1,133 @@
+---
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Slides</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="shortcut icon" type="image/png" href="{{ site.baseurl }}/favicon.ico">
+
+  <!-- Import Reveal's css-->
+  <link rel="stylesheet" href="{{ site.baseurl }}/lib/reveal/reveal.min.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/lib/reveal/themes/black.css">
+
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/lib/highlight_js_themes/github.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '{{ site.baseurl }}/lib/reveal/plugins/print-pdf/pdf.css' : '{{ site.baseurl }}/lib/reveal/plugins/print-pdf/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <style>
+    .reveal .slides {
+      text-align: left;
+    }
+    .reveal .slides section>* {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  </style>
+
+  <script src="{{ site.baseurl }}/lib/reveal/head.min.js"></script>
+  <script src="{{ site.baseurl }}/lib/reveal/reveal.min.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides main-content">
+      <section class="title-slide center" markdown="1">
+        <h1>Tutorial {{ page.number }}<br>{{ page.title }}</h1>
+      </section>
+      {{ content }}
+    </div>
+  </div>
+
+  <script>
+    Reveal.initialize({
+      width: 1440,
+      height: 900,
+      center: false, 
+      slideNumber: true,
+      transition: 'slide',
+      history: true,
+      dependencies: [
+        { src: '{{ site.baseurl }}/lib/reveal/plugins/markdown/marked.js' },
+        { src: '{{ site.baseurl }}/lib/reveal/plugins/markdown/markdown.js' },
+        { src: '{{ site.baseurl }}/lib/reveal/plugins/math/math.js', async: true },
+        { src: '{{ site.baseurl }}/lib/reveal/plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: '{{ site.baseurl }}/lib/reveal/plugins/menu/menu.js' }
+        ],
+      menu: {
+        loadIcons: false,
+        custom: [
+          { title: 'Other', icon: '<i class="fas fa-cog"></i>', content: '<ul><li><a href="' + window.location.search + '&print-pdf"<i class="fas fa-print">Print</a></li></ul>' }
+          ]
+        }
+    });
+  </script>
+
+  <!-- <script>
+    function set_svg_layer(svg_id, layer) {
+        let elements = document.querySelector("#" + svg_id).contentDocument.querySelectorAll("[data-layers]")
+        for (var i=0; i<elements.length; i++) {
+            el = elements[i];
+            if (el.getAttribute("data-layers").split(',').indexOf(layer) >= 0) {
+              el.style.display="";
+            } else {
+              el.style.display="none";
+            }
+        }
+    }
+
+    function get_svg_layers(el) {
+      var layers = {};
+       if (el.hasAttribute("data-svg-layers")) {
+         let svg_layers = el.getAttribute("data-svg-layers").split(",");
+         for (var i=0; i<svg_layers.length; i++) {
+           let svg_layer = svg_layers[i].split(":");
+           let svg_id = svg_layer[0];
+           let layer = svg_layer[1];
+           layers[svg_id] = layer
+         }
+        }
+
+      return layers
+    }
+
+    set_svg_layers_by_position = function( event ) {
+      if (!Reveal.isReady()) {return }
+      let slide = Reveal.getCurrentSlide();
+      if (!slide.hasAttribute("data-svg-layers")) { return }
+
+      let index = Reveal.getIndices();
+      let fragments = slide.querySelectorAll(".fragment");
+      let layers = get_svg_layers(slide);
+      for (svg_id in layers) {
+        let fragmant_index = index.f;
+        while (fragmant_index > -1) {
+          let layers2 = get_svg_layers(fragments[fragmant_index]);
+          if (layers2[svg_id]) {
+            layers[svg_id] = layers2[svg_id];
+            break
+          }
+          fragmant_index--;
+        }
+        set_svg_layer(svg_id, layers[svg_id])
+      }
+    }
+
+    Reveal.addEventListener('slidechanged', set_svg_layers_by_position);
+    Reveal.addEventListener('fragmentshown', set_svg_layers_by_position);
+    Reveal.addEventListener('fragmenthidden', set_svg_layers_by_position);
+
+  </script> -->
+</body>
+</html>
