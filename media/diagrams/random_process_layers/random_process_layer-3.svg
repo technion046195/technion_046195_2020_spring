@@ -6,7 +6,7 @@
         .layer-0 {
             display: none
         }
-        .<!-- set_layer -->layer-0<!-- end_set_layer -->
+        .<!-- set_layer -->layer-3<!-- end_set_layer -->
         {
             display: block
         }
