@@ -57,13 +57,12 @@
             </li>
           {% endif %}
           {% assign slides_md_path = page.path | remove: '.md' | append: '_slides.md' %}
-          {% assign uri_args = nil %}
+          {% assign slides_url = nil %}
           {% for file in site.documents %}{% if file.path == slides_md_path %}
-              {% assign filename = site.baseurl | append: page.url | remove: '.html' | append: '_slides.md' | uri_encode %}
-              {% assign uri_args = uri_args | append: 'md_file=' | append: filename %}
+              {% assign slides_url = file.url %}
           {% endif %}{% endfor %}
-          <li class="nav-item"{% unless uri_args %} style="display:none"{% endunless %}>
-            <a class="nav-link" href="{{ site.baseurl }}/static/slides.html?{{ uri_args }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
+          <li class="nav-item"{% unless slides_url %} style="display:none"{% endunless %}>
+            <a class="nav-link" href="{{ site.baseurl }}{{ slides_url }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
 
           </li>
           <!-- <li class="nav-item dropdown">

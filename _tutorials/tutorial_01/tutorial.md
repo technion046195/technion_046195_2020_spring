@@ -23,10 +23,10 @@ Below is a table and a schematic diagram of some probabilistic concepts which we
 | **A sample** | $$\omega$$ | A single outcome of the process |  Some specific spill shape |
 | **Sample space** | $$\Omega$$ | The space of all possible outcomes of the given process. $$\Omega=\left\lbrace\forall\omega\right\rbrace$$ |  The space of all possible spill shapes |
 | **Random Variables (RV)** | $$X\left(\omega\right)$$,$$Y\left(\omega\right)$$,... | A function $$X:\Omega\rightarrow\mathbb{R}$$ which assigns a real number to a given sample | A function which returns the perimeter of a spill:<br>$$X_1\left(\omega\right)$$<br>A function which returns the area of a spill:<br> $$X_2\left(\omega\right)$$ |
-| **An event**<br><br><br><br> | $$A$$,$$B$$,... | A collection of events, i.e., a subset of the sample space $$A\subseteq\Omega$$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$$A=\left\lbrace\omega: X_1\left(\omega\right)<2 \right\rbrace$$<br>The collection of all spills with an area larger than 1:<br>$$B=\left\lbrace\omega: X_2\left(\omega\right)>1 \right\rbrace$$ |
-| **Event space**<br><br><br><br> | $$\mathcal{F}$$ | A space of events. $$A\in\mathcal{F}$$  | The space of all possible collections of spills shape |
-| **Probability measure**<br><br><br><br> | $$Pr\left(A\right)$$ | A function $$Pr:\mathcal{F}\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in some event $$A$$ | $$Pr\left(A\right)=Pr\left(X_1<2\right)=0.1$$<br>$$Pr\left(X_1<0\right)=Pr\left(\emptyset\right)=0$$<br>$$Pr\left(0\leq X_1\right)=Pr\left(\Omega\right)=1$$<br>$$Pr\left(A\cup B\right)=Pr\left(X_1<2\ \text{or}\ X_2>1\right)=0.6$$<br>$$Pr\left(A\cap B\right)=Pr\left(X_1<2\ \text{and}\ X_2>1\right)=0.01$$ |
-| **Conditional probability measure**<br><br><br><br> | $$Pr\left(AǀB\right)$$ | A function $$Pr:\mathcal{F}_1\times\mathcal{F}_2\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in event $$A$$ given that it is an element in event $$B$$ | The probability of a spill to have a diameter smaller than 2, given that it has an area larger than 1:<br>$$Pr\left(AǀB\right)=Pr\left(X_1<2ǀX_2>1\right)=0.02$$ |
+| **An event** | $$A$$,$$B$$,... | A collection of events, i.e., a subset of the sample space $$A\subseteq\Omega$$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$$A=\left\lbrace\omega: X_1\left(\omega\right)<2 \right\rbrace$$<br>The collection of all spills with an area larger than 1:<br>$$B=\left\lbrace\omega: X_2\left(\omega\right)>1 \right\rbrace$$ |
+| **Event space** | $$\mathcal{F}$$ | A space of events. $$A\in\mathcal{F}$$  | The space of all possible collections of spills shape |
+| **Probability measure** | $$Pr\left(A\right)$$ | A function $$Pr:\mathcal{F}\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in some event $$A$$ | $$Pr\left(A\right)=Pr\left(X_1<2\right)=0.1$$<br>$$Pr\left(X_1<0\right)=Pr\left(\emptyset\right)=0$$<br>$$Pr\left(0\leq X_1\right)=Pr\left(\Omega\right)=1$$<br>$$Pr\left(A\cup B\right)=Pr\left(X_1<2\ \text{or}\ X_2>1\right)=0.6$$<br>$$Pr\left(A\cap B\right)=Pr\left(X_1<2\ \text{and}\ X_2>1\right)=0.01$$ |
+| **Conditional probability measure** | $$Pr\left(AǀB\right)$$ | A function $$Pr:\mathcal{F}_1\times\mathcal{F}_2\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in event $$A$$ given that it is an element in event $$B$$ | The probability of a spill to have a diameter smaller than 2, given that it has an area larger than 1:<br>$$Pr\left(AǀB\right)=Pr\left(X_1<2ǀX_2>1\right)=0.02$$ |
 
 - In the last two rows, we have used $$X<2$$ as a shorthand for $$\left\lbrace\omega:X\left(\omega\right)<2\right\rbrace$$. This is, in fact, a common shorthand writing which we will be using from here on.
 
@@ -37,7 +37,7 @@ Note that by definition, any function of a random variable (RV) is also an RV. F
 
 #### Realizations
 
-The outcome of an RV (random variable) for a given sample is called a realization. We will use upper case letters do denote RVs and the equivalent lower case latter to denote their realization. I.e., for the RV $$X$$ we will have: $x=X\left(\omega\right)$$
+The outcome of an RV (random variable) for a given sample is called a realization. We will use upper case letters do denote RVs and the equivalent lower case latter to denote their realization. I.e., for the RV $$X$$ we will have: $$x=X\left(\omega\right)$$
 
 **Slight abuse of notation**: In many cases, we will use the name samples to refer to the realizations (and not to the samples from the sample space).
 
@@ -56,8 +56,6 @@ and it's realization:
 $$
 \boldsymbol{x}=\left[x_1,x_2,\ldots,x_n\right]^T
 $$
-
-Except for the case of random vectors, we will use bold lower case letters to denote vectors.
 
 ### Toy Model: The 🍕 Pizza & Pancakes 🥞 Drive-Thru
 
@@ -222,9 +220,7 @@ We are given the following joint distribution of the number of slices and the nu
 
 ##### 💡 Solution
 
-We will denote the number of slices a customer bought by $X_1$ and the number of pancakes by $X_2$.
-
-**A**) The sum of all possible event should always be 1 therefor the missing value must be equal to:
+**A**) The sum of all possible event should always be 1, therefore the missing value must be equal to:
 
 $$
 p_{X,Y}\left(2,3\right) = 1 - \sum_{\left(x,y\right)\neq\left(2,3\right)} p_{X,Y}\left(x, y\right) = 0.05
@@ -287,7 +283,7 @@ p_{X\lvert L}\left(x,l=4.4\right)
 =\frac{p_{L\lvert X}\left(4.4\lvert X=x\right)p_X\left(x\right)}{\sum_{\tilde{x}} p_{L\lvert X}\left(4.4\lvert X=\tilde{x}\right)p_X\left(\tilde{x}\right)}
 $$
 
-We shell start by calculating the nominator, $$p_{L|X}\left(4.4\lvert X=x\right)p_X\left(x\right)$$:
+We shell start by calculating the nominator, $$p_{L\lvert X}\left(4.4\lvert X=x\right)p_X\left(x\right)$$:
 
 $$
 \begin{aligned}
@@ -307,7 +303,7 @@ p_{L|X}\left(4.4\lvert X=x\right)p_X\left(x\right)
 \end{aligned}
 $$
 
-And then we can easily calculate the denominator, which is in fact the normalization factor of the denominator:
+Now we can easily calculate the denominator, which is in fact the normalization factor of the nominator:
 
 $$
 p_L\left(4.4\right)=\sum_{\tilde{x}} p_{L\lvert X}\left(4.4\lvert X=\tilde{x}\right)p_X\left(\tilde{x}\right)=0.912
@@ -510,7 +506,7 @@ As it turns out that each of the above definitions results in a different predic
 
 ### 📉 The Loss and The Risk Functions
 
-It turns out that in most cases, we would like to define the optimal prediction as the prediction which minimizes, on average, some penalty function.
+It turns out that in most cases, we would like to define the optimal prediction as the prediction which minimizes, on average, some penalty function. Let us write it in a more formal way.
 
 Notations:
 
@@ -682,7 +678,7 @@ $$
 
 #### ✍️ Exercise 1.7  Heart Rate and Blinking
 
-A new research has found a connection between the blinking rate of a person and his heart rate. We will use $$X_1$$ to denote the RV of a person's heart rate and $$X_2$$ to denote a person's blinking rate. According to the research of the random vector $$X=\left[X_1,X_2\right]^T$$ can be roughly modeled using a multivariate normal distribution with the following parameters:
+A new research has found a connection between the blinking rate of a person and his heart rate. We will use $$X_1$$ to denote the RV of a person's heart rate and $$X_2$$ to denote a person's blinking rate. According to the research, the distribution of the random vector $$X=\left[X_1,X_2\right]^T$$ can be roughly modeled using a multivariate normal distribution with the following parameters:
 
 $$
 \boldsymbol{\mu} = \begin{bmatrix}70\\10\end{bmatrix}

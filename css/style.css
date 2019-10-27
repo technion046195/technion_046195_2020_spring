@@ -4,6 +4,7 @@
 /* Syntax highlighting theme */
 /* ========================= */
 @import url("{{ site.baseurl }}/lib/pygments_themes/monokai.css");
+@import url("{{ site.baseurl }}/lib/fonts/fontawesome/css/all.css");
 @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Racing+Sans+One&display=swap');
 
@@ -33,43 +34,44 @@ blockquote {
 
 
 h2 {
-    padding: 15px 15px;
-    border: 3px solid rgba(53,86,129, 0.5);
-    border-radius: 10px;
-    position: relative;  
-    text-align: center;
+    background: white !important;
+    padding: 15px 15px !important;
+    border: 3px solid rgba(53,86,129, 0.5) !important;
+    border-radius: 10px !important;
+    position: relative !important;  
+    text-align: center !important;
     font-size: 2.25em;
-    font-weight: 600;
-    color: #355681;
+    font-weight: 600 !important;
+    color: #355681 !important;
     margin: 1em 0 0.5em 0;
 }
 
 h3 {
-    background: rgba(53,86,129, 0.8);
+    background: rgba(53,86,129, 0.8) !important;
     padding: 10px 15px;
-    border-radius: 10px;
-    position: relative;
+    border-radius: 10px !important;
+    position: relative !important;
     font-size: 1.8em;
     font-weight: normal;
-    color: white;
+    color: white !important;
     margin: 1em 0 0.5em 0;
 }
 
 h4 {
-    margin: 1em 0 0.5em 0;
-    font-weight: 600;
-    font-family: 'Titillium Web', sans-serif;
-    position: relative;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+    margin: 1em 0 0.5em 0 !important;
+    font-weight: 600 !important;
+    font-family: 'Titillium Web', sans-serif !important;
+    position: relative !important;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.4) !important;
     font-size: 1.4em;
-    line-height: 40px;
-    color: #355681;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(53,86,129, 0.3);
+    line-height: 40px !important;
+    color: #355681 !important;
+    text-transform: uppercase !important;
+    border-bottom: 2px solid rgba(53,86,129, 0.8) !important;
 }
 
 h5 {
-    margin: 1em 0 0.5em 0;
+    margin: 1em 0 0.5em 0 !important;
     font-weight: 600;
     font-family: 'Titillium Web', sans-serif;
     position: relative;
@@ -82,10 +84,10 @@ h5 {
 
 /* Tables (taken from Pandas/Jupyter) */
 /* =========================== */
-
+  
 .main-content table {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
     border: none;
     border-collapse: collapse;
     border-spacing: 0;
@@ -132,14 +134,23 @@ h5 {
     background: #6192d39b;
 }
 
-.main-content img
-{
+.main-content img {
     margin: 0 auto;
     display: block;
 }
 
 /* Slides */
 /* ====== */
+
+.reveal .slide-background{
+    background-image: url({{  site.baseurl }}/media/black-board.jpg);
+    background-size: cover;
+}
+
+.reveal ul,
+.reveal ol {
+    padding-inline-start: 40px;
+}
 
 .reveal .title-slide h1{
     font-family:'KG Second Chances Sketch';
@@ -150,63 +161,12 @@ h5 {
 }
 
 .reveal h2 {
-    background: white;
-    padding: 15px 15px;
-    border: 3px solid rgba(53,86,129, 0.5);
-    border-radius: 10px;
-    position: relative;  
-    text-align: center;
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #355681;
-    margin: 1em 0 0.5em 0;
-    /* padding: 15px 15px;
-    border: 3px solid rgba(53,86,129, 0.5);
-    border-radius: 10px;
-    position: relative;  
-    text-align: center;
-    font-size: 2.25em;
-    font-weight: 600;
-    color: #355681;
-    margin: 1em 0 0.5em 0; */
-}
-
-.reveal h3 {
-    /* background: rgba(53,86,129, 0.8);
-    padding: 10px 15px;
-    border-radius: 10px;
-    position: relative;
-    font-size: 1.8em;
-    font-weight: normal;
-    color: white;
-    margin: 1em 0 0.5em 0; */
+    font-size: 1.3em !important;
 }
 
 .reveal h4 {
-    /* margin: 1em 0 0.5em 0;
-    font-weight: 600;
-    font-family: 'Titillium Web', sans-serif;
-    position: relative;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
-    font-size: 1.4em;
-    line-height: 40px;
-    color: #355681;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(53,86,129, 0.3); */
+    color: #678ece !important;
 }
-
-.reveal h5 {
-    /* margin: 1em 0 0.5em 0;
-    font-weight: 600;
-    font-family: 'Titillium Web', sans-serif;
-    position: relative;
-    font-size: 1.2em;
-    line-height: 20px;
-    color: #788699;
-    font-family: 'Muli', sans-serif; */
-}
-
-
 /* Images */
 .reveal .main-content section img {
     background:none !important;
@@ -222,4 +182,22 @@ h5 {
 /* Code Block */
 .reveal .main-content pre code {
     max-height: 700px !important;
+}
+/* .slide-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color :rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 5px 10px rgba(255, 255, 255, 0.7)
+}
+.slide-image img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+} */
+.reveal .main-content .slide-image img{
+    background-color :rgba(255, 255, 255, 0.7) !important;
+    margin-left: auto;
+    margin-right: auto
 }

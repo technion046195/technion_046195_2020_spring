@@ -4,25 +4,43 @@ Website: <https://technion046195.github.io/semester_2019_winter/>
 
 Full website (with hidden pages): <https://technion046195.github.io/semester_2019_winter/?full>
 
-## Setup
+## Running the Server Locally Using Docker
 
-Run setup.sh (works only on linux).
+- Install docker
 
-This will:
+``` bash
+if [ "$(lsb_release -r | awk '{print $2}')" == "14.04" ]; then
+    sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual  # allow Docker to use the aufs storage
+fi
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common  # allow apt to use a repository over HTTPS
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  # Add Docker’s official GPG key
+## Verify that the key fingerprint is 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88: sudo apt-key fingerprint 0EBFCD88
+ubuntu_codename="$(lsb_release -cs)"
+if [ "$ubuntu_codename" == "cosmic" ]; then
+    ubuntu_codename="bionic"
+fi
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $ubuntu_codename stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce
+## Test docker installation: sudo docker run hello-world
 
-- Create a Python virtual environment in a folder named venv.
-- Install all relevant python packages to the virtual environment according to the *requirements.txt* file.
-- Install Ruby + Bundler
-
-## Serve  Locally
-
-Run:
-
-```bash
-bundle exec jekyll serve --livereload
+sudo groupadd docker  # create a docker group
+sudo usermod -aG docker $USER  # Add user to docker group for using docker without sudo
 ```
 
-And go to: <localhost:4000>
+- Build the docker file once using the following command:
+
+``` bash
+docker build . -t course046195
+```
+
+- Then you can run the server using the following command:
+
+``` bash
+docker run --rm -it -v "$PWD:/app" -p 4444:4444 -p 35729:35729 course046195
+```
+
+- Open the browser at: <localhost:4444>
 
 ## Known Issus
 
