@@ -15,7 +15,6 @@
       {% if use_next %}
         {% assign next_page = link %}
         {% assign use_next = false %}
-        <script>console.log("{{ link.url }}")</script>
       {% endif %}
       {% if link.number == page.number %}
         {% assign prev_page = prev_page_tmp %}
@@ -98,7 +97,6 @@
     </main>
 
     <footer class="footer mt-auto py-3 bg-secondary text-center text-light">
-      {{ page.collection }}
       <div class="container">
         <a class="int-nav-link text-light" href="{{ site.baseurl }}/attributions.html">Attributions</a>
       </div>

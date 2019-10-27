@@ -858,19 +858,30 @@ $$
 \end{aligned}
 $$
 
-- $$\boldsymbol{x}$$ a scalar or a vector.
-- $$f$$ an arbitrary function.
-- $$g$$ and $$h$$ are optional additional constraints on $$\boldsymbol{x}$$.
+<br>
+
+- $$\boldsymbol{x}$$ is either a scalar or a vector.
+- $$f$$ an arbitrary function called the objective.
+- $$g_i$$s and $$h_i$$s are optional additional equality and inequality constraints.
+
+<br>
+
+Goal: to find $$\boldsymbol{x}*$$ which produces the minimal value of $$f\left(\boldsymbol{x}\right)$$ among all $$\boldsymbol{x}$$s which obey the constraints.
+
 
 </section><section markdown="1">
 
 ### 🔧 A Note About Optimization Problems - Cont.
 
-In this course, we will only solve such problems, in onr of 3 ways:
+In this course, we will care about 4 cases:
 
 <br>
 
-- Analytically by differentiating and comparing to zero (for simple functions).
+- No constraints and analytically solvable by differentiating and comparing to zero (for simple functions).
+
+<br>
+
+- With equality constraints and analytically solvable using Lagrange Multipliers.
 
 <br>
 
@@ -1107,4 +1118,54 @@ $$
 <br><br>
 
 This will always be true for symmetrical distributions such as the normal distribution.
+
+</section><section markdown="1">
+
+#### ✍️ Exercise 1.8  Lagrange Multipliers
+
+<br>
+
+Solve the following optimization problem:
+
+<br>
+
+$$
+\underset{p_1,p_2}{\arg\max}\ p_1\cdot p_2 \\
+\begin{aligned}
+\text{subject to}\quad
+& p_1 + p_2 = 1 \\
+\end{aligned}
+$$
+
+</section><section markdown="1">
+
+##### 💡 Solution
+
+We will introduce one Lagrange multiplier $$\lambda$$ and define the following Lagrangian:
+
+$$
+\mathcal{L}=p_1\cdot p_2 + \lambda \left(p_1 + p_2-1\right)
+$$
+
+<br>
+
+By differentiating and comparing to zero we get the following result:
+
+$$
+\begin{aligned}
+& \begin{cases}
+p_2+\lambda=0\\
+p_1+\lambda=0\\
+p_1+p_2=1\\
+\end{cases}\\
+\Rightarrow & \begin{cases}
+p_1-p_2=0\\
+p_1+p_2=1\\
+\end{cases}\\
+\Leftrightarrow & \begin{cases}
+p_2=\tfrac{1}{2}\\
+p_1=\tfrac{1}{2}\\
+\end{cases}
+\end{aligned}
+$$
 </section>

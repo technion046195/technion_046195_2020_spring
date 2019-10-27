@@ -543,12 +543,20 @@ $$
 \end{aligned}
 $$
 
-Where $$\boldsymbol{x}$$ can be either a scalar or a vector, $$f$$ an arbitrary function and $$g$$ and $$h$$ are optional additional constraints on $$\boldsymbol{x}$$.
+Where:
 
-The mathematical field of optimization is very broad and deals with finding methods for efficiently solving such problems. In this course, we will not dive into this field except for a single method called gradient descent, which we will present later in this course. In most cases, the optimization problems will be:
+- $$\boldsymbol{x}$$ is either a scalar or a vector.
+- $$f$$ is some arbitrary function, which is usually referred to as the objective function (but people also use many other names).
+- The $$g_i$$s and $$h_i$$s are optional additional equality and inequality constraints on $$\boldsymbol{x}$$.
 
-- Either analytically solvable by differentiating $$f\left(\boldsymbol{x}\right)$$ and comparing to zero.
-- Or cases where $$\boldsymbol{x}$$ is discrete and can only take a small finite set of values.
+Our goal is to fine the value of $$\boldsymbol{x}$$ which produces the minimal value of $$f\left(\boldsymbol{x}\right)$$ among all $$\boldsymbol{x}$$ which obey the constraints.
+
+The mathematical field of optimization is very broad and deals with finding various methods for efficiently solving such problems. In this course, we will not dive into this field except for a few simple cases:
+
+- The case where there are no constraints and the solution can be found analytically by differentiating $$f\left(\boldsymbol{x}\right)$$ and comparing to zero.
+- The case where there are only equality constraints ($$h_i$$s) and the solution can be found analytically by a technique called **Lagrange multipliers**, which we will present shortly.
+- The case where $$\boldsymbol{x}$$ is discrete and can only take a small finite set of values. Here we can calculate $$f\left(\boldsymbol{x}\right)$$ for all possible $$\boldsymbol{x}$$ and pick the minimal one.
+- The case where there are no constraints and we cannot solve the problem analytically, but we can calculate the gradient of $$f\left(\boldsymbol{x}\right)$$. For this case we will use a method called **gradient descent** which we will introduce later on in the course.
 
 ### 📚 Solutions For Popular Loss Functions
 
@@ -557,7 +565,7 @@ The mathematical field of optimization is very broad and deals with finding meth
 **A**) Show that in the discrete case, the optimal predictor for the zero-one loss is the point with the maximal PMF:
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)
+\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)\\
 $$
 
 **B**) Show that in the continuous case, the optimal predictor for the $$l_1$$ loss is the median:
@@ -604,7 +612,7 @@ $$
 \hat{x}^*
 & = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
 & = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[\left\lvert\hat{x}-x\right\rvert\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \int_{-\infty}^{\infty}\left\lvert\hat{x}-x\right\rvert p_X\left(x\right)dx \\
+& = \underset{\hat{x}}{\arg\min}\int_{-\infty}^{\infty}\left\lvert\hat{x}-x\right\rvert p_X\left(x\right)dx \\
 \end{aligned}
 $$
 
@@ -712,3 +720,73 @@ $$
 $$
 
 This will always be true for symmetrical distributions such as the normal distribution.
+
+#### Lagrange Multipliers
+
+The method of Lagrange multipliers comes to solve an optimization problem with only equality constraints:
+
+$$
+\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\ f\left(\boldsymbol{x}\right) \\
+\begin{aligned}
+\text{subject to}\quad
+& h_i\left(\boldsymbol{x}\right)=0,\qquad i=1,\ldots,m \\
+\end{aligned}
+$$
+
+$$f$$ and the $$h_i$$s must all be differentiable.
+
+We will introduce a new set of variables $$\lambda_i$$, one for each constraint, and define the following function:
+
+$$
+\mathcal{L}\left(\boldsymbol{x},\boldsymbol{\lambda}\right) = f\left(\boldsymbol{x}\right) + \sum_i \lambda_i h_i\left(\boldsymbol{x}\right)
+$$
+
+$$\mathcal{L}$$ is called the lagrangian and the $$\lambda_i$$s are called the Lagrange multipliers.
+
+It can be shown that the if $$\boldsymbol{x}^*$$ is a solution of the original optimization problem, then there exist some set of values $$\boldsymbol{\lambda}^*$$s for which $$\left(\boldsymbol{x}^*, \boldsymbol{\lambda}^*\right)$$ is a stationary point of the Lagrangian. I.e.:
+
+$$
+\nabla_{\boldsymbol{x},\boldsymbol{\lambda}}\mathcal{L}\left(\boldsymbol{x}^*,\boldsymbol{\lambda}^*\right) = 0
+$$
+
+Therefore we can easily find candidates for $$\boldsymbol{x}^*$$ but differentiating and solving this last equation.
+
+#### ✍️ Exercise 1.8  Lagrange Multipliers
+
+Solve the following optimization problem:
+
+$$
+\underset{p_1,p_2}{\arg\max}\ p_1\cdot p_2 \\
+\begin{aligned}
+\text{subject to}\quad
+& p_1 + p_2 = 1 \\
+\end{aligned}
+$$
+
+##### 💡 Solution
+
+We will introduce one Lagrange multiplier $$\lambda$$ and define the following Lagrangian:
+
+$$
+\mathcal{L}=p_1\cdot p_2 + \lambda \left(p_1 + p_2-1\right)
+$$
+
+By differentiating and comparing to zero we get the following result:
+
+$$
+\begin{aligned}
+& \begin{cases}
+p_2+\lambda=0\\
+p_1+\lambda=0\\
+p_1+p_2=1\\
+\end{cases}\\
+\Rightarrow & \begin{cases}
+p_1-p_2=0\\
+p_1+p_2=1\\
+\end{cases}\\
+\Leftrightarrow & \begin{cases}
+p_2=\tfrac{1}{2}\\
+p_1=\tfrac{1}{2}\\
+\end{cases}
+\end{aligned}
+$$
