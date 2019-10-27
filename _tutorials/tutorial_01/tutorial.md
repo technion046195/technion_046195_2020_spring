@@ -721,7 +721,7 @@ $$
 
 This will always be true for symmetrical distributions such as the normal distribution.
 
-#### Lagrange Multipliers
+### Lagrange Multipliers
 
 The method of Lagrange multipliers comes to solve an optimization problem with only equality constraints:
 

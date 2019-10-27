@@ -1121,6 +1121,52 @@ This will always be true for symmetrical distributions such as the normal distri
 
 </section><section markdown="1">
 
+#### Lagrange Multipliers
+
+A method of for solving optimization problems with only equality constraints:
+
+<br>
+
+$$
+\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\ f\left(\boldsymbol{x}\right) \\
+\begin{aligned}
+\text{subject to}\quad
+& h_i\left(\boldsymbol{x}\right)=0,\qquad i=1,\ldots,m \\
+\end{aligned}
+$$
+
+<br>
+
+$$f$$ and the $$h_i$$s must all be differentiable.
+
+<br>
+
+</section><section markdown="1">
+
+### Lagrange Multipliers - Cont
+
+<br>
+
+We will defeine:
+
+- $$\lambda_i$$s: one Lagrange multiplier for every constraints.
+- Lagrangian:
+
+$$
+\mathcal{L}\left(\boldsymbol{x},\boldsymbol{\lambda}\right) = f\left(\boldsymbol{x}\right) + \sum_i \lambda_i h_i\left(\boldsymbol{x}\right)
+$$
+
+<br>
+<br>
+
+If $$\boldsymbol{x}^*$$ is a solution of the original optimization problem, then there exist some set of values $$\boldsymbol{\lambda}^*$$s such that:
+
+$$
+\nabla_{\boldsymbol{x},\boldsymbol{\lambda}}\mathcal{L}\left(\boldsymbol{x}^*,\boldsymbol{\lambda}^*\right) = 0
+$$
+
+</section><section markdown="1">
+
 #### ✍️ Exercise 1.8  Lagrange Multipliers
 
 <br>
