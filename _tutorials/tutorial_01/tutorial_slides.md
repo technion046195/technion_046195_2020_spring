@@ -1,8 +1,7 @@
 ---
 number: 1
-title: "Probability and Estimation Theory" 
+title: "Probability Theory and Predictions" 
 hide: true
-layout: "slides"
 ---
 
 <section markdown="1">
@@ -25,7 +24,7 @@ layout: "slides"
 
 </section><section markdown="1">
 
-### 🎰 Basic Concepts - Cont. 2
+### 🎰 Basic Concepts
 
 <div>
   <div class="slide-image" style="position:absolute;width:100%;background-color:white;border-radius:20px">
@@ -50,7 +49,7 @@ layout: "slides"
 
 </section><section markdown="1">
 
-### 🎰 Basic Concepts - Cont. 3
+### 🎰 Basic Concepts - Cont. 2
 
 | name | Usually donated by | Definition | Example  |
 | :--- | --- | --- | --- |
@@ -810,11 +809,11 @@ The prediction which minimizes some penalty function, on average.
 
 Notations:
 
-- $$\hat{x}$$ - a prediction for $$X$$.
+- $$\hat{\boldsymbol{x}}$$ - a prediction for $$\boldsymbol{X}$$.
 
-- **Loss** - a function for how bad is a prediction: $$l\left(x,\hat{x}\right)$$
+- **Loss** - a function for how bad is a prediction: $$l\left(\boldsymbol{x,}\hat{\boldsymbol{x}}\right)$$
 
-- **Risk** - The expectation value of the loss function: $$R\left(\hat{x}\right)=\mathbb{E}\left[l\left(\hat{x},X\right)\right]$$
+- **Risk** - The expectation value of the loss function: $$R\left(\hat{\boldsymbol{x}}\right)=\mathbb{E}\left[l\left(\hat{\boldsymbol{x}},\boldsymbol{X}\right)\right]$$
 
 <br>
 
@@ -823,7 +822,7 @@ The "optimal" prediction is the solution to the following optimization problem:
 <br>
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\min}\ R\left(\hat{x}\right)=\underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right]
+\hat{\boldsymbol{x}}=\underset{\hat{\boldsymbol{x}}}{\arg\min}\ R\left(\hat{\boldsymbol{x}}\right)=\underset{\hat{\boldsymbol{x}}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{\boldsymbol{x}},\boldsymbol{X}\right)\right]\\
 $$
 
 </section><section markdown="1">

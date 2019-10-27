@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Slides</title>
+  <title>Slides: {{ page.type | capitalize }} {{ page.number }}</title>
   <!-- Meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,7 +44,7 @@
   <div class="reveal">
     <div class="slides main-content">
       <section class="title-slide center" markdown="1">
-        <h1>Tutorial {{ page.number }}<br>{{ page.title }}</h1>
+        <h1>{{ page.type | capitalize }} {{ page.number }}<br>{{ page.title }}</h1>
       </section>
       {{ content }}
     </div>
@@ -53,7 +53,7 @@
   <script>
     Reveal.initialize({
       width: 1440,
-      height: 900,
+      height: 1080,
       center: false, 
       slideNumber: true,
       transition: 'slide',
@@ -129,5 +129,13 @@
     Reveal.addEventListener('fragmenthidden', set_svg_layers_by_position);
 
   </script> -->
+  <script>
+    if (window.location.search.match( /print-pdf/gi )) {
+      Reveal.addEventListener( 'ready', function( event ) {
+        let content = document.querySelector(".reveal .slides")
+        content.innerHTML = content.innerHTML.replace(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g, '');
+      });
+    }
+  </script>
 </body>
 </html>

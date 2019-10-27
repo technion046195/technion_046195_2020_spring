@@ -142,8 +142,8 @@ h5 {
 /* Slides */
 /* ====== */
 
-.reveal .slide-background{
-    background-image: url({{  site.baseurl }}/media/black-board.jpg);
+.reveal{
+    background-image: url({{ site.baseurl }}/media/black-board.jpg);
     background-size: cover;
 }
 

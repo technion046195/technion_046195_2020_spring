@@ -19,6 +19,13 @@ defaults:
     excerpt_separator: <!-- excerpt_end -->
     type: "tutorial"
 - scope:
+    path: "*/*/*_slides*"
+    type: "tutorials"
+  values:
+    layout: "slides"
+    type: "tutorial"
+    slide: true
+- scope:
     path: ""
     type: "workshops"
   values:
@@ -28,6 +35,7 @@ defaults:
     render_with_liquid: false
 
 exclude:
-- README.md
-- LICENSE
-- venv
+- "README.md"
+- "LICENSE"
+- "venv"
+- "*/code/*"
