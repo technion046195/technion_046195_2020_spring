@@ -403,21 +403,6 @@ We will also add the Voronoi Diagram to it using the [Voronoi](https://docs.scip
 
 ![png](figs/output_25_0.png)
 
-
-### ✍️ Exercise 5.1
-
-Write a function implementing the 1-NN mapping
-
-#### Solution 5.1
-
-
-```python
-def one_nn(x, stored_x, stored_y):
-    distances = ((stored_x - x) ** 2).sum(axis=1)
-    nn_index = np.argmin(distances)
-    return stored_y[nn_index]
-```
-
 #### ⏱️ Performance evaluation
 
 
@@ -456,13 +441,13 @@ Let us add the loop/iterations over the hyper-parameters to our workflow
 ![png](figs/workflow_clustering.png)
 
 
-### ✍️ Exercise 5.2
+### ✍️ Exercise 5.1
 
 Select the optimal $$K$$ from the range $$\left[1,100\right]$$. Plot the risk as a function of $$K$$
 
 Use SciKit-Learn's [KNeighborsClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html) class
 
-#### Solution 5.2
+#### Solution 5.1
 
 The optimal $$K$$ is $$K=12$$
 The test risk is: $$0.061$$
@@ -478,11 +463,11 @@ The solution to this problem is to divide the dataset once more. Therefore in ca
 
 A common practice is to use 60% train - 20% validation - 20% test.
 
-### ✍️ Exercise 5.3
+### ✍️ Exercise 5.2
 
 Repeat the learning process using the 3-fold split.
 
-#### Solution 5.3
+#### Solution 5.2
 
 The optimal $$K$$ is $$K=19$$
 The validation risk is: $$0.097$$
@@ -490,7 +475,7 @@ The validation risk is: $$0.097$$
 ![png](figs/output_40_2.png)
 
 
-#### Performance evaluation
+#### ⏱  Performance evaluation
 The test risk is: $$0.087$$
 
 
@@ -520,7 +505,7 @@ The validation risk is: $$0.09$$
 
 ![png](figs/output_47_2.png)
 
-#### Performance evaluation
+#### ⏱  Performance evaluation
 
 The test risk is: $$0.079$$
 
