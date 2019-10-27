@@ -12,12 +12,12 @@ layout: "default"
       <div class="col mx-auto">
         <h3>Tutorials</h3>
         <ul>
-        {% assign items = site.tutorials | sort: 'number' %}
-        {% for item in items %}{% unless item.ignore %}
+          {% assign items = site.tutorials | sort: 'number' %}
+          {% for item in items %}{% unless item.ignore %}
           <li {% if item.hide %}class="hide"{% endif %}><h4>
             <a class="int-nav-link" href="{{ site.baseurl }}{{ item.url }}">{{ item.type | capitalize }} {{ item.number }} - {{ item.title }}</a>
           </h4></li>
-        {% endunless %}{% endfor %}
+          {% endunless %}{% endfor %}
         </ul>
       </div>
     </div>
@@ -30,12 +30,29 @@ layout: "default"
       <div class="col mx-auto">
         <h3>Workshops</h3>
         <ul>
-        {% assign items = site.workshops | sort: 'number' %}
-        {% for item in items %}{% unless item.ignore %}
+          {% assign items = site.workshops | sort: 'number' %}
+          {% for item in items %}{% unless item.ignore %}
           <li><h4>
             <a class="int-nav-link" href="{{ site.baseurl }}{{ item.url }}">{{ item.type | capitalize }} {{ item.number }} - {{ item.title }}</a>
           </h4></li>
-        {% endunless %}{% endfor %}
+          {% endunless %}{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="px-2 hide">
+  <div class="container">
+    <div class="row">
+      <div class="col mx-auto">
+        <h3>Hands-on Assignments</h3>
+        <ul>
+          {% for assignment in site.data.general.assignments %}
+          <li {% unless assignment.hide %}class="hide"{% endunless %}><h4>
+            <a  href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/{{ assignment.file }}" target="_blank">{{ assignment.name }}</a>
+          </h4></li>
+          {% endfor %}
         </ul>
       </div>
     </div>

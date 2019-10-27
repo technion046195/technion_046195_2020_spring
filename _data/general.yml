@@ -1,2 +1,23 @@
 course_number: 046195
 course_title: Introduction to Machine Learning
+github_user: technion046195
+github_repo: semester_2019_winter
+assignments:
+- name: "Homework 0 - Solution"
+  file: "assignments/homework_0_solution.ipynb"
+  hide: true
+- name: "Homework 1"
+  file: "assignments/homework_1.ipynb"
+  hide: true
+- name: "Homework 2"
+  file: "assignments/homework_2.ipynb"
+  hide: true
+- name: "Homework 3"
+  file: "assignments/homework_3.ipynb"
+  hide: true
+- name: "Homework 4"
+  file: "assignments/homework_4.ipynb"
+  hide: true
+- name: "Homework 5"
+  file: "assignments/homework_5.ipynb"
+  hide: true
