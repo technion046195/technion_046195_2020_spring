@@ -884,7 +884,7 @@ In this course, we will care about 4 cases:
 
 <br>
 
-- Brut force, i.e. checking all possible solutions (for  discrete cases with a small set of values).
+- Brute force, i.e. checking all possible solutions (for  discrete cases with a small set of values).
 
 <br>
 
