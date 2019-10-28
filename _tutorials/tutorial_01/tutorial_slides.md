@@ -1058,7 +1058,7 @@ Therefore:
 <br>
 
 <div class="fragment" markdown="1">
-- $$l_2$$ loss: <span class="fragment">$$\hat{x}^*\mathbb={E}\left[X\lvert L=0.44\right]=1.896$$</span>
+- $$l_2$$ loss: <span class="fragment">$$\hat{x}^*=\mathbb{E}\left[X\lvert L=0.44\right]=1.896$$</span>
 </div>
 
 </section><section markdown="1">

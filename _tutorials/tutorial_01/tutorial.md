@@ -680,7 +680,7 @@ The value which is closest to being the median is $$\hat{x}^*=2$$
 - $$l_2$$ loss:
 
 $$
-\hat{x}^*\mathbb={E}\left[X|L=0.44\right]=0\cdot0.12 + 1\cdot0.27 + 2\cdot0.22 + 3\cdot0.4=1.896
+\hat{x}^*=\mathbb{E}\left[X|L=0.44\right]=0\cdot0.12 + 1\cdot0.27 + 2\cdot0.22 + 3\cdot0.4=1.896
 $$
 
 #### ✍️ Exercise 1.7  Heart Rate and Blinking
