@@ -338,7 +338,7 @@ We are given the following joint distribution:
 **A**) The sum of all possible event should always be 1, therefore the missing value must be equal to:
 
 $$
-p_{X,Y}\left(2,3\right) = 1 - \sum_{\left(x,y\right)\neq\left(2,3\right)} p_{X,Y}\left(x, y\right) = 0.05
+p_{X,Y}\left(1,2\right) = 1 - \sum_{\left(x,y\right)\neq\left(1,2\right)} p_{X,Y}\left(x, y\right) = 0.05
 $$
 
 </div>
@@ -362,9 +362,9 @@ $$
 
 $$
 p_{X\lvert Y}\left(1\lvert Y=0\right)
-= \frac{p_{X,Y}\left(1,0\right)}{p_{X}\left(0\right)}
-= \frac{p_{X,Y}\left(1,0\right)}{\sum_{x=0}^3 p_{X,Y}\left(1,x\right)}
-= \frac{0.1}{0+0.08+0.02+0.1} = 0.5
+= \frac{p_{X,Y}\left(1,0\right)}{p_{Y}\left(0\right)}
+= \frac{p_{X,Y}\left(1,0\right)}{\sum_{x=0}^3 p_{X,Y}\left(x,0\right)}
+= \frac{0.08}{0+0.08+0.02+0.1} = 0.4
 $$
 
 </div>
