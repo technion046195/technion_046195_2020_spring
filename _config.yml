@@ -24,7 +24,7 @@ defaults:
   values:
     layout: "slides"
     type: "tutorial"
-    slide: true
+    slides: true
 - scope:
     path: ""
     type: "workshops"

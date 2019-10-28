@@ -7,7 +7,7 @@
     {% assign prev_page_tmp = nil %}
     {% assign use_next = false %}
     {% assign links = "" | split: "," %}
-    {% for link in site[page.collection] %}{% unless link.ignore %}{% unless link.slide %}
+    {% for link in site[page.collection] %}{% unless link.ignore %}{% unless link.slides %}
       {% assign links = links | push: link %}
     {% endunless %}{% endunless %}{% endfor %}
     {% assign links = links | sort: "number" %}
@@ -24,7 +24,7 @@
     {% endfor %}
 
     {% assign slides_link = nil %}
-    {% for link in site[page.collection] %}{% unless link.ignore %}{% if link.slide %}
+    {% for link in site[page.collection] %}{% unless link.ignore %}{% if link.slides %}
       {% if link.number == page.number %}
         {% assign slides_link = link %}
       {% endif %}

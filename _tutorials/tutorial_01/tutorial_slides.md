@@ -1,7 +1,6 @@
 ---
 number: 1
 title: "Probability Theory and Predictions" 
-hide: true
 ---
 
 <section markdown="1">
