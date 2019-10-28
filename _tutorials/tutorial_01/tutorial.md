@@ -668,7 +668,7 @@ According to the results from the previous question, the optimal predictions are
 - Zero-one loss:
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_{X|L}\left(\hat{x}|L=4.4\right)=3
+\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_{X|L}\left(\hat{x}|L=4.4\right)=3 \\
 $$
 
 - $$l_1$$ loss:
