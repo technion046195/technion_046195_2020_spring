@@ -967,7 +967,7 @@ We will solve this by differentiating according to zero
 $$
 \frac{d}{d\hat{x}}\int_{-\infty}^{\infty}\left\lvert\hat{x}-x\right\rvert p_X\left(x\right)dx = 0 \\
 \Leftrightarrow\int_{-\infty}^{\infty}\frac{d}{d\hat{x}}\left\lvert\hat{x}-x\right\rvert p_X\left(x\right)dx = 0 \\
-\Leftrightarrow\int_{-\infty}^{\infty}\text{sign}\left(\hat{x}\right) p_X\left(x\right)dx = 0 \\
+\Leftrightarrow\int_{-\infty}^{\infty}\text{sign}\left(\hat{x}-x\right) p_X\left(x\right)dx = 0 \\
 \Leftrightarrow\underbrace{\left(\int_{-\infty}^{\hat{x}}p_X\left(x\right)dx\right)}_{=F_x\left(\hat{x}\right)} - \underbrace{\left(\int_{\hat{x}}^{\infty}p_X\left(x\right)dx\right)}_{=1 - F_x\left(\hat{x}\right)} = 0 \\
 \Leftrightarrow F_x\left(\hat{x}\right) = \tfrac{1}{2} \\
 $$
