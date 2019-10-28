@@ -1106,7 +1106,7 @@ $$
 
 ##### 💡 Solution - Cont.
 
-The mean, the media and the point of the maximal distribution are all the same point. Therefore all the three predictors will give the same prediction:
+The mean, the median and the point of the maximal distribution are all the same point. Therefore all the three predictors will give the same prediction:
 
 <br>
 

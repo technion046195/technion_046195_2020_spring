@@ -712,7 +712,7 @@ $$
 X_1\lvert X_2 \sim N\left(50+2x_2,84\right)
 $$
 
-Since the mean, the media and the point of the maximal distribution are all the same in a gaussian all the three predictors will be the same and equal to:
+Since the mean, the median and the point of the maximal distribution are all the same in a gaussian all the three predictors will be the same and equal to:
 
 $$
 \hat{x}^*_1=h^*\left(x_2\right)=50+2x_2
