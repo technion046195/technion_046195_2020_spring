@@ -484,10 +484,10 @@ $$
 \begin{aligned}
 p_{L|X}\left(4.4\lvert X=x\right)p_X\left(x\right)
 & = \begin{cases}
-\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.3\cdot 0\right)^2}{2\cdot0.1^2}\right)\cdot0.4 & x=0 \\
-\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.3\cdot 1\right)^2}{2\cdot0.1^2}\right)\cdot0.2 & x=1 \\
-\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.3\cdot 2\right)^2}{2\cdot0.1^2}\right)\cdot0.1 & x=2 \\
-\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.3\cdot 3\right)^2}{2\cdot0.1^2}\right)\cdot0.3 & x=3
+\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.2\cdot 0\right)^2}{2\cdot0.1^2}\right)\cdot0.4 & x=0 \\
+\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.2\cdot 1\right)^2}{2\cdot0.1^2}\right)\cdot0.2 & x=1 \\
+\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.2\cdot 2\right)^2}{2\cdot0.1^2}\right)\cdot0.1 & x=2 \\
+\frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(l-4-0.2\cdot 3\right)^2}{2\cdot0.1^2}\right)\cdot0.3 & x=3
 \end{cases}\\
 & = \begin{cases}
 0.11 & x=0 \\
