@@ -901,7 +901,7 @@ In this course, we will care about 4 cases:
 <br>
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)
+\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)\\
 $$
 
 </section><section markdown="1">
@@ -1023,7 +1023,7 @@ $$
 #### ✍️ Exercise 1.6 - Predicting The Number of Pizza Slices
 
 <br>
-
+ee
 We would now like to make a prediction for the number of pizza slices given a car length of 4.4m. 
 
 <br>
