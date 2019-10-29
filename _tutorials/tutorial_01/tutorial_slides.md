@@ -25,6 +25,18 @@ title: "Probability Theory and Predictions"
 
 ### 🎰 Basic Concepts
 
+<br>
+
+An example for a random phenomenon:
+
+<br>
+<br>
+We take a glass full of juice and pour it on the floor (don't try this at home) and look at the shape of the resulting spill.
+
+</section><section markdown="1">
+
+### 🎰 Basic Concepts - Cont.
+
 <div>
   <div class="slide-image" style="position:absolute;width:100%;background-color:white;border-radius:20px">
     <img src="{{ site.baseurl }}/media/diagrams/random_process_layers/random_process_layer-1.svg" style="width:80%"/>
@@ -65,7 +77,11 @@ title: "Probability Theory and Predictions"
 
 ### 🎰 Basic Concepts - Notations
 
-- Realizations: The outcome of an RV (random variable) for a given sample: $$x=X\left(\omega\right)$$
+- Realizations: The outcome of an RV (random variable) for a given sample:
+
+<br>
+
+$$x=X\left(\omega\right)$$
 
 <br>
 
@@ -106,6 +122,8 @@ $$
 ### Toy Model:<br>The 🍕 Pizza & Pancakes 🥞 Drive-Thru
 
 <br>
+<br>
+<br>
 
 We would like to help a new local drive-thru business that sells pizzas and pancakes. Which would like to be able to make some predictions regarding his business.
 
@@ -133,6 +151,7 @@ Make sure that all the probability measures are consistent with one another.
 <ul>
   <li>
     2 discrete random variables
+    <br><br>
     <ul class="fragment">
       <li>$X\left(\omega\right)$: The number of pizza slices the customer ordered.🍕</li>
       <li>$Y\left(\omega\right)$: The number of pancakes slices the customer ordered.🥞</li>
@@ -140,6 +159,7 @@ Make sure that all the probability measures are consistent with one another.
   </li>
   <li class="fragment">
     2 continuous random variables
+    <br><br>
     <ul class="fragment">
       <li>$L\left(\omega\right)$: The length of the customer's car in meters. 🚗</li>
       <li>$T\left(\omega\right)$: The amount of tip the customer left in dollars. 💵</li>
@@ -147,6 +167,7 @@ Make sure that all the probability measures are consistent with one another.
   </li>
   <li class="fragment">
     2 events
+    <br><br>
     <ul class="fragment">
       <li>The customer ordered exactly 1 slice of pizza: $X=1$.</li>
       <li>The customer left more then 2 USD tip $T>2$.</li>
@@ -161,6 +182,7 @@ Make sure that all the probability measures are consistent with one another.
 <ul>
   <li>
     2 possible probability measures.
+    <br><br>
     <ul class="fragment">
       <li>The prob. a customer will order 1 slice: $$Pr\left(X=1\right)=0.2$$.</li>
       <li>The prob. a customer will leave more than 2 USD tip: $$Pr\left(T>2\right)=0.5$$</li>
@@ -168,6 +190,7 @@ Make sure that all the probability measures are consistent with one another.
   </li>
   <li class="fragment">
     A possible prob. measure using the <strong>union</strong> of the 2 events.
+    <br><br>
     <ul class="fragment">
       <li>The prob. of <strong>either</strong> "will order 1 slice" <strong>or</strong> "tip more than 2 USD" $$Pr\left(X=1 \cup T>2\right)=0.6$$</li>
     </ul><br>
@@ -181,18 +204,21 @@ Make sure that all the probability measures are consistent with one another.
 <ul>
   <li>
     A possible probability measure using the <strong>intersection</strong> of the 2 events.
+    <br><br>
     <ul class="fragment">
       <li>The prob. of "order 1 slice" <strong>and</strong> "tip more than 2 USD" $$Pr\left(X=1 \cap T>2\right)=0.1$$</li>
     </ul><br>
   </li>
   <li class="fragment">
     A possible probability measure using the <strong>exclusion</strong> of the 2 events.
+    <br><br>
     <ul class="fragment">
       <li>The prob. of "order 1 slice" <strong>but not</strong> "tip more than 2 USD" $$Pr\left(X=1 - T>2\right)=0.4$$</li>
     </ul><br>
   </li>
   <li class="fragment">
     A possible <strong>conditional</strong> probability measure.
+    <br><br>
     <ul class="fragment">
       <li>The prob. of "order 1 slice" <strong>given that</strong> "tip more than 2 USD" $$Pr\left(X=1 \lvert T>2\right)=0.5$$</li>
     </ul><br>
@@ -212,8 +238,6 @@ Make sure that all the probability measures are consistent with one another.
 $$
 F_{\boldsymbol{X}}\left(\boldsymbol{x}\right)=Pr\left(X_1\leq x_1 \cap X_2\leq x_2 \ldots \cap X_n\leq x_n\right)
 $$
-
-ToDo: Add figures
 
 </section><section markdown="1">
 
@@ -652,9 +676,9 @@ Calculate $$p_{X_1\lvert X_2,X_3}$$
 $$
 \boldsymbol{\mu}_a=\begin{bmatrix}0\end{bmatrix},
 \boldsymbol{\mu}_b=\begin{bmatrix}0 \\ 0\end{bmatrix},
-\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix}
-\Sigma_{a,b}=\begin{bmatrix}0 & 0\end{bmatrix}
-\Sigma_{b,a}=\begin{bmatrix}0 \\ 0\end{bmatrix}
+\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix},
+\Sigma_{a,b}=\begin{bmatrix}0 & 0\end{bmatrix},
+\Sigma_{b,a}=\begin{bmatrix}0 \\ 0\end{bmatrix},
 \Sigma_{b,b}=\begin{bmatrix}4 & 3 \\ 2 & 5\end{bmatrix}
 $$
 
@@ -689,9 +713,9 @@ Calculate $$p_{X_1\lvert X_2,X_3}$$
 $$
 \boldsymbol{\mu}_a=\begin{bmatrix}0\end{bmatrix},
 \boldsymbol{\mu}_b=\begin{bmatrix}0 \\ 0\end{bmatrix},
-\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix}
-\Sigma_{a,b}=\begin{bmatrix}2 & 0\end{bmatrix}
-\Sigma_{b,a}=\begin{bmatrix}2 \\ 0\end{bmatrix}
+\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix},
+\Sigma_{a,b}=\begin{bmatrix}2 & 0\end{bmatrix},
+\Sigma_{b,a}=\begin{bmatrix}2 \\ 0\end{bmatrix},
 \Sigma_{b,b}=\begin{bmatrix}4 & 0 \\ 0 & 5\end{bmatrix}
 $$
 
@@ -726,9 +750,9 @@ Calculate $$p_{X_1\lvert X_2,X_3}$$
 $$
 \boldsymbol{\mu}_a=\begin{bmatrix}0\end{bmatrix},
 \boldsymbol{\mu}_b=\begin{bmatrix}0 \\ 0\end{bmatrix},
-\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix}
-\Sigma_{a,b}=\begin{bmatrix}1 & 1\end{bmatrix}
-\Sigma_{b,a}=\begin{bmatrix}1 \\ 1\end{bmatrix}
+\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix},
+\Sigma_{a,b}=\begin{bmatrix}1 & 1\end{bmatrix},
+\Sigma_{b,a}=\begin{bmatrix}1 \\ 1\end{bmatrix},
 \Sigma_{b,b}=\begin{bmatrix}2 & 1 \\ 1 & 2\end{bmatrix}
 $$
 
@@ -747,7 +771,7 @@ $$
 
 ### 🔮 The Problem
 
-Give an "optimal" prediction for the number of slices a customer will buy given that his car length is 4.3m.
+Give an "optimal" prediction for the number of slices a customer will buy given that his car length is 4.4m.
 
 <br>
 
@@ -821,7 +845,7 @@ The "optimal" prediction is the solution to the following optimization problem:
 <br>
 
 $$
-\hat{\boldsymbol{x}}=\underset{\hat{\boldsymbol{x}}}{\arg\min}\ R\left(\hat{\boldsymbol{x}}\right)=\underset{\hat{\boldsymbol{x}}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{\boldsymbol{x}},\boldsymbol{X}\right)\right]\\
+\hat{\boldsymbol{x}}=\underset{\hat{\boldsymbol{x}}}{\arg\min}\quad R\left(\hat{\boldsymbol{x}}\right)=\underset{\hat{\boldsymbol{x}}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{\boldsymbol{x}},\boldsymbol{X}\right)\right]\\
 $$
 
 </section><section markdown="1">
@@ -849,7 +873,7 @@ Back to the 3 examples for before:
 Optimization problems are problems of the following form:
 
 $$
-\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\ f\left(\boldsymbol{x}\right) \\
+\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\quad f\left(\boldsymbol{x}\right) \\
 \begin{aligned}
 \text{subject to}\quad
 & g_i\left(\boldsymbol{x}\right)\leq 0,\qquad i=1,\ldots,m \\
@@ -865,7 +889,7 @@ $$
 
 <br>
 
-Goal: to find $$\boldsymbol{x}*$$ which produces the minimal value of $$f\left(\boldsymbol{x}\right)$$ among all $$\boldsymbol{x}$$s which obey the constraints.
+Goal: to find $$\boldsymbol{x}^*$$ which produces the minimal value of $$f\left(\boldsymbol{x}\right)$$ among all $$\boldsymbol{x}$$s which obey the constraints.
 
 
 </section><section markdown="1">
@@ -894,6 +918,9 @@ In this course, we will care about 4 cases:
 
 ### 📚 Solutions For Popular Loss Functions
 
+<br>
+<br>
+
 #### ✍️ Exercise 1.5
 
 **A**) Show that in the discrete case, the optimal predictor for the zero-one loss is the point with the maximal PMF:
@@ -901,7 +928,7 @@ In this course, we will care about 4 cases:
 <br>
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)\\
+\hat{x}^*=\underset{\hat{x}}{\arg\max}\quad p_X\left(\hat{x}\right)\\
 $$
 
 </section><section markdown="1">
@@ -911,19 +938,22 @@ $$
 **A**) The zero one-loss is given by $$l\left(x,\hat{x}\right)=I\left\lbrace\hat{x}\neq x\right\rbrace$$, therefore:
 
 $$
-\begin{aligned}[t]
+\begin{aligned}
 \hat{x}^*
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[I\left\lbrace\hat{x}\neq X\right\rbrace\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \sum_xI\left\lbrace\hat{x}\neq x\right\rbrace p_X\left(x\right) \\
-& = \underset{\hat{x}}{\arg\min}\ \underbrace{\left(\sum_x p_X\left(x\right)\right)}_{=1} - p_X\left(\hat{x}\right) \\
-& = \underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[I\left\lbrace\hat{x}\neq X\right\rbrace\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \sum_xI\left\lbrace\hat{x}\neq x\right\rbrace p_X\left(x\right) \\
+& = \underset{\hat{x}}{\arg\min}\quad \underbrace{\left(\sum_x p_X\left(x\right)\right)}_{=1} - p_X\left(\hat{x}\right) \\
+& = \underset{\hat{x}}{\arg\max}\quad p_X\left(\hat{x}\right)
 \end{aligned}
 $$
 
 </section><section markdown="1">
 
 ### 📚 Solutions For Popular Loss Functions
+
+<br>
+<br>
 
 #### ✍️ Exercise 1.5
 
@@ -948,11 +978,11 @@ $$
 <br>
 
 $$
-\begin{aligned}[t]
+\begin{aligned}
 \hat{x}^*
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[\left\lvert\hat{x}-x\right\rvert\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \int_{-\infty}^{\infty}\left\lvert\hat{x}-x\right\rvert p_X\left(x\right)dx \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[\left\lvert\hat{x}-x\right\rvert\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \int_{-\infty}^{\infty}\left\lvert\hat{x}-x\right\rvert p_X\left(x\right)dx
 \end{aligned}
 $$
 
@@ -976,6 +1006,9 @@ $$
 
 ### 📚 Solutions For Popular Loss Functions
 
+<br>
+<br>
+
 #### ✍️ Exercise 1.5
 
 **C**) Show that the optimal predictor for the $$l_2$$ loss is the mean:
@@ -995,10 +1028,10 @@ $$
 <br>
 
 $$
-\begin{aligned}[t]
+\begin{aligned}
 \hat{x}^*
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[\left(\hat{x}-x\right)^2\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[\left(\hat{x}-x\right)^2\right] \\
 \end{aligned}
 $$
 
@@ -1023,7 +1056,6 @@ $$
 #### ✍️ Exercise 1.6 - Predicting The Number of Pizza Slices
 
 <br>
-ee
 We would now like to make a prediction for the number of pizza slices given a car length of 4.4m. 
 
 <br>
@@ -1048,17 +1080,24 @@ $$
 Therefore:
 
 <div markdown="1">
-- Zero-one loss: <span class="fragment">$$\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_{X\lvert L}\left(\hat{x}\lvert L=4.4\right)=3$$</span>
+Zero-one loss:
+<div class="fragment" style="text-align:center" markdown="1">
+$$\hat{x}^*=\underset{\hat{x}}{\arg\max}\quad p_{X\lvert L}\left(\hat{x}\lvert L=4.4\right)=3$$
+</div>
 </div>
 
 <div class="fragment" markdown="1">
-- $$l_1$$ loss: <span class="fragment">The value closest to the median is $$\hat{x}^*=2$$</span>
+$$l_1$$ loss:
+<div class="fragment" style="text-align:center" markdown="1">
+The value closest to the median is $$\hat{x}^*=2$$
+</div>
 </div>
 
-<br>
-
 <div class="fragment" markdown="1">
-- $$l_2$$ loss: <span class="fragment">$$\hat{x}^*=\mathbb{E}\left[X\lvert L=0.44\right]=1.896$$</span>
+$$l_2$$ loss:
+<div class="fragment" style="text-align:center" markdown="1">
+$$\hat{x}^*=\mathbb{E}\left[X\lvert L=0.44\right]=1.896$$
+</div>
 </div>
 
 </section><section markdown="1">
@@ -1127,7 +1166,7 @@ A method of for solving optimization problems with only equality constraints:
 <br>
 
 $$
-\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\ f\left(\boldsymbol{x}\right) \\
+\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\quad f\left(\boldsymbol{x}\right) \\
 \begin{aligned}
 \text{subject to}\quad
 & h_i\left(\boldsymbol{x}\right)=0,\qquad i=1,\ldots,m \\
@@ -1175,7 +1214,7 @@ Solve the following optimization problem:
 <br>
 
 $$
-\underset{p_1,p_2}{\arg\max}\ p_1\cdot p_2 \\
+\underset{p_1,p_2}{\arg\max}\quad p_1\cdot p_2 \\
 \begin{aligned}
 \text{subject to}\quad
 & p_1 + p_2 = 1 \\

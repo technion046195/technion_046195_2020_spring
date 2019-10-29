@@ -442,9 +442,9 @@ And accordingly:
 $$
 \boldsymbol{\mu}_a=\begin{bmatrix}0\end{bmatrix},
 \boldsymbol{\mu}_b=\begin{bmatrix}0 \\ 0\end{bmatrix},
-\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix}
-\Sigma_{a,b}=\begin{bmatrix}0 & 0\end{bmatrix}
-\Sigma_{b,a}=\begin{bmatrix}0 \\ 0\end{bmatrix}
+\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix},
+\Sigma_{a,b}=\begin{bmatrix}0 & 0\end{bmatrix},
+\Sigma_{b,a}=\begin{bmatrix}0 \\ 0\end{bmatrix},
 \Sigma_{b,b}=\begin{bmatrix}4 & 3 \\ 2 & 5\end{bmatrix}
 $$
 
@@ -460,9 +460,9 @@ $$
 $$
 \boldsymbol{\mu}_a=\begin{bmatrix}0\end{bmatrix},
 \boldsymbol{\mu}_b=\begin{bmatrix}0 \\ 0\end{bmatrix},
-\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix}
-\Sigma_{a,b}=\begin{bmatrix}2 & 0\end{bmatrix}
-\Sigma_{b,a}=\begin{bmatrix}2 \\ 0\end{bmatrix}
+\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix},
+\Sigma_{a,b}=\begin{bmatrix}2 & 0\end{bmatrix},
+\Sigma_{b,a}=\begin{bmatrix}2 \\ 0\end{bmatrix},
 \Sigma_{b,b}=\begin{bmatrix}4 & 0 \\ 0 & 5\end{bmatrix}
 $$
 
@@ -478,9 +478,9 @@ $$
 $$
 \boldsymbol{\mu}_a=\begin{bmatrix}0\end{bmatrix},
 \boldsymbol{\mu}_b=\begin{bmatrix}0 \\ 0\end{bmatrix},
-\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix}
-\Sigma_{a,b}=\begin{bmatrix}1 & 1\end{bmatrix}
-\Sigma_{b,a}=\begin{bmatrix}1 \\ 1\end{bmatrix}
+\Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix},
+\Sigma_{a,b}=\begin{bmatrix}1 & 1\end{bmatrix},
+\Sigma_{b,a}=\begin{bmatrix}1 \\ 1\end{bmatrix},
 \Sigma_{b,b}=\begin{bmatrix}2 & 1 \\ 1 & 2\end{bmatrix}
 $$
 
@@ -495,7 +495,7 @@ $$
 
 ### 🔮 The Problem
 
-Let us look at the problem of trying to give an "optimal" prediction for the number of slices a customer will buy given that his car length is 4.3m. In order to do so we must first define what do we mean by "optimal" prediction. Let us look at a few optional definitions:
+Let us look at the problem of trying to give an "optimal" prediction for the number of slices a customer will buy given that his car length is 4.4m. In order to do so we must first define what do we mean by "optimal" prediction. Let us look at a few optional definitions:
 
 1. The prediction with the lowest probability to be wrong.
 1. The prediction with the lowest error on average.
@@ -516,7 +516,7 @@ Notations:
 Under this definition, the "optimal" prediction can be written as the solution to the following optimization problem:
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\min}\ R\left(\hat{x}\right)=\underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right]
+\hat{x}^*=\underset{\hat{x}}{\arg\min}\quad R\left(\hat{x}\right)=\underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{x},X\right)\right]
 $$
 
 A common notation is to use the star sign ($$*$$) to denote the optimal prediction.
@@ -534,7 +534,7 @@ Returning to the 3 examples for above, we can now describe them through their lo
 Optimization problems are problems of the following form:
 
 $$
-\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\ f\left(\boldsymbol{x}\right) \\
+\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\quad f\left(\boldsymbol{x}\right) \\
 \begin{aligned}
 \text{subject to}\quad
 & g_i\left(\boldsymbol{x}\right)\leq 0,\qquad i=1,\ldots,m \\
@@ -564,7 +564,7 @@ The mathematical field of optimization is very broad and deals with finding vari
 **A**) Show that in the discrete case, the optimal predictor for the zero-one loss is the point with the maximal PMF:
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)\\
+\hat{x}^*=\underset{\hat{x}}{\arg\max}\quad p_X\left(\hat{x}\right)\\
 $$
 
 **B**) Show that in the continuous case, the optimal predictor for the $$l_1$$ loss is the median:
@@ -586,31 +586,31 @@ $$
 **A**) As defined above, the zero one-loss is given by $$l\left(x,\hat{x}\right)=I\left\lbrace\hat{x}\neq x\right\rbrace$$, therefore the optimal predictor is:
 
 $$
-\begin{aligned}[t]
+\begin{aligned}
 \hat{x}^*
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[I\left\lbrace\hat{x}\neq X\right\rbrace\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \sum_xI\left\lbrace\hat{x}\neq x\right\rbrace p_X\left(x\right)
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[I\left\lbrace\hat{x}\neq X\right\rbrace\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \sum_xI\left\lbrace\hat{x}\neq x\right\rbrace p_X\left(x\right)
 \end{aligned}
 $$
 
 The sum in the last line is simply a sum over all the possible values of $$p_X$$ except for $$x=\hat{x}$$. Therefore we can write it in the following way:
 
 $$
-\begin{aligned}[t]
+\begin{aligned}
 \hat{x}^*
-& = \underset{\hat{x}}{\arg\min}\ \underbrace{\left(\sum_x p_X\left(x\right)\right)}_{=1} - p_X\left(\hat{x}\right) \\
-& = \underset{\hat{x}}{\arg\max}\ p_X\left(\hat{x}\right)
+& = \underset{\hat{x}}{\arg\min}\quad \underbrace{\left(\sum_x p_X\left(x\right)\right)}_{=1} - p_X\left(\hat{x}\right) \\
+& = \underset{\hat{x}}{\arg\max}\quad p_X\left(\hat{x}\right)
 \end{aligned}
 $$
 
 **B**) The $$l_1$$ loss is given by $$\left\lvert\hat{x}-x\right\rvert$$. Therefore the optimal predictor is:
 
 $$
-\begin{aligned}[t]
+\begin{aligned}
 \hat{x}^*
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[\left\lvert\hat{x}-x\right\rvert\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[\left\lvert\hat{x}-x\right\rvert\right] \\
 & = \underset{\hat{x}}{\arg\min}\int_{-\infty}^{\infty}\left\lvert\hat{x}-x\right\rvert p_X\left(x\right)dx \\
 \end{aligned}
 $$
@@ -629,10 +629,10 @@ $$
 **C**) The $$l_1$$ loss is given by $$\left(\hat{x}-x\right)^2$$. Therefore the optimal predictor is:
 
 $$
-\begin{aligned}[t]
+\begin{aligned}
 \hat{x}^*
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
-& = \underset{\hat{x}}{\arg\min}\ \mathbb{E}\left[\left(\hat{x}-x\right)^2\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{x},X\right)\right] \\
+& = \underset{\hat{x}}{\arg\min}\quad \mathbb{E}\left[\left(\hat{x}-x\right)^2\right] \\
 \end{aligned}
 $$
 
@@ -668,7 +668,7 @@ According to the results from the previous question, the optimal predictions are
 - Zero-one loss:
 
 $$
-\hat{x}^*=\underset{\hat{x}}{\arg\max}\ p_{X|L}\left(\hat{x}|L=4.4\right)=3 \\
+\hat{x}^*=\underset{\hat{x}}{\arg\max}\quad p_{X|L}\left(\hat{x}|L=4.4\right)=3 \\
 $$
 
 - $$l_1$$ loss:
@@ -725,7 +725,7 @@ This will always be true for symmetrical distributions such as the normal distri
 The method of Lagrange multipliers comes to solve an optimization problem with only equality constraints:
 
 $$
-\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\ f\left(\boldsymbol{x}\right) \\
+\boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\quad f\left(\boldsymbol{x}\right) \\
 \begin{aligned}
 \text{subject to}\quad
 & h_i\left(\boldsymbol{x}\right)=0,\qquad i=1,\ldots,m \\
@@ -755,7 +755,7 @@ Therefore we can easily find candidates for $$\boldsymbol{x}^*$$ but differentia
 Solve the following optimization problem:
 
 $$
-\underset{p_1,p_2}{\arg\max}\ p_1\cdot p_2 \\
+\underset{p_1,p_2}{\arg\max}\quad p_1\cdot p_2 \\
 \begin{aligned}
 \text{subject to}\quad
 & p_1 + p_2 = 1 \\
