@@ -7,6 +7,8 @@
 @import url("{{ site.baseurl }}/lib/fonts/fontawesome/css/all.css");
 @import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Racing+Sans+One&display=swap');
+@import url("{{ site.baseurl }}/lib/reveal/themes/black.css") not print;
+@import url("{{ site.baseurl }}/lib/reveal/themes/white.css") print;
 
 /* Fonts */
 /* ===== */
@@ -15,19 +17,14 @@
     src: url("{{ site.baseurl }}/lib/fonts/KGSecondChancesSketch.ttf");
 }
 
-blockquote {
-    border-left: 10px solid #b3b3b3;
-    padding: 10px 20px 1px 20px;
-    }
-
 /* Hidden sections */
 /* =============== */
 .hide-hidden .hide{
     display: none
 }
 
-/* Course Title */
-/* ============ */
+/* Headers */
+/* ======= */
 .course-title {
     font-family: 'Racing Sans One', 'Bangers', cursive;
 }
@@ -81,6 +78,10 @@ h5 {
     font-family: 'Muli', sans-serif;
 }
 
+blockquote {
+    border-left: 10px solid #b3b3b3;
+    padding: 10px 20px 1px 20px;
+    }
 
 /* Tables (taken from Pandas/Jupyter) */
 /* =========================== */
@@ -142,22 +143,27 @@ h5 {
 /* Slides */
 /* ====== */
 
-.reveal{
-    background-image: url({{ site.baseurl }}/media/black-board.jpg);
-    background-size: cover;
-}
-
-.reveal ul,
-.reveal ol {
-    padding-inline-start: 40px;
+@media not print {
+    .reveal{
+        background-image: url({{ site.baseurl }}/media/black-board.jpg);
+        background-size: cover;
+    }
+    .reveal .title-slide h1{
+        color:white;
+    }
 }
 
 .reveal .title-slide h1{
     font-family:'KG Second Chances Sketch';
     font-size:100px;
     line-height:2;
-    color:white;
     font-weight:normal;
+}
+
+
+.reveal ul,
+.reveal ol {
+    padding-inline-start: 40px;
 }
 
 .reveal h2 {

@@ -12,7 +12,6 @@
 
   <!-- Import Reveal's css-->
   <link rel="stylesheet" href="{{ site.baseurl }}/lib/reveal/reveal.min.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/lib/reveal/themes/black.css">
 
   <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
 
@@ -27,6 +26,7 @@
     link.href = window.location.search.match( /print-pdf/gi ) ? '{{ site.baseurl }}/lib/reveal/plugins/print-pdf/pdf.css' : '{{ site.baseurl }}/lib/reveal/plugins/print-pdf/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
+
   <style>
     .reveal .slides {
       text-align: left;
@@ -45,12 +45,25 @@
     <div class="slides main-content">
       <section class="title-slide center" markdown="1">
         <h1>{{ page.type | capitalize }} {{ page.number }}<br>{{ page.title }}</h1>
+        <div style="position:absolute;;bottom:12px;right:12px;">
+          <a id="print" href="" target="_blank" style="color:#42affa;font-size:30px;">Print <i class="fas fa-print"></i></a>
+        </div>
       </section>
       {{ content }}
     </div>
   </div>
 
   <script>
+    let printObj = document.querySelector("#print");
+    printObj.href = window.location.href.split("?")[0].split("#")[0] + '?print-pdf';
+    if (window.location.search.match( /print-pdf/gi )) {
+      Reveal.addEventListener( 'ready', function( event ) {
+        let content = document.querySelector(".reveal .slides")
+        content.innerHTML = content.innerHTML.replace(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g, '');
+        window.print();
+      });
+    }
+
     Reveal.initialize({
       width: 1440,
       height: 1080,
@@ -63,14 +76,7 @@
         { src: '{{ site.baseurl }}/lib/reveal/plugins/markdown/markdown.js' },
         { src: '{{ site.baseurl }}/lib/reveal/plugins/math/math.js', async: true },
         { src: '{{ site.baseurl }}/lib/reveal/plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-        { src: '{{ site.baseurl }}/lib/reveal/plugins/menu/menu.js' }
-        ],
-      menu: {
-        loadIcons: false,
-        custom: [
-          { title: 'Other', icon: '<i class="fas fa-cog"></i>', content: '<ul><li><a href="' + window.location.href.split("?")[0].split("#")[0] + '?print-pdf"<i class="fas fa-print">Print</a></li></ul>' }
-          ]
-        }
+        ]
     });
   </script>
 
@@ -127,15 +133,6 @@
     Reveal.addEventListener('slidechanged', set_svg_layers_by_position);
     Reveal.addEventListener('fragmentshown', set_svg_layers_by_position);
     Reveal.addEventListener('fragmenthidden', set_svg_layers_by_position);
-
   </script> -->
-  <script>
-    if (window.location.search.match( /print-pdf/gi )) {
-      Reveal.addEventListener( 'ready', function( event ) {
-        let content = document.querySelector(".reveal .slides")
-        content.innerHTML = content.innerHTML.replace(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g, '');
-      });
-    }
-  </script>
 </body>
 </html>
