@@ -1,6 +1,7 @@
 ---
 number: 1
 title: "Probability Theory and Predictions" 
+code: _tutorials/tutorial_01/code/tutorial_01.ipynb
 ---
 ## Background - Probability Theory Review
 
@@ -410,7 +411,7 @@ $$
 
 $$
 \boldsymbol{\mu}_\boldsymbol{X}=\left[0, 0, 0\right]^T \\
-\Sigma_{\boldsymbol{X}}=\begin{bmatrix}1 & 0 & 0 \\ 0 & 4 & 3 \\ 0 & 2 & 5\end{bmatrix}
+\Sigma_{\boldsymbol{X}}=\begin{bmatrix}1 & 0 & 0 \\ 0 & 4 & 2 \\ 0 & 2 & 5\end{bmatrix}
 $$
 
 Calculate $$p_{X_1\lvert X_2,X_3}$$
@@ -445,14 +446,14 @@ $$
 \Sigma_{a,a}=\begin{bmatrix}1\end{bmatrix},
 \Sigma_{a,b}=\begin{bmatrix}0 & 0\end{bmatrix},
 \Sigma_{b,a}=\begin{bmatrix}0 \\ 0\end{bmatrix},
-\Sigma_{b,b}=\begin{bmatrix}4 & 3 \\ 2 & 5\end{bmatrix}
+\Sigma_{b,b}=\begin{bmatrix}4 & 2 \\ 2 & 5\end{bmatrix}
 $$
 
 Following the formula for the section above the mean and covariance of the conditional distribution will be:
 
 $$
-\bar{\boldsymbol{\mu}}=\begin{bmatrix}0\end{bmatrix}+\begin{bmatrix}0 & 0\end{bmatrix}\begin{bmatrix}4 & 3 \\ 2 & 5\end{bmatrix}^{-1}\left(\boldsymbol{x}_b-\begin{bmatrix}0 \\ 0\end{bmatrix}\right)=0 \\
-\bar{\Sigma}=\begin{bmatrix}1\end{bmatrix}-\begin{bmatrix}0 & 0\end{bmatrix}\begin{bmatrix}4 & 3 \\ 2 & 5\end{bmatrix}^{-1}\begin{bmatrix}0 \\ 0\end{bmatrix}=1
+\bar{\boldsymbol{\mu}}=\begin{bmatrix}0\end{bmatrix}+\begin{bmatrix}0 & 0\end{bmatrix}\begin{bmatrix}4 & 2 \\ 2 & 5\end{bmatrix}^{-1}\left(\boldsymbol{x}_b-\begin{bmatrix}0 \\ 0\end{bmatrix}\right)=0 \\
+\bar{\Sigma}=\begin{bmatrix}1\end{bmatrix}-\begin{bmatrix}0 & 0\end{bmatrix}\begin{bmatrix}4 & 2 \\ 2 & 5\end{bmatrix}^{-1}\begin{bmatrix}0 \\ 0\end{bmatrix}=1
 $$
 
 **B**) Similarly

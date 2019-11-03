@@ -71,7 +71,9 @@
           {% endif %}
           <li class="nav-item"{% unless slides_link %}{% unless slides_link.hide %} style="display:none"{% endunless %}{% endunless %}>
             <a class="nav-link" href="{{ site.baseurl }}{{ slides_link.url }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
-
+          </li>
+          <li class="nav-item"{% unless page.code %} style="display:none"{% endunless %}>
+            <a class="nav-link" href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/{{ page.code }}" target="_blank"><img src="https://img.shields.io/badge/📄-Code-yellow.svg" alt="Open Code" /></a>
           </li>
           <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle int-nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
