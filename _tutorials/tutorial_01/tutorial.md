@@ -235,7 +235,7 @@ p_{X\lvert Y}\left(1\lvert Y=0\right)
 = \frac{0.08}{0+0.08+0.02+0.1} = 0.4
 $$
 
-**C**) Since the two events which are independent, the probability that both of them will happen is given by the product of the two probabilities. In order to calculate the probability buy a total of 3 pancakes we must sum over all the combinations which sum-up to 3 pancakes: (customer 1:0 & customer 2: 3, customer 1:1 & customer 2: 2, etc.. ).
+**C**) Since the two events which are independent, the probability that both of them will happen is given by the product of the two probabilities. In order to calculate the probability buy a total of 3 pizza slices we must sum over all the combinations which sum-up to 3 pizza slices: (customer 1:0 & customer 2: 3, customer 1:1 & customer 2: 2, etc.. ).
 
 We shall start by calculating the marginal distribution of the amount of pizza slices bought according to:
 
