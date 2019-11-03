@@ -411,7 +411,7 @@
                             <div
                                 xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">
                                 <span style="color: rgb(153 , 76 , 0) ; font-size: 18px">Probability measure:
-                                    <br style="font-size: 18px" /> P(</span><font color="#4d9900" style="font-size: 18px">A</font><font color="#994c00" style="font-size: 18px">)</font>=<font color="#994c00" style="font-size: 18px">P(</font><font color="#0066cc" style="font-size: 18px">X(</font><font style="font-size: 18px" color="#ff3333">ω</font><font color="#0066cc" style="font-size: 18px">)</font><font style="font-size: 18px">&lt;</font><font color="#000000" style="font-size: 18px">3</font><font color="#994c00" style="font-size: 18px">)</font><font style="font-size: 18px">=</font>0.1<br style="font-size: 18px" />
+                                    <br style="font-size: 18px" /> Pr(</span><font color="#4d9900" style="font-size: 18px">A</font><font color="#994c00" style="font-size: 18px">)</font>=<font color="#994c00" style="font-size: 18px">Pr(</font><font color="#0066cc" style="font-size: 18px">X(</font><font style="font-size: 18px" color="#ff3333">ω</font><font color="#0066cc" style="font-size: 18px">)</font><font style="font-size: 18px">&lt;</font><font color="#000000" style="font-size: 18px">3</font><font color="#994c00" style="font-size: 18px">)</font><font style="font-size: 18px">=</font>0.1<br style="font-size: 18px" />
                             </div>
                         </div>
                     </foreignObject>
@@ -427,7 +427,7 @@
                             xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
                             <div
                                 xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">
-                                <span style="color: rgb(153 , 76 , 0) ; font-size: 18px">P(</span><span><font color="#4d9900">∅</font></span><span style="font-size: 18px"><font color="#994c00" style="font-size: 18px">)=0</font></span>
+                                <span style="color: rgb(153 , 76 , 0) ; font-size: 18px">Pr(</span><span><font color="#4d9900">∅</font></span><span style="font-size: 18px"><font color="#994c00" style="font-size: 18px">)=0</font></span>
                                 <br style="font-size: 18px" />
                             </div>
                         </div>
@@ -444,7 +444,7 @@
                             xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;">
                             <div
                                 xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">
-                                <font color="#994c00" style="font-size: 18px">P(</font><span style="font-size: 18px"><font color="#4d9900" style="font-size: 18px">Ω</font></span><font color="#994c00" style="font-size: 18px">)=1</font><br style="font-size: 18px" />
+                                <font color="#994c00" style="font-size: 18px">Pr(</font><span style="font-size: 18px"><font color="#4d9900" style="font-size: 18px">Ω</font></span><font color="#994c00" style="font-size: 18px">)=1</font><br style="font-size: 18px" />
                             </div>
                         </div>
                     </foreignObject>
@@ -462,7 +462,7 @@
                             <div
                                 xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">
                                 <span>
-                                    <font color="#994c00">P(</font></span><font color="#4d9900">A</font><font color="#994c00">)</font>=<font color="#994c00">P(</font><font color="#0066cc">X(</font><font color="#ff3333">ω</font><font color="#0066cc">)</font><font>&lt;</font><font color="#000000">3</font><font color="#994c00">)</font><br />
+                                    <font color="#994c00">Pr(</font></span><font color="#4d9900">A</font><font color="#994c00">)</font>=<font color="#994c00">Pr(</font><font color="#0066cc">X(</font><font color="#ff3333">ω</font><font color="#0066cc">)</font><font>&lt;</font><font color="#000000">3</font><font color="#994c00">)</font><br />
                             </div>
                         </div>
                     </foreignObject>
