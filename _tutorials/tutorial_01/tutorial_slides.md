@@ -1252,4 +1252,5 @@ p_1=\tfrac{1}{2}\\
 \end{cases}
 \end{aligned}
 $$
+
 </section>
