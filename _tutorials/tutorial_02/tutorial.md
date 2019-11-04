@@ -6,21 +6,28 @@ hide: true
 
 ## Theory: Estimating Distributions
 
-- In the previous tutorial we saw how to give prediction in cases in which we know the distribution of some random variables. In this tutorial we will see how to we can estimate the distribution of the random variables from a given set of data points.
-- We will call the set of data points the **dataset**.
-- **We will always assume here that the samples in the dataset are statistically independent**.
+In the previous tutorial we have learned how to give a prediction for the case in which we know the distribution of some random variables, but in practice, in most cases we will not know the actual distribution of the random variables. In this tutorial we will see a few ways to estimate the distribution of random variables from a given set of measurements. We will call the set of measurements the **dataset**.
+
+- **Through the entire course we will assume here that the samples in the dataset are statistically independent**.
 
 Notations:
 
 - $$N$$ - the number of samples in the dataset.
 - $$\omega_i$$ - the $$i$$-th sample.
-- $$x_i=X\left(\omega_i\right)$$ - the realization $$\omega_i$$.
-- We will the "hat" sign to denote an estimation of some unknown value. For example, we shall use $$\hat{y}$$ as our estimation for $$y$$.
-- $$I\left\lbrace E\right\rbrace$$ - An indicator function of whether condition $$E$$ is ture. For example $$I\left\lbrace x<y\right\rbrace=\begin{cases}1\ \text{if}\ x<y\\0\ \text{else}\end{cases}$$.
+- $$X$$, $$Y$$ - Random variables.
+- $$D=\left\lbrace x_i\right\rbrace_{i=1}^N$$ - The dataset ($$N$$ i.i.d samples of $$X$$)
+- $$x_i=X\left(\omega_i\right)$$ - the realization related to $$\omega_i$$. Usually referred to as the **data points**.
+- $$p_X\left(x\right)$$ - The PMF / PDF of a random variable.
+- $$F_X\left(x\right)$$ - The CDF.
+- $$I\left\lbrace E\right\rbrace$$ - An indicator function of whether condition $$E$$ is true. For example $$I\left\lbrace x<y\right\rbrace=\begin{cases}1\ \text{if}\ x<y\\0\ \text{else}\end{cases}$$.
+
+- We will us the "hat" sign to denote an estimation of some unknown value. For example, we shall use $$\hat{y}$$ as our estimation for $$y$$.
+
+Our goal in this tutorial os to estimate the distribution of $$X$$ by using the dataset.
 
 ### 🧮 Empirical Measure
 
-An estimation, $$\hat{p}_A$$, of the probability measure, $$Pr\left(A\right)$$, of some event $$A$$, given a set of samples.
+The empirical measure, $$\hat{p}_A$$, is an estimation of the probability measure, $$Pr\left(A\right)$$, of some event $$A$$, given a set of samples.
 
 $$
 \hat{p}_A=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace\omega_i\in A\right\rbrace
@@ -30,7 +37,7 @@ Put in words, we estimate the probability of an event as the fraction of samples
 
 ### 🎯 Empirical mean
 
-An estimation, $$\hat\mu_X$$, of the expectation value, $$\mu_X=\mathbb{E}\left[X\right]$$, of some random variable $$X$$.
+The empirical mean, $$\hat\mu_X$$, is an estimation of the expectation value, $$\mu_X=\mathbb{E}\left[X\right]$$, of some random variable $$X$$.
 
 $$
 \hat{\mu}_X=\tfrac{1}{N}\sum_{i=1}^N x_i
@@ -42,11 +49,9 @@ $$
 \hat{\mu}_{f\left(x\right)}=\tfrac{1}{N}\sum_{i=1}^N f\left(x_i\right)
 $$
 
-### 📊 Estimating the PMF (Probability Mass Function)
+### 📊 Estimating the PMF (Probability Mass Function) (The Discrete Case)
 
-### 							(PDF in the discrete case)
-
-We can estimate the PMF using the empirical measure for each possible value of $$X$$:
+We can estimate the PMF of a random variable using the empirical measure for each possible values of $$X$$:
 
 $$
 \hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i = x\right\rbrace
@@ -54,9 +59,7 @@ $$
 
 ### 📈 Estimating the CDF (Cumulative Distribution Function)
 
-Also known as **ECDF** (Empirical Cumulative Distribution Function)*
-
-We can also estimate the CDF using the empirical measure:
+Also known as **ECDF** (Empirical Cumulative Distribution Function). Again, We can estimate the CDF using the empirical measure:
 
 $$
 \hat{F}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i \leq x\right\rbrace
@@ -64,15 +67,13 @@ $$
 
 **Comment**: The ECDF results in a non-continuous CDF which is a sum of step functions.
 
-### 📶 Histogram
+### 📶 Estimating the PDF using an Histogram
 
-A histogram is a method of estimating the PDF (probability density function).
+A histogram is a method for estimating the PDF (probability density function). The idea is as follow:
 
-The idea is as follow:
-
-- "Quantize" $$X$$ into a discrete set of values by dividing the range of values $$X$$ can take into a set of non-overlapping bins.
-- Estimate the probability of being in bin - which is a task of estimating a PMF.
-- Use a uniform distribution for the distribution of values inside each bin.
+- We "quantize" $$X$$ into a discrete set of values by dividing the range of values $$X$$ can take into a set of non-overlapping bins.
+- We estimate the probability of being in bin - which is similar estimating a PMF.
+- We use a uniform distribution to describe the distribution inside each bin.
 
 Notation:
 
@@ -86,35 +87,184 @@ $$
 
 A common rule of thumb for selecting the bins is to divide the range of values into $$\sqrt{N}$$ equal bins.
 
-### 📉 Kernel Density Estimation (KDE)
+### 📉 Estimating the PDF using Kernel Density Estimation (KDE)
 
-KDE is another method for estimating the PDF. In KDE in KDE we produce a smooth distribution using a smoothing function called the **Parzan window** or the KDE kernel.
+KDE is another method for estimating the PDF. In KDE in KDE we produce a smooth distribution by using a smoothing function called the **Parzan window** or the KDE **kernel**.
 
-Two common choices of the Parzen window/kernal are:
+Two common choices of the Parzen window/kernel are:
 
-- A Gaussian: $$\phi\left(x\right)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)$$
-- A rectangular function: $$\phi\left(x\right)=I\left\lbrace\left\lvert x\right\rvert\leq0.5\right\rbrace$$
+- A rectangular function:
 
-One way to construct this smoothed distribution is:
+$$\phi\left(x\right)=I\left\lbrace\left\lvert x\right\rvert\leq0.5\right\rbrace$$
 
-- Start with a distribution which consists of $$N$$ delta functions of hight $$\tfrac{1}{N}$$ at the position of each sample.
-- Smooth out the distribution by convolving it with the Parzen window.
+- A Gaussian:
 
-The resulting distribution is given by:
+$$\phi\left(x\right)=\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{x^2}{2}\right)$$
 
-$$
-\hat{p}_{\phi,X}\left(x\right) = \frac{1}{N}\sum_{i=1}^N \phi\left(x-x_i\right)
-$$
+A valid Parzen window/kernel will always be a valid PDF (positive and with an integral equal to 1)
 
-It is common to add a scaling factor $$h$$, called the bandwidth, to control the width of the Parzen window. We shall denote the scaled version of the window by $$\phi_h\left(x\right)=\frac{1}{h}\phi\left(\frac{x}{h}\right)$$. Plugging this into the definition of the KDE, we get:
+In addition to choosing the shape of the Parzan window/kernal, we must also choose the width of it. The width is added by using a version of the kernel scaled by a parameter $$\alpha$$:
 
 $$
-\hat{p}_{\phi,h,X}\left(x\right) = \frac{1}{N\cdot h}\sum_{i=1}^N \phi\left(\frac{x-x_i}{h}\right)
+\phi_{\alpha}\left(x\right)=\frac{1}{\alpha}\phi\left(\frac{x}{\alpha}\right)
 $$
 
-In the case of a Gaussian window the bandwidth is in fact the std of the Gaussian, and is usually donated by $$\sigma$$.
+For the two kernels above, this results in:
 
-A rule of thumb for selecting the bandwidth for the Gaussian window is: $$\sigma=\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$
+- A rectangular function:
+
+$$\phi_{\alpha}\left(x\right)=\frac{1}{\alpha}I\left\lbrace\left\lvert x\right\rvert\leq0.5\alpha\right\rbrace$$
+
+- A Gaussian: in this case $$a$$ will in fact be the standard deviation of the Gaussian, so we will use $$\sigma$$ instead of $$\alpha$$ here:
+
+$$\phi_{\sigma}\left(x\right)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{x^2}{2\sigma^2}\right)$$
+
+The KDE estimation can be though as being constructed in the following manner:
+
+- We start with a distribution which consists of $$N$$ delta functions of hight $$\tfrac{1}{N}$$ at the position of each sample.
+- We smooth out the distribution by convolving it with the kernel.
+
+The resulting distribution is then given by:
+
+$$
+\hat{p}_{\phi,\alpha,X}\left(x\right) = \frac{1}{N}\sum_{i=1}^N \phi_{\alpha}\left(x-x_i\right)
+$$
+
+A rule of thumb for selecting the bandwidth for the Gaussian kernel is: $$\sigma=\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$
+
+## Estimations as Random Variables
+
+It is important to notice here that each of the above estimations is in fact a random variable, since it is a function of the dataset, which is a collection of random variables. A single sample is this case is the entire set of $$N$$ data points which produces a single estimation.
+
+We can think of repeating the process of generating $$N$$ data points over and over again, producing different estimations, and looking at the distribution of these estimations.
+
+Let us donate by $$\Theta$$ the quantity which we would like to estimate, for example a probability measure, the ECDF of some value, etc. We can look for example at the mean of the estimation:
+
+$$
+\mu_{\hat\theta}=\mathbb{E}\left[\hat{\theta}\left(D\right)\right]
+$$
+
+### Bias
+
+The **Bias** of an estimation $$\hat{\theta}\left(D\right)$$ is the mean estimation error and is defined as:
+
+$$
+\text{Bias}\left(\hat{\theta}\left(D\right)\right)\triangleq\mathbb{E}\left[\hat{\theta}\left(D\right)\right]-\theta=\mu_{\hat\theta}-\theta
+$$
+
+(When the bias of an estimator is zero, we say the the estimator is unbiased)
+
+#### ✍️ Exercise 2.1 - Biases
+
+**A**) What is the bias of the ECDF estimation at some fixed point $$x_0$$?
+
+**B**) What is the bias of the KDE estimation at some fixed point $$x_0$$? Assume a symmetric kernel.
+
+##### 💡 Solution
+
+**A**)
+
+By definition, the bias of the ECDF at the point $$x_0$$ is given by:
+
+$$
+\begin{aligned}
+\text{Bias}\left(\hat{F}\left(x_0\right)\right)
+&=\mathbb{E}\left[\hat{F}\left(x_0\right)\right]-F\left(x_0\right) \\
+&=\mathbb{E}\left[\frac{1}{N}\sum_{i=1}^N I\left\lbrace X_i<x_0\right\rbrace\right]-F\left(x_0\right) \\
+&=\frac{1}{N}\left(\sum_{i=1}^N \mathbb{E}\left[I\left\lbrace X_i<x_0\right\rbrace\right]\right)-F\left(x_0\right) \\
+&=\frac{1}{N}\left(\sum_{i=1}^N F\left(x_0\right)\right)-F\left(x_0\right) \\
+&=F\left(x_0\right)-F\left(x_0\right) = 0
+\end{aligned}
+$$
+
+Therefore the ECDF is an unbiased estimation of the CDF.
+
+**B**)
+
+By definition, the bias of the KDE at the point $$x_0$$ is given by:
+
+$$
+\begin{aligned}
+\text{Bias}\left(\hat{p}\left(x_0\right)\right)
+&=\mathbb{E}\left[\hat{p}\left(x_0\right)\right]-p\left(x_0\right) \\
+&=\mathbb{E}\left[\frac{1}{N}\sum_{i=1}^N \phi_{\alpha}\left(x_0-X_i\right)\right]-p\left(x_0\right) \\
+&=\frac{1}{N}\left(\sum_{i=1}^N \mathbb{E}\left[\frac{1}{\alpha}\phi\left(\frac{x_0-X_i}{\alpha}\right)\right]\right)-p\left(x_0\right) \\
+&=\frac{1}{\alpha}\left(\int_{-\infty}^{\infty}\phi\left(\frac{x_0-x}{\alpha}\right)p\left(x\right)dx\right)-p\left(x_0\right) \\
+\end{aligned}
+$$
+
+by applying the following variable change $$\tilde{x}=\frac{x-x_0}{\alpha}$$, we get:
+
+$$
+\begin{aligned}
+\Rightarrow\text{Bias}\left(\hat{p}\left(x_0\right)\right)
+&=\left(\int_{-\infty}^{\infty}\phi\left(-\tilde{x}\right)p\left(x_0+\alpha\tilde{x}\right)d\tilde{x}\right)-p\left(x_0\right) \\
+\end{aligned}
+$$
+
+For small values of $$\alpha$$ we can approximate $$p\left(x_0+\alpha\tilde{x}\right)$$ by his taylor series:
+
+$$
+p\left(x_0+\alpha\tilde{x}\right)=p\left(x_0\right)+p'\left(x_0\right)\alpha \tilde{x}+\tfrac{1}{2}p''\left(x_0\right)\alpha \tilde{x}^2 + o\left(\alpha^2 \tilde{x}^2\right)
+$$
+
+By plugin the above expression back into the equation, we get:
+
+$$
+\begin{aligned}
+\Rightarrow\text{Bias}\left(\hat{p}\left(x_0\right)\right)
+&=\left(\int_{-\infty}^{\infty}\phi\left(-\tilde{x}\right)\left(p\left(x_0\right)+p'\left(x_0\right)\alpha\tilde{x}+\tfrac{1}{2}p''\left(x_0\right)\alpha^2\tilde{x}^2+o\left(\alpha^2 \tilde{x}^2\right)\right)d\tilde{x}\right)-p\left(x_0\right) \\
+\end{aligned}
+$$
+
+Since $$\phi$$ is a symmetric PDF, it obeys:
+
+$$
+\phi\left(-x\right)dx=\phi\left(x\right)dx
+$$
+
+$$
+\int_{-\infty}^{\infty}\phi\left(x\right)dx=1
+$$
+
+and:
+
+$$
+\int_{-\infty}^{\infty}\phi\left(x\right)xdx=0
+$$
+
+Therefore:
+
+$$
+\begin{aligned}
+\Rightarrow\text{Bias}\left(\hat{p}\left(x_0\right)\right)
+&=p\left(x_0\right)\underbrace{\int_{-\infty}^{\infty}\phi\left(\tilde{x}\right)d\tilde{x}}_{=1}
++\alpha p'\left(x_0\right)\underbrace{\int_{-\infty}^{\infty}\phi\left(\tilde{x}\right)\tilde{x}d\tilde{x}}_{=0}
++\alpha^2\tfrac{1}{2}p''\left(x_0\right)\underbrace{\int_{-\infty}^{\infty}\phi\left(\tilde{x}\right)\tilde{x}^2d\tilde{x}}_{=\text{Var}\left(\phi\right)}
++o\left(\alpha^2\right)-p\left(x_0\right) \\
+&=\alpha^2\tfrac{1}{2}p''\left(x_0\right)\text{Var}\left(\phi\right)+o\left(\alpha^2\right)
+\end{aligned}
+$$
+
+In this case we got that the KDE estimator is biased and is proportional to $$\alpha^2$$ for small $$\alpha$$s and is also proportional to the second derivative of the PDF of $$X$$ at $$x_0$$. This makes sense, because, as we said earlier, the KDE smooths out the PDF, therefore we expect some differences between the real PDF and the estimated one, especially at places the the PDF has a large second derivative.
+
+### Estimator Variance
+
+Like every random variable, the **Variance** of an estimation is equal to:
+
+$$
+\text{Var}\left(\hat{\theta}\left(D\right)\right)=\mathbb{E}\left[\left(\hat{\theta}\left(D\right)-\mu_{\hat\theta}\right)^2\right]=\mathbb{E}\left[\hat{\theta}^2\left(D\right)\right]-\mu_{\hat\theta}^2
+$$
+
+The variance of and estimation describes the spread of the estimations. For a small variance, the estimations will be concentrated around the mean, while for a large variance the estimations will be spread out. In general, we would like the variance of our estimation to be small.
+
+#### ✍️ Exercise 2.2 - Biases
+
+What is the variance of the KDE estimation at some fixed point $$x_0$$? Assume a symmetric kernel.
+
+##### 💡 Solution
+
+...
 
 ## Hands-on
 
