@@ -5,6 +5,8 @@ baseurl: /semester_2019_winter
 collections:
   tutorials:
     output: true
+#   tutorials_hb:
+#     output: true
   workshops:
     output: true
   widgets:
@@ -12,21 +14,37 @@ collections:
 
 defaults:
 - scope:
-    path: ""
+    path: "*/*/tutorial.md"
     type: "tutorials"
   values:
     layout: "tutorial"
     excerpt_separator: <!-- excerpt_end -->
     type: "tutorial"
 - scope:
-    path: "*/*/*_slides*"
+    path: "*/*/tutorial_slides.md"
     type: "tutorials"
   values:
     layout: "slides"
     type: "tutorial"
     slides: true
 - scope:
-    path: ""
+    path: "*/*/tutorial_he.md"
+    type: "tutorials"
+  values:
+    layout: "tutorial"
+    excerpt_separator: <!-- excerpt_end -->
+    type: "תרגול"
+    hebrew: true
+- scope:
+    path: "*/*/tutorial_he_slides.md"
+    type: "tutorials"
+  values:
+    layout: "slides"
+    type: "תרגול"
+    hebrew: true
+    slides: true
+- scope:
+    path: "*/*/workshop_*.md"
     type: "workshops"
   values:
     layout: "tutorial"

@@ -9,3 +9,4 @@
 ### Fonts
 
 - [KG Second Chances Sketch by Kimberly Geswein from dafont.com](https://www.dafont.com/kg-second-chances.font)
+- [Trashim from the Culmus project](http://culmus.sourceforge.net/fancy/index.html)

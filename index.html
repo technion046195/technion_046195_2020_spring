@@ -7,17 +7,43 @@ layout: "default"
 </section>
 
 <section class="px-2">
+  <div class="container" dir="auto" style="text-align: initial">
+    <div class="row">
+      <div class="col mx-auto">
+        <h3>תרגולים</h3>
+        {% assign tutorials_he = "" | split: "," %}
+        {% for cur_page in site.tutorials %}{% if cur_page.type == "תרגול" %}{% unless cur_page.slides %}{% unless cur_page.ignore %}
+          {% assign tutorials_he = tutorials_he | push: cur_page %}
+        {% endunless %}{% endunless %}{% endif %}{% endfor %}
+        {% assign tutorials_he = tutorials_he | sort: "number" %}
+        <ul>
+          {% for cur_page in tutorials_he %}
+          <li {% if cur_page.hide %}class="hide"{% endif %}><h4>
+            <a class="int-nav-link" href="{{ site.baseurl }}{{ cur_page.url }}">{{ cur_page.type | capitalize }} {{ cur_page.number }} - {{ cur_page.title }}</a>
+          </h4></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="px-2">
   <div class="container">
     <div class="row">
       <div class="col mx-auto">
         <h3>Tutorials</h3>
+        {% assign tutorials = "" | split: "," %}
+        {% for cur_page in site.tutorials %}{% if cur_page.type == "tutorial" %}{% unless cur_page.slides %}{% unless cur_page.ignore %}
+          {% assign tutorials = tutorials | push: cur_page %}
+        {% endunless %}{% endunless %}{% endif %}{% endfor %}
+        {% assign tutorials = tutorials | sort: "number" %}
         <ul>
-          {% assign items = site.tutorials | sort: 'number' %}
-          {% for item in items %}{% unless item.ignore %}{% unless item.slides %}
-          <li {% if item.hide %}class="hide"{% endif %}><h4>
-            <a class="int-nav-link" href="{{ site.baseurl }}{{ item.url }}">{{ item.type | capitalize }} {{ item.number }} - {{ item.title }}</a>
+          {% for cur_page in tutorials %}
+          <li {% if cur_page.hide %}class="hide"{% endif %}><h4>
+            <a class="int-nav-link" href="{{ site.baseurl }}{{ cur_page.url }}">{{ cur_page.type | capitalize }} {{ cur_page.number }} - {{ cur_page.title }}</a>
           </h4></li>
-          {% endunless %}{% endunless %}{% endfor %}
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -29,13 +55,17 @@ layout: "default"
     <div class="row">
       <div class="col mx-auto">
         <h3>Workshops</h3>
+        {% assign workshops = "" | split: "," %}
+        {% for cur_page in site.workshops %}{% if cur_page.type == "workshop" %}{% unless cur_page.ignore %}
+          {% assign workshops = workshops | push: cur_page %}
+        {% endunless %}{% endif %}{% endfor %}
+        {% assign workshops = workshops | sort: "number" %}
         <ul>
-          {% assign items = site.workshops | sort: 'number' %}
-          {% for item in items %}{% unless item.ignore %}
+          {% for cur_page in workshops %}
           <li><h4>
-            <a class="int-nav-link" href="{{ site.baseurl }}{{ item.url }}">{{ item.type | capitalize }} {{ item.number }} - {{ item.title }}</a>
+            <a class="int-nav-link" href="{{ site.baseurl }}{{ cur_page.url }}">{{ cur_page.type | capitalize }} {{ cur_page.number }} - {{ cur_page.title }}</a>
           </h4></li>
-          {% endunless %}{% endfor %}
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -65,10 +95,10 @@ layout: "default"
       <div class="col mx-auto">
         <h3>Widgets</h3>
         <ul>
-        {% assign items = site.widgets %}
-        {% for item in items %}{% unless item.ignore %}
+        {% assign widgets = site.widgets %}
+        {% for cur_page in items %}{% unless cur_page.ignore %}
           <li><h4>
-            <a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
+            <a href="{{ site.baseurl }}{{ cur_page.url }}">{{ cur_page.title }}</a>
           </h4></li>
         {% endunless %}{% endfor %}
         </ul>

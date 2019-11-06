@@ -1,21 +1,9 @@
 ---
 ---
 
-/* Syntax highlighting theme */
-/* ========================= */
-@import url("{{ site.baseurl }}/lib/pygments_themes/monokai.css");
-@import url("{{ site.baseurl }}/lib/fonts/fontawesome/css/all.css");
-@import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Racing+Sans+One&display=swap');
-@import url("{{ site.baseurl }}/lib/reveal/themes/black.css") not print;
-@import url("{{ site.baseurl }}/lib/reveal/themes/white.css") print;
-
-/* Fonts */
-/* ===== */
-@font-face {
-    font-family: KG Second Chances Sketch;
-    src: url("{{ site.baseurl }}/lib/fonts/KGSecondChancesSketch.ttf");
-}
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");  /* font awesome */
+@import url('https://fonts.googleapis.com/css?family=Racing+Sans+One&display=swap');  /* Racing Sans One font - for site main title */
+@import url("https://cdn.jsdelivr.net/npm/pygments-css@1.0.0/monokai.css");  /* pygments code blocks theme */
 
 /* Hidden sections */
 /* =============== */
@@ -23,12 +11,32 @@
     display: none
 }
 
-/* Headers */
-/* ======= */
-.course-title {
-    font-family: 'Racing Sans One', 'Bangers', cursive;
+.hide-hidden .hide.nav-link{
+    display: initial;
+    color: rgba(255,255,255,.25);
+    pointer-events: none;
+    cursor: default;
 }
 
+/* Hebrew */
+/* ====== */
+
+.hebrew {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    text-align: initial !important;
+}
+
+/* Headers */
+/* ======= */
+
+.course-title {
+    font-family: 'Racing Sans One', cursive;
+}
+
+.bg-primary {
+    background: #0da285 !important;
+}
 
 h2 {
     background: white !important;
@@ -138,72 +146,4 @@ blockquote {
 .main-content img {
     margin: 0 auto;
     display: block;
-}
-
-/* Slides */
-/* ====== */
-
-@media not print {
-    .reveal{
-        background-image: url({{ site.baseurl }}/media/black-board.jpg);
-        background-size: cover;
-    }
-    .reveal .title-slide h1{
-        color:white;
-    }
-}
-
-.reveal .title-slide h1{
-    font-family:'KG Second Chances Sketch';
-    font-size:100px;
-    line-height:2;
-    font-weight:normal;
-}
-
-
-.reveal ul,
-.reveal ol {
-    padding-inline-start: 40px;
-}
-
-.reveal h2 {
-    font-size: 1.3em !important;
-}
-
-.reveal h4 {
-    color: #678ece !important;
-}
-/* Images */
-.reveal .main-content section img {
-    background:none !important;
-    border:none !important;
-    box-shadow:none !important;
-}
-
-/* Increase font in tables */
-.reveal .main-content table {
-    font-size:16px !important;
-}
-
-/* Code Block */
-.reveal .main-content pre code {
-    max-height: 700px !important;
-}
-/* .slide-image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    background-color :rgba(255, 255, 255, 0.7);
-    box-shadow: 0 0 5px 10px rgba(255, 255, 255, 0.7)
-}
-.slide-image img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-} */
-.reveal .main-content .slide-image img{
-    background-color :rgba(255, 255, 255, 0.7) !important;
-    margin-left: auto;
-    margin-right: auto
 }

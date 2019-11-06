@@ -1,0 +1,113 @@
+---
+---
+
+@import url("{{ site.baseurl }}/lib/reveal/themes/black.css") not print;
+@import url("{{ site.baseurl }}/lib/reveal/themes/white.css") print;
+
+/* Fonts */
+/* ===== */
+@font-face {
+    font-family: KG Second Chances Sketch;
+    src: url("{{ site.baseurl }}/lib/fonts/KGSecondChancesSketch.ttf");
+}
+
+@font-face {
+    font-family: Trashim;
+    src: url("{{ site.baseurl }}/lib/fonts/TrashimCLM-Bold.otf");
+}
+
+/* Title slide */
+/* =========== */
+
+@media not print {
+    .reveal{
+        background-image: url({{ site.baseurl }}/media/black-board.jpg);
+        background-size: cover;
+    }
+    .reveal .title-slide h1{
+        color:white;
+    }
+}
+
+.reveal .title-slide h1{
+    font-family:'KG Second Chances Sketch';
+    font-size:100px;
+    line-height:2;
+    font-weight:normal;
+}
+
+.reveal .hebrew .title-slide h1{
+    font-family:'Trashim';
+    font-size:150px;
+    line-height:2;
+    font-weight:normal;
+}
+
+/* Lists */
+/* ===== */
+
+.reveal ul,
+.reveal ol {
+    padding-inline-start: 40px;
+}
+
+/* A fix for lists in hebrew */
+.reveal ol,
+.reveal dl,
+.reveal ul {
+    text-align: inherit;
+}
+
+/* Headers */
+/* ======= */
+
+.reveal h2 {
+    font-size: 1.3em !important;
+}
+
+.reveal h4 {
+    color: #678ece !important;
+}
+
+/* Images */
+/* ====== */
+
+.reveal .main-content section img {
+    background:none !important;
+    border:none !important;
+    box-shadow:none !important;
+}
+
+.reveal .main-content .slide-image img{
+    background-color :rgba(255, 255, 255, 0.7) !important;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/* .slide-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color :rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 5px 10px rgba(255, 255, 255, 0.7)
+}
+.slide-image img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+} */
+
+/* Increase font in tables */
+/* ======================= */
+
+.reveal .main-content table {
+    font-size:16px !important;
+}
+
+/* Code Block */
+/* ========== */
+
+.reveal .main-content pre code {
+    max-height: 700px !important;
+}

@@ -11,19 +11,20 @@
   <link rel="shortcut icon" type="image/png" href="{{ site.baseurl }}/favicon.ico">
 
   <!-- Import Reveal's css-->
-  <link rel="stylesheet" href="{{ site.baseurl }}/lib/reveal/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
 
   <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/slides.css">
 
   <!-- Theme used for syntax highlighting of code -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/lib/highlight_js_themes/github.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css">
 
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? '{{ site.baseurl }}/lib/reveal/plugins/print-pdf/pdf.css' : '{{ site.baseurl }}/lib/reveal/plugins/print-pdf/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/print/pdf.min.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/print/paper.min.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
 
@@ -37,16 +38,16 @@
     }
   </style>
 
-  <script src="{{ site.baseurl }}/lib/reveal/head.min.js"></script>
-  <script src="{{ site.baseurl }}/lib/reveal/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
 </head>
 <body>
   <div class="reveal">
-    <div class="slides main-content">
+    <div class="slides main-content{% if page.hebrew %} hebrew{% endif %}"{% if page.hebrew %} dir="rtl"{% endif %}>
       <section class="title-slide center" markdown="1">
         <h1>{{ page.type | capitalize }} {{ page.number }}<br>{{ page.title }}</h1>
         <div style="position:absolute;;bottom:12px;right:12px;">
-          <a id="print" href="" target="_blank" style="color:#42affa;font-size:30px;">Print <i class="fas fa-print"></i></a>
+          <a id="print" href="" target="_blank" style="color:#42affa;font-size:30px;">Print <i class="fa fa-print"  aria-hidden="true"></i></a>
         </div>
       </section>
       {{ content }}
@@ -56,17 +57,19 @@
   <script>
     let printObj = document.querySelector("#print");
     printObj.href = window.location.href.split("?")[0].split("#")[0] + '?print-pdf';
-    function print() {
-      if (MathJax == undefined) {
-        setTimeout(print, 500)
+    function printPage() {
+      if (typeof MathJax === "undefined") {
+        setTimeout(printPage, 1000)
       } else {
-        let content = document.querySelector(".reveal .slides")
-        content.innerHTML = content.innerHTML.replace(/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g, '');
-        window.print();
+        MathJax.Hub.Queue(function () {setTimeout(function () {
+          let content = document.querySelector(".reveal .slides")
+          content.innerHTML = content.innerHTML.replace(/(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|\ud83c[\ude32-\ude3a]|\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])/g, '');
+          window.print();
+        }, 2000)});
       }
     }
     if (window.location.search.match( /print-pdf/gi )) {
-      Reveal.addEventListener( 'ready', print);
+      Reveal.addEventListener('ready', printPage);
     }
 
     Reveal.initialize({
@@ -77,10 +80,10 @@
       transition: 'slide',
       history: true,
       dependencies: [
-        { src: '{{ site.baseurl }}/lib/reveal/plugins/markdown/marked.js' },
-        { src: '{{ site.baseurl }}/lib/reveal/plugins/markdown/markdown.js' },
-        { src: '{{ site.baseurl }}/lib/reveal/plugins/math/math.js', async: true },
-        { src: '{{ site.baseurl }}/lib/reveal/plugins/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/marked.js' },
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.min.js' },
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/math/math.min.js', async: true },
+        { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.min.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
         ]
     });
   </script>

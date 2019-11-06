@@ -1,34 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-  {% if page.collection %}
+  {% if page.type %}
+    {% assign type_pages = "" | split: "," %}
+    {% for cur_page in site.documents %}{% if cur_page.type == page.type %}{% unless cur_page.slides %}{% unless cur_page.ignore %}
+      {% assign type_pages = type_pages | push: cur_page %}
+    {% endunless %}{% endunless %}{% endif %}{% endfor %}
+    {% assign type_pages = type_pages | sort: "number" %}
     {% assign prev_page = nil %}
     {% assign next_page = nil %}
     {% assign prev_page_tmp = nil %}
     {% assign use_next = false %}
-    {% assign links = "" | split: "," %}
-    {% for link in site[page.collection] %}{% unless link.ignore %}{% unless link.slides %}
-      {% assign links = links | push: link %}
-    {% endunless %}{% endunless %}{% endfor %}
-    {% assign links = links | sort: "number" %}
-    {% for link in links %}
+    {% for cur_page in type_pages %}
       {% if use_next %}
-        {% assign next_page = link %}
+        {% assign next_page = cur_page %}
         {% assign use_next = false %}
       {% endif %}
-      {% if link.number == page.number %}
+      {% if cur_page.number == page.number %}
         {% assign prev_page = prev_page_tmp %}
         {% assign use_next = true %}
       {% endif %}
-      {% assign prev_page_tmp = link %}
+      {% assign prev_page_tmp = cur_page %}
     {% endfor %}
 
-    {% assign slides_link = nil %}
-    {% for link in site[page.collection] %}{% unless link.ignore %}{% if link.slides %}
-      {% if link.number == page.number %}
-        {% assign slides_link = link %}
-      {% endif %}
-    {% endif %}{% endunless %}{% endfor %}
+    {% assign slides_page = nil %}
+    {% for cur_page in site.documents %}
+      <script>console.log("{{ cur_page.path }}:{{ cur_page.type }}")</script>
+      {% if cur_page.type == page.type %}{% if cur_page.slides %}{% unless cur_page.ignore %}{% if cur_page.number == page.number %}
+      {% assign slides_page = cur_page %}
+    {% endif %}{% endunless %}{% endif %}{% endif %}{% endfor %}
   {% endif %}
   <title>{{ site.data.general.course_number }} - {{ site.data.general.course_title }}</title>
   <!-- Meta -->
@@ -69,8 +69,8 @@
               <a class="nav-link int-nav-link{% unless next_page %} disabled{% endunless %}{% if next_page.hide %} hidden-nav-link {% endif %}" href="{{ site.baseurl }}{{ next_page.url }}">next&raquo;</a>
             </li>
           {% endif %}
-          <li class="nav-item"{% unless slides_link %}{% unless slides_link.hide %} style="display:none"{% endunless %}{% endunless %}>
-            <a class="nav-link" href="{{ site.baseurl }}{{ slides_link.url }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
+          <li class="nav-item"{% unless slides_page %}{% unless slides_page.hide %} style="display:none"{% endunless %}{% endunless %}>
+            <a class="nav-link" href="{{ site.baseurl }}{{ slides_page.url }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
           </li>
           <li class="nav-item"{% unless page.code %} style="display:none"{% endunless %}>
             <a class="nav-link" href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/{{ page.code }}" target="_blank"><img src="https://img.shields.io/badge/📄-Code-yellow.svg" alt="Open Code" /></a>
@@ -94,9 +94,9 @@
       </div>
     </nav>
   
-    <main role="main"></main>
+    <main role="main">{% if page.hebrew %}<bdo dir="rtl" class="hebrew">{% endif %}
       {{ content }}
-    </main>
+    {% if page.hebrew %}</bdo>{% endif %}</main>
 
     <footer class="footer mt-auto py-3 bg-secondary text-center text-light">
       <div class="container">
@@ -127,11 +127,6 @@
         } else {
           links[j].setAttribute("href", cur_link + '?full');
         }
-      }
-    } else {
-      var links = document.querySelectorAll(".hidden-nav-link");
-      for (var j=0;j<links.length;j++) {
-        links[j].classList.add('disabled');
       }
     }
     document.querySelector("#root").style.display = "";
