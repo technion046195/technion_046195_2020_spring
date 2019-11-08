@@ -1,8 +1,8 @@
 ---
 ---
 
-@import url("{{ site.baseurl }}/lib/reveal/themes/black.css") not print;
-@import url("{{ site.baseurl }}/lib/reveal/themes/white.css") print;
+@import url("https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.min.css") not print;
+@import url("https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.min.css") print;
 
 /* Fonts */
 /* ===== */
@@ -21,7 +21,12 @@
 
 @media not print {
     .reveal{
-        background-image: url({{ site.baseurl }}/media/black-board.jpg);
+        background:
+            linear-gradient(
+              rgba(0, 0, 0, 0.5), 
+              rgba(0, 0, 0, 0.5)
+            ),
+            url({{ site.baseurl }}/media/black-board.jpg);
         background-size: cover;
     }
     .reveal .title-slide h1{
@@ -73,12 +78,8 @@
 /* ====== */
 
 .reveal .main-content section img {
-    background:none !important;
     border:none !important;
     box-shadow:none !important;
-}
-
-.reveal .main-content .slide-image img{
     background-color :rgba(255, 255, 255, 0.7) !important;
     margin-left: auto;
     margin-right: auto

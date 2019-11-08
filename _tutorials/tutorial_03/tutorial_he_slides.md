@@ -4,67 +4,119 @@ title: "שיערוך פילוג בשיטות פרמטריות"
 hide: true
 ---
 
-## סימונים: תזכורת
-
-
-
-- $$N$$ - מספר הדגימות במדגם
-- $$\omega_i$$ - הדגם ה $$i$$
-- $$\boldsymbol{X}$$, $$\boldsymbol{Y}$$ - משתנים/וקטורים אקראיים
-- $$\boldsymbol{x}_i=\boldsymbol{X}\left(\omega_i\right)$$ - הריאלוזציה שמיוחסת לדגם $$\omega_i$$. ערכים אלו נקראים לרוב .**data points**.
-- $$D=\left\lbrace \boldsymbol{x}_i\right\rbrace_{i=1}^N$$ - המדגם (אשר כולל $$N$$ ראליזציות של וקטורים אקראיים בלתי תלויים סטטיסטית ובעלי פילוג זהה, i.i.d)
-- $$p_\boldsymbol{X}\left(\boldsymbol{x}\right)$$ - פונקציית ההסתברות (PMF) או הצפיפות ההסתברות (PDF) של משתנה/וקטור אקראי.
-- $$F_\boldsymbol{X}\left(\boldsymbol{x}\right)$$ - פנקציית הפילוג המצרפי של משתנה/וקטור אקראי.
-- $$I\left\lbrace E\right\rbrace$$ - פונקציית אינדיקטור של האם המאורע $$E$$ התרחש, לדוגמא: $$I\left\lbrace x<y\right\rbrace=\begin{cases}1\ \text{if}\ x<y\\0\ \text{else}\end{cases}$$.
-- אנו נשתמש בסימון "כובע" ("hat") על מנת לציין שערוך של ערך בלתי ידוע. לדוגמא נסמן $$\hat{p}_X\left(x\right)$$ לשערוך של $$p_X\left(x\right)$$
-
+<section markdown="1">
 ## תיאוריה
 
 ### הגישה הפרמטרית והלא פרמטרית
 
 #### הבעיה בגישה הלא פרמטרית
+<br>
 
-בתרגול הקודם התמקדנו בשיטות לשיערוך פילוג המכונות שיטות לא פרמטריות (או א-פרמטריות). לשיטות אלו מספר בעיות:
+1.   - מניחה כי יש מספיק של דגימות בכל איזור.
 
-1. שיטות אלו מניחות כי יש בידינו כמות מספקת של דגימות בכל איזור שבו ישנה הסתברות גודלה מאפס. הבעיה העיקרית אם הנחה זו הינה, שגודל המדגם שאנו צריכים על מנת לקבל שיערוך טוב גדל באופן אקספונציאלי עם מספר המשתנים האקראיים בבעיה. קל להבין זאת במקרה של משתנים בינאריים, בעבור משתנה בינארי אחד ישנם שני תוצאות אפשריות, בעבור שני משתנים ישנם $$2^N$$ תוצאות אפשריות, בכדי לשערך את ההסתברות של כל תוצאות האפשריות אנו צריכים מספיק דגימות שיכסו כל קומבינציה אפשרית של המשתנים.
-2. התוצאה המתקבלת בשיערוך לא פרמטרי אינה פונקציה שנוח לעבוד איתה, אלא נוסחא בשעזרתה ניתן לחשב את הפילוג בנקודה כלשהי.
+     - הבעיה: גודל שאנו צריכים גדל אקספונציאלית עם מספר המשתנים.
+
+<br>
+
+2. התוצאה המתקבלת אינה פונקציה שנוח לעבוד איתה.
+
+</section><section markdown="1">
 
 #### הגישה הפרמטרית
 
-נציג כעת גישה פופולריות ושימושית יותר המכונה גישה פרמטרית. בגישה זו אנו נציע משפחה של פונקציות פרמטריות, לדוגמא משפחת הגאוסיאנים עם תוחלת ושונות כלשהם, בתקווה כי נוכל לקרב את פונקציית הפילוג בעזרת אחת הפונקציות מהמשפחה על ידי בחירה מתאימה של הפרמטרים. את משפחת הפונקציות הזו אנו מכנים המודל, או המודל הפרמטרי. את סט הפרמטרים של המודל נהוג לייצג כוקטור ולסמנו ב$$\boldsymbol{\theta}$$. המטרה שלנו, אם כן, הינה בהינתן מודל פרמטרי כלשהו, לשערך את וקטור הפרמטרים האופטימאלי $$\hat{\boldsymbol{\theta}}^*$$ שבעבורו שהמודל מתאים בצורה מיטבית למדגם הנתון.
+<br>
 
-נתאר שתי גישות שונות לשערוך וקטור הפרמטרים:
+- נציע משפחה של פונקציות פרמטריות (לדוגמא משפחת הגאוסיאנים)
+
+<br>
+
+- נקווה כי נוכל לקרב את פונקציית הפילוג בעזרת אחת הפונקציות מהמשפחה
+
+<br>
+
+- את משפחת הפונקציות הזו אנו מכנים המודל, או המודל הפרמטרי.
+
+<br>
+
+- את סט הפרמטרים של המודל נייצג כוקטור ונסמנו ב$$\boldsymbol{\theta}$$. 
+
+<br>
+
+##### המטרה
+
+בהינתן מודל פרמטרי + מדגם: לשערך את וקטור הפרמטרים האופטימאלי $$\hat{\boldsymbol{\theta}}^*$$.
+
+</section><section markdown="1">
 
 ### הגישה באייסיאנית והלא-בייסיאנית
 
 #### הגישה באייסיאנית
 
-בגישה זו אנו מניחים וקטור הפרמטרים $$\boldsymbol{\theta}$$ הינו ריאליזציה של וקטור אקראי בעל פילוג כלשהוא $$P_{\boldsymbol{\Theta}}$$. פילוג זה מכונה ה**פילוג הפריורי** (**prior distribution**) או ה**א-פריורי** (**a priori distribution**). בנוסף לכך ישנו גם הפילוג המשותף של וקטור הפרמטרים והמדגם $$P_{\boldsymbol{\Theta,D}}$$. בהינתן מדגם מסויים נוכל להייחס לפילוג המותנה של וקטור הפרמטרים בהינתן המדגם $$P_{\boldsymbol{\Theta\lvert D}}$$. הפילוג המותנה מוכנה ה**פילוג הפוסטריורי** (**posterior distribution**) או **א-פוסטריורי** (**a posteriori distribution**) (או הפילוג בדיעבד). תחת גישה זו לרוב נבחר את הוקטור הפרמטרים האופטימאלי על פי פילוג זה (ההסתברות המקסימאלית, התוחלת וכו').
+מניחים כי וקטור הפרמטרים $$\boldsymbol{\theta}$$ הינו וקטור אקראי.
+
+<br>
+
+##### הפילוג $$P_{\boldsymbol{\Theta}}$$:
+
+ה**פילוג הפריורי** (**prior distribution**) או ה**א-פריורי** (**a priori distribution**)
+
+<br>
+
+##### הפילוג  $$P_{\boldsymbol{\Theta\lvert D}}$$:
+
+ה**פילוג הפוסטריורי** (**posterior distribution**) או **א-פוסטריורי** (**a posteriori distribution**) (או הפילוג בדיעבד).
+
+<br>
+
+נבחר לרוב את המשערך על פי ההסתברות המקסימאלית, התוחלת וכו' של הפילוג הא-פוסטריורי.
+
+</section><section markdown="1">
+
+### הגישה באייסיאנית והלא-בייסיאנית
 
 #### הגישה הלא-בייסיאנית (המכונה גם: קלאסית או תדירותית (**Frequintist**))
 
-בגישה זו אנו נניח כי וקטור הפרמטרים היא גודל קבוע, אך לא יודע. תחת גישה זו אין כל העדפה של ערך מסויים של הוקטור על פני ערך אחר. במקרה זה נסמן את הפילוג של המדגם (או הדגמים במדגם) ב $$p_D\left(D;\boldsymbol{\theta}\right)$$ על מנת לסמן שהפילוג תלוי בפרמטרים $$\boldsymbol{\theta}$$ (להבדיל מהסימון של פילוג מותנה $$p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\boldsymbol{\theta}\right)$$). הפונקציה $$p_D\left(D;\boldsymbol{\theta}\right)$$ מכונה לרוב פונקציית ה**סבירות** (**likelihood**), שכן היא מציינת את הסבירות לקבלת המדגם אותו קיבלנו בעבור וקטור פרמטרים מסויים $$\boldsymbol{\theta}$$, מוקבל גם לסמן אותה באופן הבא:
+מניחים כי וקטור הפרמטרים היא גודל קבוע, אך לא יודע.
+
+<br>
+
+- אין כל העדפה של ערך מסויים של הוקטור על פני ערך אחר.
+
+<br>
+
+- נסמן $$p_D\left(D;\boldsymbol{\theta}\right)$$ במקרה שהפילוג תלוי בפרמטרים.
+
+<br>
+
+נסמן את פונקציית ה**סבירות** (**likelihood**):
 
 $$
 \mathcal{L}\left(\boldsymbol{\theta};D\right)\triangleq p_D\left(D;\boldsymbol{\theta}\right)
 $$
 
-שהיא למעשה פונקציה של $$\boldsymbol{\theta}$$ עם פרמטר $$D$$, לשם הדגשת העובדה כי אנו מעוניינים להסתכל על המקרה בו יש בידינו מדגם נתון ואנו מעוניינים להסתכל על הסבירות כתלות בוקטור הפרמטרים. (ההבדל בין שני הפונקיות בהגדרה זו הנו סמנטי (שינוי בסימון) בלבד)
-
+</section><section markdown="1">
 
 ### שיטות שיערוך
 
-בקורס זה נתמקד בשתי שיטות שיערוך פרמטריות, האחת בייסיאנית והשניה לא.
-
 #### משערך (Maximum a Posteriori (MAP (שיטה בייסיאנית)
 
-משערך הMAP משתייך לקטגוריה של שערוך בייסיאני. בשיטה זו נבחר את המשערך האופטימאלי כוקטור הפרמטרים אשר ממקסם את צפיפות ההסתברות האפוסטריורית. כלומר:
+<br>
+
+**המשערך האופטימאלי: וקטור הפרמטרים אשר ממקסם את צפיפות ההסתברות האפוסטריורית**
+
+<br>
 
 $$
 \hat{\boldsymbol{\theta}}_{\text{MAP}}=\underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad p_{\boldsymbol{\Theta}\lvert D}\left(\hat{\boldsymbol{\theta}}\lvert D\right)
 $$
 
-בפועל, לרוב נשתמש בכלל בייס על מנת לחשב את צפיפות ההסתברות האפוסטריורית. על ידי שימוש בכלל בייס נקבל:
+</section><section markdown="1">
+
+### שיטות שיערוך
+
+#### משערך (Maximum a Posteriori (MAP (שיטה בייסיאנית) - המשך
+
+נשתמש לרוב בכלל בייס:
 
 $$
 \begin{aligned}
@@ -75,15 +127,23 @@ $$
 \end{aligned}
 $$
 
-ניתן לראות שלמעשה אנו מחפשים את הנקודה שמביאה למקסימום את המכפלה של: 
+<br>
 
-1. הסבירות, $$p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\hat{\boldsymbol{\theta}}\right)$$, שמנסה להסביר בצורה מיטבית את תוצאות המדגם
+אנו מחפשים את המקסימום של המכפלה של:
 
-2. צפיפות ההסתברות הא-פירורית, Prior: $$P_{\boldsymbol{\Theta}}\left(\boldsymbol\theta\right)$$, שלוקחת בחשבון את ההנחה המקדימה שלנו על הסבירות של ערכים שונים של הפרמטרים.
+1. הסבירות, $$p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\hat{\boldsymbol{\theta}}\right)$$
+
+2. צפיפות ההסתברות הא-פירורית, Prior: $$P_{\boldsymbol{\Theta}}\left(\boldsymbol\theta\right)$$
+
+</section><section markdown="1">
+
+### שיטות שיערוך
 
 #### משערך Maximum Likelihood Estimator (MLE) (שיטה לא בייסיאנית)
 
-משערך הMLE משתייך לקטגוריה של שערוך לא בייסיאני. בשיטה זו נבחר את המשערך האופטימאלי כוקטור הפרמטרים אשר ממקסם את פונקציית הסבירות. כלומר:
+**המשערך האופטימאלי: וקטור הפרמטרים אשר ממקסם את פונקציית הסבירות**
+
+<br><br>
 
 $$
 \begin{aligned}
@@ -93,23 +153,45 @@ $$
 \end{aligned}
 $$
 
-### הlog-likelihood והנחת הi.i.d.
+</section><section markdown="1">
 
-תחת ההנחה כי הדגמים במדגם הינם i.i.d. (בעלי פילוג זהה ובלתי תלויים סטטיסטית) מתקיים כי:
+### הlog-likelihood והנחת הIID
+
+תחת ההנחה כי הדגמים במדגם הינם IID:
+
+<br>
 
 $$
 p_{D}\left(D;\boldsymbol{\theta}\right)=p_{D}\left(\left\lbrace \boldsymbol{x}_i\right\rbrace_{i=1}^N;\boldsymbol{\theta}\right)=\prod_{i=1}^N p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\hat{\boldsymbol{\theta}}\right)
 $$
 
-בנוסף, נשתמש בעובדה של $$\log$$ הינה פונקציה מונוטונית עולה ולכן:
+<br>
+
+משום ש $$\log$$ הינה פונקציה מונוטונית עולה:
+
+<br>
 
 $$
 \underset{x}{\arg\max}\quad f\left(x\right)=\underset{x}{\arg\max}\quad \log\left(f\left(x\right)\right)
 $$
 
-מקובל לסמן את ה$$log$$ של פונקציית הסבירות כ $$l\left(\boldsymbol{\theta};D\right)\triangleq \log\left(\mathcal{L}\left(\boldsymbol{\theta};D\right)\right)$$
+<br>
+
+נסמן:
+
+$$
+l\left(\boldsymbol{\theta};D\right)\triangleq \log\left(\mathcal{L}\left(\boldsymbol{\theta};D\right)\right)
+$$
+
+
+</section><section markdown="1">
+
+### הlog-likelihood והנחת הIID - המשך
+
+<br>
 
 מכאן ש:
+
 
 
 $$
@@ -123,6 +205,12 @@ $$
 \end{aligned}
 $$
 
+</section><section markdown="1">
+
+### הlog-likelihood והנחת הIID - המשך 2
+
+<br>
+
 באופן זהה:
 
 $$
@@ -133,23 +221,39 @@ $$
 \end{aligned}
 $$
 
+</section><section markdown="1">
 
 #### ✍️ תרגיל 3.1 - שיערוך MLE
 
+<br>
+
 נתונות $$N$$ דגימות בלתי תלויות של משתנה אקראי $$X$$: $$\left\lbrace x_i\right\rbrace_{i=1}^N$$, מיצאו את משערך הMLE במקרים הבאים:
+
+<br>
 
 א) פילוג נורמאלי: $$X\sim N\left(\mu,\sigma^2\right)$$ עם פרמטרים $$\mu$$ ו$$\sigma^2$$ לא ידועים.
 
+<br>
+
 ב) פילוג אחיד: $$X\sim U\left[0, \theta\right]$$, עם פרמטר $$\theta$$ לא יודע.
+
+<br>
 
 ג) פילוג אקפוננציאלי (**לקריאה עצמית**): $$X\sim \exp\left(\theta\right)$$. עם פרמטר $$\theta$$ לא ידוע.
 
+<br>
+
 ד) פילוג דיסקרטי: נתונה קוביה בעלת 6 פאות והסתברות $$\left(p_1,\ldots,p_6\right)$$. עם פרמטרים $$\left(p_1,\ldots,p_6\right)$$ לא ידועים.
 
-##### 💡 פיתרון
+</section><section markdown="1">
 
-א) נסמן את וקטור הפרמטרים: $$\theta_1=\mu$$, $$\theta_2=\sigma^2$$ כלומר
-$$\boldsymbol{\theta}=\left[\theta_1,\theta_2\right]^T=\left[\mu,\sigma^2\right]^T$$
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: א) פילוג נורמאלי
+
+נסמן $$\boldsymbol{\theta}=\left[\theta_1,\theta_2\right]^T=\left[\mu,\sigma^2\right]^T$$
+
+<br>
 
 על פי הגדרה, משערך הMLE נתון על ידי:
 
@@ -161,6 +265,12 @@ $$
 & = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad -\frac{N}{2}\log\left(2\pi\hat{\theta}_2\right)-\sum_{i=1}^N\frac{1}{2\hat{\theta}_2}\left(x_i-\hat{\theta}_1\right)^2 \\
 \end{aligned}
 $$
+
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: א) פילוג נורמאלי - המשך
 
 נפתור על ידי גזירה והשוואה ל 0:
 
@@ -181,6 +291,12 @@ $$
 \end{aligned}
 $$
 
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: א) פילוג נורמאלי - המשך 2
+
 מכאן ש:
 
 $$
@@ -188,9 +304,13 @@ $$
 \hat{\sigma^2}_{\text{MLE}}=\hat{\theta}_2=\frac{1}{N}\sum_{i=1}^N\left(x_i-\hat{\mu}_{\text{MLE}}\right)^2
 $$
 
----
+</section><section markdown="1">
 
-ב) פונקציית צפיפות ההסתברות של הפילוג הנתון הינה:
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: ב) פילוג אחיד
+
+פונקציית צפיפות ההסתברות של הפילוג הנתון הינה:
 
 $$
 p_X\left(x_i;\theta\right)=
@@ -216,9 +336,13 @@ $$
 \hat{\theta}_{\text{MLE}} = \underset{\hat{\theta}}{\arg\max}\quad \mathcal{L}\left(\theta;D\right)=\max\left\lbrace x_i\right\rbrace_{i=0}^N
 $$
 
----
+</section><section markdown="1">
 
-ג) פונקציית צפיפות ההסתברות של הפילוג הנתון הינה:
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: ג) פילוג אקספוננציאלי
+
+פונקציית צפיפות ההסתברות של הפילוג הנתון הינה:
 
 $$
 p_X\left(x_i;\theta\right)=\theta\exp\left(-\theta x_i\right)
@@ -234,6 +358,12 @@ $$
 & = \underset{\hat{\theta}}{\arg\max}\quad N\log\left(\hat{\theta}\right)-\hat{\theta}\sum_{i=1}^N x_i \\
 \end{aligned}
 $$
+
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: ג) פילוג אקספוננציאלי - המשך
 
 נפתור על ידי גזירה והשוואה ל 0:
 
@@ -251,9 +381,13 @@ $$
 \hat{\theta}_{\text{MLE}} = \frac{1}{\frac{1}{N}\sum_{i=1}^N x_i}
 $$
 
----
+</section><section markdown="1">
 
-ד) נסמן את וקטור הפרמטרים $$\boldsymbol{\theta}=\left[p_1,\ldots,p_6\right]^T$$.
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: ד) פילוג דיסקרטי
+
+נסמן: $$\boldsymbol{\theta}=\left[p_1,\ldots,p_6\right]^T$$.
 
 פונקציית ההסתברות של הפילוג הנתון הינה:
 
@@ -261,9 +395,9 @@ $$
 p_X\left(x\right)=\theta_x
 $$
 
-רק שהפעם עלינו להתחשב באילוץ: $$\left\lVert\boldsymbol{\theta}\right\rVert_1=\sum_{j=1}^6\theta_j=1$$
+עלינו להתחשב באילוץ: $$\left\lVert\boldsymbol{\theta}\right\rVert_1=\sum_{j=1}^6\theta_j=1$$
 
-נמצא אם כן את משערך הMLE על ידי פתרון בעיית האופטימיזציה המאולצת הבאה:
+את משערך הMLE מקבל על ידי פתרון:
 
 $$
 \begin{aligned}
@@ -272,9 +406,13 @@ $$
 \end{aligned}
 $$
 
-נרשום את הLagrangian 
+</section><section markdown="1">
 
-(שימו לב: על מנת למנוע בלבול נשתמש ב$$\mathcal{L}$$ לסימון פונקציית הסבירות ו$$L$$ לסימון של הLagrangian)
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: ד) פילוג דיסקרטי - המשך
+
+נרשום את הLagrangian 
 
 $$
 \begin{aligned}
@@ -285,7 +423,16 @@ L\left(\boldsymbol{\theta},\lambda\right)
 \end{aligned}
 $$
 
-כאשר $$m_j$$ הינו מספר הפעמים אשר הערך $$j$$ מופיע במדגם.
+($$\mathcal{L}$$ - פונקציית הסבירות, $$L$$ - Lagrangian)
+
+$$m_j$$ - מספר הפעמים אשר הערך $$j$$ מופיע במדגם.
+
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: ד) פילוג דיסקרטי - המשך 2
+
 
 נגזור את הLagrangian לפי הפרמטרים $$\boldsymbol{\theta},\lambda$$ ונשווה ל-0:
 
@@ -314,36 +461,48 @@ $$
 \end{aligned}
 $$
 
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.1 - שיערוך MLE
+
+##### 💡 פיתרון: ד) פילוג דיסקרטי - המשך 3
+
 קיבלנו כי
 
 $$
 \hat{p}_{l,\text{MLE}}=\hat{\theta}_l=\frac{m_l}{N}=\frac{1}{N}\sum_{i=1}^N I\left\lbrace x_i=j\right\rbrace
 $$
 
-כלומר משערך הMLE הינו המדידה האמפירית של ההסתברות של לקבלת הערך מסויים.
 
-##### נדון במקרי הקצה
 
-1. עבור הטלה בודדת, $$N=1$$, שתוצאתה $$x_0$$ נקבל פונקציית צפיפות משוערכת של $$\hat{p}_X\left(x\right)=I\left\lbrace x=x_0\right\rbrace$$. זאת אומרת שתוצאת הקוביה תהיה תמיד $$x_0$$
-1. בגבול שבו $$N\rightarrow\infty$$ מתקבל על פי חוק המספרים הגדולים כי 
+##### מקרי הקצה
 
-$$
-\hat{p}_{l,\text{MLE}}\rightarrow p_X\left(l\right)=p_l
-$$
+1. הטלה בודדת שתוצאתה $$x_0$$:  $$\hat{p}_X\left(x\right)=I\left\lbrace x=x_0\right\rbrace$$.
+1. בגבול $$N\rightarrow\infty$$: על פי חוק המספרים הגדולים: $$\hat{p}_{l,\text{MLE}}\rightarrow p_X\left(l\right)=p_l$$
+
+</section><section markdown="1">
 
 #### ✍️ תרגיל 3.2
 
-נתון שהרווח היומי של חברת "רווחילי" מתפלג גאוסית $$X\sim N\left(\mu_X,\sigma_X\right)$$. נתון לנו מדגם אשר מכיל את הרווחים של החברה ב$$N$$ הימים האחרונים $$\left\lbrace x_i\right\rbrace_{i=1}^N$$.
+נתון שהרווח היומי של חברת "רווחילי" מתפלג גאוסית $$X\sim N\left(\mu_X,\sigma_X\right)$$. ננתון לנו מדגם אשר מכיל את הרווחים של החברה ב$$N$$ הימים האחרונים $$\left\lbrace x_i\right\rbrace_{i=1}^N$$.
 
 לשם הפשטות נניח שהרווחים בימים שונים הינם בעלי פילוג זהה וכי רווח הם בלתי תלויים סטטיסטית, כלומר הם משתנים i.i.d.
 
-בשאלה זו נניח ש $$\sigma_X$$ הינו פרמטר ידוע וקבוע ונרצה לחשב את תוחלת הרווח היומי, כלומר לשערך את $$\mu_X$$. לשם כך, יוסי הציע להשתמש במודל עבור ההתפלגות הפירורית של $$\mu_x$$ בהתאם למחקר שביצעו על חברות שונות במשק. יוסי טען שתוחלת הרווח היומי של חברות מתפלגת נורמאלי 
+בשאלה זו נניח ש $$\sigma_X$$ הינו פרמטר ידוע וקבוע ונרצה לחשב את תוחלת הרווח היומי, כלומר לשערך את $$\mu_X$$. 
+
+לשם כך, יוסי הציע להשתמש במודל עבור ההתפלגות הפירורית של $$\mu_x$$ בהתאם למחקר שביצעו על חברות שונות במשק. יוסי טען שתוחלת הרווח היומי של חברות מתפלגת נורמאלי 
 $$\mu_X\sim N\left(\mu_M,\sigma_M\right)$$
 , עם פרמטרים ידועים $$\mu_M$$ ו $$\sigma_M$$.
+
+<br>
 
 א) חשב את משערך הMAP בהתאם למדגם ולפילוג האפריורי שהציע יוסי.
 
 ב) נתחו את תוצאת השיערוך המתקבלת עבור ערכים שונים של $$\sigma_X$$ ו $$\sigma_M$$.
+
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.2
 
 ##### 💡 פיתרון
 
@@ -351,13 +510,19 @@ $$\mu_X\sim N\left(\mu_M,\sigma_M\right)$$
 
 $$
 \begin{aligned}
-\hat{\mu}_{X,\text{MAP}}
+& \hat{\mu}_{X,\text{MAP}} \\
 & = \underset{\hat{\mu}_X}{\arg\max}\quad p_{M\lvert D}\left(\hat{\mu}_X\lvert D\right) \\
 & = \underset{\hat{\mu}_X}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{X\lvert\hat{\mu}_X}\left(x_i\lvert M=\hat{\mu}_X\right)\right) + \log\left(p_M\left(\hat{\mu}_X\right)\right) \\
 & = \underset{\hat{\mu}_X}{\arg\max}\quad \frac{N}{2}\log\left(2\pi\sigma_X^2\right)+\frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\hat{\mu}_X\right)^2 + \frac{1}{2}\log\left(2\pi\sigma_M^2\right) + \frac{1}{2\sigma_M^2}\left(\hat{\mu}_X-\mu_M\right)^2\\
 & = \underset{\hat{\theta}}{\arg\max}\quad \frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\hat{\mu}_X\right)^2 + \frac{1}{2\sigma_M^2}\left(\hat{\mu}_X-\mu_M\right)^2\\
 \end{aligned}
 $$
+
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.2
+
+##### 💡 פיתרון - המשך
 
 נגזור ונשווה ל-0
 
@@ -368,6 +533,12 @@ $$
 \Leftrightarrow \hat{\mu}_X=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\hat{\mu}_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}} \\
 $$
 
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.2
+
+##### 💡 פיתרון - המשך 2
+
 קיבלנו כי:
 
 $$
@@ -377,14 +548,20 @@ $$
 
 נשים לב למספר דברים:
 
-- הביטוי $$\frac{1}{N}\sum_{i=1}^Nx_i$$ הינו הערך אשר ממקסם את הפילוג המותנה של המדגם בהינתן $$\mu_X$$ (פנקציית הlikelihood). זהו למעשה משערך הMLE.
-- הערך $$\mu_M$$ הינו הערך אשר ממקסם את הפילוג האפריורי.
-- הגודל $$\sigma_X^2/N$$ הינו השונות של הגודל $$\frac{1}{N}\sum_{i=1}^Nx_i$$
+- $$\frac{1}{N}\sum_{i=1}^Nx_i$$ הערך אשר ממקסם את (פנקציית הlikelihood).
+- $$\mu_M$$ הערך אשר ממקסם את הפילוג האפריורי.
+- $$\sigma_X^2/N$$ השונות של הגודל $$\frac{1}{N}\sum_{i=1}^Nx_i$$
 
-התוצאה שאותה קיבלנו הינה למעשה ממוצע מושכלל בין הערך אשר ממקסם את הlikelihood, אשר תלוי במדגם, לבין הערך אשר ממקסם את הפילוג האפריורי. המשקל של כל ערך שווה לאחד חלקי שונות הפילוג של אותו ערך. הגודל של אחד חלקי שונות למעשה מבטא את הודאות שיש לנו לגבי הדיוק של הערך.
+התוצאה היא ממוצע מושכלל בין הערך אשר ממקסם את הlikelihood, אשר תלוי במדגם, לבין הערך אשר ממקסם את הפילוג האפריורי.
+
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.2
+
+##### 💡 פיתרון - המשך 3
 
 
-ב) נסתכל על מקרי הקצה.
+ב) מקרי הקצה.
 
 - כאשר $$\sigma_X/N\ll\sigma_M$$ אזי החלק אשר תלוי במדגם מקבל את מרבית המשקל, ומתקיים כי:
 
@@ -392,13 +569,14 @@ $$
 \hat{\mu}_{X,\text{MAP}}\approx\frac{1}{N}\sum_{i=1}^Nx_i
 $$
 
-במקרה זה הפילוג האפיריורי רחב מאד ואין הבדל גדול בין ההסתברות האפריורית של ערכים יחסית קרובים ולכן ההשפעה של הפילוג האפריורי קטנה.
 
 - כאשר $$\sigma_X/N\gg\sigma_M$$ אזי החלק אשר תלוי בפילוג האפריורי מקבל את מרבית המשקל,  ומתקיים כי:
 
 $$
 \hat{\mu}_{X,\text{MAP}}\approx\mu_M
 $$
+
+</section><section markdown="1">
 
 ## בעיה מעשית
 
@@ -589,15 +767,18 @@ $$
   </tbody>
 </table>
 
+<br>
+
 ### ❓️ הבעיה: שיעורך משך הפילוג של משך הנסיעה
 
 אנו מעוניינים לשערך את הפילוג של משך הנסיעה
 
+</section><section markdown="1">
+
+
 ### 💡 ניסיון 1: MLE ופילוג גאוסי
 
-נשתמש במודל של פילוג נורמאלי לתיאור הפילוג של משך הנסיעה. למודל זה שני פרמטרים, התוחלת $$\mu$$ והשונות $$\sigma$$ .
-
-#### פתרון
+שני פרמטרים: התוחלת $$\mu$$ והשונות $$\sigma$$ .
 
 סימונים והנחות:
 
@@ -606,39 +787,43 @@ $$
 - $$\boldsymbol{\theta}=\left[\mu,\sigma\right]^T$$ - וקטור הפרמטרים של המודל
 - $$p_\text{normal}\left(x_i;\boldsymbol{\theta}\right)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{\left(x_i-\mu\right)^2}{2\sigma^2}\right), i=1,...,N$$ - המודל
 
-ראינו כי בעבור המודל הנורמאלי, ניתן למצוא את הפרמטרים של משערך הMLE באופן מפורש (אנליטית), והפתרון נתון על ידי:
+במקרה של המודל הנורמאלי ניתן לפתור באופן מפורש (אנליטית):
 
 $$
 \mu=\displaystyle{\frac{1}{N}\sum_i x_i} \\
 \sigma=\sqrt{\displaystyle{\frac{1}{N}\sum_i\left(x_i-\mu\right)^2}}
 $$
 
-בעבור המדגם הנתון נקבל:
+</section><section markdown="1">
 
-$$
-\hat{\mu} = 11.4\ \text{min} \\
-\hat{\sigma} = 7.0\ \text{min}
-$$
+### 💡 ניסיון 1: MLE ופילוג גאוסי - המשך
 
-נשרטט את ההיסטוגרמה של של משכי הנסיעה יחד עם הפילוג הנורמאלי המשוערך:
 
-![normal](./media/normal.png)
+בעבור המדגם הנתון נקבל: $$\hat{\mu} = 11.4\ \text{min}, \hat{\sigma} = 7.0\ \text{min}$$
 
-נראה כי הפילוג הנורמאלי נותן קירוב מאד גס לפילוג האמיתי. במקרים רבים קירוב זה יהיה מספיק, אך במקרה זה ננסה לשפר את השיערוך שלנו.
+![normal](./media/normal.png){:width="600px"}
 
-עובדה אחת שמאד מטרידה לגבי הפילוג שקיבלנו הינו שישנו סיכוי לא אפסי לקבל נסיעות עם משך נסיעה שלילי.
+- נותן קירוב מאד גס לפילוג האמיתי.
+- במקרים רבים קירוב זה יהיה מספיק.
+- ישנו סיכוי לא אפסי לקבל נסיעות עם משך נסיעה שלילי.
 
 ננסה להציע מודל טוב יותר
 
+</section><section markdown="1">
+
 ### 💡 נסיון 2: MLE ופילוג Rayleigh
 
-פילוג Rayleigh מתאר את הפילוג של האורך האוקלידי ($$l_2$$ norm) של וקטור גאוסי דו מימדי עם תוחלת 0 וחוסר קורלציה ופילוג זהה לשני רכיבי הוקטור. במלים אחרות וקטור בעל הפילוג הבא:
+בהמתן וקטור גסואי המפולג כך:
 
 $$
 \boldsymbol{Z}\sim N\left(\begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{bmatrix}\right)
 $$
 
-פילוג Rayleigh מתאר את הפילוג של הגודל  $$\left\lVert\boldsymbol{Z}\right\rVert_2=\sqrt{Z_x^2+Z_y^2}$$ 
+פילוג Rayleigh מתאר את הפילוג של האורך האוקלידי ($$l_2$$ norm) של הוקטור:
+
+$$
+\left\lVert\boldsymbol{Z}\right\rVert_2=\sqrt{Z_x^2+Z_y^2}
+$$
 
 פונקציית צפיפות ההסתברות של פילוג Reyligh נתונה על ידי:
 
@@ -646,27 +831,36 @@ $$
 p_\text{Rayleigh}\left(z;\sigma\right)=\frac{z}{\sigma^2}\exp\left({-\frac{z^2}{2\sigma^2}}\right), \quad z\geq0
 $$
 
-נשים לב כי הפילוג מוגדר רק בעבור ערכים חיוביים. לפילוג זה פרמטר יחיד $$\sigma$$ שנקרא פרטמטר סקאלה (scale parameter). בניגוד לפילוג הנורמאלי, פה $$\sigma$$ אינה שווה לסטיית התקן של הפילוג.
+- מוגדר רק בעבור ערכים חיוביים.
+- פרמטר יחיד $$\sigma$$. (פה $$\sigma$$ אינה שווה לסטיית התקן של הפילוג).
 
-ניתן מוטיבציה קצרה לבחירה שלנו במודל זה.
+
+</section><section markdown="1">
 
 #### מוטיבציה לשימוש בפילוג Rayleigh
 
-נתחיל עם ההנחה שוקטור המחבר את נקודת תחילת הנסיעה עם נקודת סיום הנסיעה הינו וקטור דו מימדי אשר מפולג נרמאלית ולשם הפשטות נניח כי רכיביו מפולגים עם פילוג זהה וחסר קורלציה.
+הנחות:
 
-בנוסף לשם הפשטות נניח כי המונית נוסעת בקירוב בקו ישר בין נקודת ההתחלה והסיום ולכן המרחק אותו נוסעת המכונית יהיה מפולג על פי פילוג Reyleigh. נניח בנוסף כי מהירות הנסיעה קבוע ולכן משך הנסיעה פורפורציוני למרחק ולכן גם הוא יהיה מפולג על פי פילוג Reyleigh.
+- הוקטור המחבר את נקודת תחילת הנסיעה עם נקודת סיום הנסיעה מפולג נרמאלית ו
+- רכיביו מפולגים i.i.d.
+- נוסעת בקירוב בקו ישר בין נקודת ההתחלה והסיום 
+- מהירות הנסיעה קבוע ולכן משך הנסיעה פורפורציוני למרחק.
 
-#### פתרון
+המרחק אותו נוסעת המכונית יהיה מפולג על פי פילוג Reyleigh וכך גםמשך הנסיעה.
 
-לשם השלמות נסמן את וקטור הפרמטרים של ב: $$\boldsymbol{\theta}=\left[\sigma\right]$$
+</section><section markdown="1">
 
-במקרה זה המודל נתון על ידי:
+### 💡 נסיון 2: MLE ופילוג Rayleigh - המשך
+
+נסמן: $$\boldsymbol{\theta}=\left[\sigma\right]$$
+
+המודל נתון על ידי:
 
 $$
 p_\text{rayleigh}\left(\boldsymbol{x};\boldsymbol{\theta}\right)=\prod_{i=1}^{N}\frac{x_i}{\sigma^2}\exp\left(-\frac{x_i^2}{2\sigma^2}\right)
 $$
 
-ופונקציית ה log likelihood תהיה:
+פונקציית ה log likelihood תהיה:
 
 $$
 \begin{aligned}
@@ -679,7 +873,15 @@ $$
 בעיית האופטימיזציה שלנו תהיה:
 
 $$
-\hat{\boldsymbol{\theta}}=\underset{\boldsymbol{\theta}}{\arg\min}\ -\sum_i\log\left(x_i\right)+2N\log\left(\sigma\right)+\frac{1}{2\sigma^2}\sum_ix_i^2
+\hat{\boldsymbol{\theta}}=\underset{\boldsymbol{\theta}}{\arg\min}\quad-\sum_i\log\left(x_i\right)+2N\log\left(\sigma\right)+\frac{1}{2\sigma^2}\sum_ix_i^2
+$$
+
+</section><section markdown="1">
+
+### 💡 נסיון 2: MLE ופילוג Rayleigh - המשך
+
+$$
+\hat{\boldsymbol{\theta}}=\underset{\boldsymbol{\theta}}{\arg\min}\quad-\sum_i\log\left(x_i\right)+2N\log\left(\sigma\right)+\frac{1}{2\sigma^2}\sum_ix_i^2
 $$
 
 גם בעבור המקרה הזה נוכל לפתור את בעיית האופטימיזציה באופן אנליטי על ידי גזירה והשוואה לאפס:
@@ -690,23 +892,28 @@ $$
 \Leftrightarrow \sigma = \sqrt{\frac{1}{2N}\sum_i x^2}
 $$
 
-בעבור המדגם הנתון נקבל:
+</section><section markdown="1">
 
-$$
-\hat{\sigma} = 9.5
-$$
+### 💡 נסיון 2: MLE ופילוג Rayleigh - המשך 2
 
-נוסיף את השיערוך החדש שקיבלנו לגרף ממקודם:
+בעבור המדגם הנתון נקבל: $$\hat{\sigma} = 9.5$$
 
-![rayleigh](./media/rayleigh.png)
+![rayleigh](./media/rayleigh.png){:width="600px"}
 
-על פי הדמיון בין ההיסטוגרמה לפונקציות הפילוג ששיערכנו, נראה כי המודל של פילוג Rayleigh נותן תוצאה מעט יותר טובה מהמודל הנורמאלי, בנוסף ניתן לראות גם כי כעת אין הסתברות שונה מ0 לקבל משך נסיעה שלילי.
+- נותן תוצאה מעט יותר טובה מהמודל הנורמאלי
+- אין הסתברות שונה מ0 לקבל משך נסיעה שלילי.
 
 ננסה מודל נוסף.
 
+</section><section markdown="1">
+
 ### 💡נסיון 3: MLE ו Generalized Gamma Distribution
 
-פילוג Rayleigh הינו מקרה פרטי של משפחה כללית יותר של פונקציות פילוג המכונה Generalized Gamma Distribution. פונקציית צפיפות ההסתברות של משפחה זו נתונה על ידי:
+<br>
+
+פילוג Rayleigh הינו מקרה פרטי של Generalized Gamma Distribution:
+
+<br>
 
 $$
 p_\text{gengamma}\left(z;\sigma,a,c\right)=
@@ -714,47 +921,64 @@ p_\text{gengamma}\left(z;\sigma,a,c\right)=
 , \quad z\geq0
 $$
 
-(כשאר $$\Gamma$$ היא פונקציה המוכנה [פונקציית גמא (gamma function)](https://en.wikipedia.org/wiki/Gamma_function) )
+<br>
+
+($$\Gamma$$ היא פונקציה המוכנה [פונקציית גמא (gamma function)](https://en.wikipedia.org/wiki/Gamma_function) )
+
+<br>
 
 למודל זה 3 פרמטרים: $$\boldsymbol{\theta}=\left[\sigma, a, c\right]^T$$
 
+<br>
+
 בעבור $$c=2$$ ו $$a=1$$ נקבל את פילוג Rayleight כאשר $$\sigma_{gamma}=2\sigma_{rayleigh}$$ 
 
-בניגוד למקרים של פילוג נורמאלי ופילוג Rayleigh, במקרה זה לא נוכל למצוא בקלות את הפרמטרים האופטימאלים של המשערך באופן אנליטי, שם מציאת הפרמטרים נאלץ להעזר פתרון נומרי. בפועל נעזה שימוש באחת החבילה של Python הנקראת SciPy. בחבילה זו מכילה מודלים הסברותיים רבים ומכילה מספר רב של כלים הקשורים למודלים אלו, כגון מציאת הפרמטרים האופטימאלים בשיטת MLE על סמך מגדם נתון. את הפונקציות הקשורות למודל הGeneralized Gamma Distribution ניתן למצא [כאן](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gengamma.html#scipy.stats.gengamma).
+</section><section markdown="1">
 
-אתם תעשו שימוש בפונקציות זההות בתרגיל הבית הרטוב.
+### 💡נסיון 3: MLE ו Generalized Gamma Distribution - המשך
 
-שימוש בפונקציה הנ"ל, מניב את התוצאות הבאות:
 
-$$
-\hat{a} = 4.4 \\
-\hat{c} = 0.8 \\
-\hat{\sigma} = 1.6
-$$
+לא נוכל לפתרון בעיה זו באופן אנליטי, נאלץ להעזר פתרון נומרי.
 
-נוסיף את השיערוך החדש שקיבלנו לגרף ממקודם:
+נשתמש באובייקט הGeneralized Gamma Distribution של [SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gengamma.html#scipy.stats.gengamma).
 
-![generalized_gamma](./media/generalized_gamma.png)
+</section><section markdown="1">
 
-ניתן לראות המודל של Generalized Gamma Distribution אכן מניב תוצאה אשר דומה מאד לצורת ההסטוגרמה.
+### 💡נסיון 3: MLE ו Generalized Gamma Distribution - המשך
 
-## תרגילים
+
+קיבלנו: $$\hat{a} = 4.4, \hat{c} = 0.8, \hat{\sigma} = 1.6$$
+
+
+![generalized_gamma](./media/generalized_gamma.png){:width="600px"}
+
+Generalized Gamma Distribution מניב תוצאה דומה מאד לצורת ההסטוגרמה.
+
+</section><section markdown="1">
 
 #### ✍️ תרגיל 3.3: תרגיל ממבחן - אביב 2019, מועד ב' שאלה 3
 
-נתונות לנו $$N$$ מדידות i.i.d., $$\left\lbrace x_i\right\rbrace_{i=1}^N$$ כאשר $$x_i$$ מגיע מההתפלגות הבאה:
+נתונות לנו $$N$$ מדידות IID, $$\left\lbrace x_i\right\rbrace_{i=1}^N$$ כאשר $$x_i$$ מגיע מההתפלגות הבאה:
 
 $$
 p_X\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}\qquad x\geq\theta,\mu>0
 $$
 
+<br>
+
 א) מצאו את משערך הMLE עבור הפרמטר $$\mu$$ בהנחה כי $$\theta$$ פרמטר ידוע
 
 ב) מצאו את משערך הMLE עבור הפרמטר $$\theta$$ בהנחה כי $$\mu$$ פרמטר ידוע
 
-##### 💡 פתרון
+</section><section markdown="1">
 
-א) פונקציית הlikelihood (הפעם כפונקציה של $$\mu$$ כי הוא המשתנה הלא ידוע בסעיף זה):
+#### ✍️ תרגיל 3.3: תרגיל ממבחן - אביב 2019, מועד ב' שאלה 3
+
+$$
+p_X\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}\qquad x\geq\theta,\mu>0
+$$
+
+##### 💡 פתרון: א
 
 $$
 L\left(\mu\right)\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x-\theta\right)}I\left\lbrace\mu>0\right\rbrace
@@ -776,7 +1000,18 @@ $$
 
 הנגזרת השנייה שלילית ולכן זוהי אכן נקודת מקסימום.
 
-ב) נכתוב את ה-likelihood:
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.3: תרגיל ממבחן - אביב 2019, מועד ב' שאלה 3
+
+$$
+p_X\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}\qquad x\geq\theta,\mu>0
+$$
+
+##### 💡 פתרו: ב
+
+
+נכתוב את ה-likelihood:
 
 $$
 L\left(\theta\right)\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}I\left\lbrace x_i\geq\theta\right\rbrace=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x-\theta\right)}I\left\lbrace \min\left\lbrace x_i\right\rbrace\geq\theta\right\rbrace
@@ -785,3 +1020,5 @@ $$
 נשים לב כי $$L\left(\theta\right)$$ היא פונקציה מונוטונית עולה ב $$\theta$$ בתחום שבו $$\min\left\lbrace x_i\right\rbrace\geq\theta$$. לכן שמערך הסבירות המירבית יתקבל בערך המקסימאלי האפשרי עבור $$\theta$$ בתחום זה: $$\hat{\theta}_{\text{MLE}}=\min\left\lbrace x_i\right\rbrace$$.
 
 
+
+</section>
