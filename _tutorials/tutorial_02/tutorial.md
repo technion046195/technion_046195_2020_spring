@@ -1,7 +1,6 @@
 ---
 number: 2
 title: "Non-Parametric Probability Density Estimation" 
-hide: true
 ---
 
 ## Theory: Estimating Distributions
