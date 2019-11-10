@@ -166,7 +166,7 @@ $$
 \hat{p}_{\phi,h,X}\left(x\right) = \frac{1}{N}\sum_{i=1}^N \phi_{h}\left(x-x_i\right)=\frac{1}{N\cdot h}\sum_{i=1}^N \phi\left(\frac{x-x_i}{\alpha}\right)
 $$
 
-כלל אצבע לבחירת רוחב הגרעין במקרה הגאוסי הינו $$\sigma=\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$,  כאשר $$\text{std}\left(x\right)$$ הינה הסטיית תקן של המדידיות.
+כלל אצבע לבחירת רוחב הגרעין במקרה הגאוסי הינו $$\sigma=\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace^5}{3N}\right)^\frac{1}{5}\approx1.06\text{std}\left\lbrace x_i\right\rbrace n^{-\tfrac{1}{5}}$$,  כאשר $$\text{std}\left(x\right)$$ הינה הסטיית תקן של המדידיות.
 
 
 
@@ -672,7 +672,7 @@ $$
 
 שערך כעת את פונקציית צפיפות ההסתברות בעזרת KDE עם חלון גאוסי. נבחן  ערכים שונים לרוחב החלון $$\sigma=0.08,0.8,8$$.
 
-תזכורת, כלל האצבע מציע לבחור רוחב של: $$\sigma=\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}\approx0.775$$
+תזכורת, כלל האצבע מציע לבחור רוחב של: $$\sigma=1.06\text{std}\left\lbrace x_i\right\rbrace N^{-\tfrac{1}{5}}\approx0.775$$
 
 לשם השוואה, נשרטט את התוצאה של גבי ההסטוגרמה של 300 תאים. תוצאה:
 
