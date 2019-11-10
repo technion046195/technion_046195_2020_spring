@@ -681,36 +681,36 @@ $$
 
 #### פתרון
 
-לשם השלמות נסמן את וקטור הפרמטרים של ב: $$\boldsymbol{\theta}=\left[\sigma\right]$$
+לשם השלמות נסמן את וקטור הפרמטרים של ב: $$\theta=\left[\sigma\right]$$
 
 במקרה זה המודל נתון על ידי:
 
 $$
-p_\text{rayleigh}\left(\boldsymbol{x};\boldsymbol{\theta}\right)=\prod_{i=1}^{N}\frac{x_i}{\sigma^2}\exp\left(-\frac{x_i^2}{2\sigma^2}\right)
+p_\text{rayleigh}\left(\boldsymbol{x};\theta\right)=\prod_{i=1}^{N}\frac{x_i}{\theta^2}\exp\left(-\frac{x_i^2}{2\theta^2}\right)
 $$
 
 ופונקציית ה log likelihood תהיה:
 
 $$
 \begin{aligned}
-l_\text{rayleigh}\left(\boldsymbol{\theta}|\{x\}\right)
-& = \sum_i\log\left(p_\text{rayleigh}\left(x_i;\boldsymbol{\theta}\right)\right) \\
-& = \sum_i\log\left(x_i\right)-2N\log\left(\sigma\right)-\frac{1}{2\sigma^2}\sum_ix_i^2
+l_\text{rayleigh}\left(\theta|\{x\}\right)
+& = \sum_i\log\left(p_\text{rayleigh}\left(x_i;\theta\right)\right) \\
+& = \sum_i\log\left(x_i\right)-2N\log\left(\theta\right)-\frac{1}{2\theta^2}\sum_ix_i^2
 \end{aligned}
 $$
 
 בעיית האופטימיזציה שלנו תהיה:
 
 $$
-\hat{\boldsymbol{\theta}}=\underset{\boldsymbol{\theta}}{\arg\min}\ -\sum_i\log\left(x_i\right)+2N\log\left(\sigma\right)+\frac{1}{2\sigma^2}\sum_ix_i^2
+\hat{\boldsymbol{\theta}}=\underset{\boldsymbol{\theta}}{\arg\min}\ -\sum_i\log\left(x_i\right)+2N\log\left(\theta\right)+\frac{1}{2\theta^2}\sum_ix_i^2
 $$
 
 גם בעבור המקרה הזה נוכל לפתור את בעיית האופטימיזציה באופן אנליטי על ידי גזירה והשוואה לאפס:
 
 $$
-\frac{\partial l_\text{rayleigh}\left(\theta|\{x\}\right)}{\partial\sigma}=0 \\
-\Leftrightarrow -\frac{2N}{\sigma}+\frac{\sum_ix^2}{\sigma^3}=0 \\
-\Leftrightarrow \sigma = \sqrt{\frac{1}{2N}\sum_i x^2}
+\frac{\partial l_\text{rayleigh}\left(\theta|\{x\}\right)}{\partial\theta}=0 \\
+\Leftrightarrow -\frac{2N}{\theta}+\frac{\sum_ix^2}{\theta^3}=0 \\
+\Leftrightarrow \theta=\sigma = \sqrt{\frac{1}{2N}\sum_i x^2}
 $$
 
 בעבור המדגם הנתון נקבל:
