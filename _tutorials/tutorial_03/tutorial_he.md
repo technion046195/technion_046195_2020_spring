@@ -20,36 +20,46 @@ hide: true
 
 ## תיאוריה
 
+### המטרה
+
+להעריך את $$p_\boldsymbol{X}\left(\boldsymbol{x}\right)$$ מתוך $$n$$ הדוגמאות $$D$$.
+
+כפי שנלמד בהרצאה, ניתן להבחין בין הגישות הבאות להסקה סטטיסטית:
+
+- גישה פרמטרית לעומת גישה לא-פרמטרית (א-פרמטרית)
+
+- גישה בייסיאנית לעומת גישה לא-בייסיאנית (קלאסית \ תדירותית).
+
 ### הגישה הפרמטרית והלא פרמטרית
 
 #### הבעיה בגישה הלא פרמטרית
 
 בתרגול הקודם התמקדנו בשיטות לשיערוך פילוג המכונות שיטות לא פרמטריות (או א-פרמטריות). לשיטות אלו מספר בעיות:
 
-1. שיטות אלו מניחות כי יש בידינו כמות מספקת של דגימות בכל איזור שבו ישנה הסתברות גודלה מאפס. הבעיה העיקרית אם הנחה זו הינה, שגודל המדגם שאנו צריכים על מנת לקבל שיערוך טוב גדל באופן אקספונציאלי עם מספר המשתנים האקראיים בבעיה. קל להבין זאת במקרה של משתנים בינאריים, בעבור משתנה בינארי אחד ישנם שני תוצאות אפשריות, בעבור שני משתנים ישנם $$2^N$$ תוצאות אפשריות, בכדי לשערך את ההסתברות של כל תוצאות האפשריות אנו צריכים מספיק דגימות שיכסו כל קומבינציה אפשרית של המשתנים.
+1. שיטות אלו מניחות כי יש בידינו כמות מספקת של דגימות בכל איזור שבו ישנה הסתברות גדולה מאפס. הבעיה העיקרית עם הנחה זו הינה, שגודל המדגם שאנו צריכים על מנת לקבל שיערוך טוב גדל באופן אקספונציאלי עם מספר המשתנים האקראיים בבעיה. קל להבין זאת במקרה של משתנים בינאריים: עבור משתנה בינארי אחד ישנן שני תוצאות אפשריות, עבור שני משתנים ישנם $$2^N$$ תוצאות אפשריות, בכדי לשערך את ההסתברות של כל תוצאות האפשריות אנו צריכים מספיק דגימות שיכסו כל קומבינציה אפשרית של המשתנים.
 2. התוצאה המתקבלת בשיערוך לא פרמטרי אינה פונקציה שנוח לעבוד איתה, אלא נוסחא בשעזרתה ניתן לחשב את הפילוג בנקודה כלשהי.
 
 #### הגישה הפרמטרית
 
-נציג כעת גישה פופולריות ושימושית יותר המכונה גישה פרמטרית. בגישה זו אנו נציע משפחה של פונקציות פרמטריות, לדוגמא משפחת הגאוסיאנים עם תוחלת ושונות כלשהם, בתקווה כי נוכל לקרב את פונקציית הפילוג בעזרת אחת הפונקציות מהמשפחה על ידי בחירה מתאימה של הפרמטרים. את משפחת הפונקציות הזו אנו מכנים המודל, או המודל הפרמטרי. את סט הפרמטרים של המודל נהוג לייצג כוקטור ולסמנו ב$$\boldsymbol{\theta}$$. המטרה שלנו, אם כן, הינה בהינתן מודל פרמטרי כלשהו, לשערך את וקטור הפרמטרים האופטימאלי $$\hat{\boldsymbol{\theta}}^*$$ שבעבורו שהמודל מתאים בצורה מיטבית למדגם הנתון.
+נציג כעת גישה פופולריות ושימושית יותר המכונה גישה פרמטרית. בגישה זו אנו מניחים כי הפילוג הנדרש $$p_\boldsymbol{X}\left(\boldsymbol{x}\right)$$ הינו בעל צורה ידועה, המוגדרת עד כדי וקטור פרמטרים $$\boldsymbol{\theta}\in\mathbb{R}^p$$, כלומר $$p_\boldsymbol{X}\left(\boldsymbol{x}\right)=p_\boldsymbol{X}\left(\boldsymbol{x}|\boldsymbol{\theta}\right)$$. בהינתן המודל הפרמטרי, אנו נרצה למצוא את סט הפרמטרים שיתאים בצורה הטובה ביותר ל- dataset.
 
-נתאר שתי גישות שונות לשערוך וקטור הפרמטרים:
+במילים אחרות: בגישה זו אנו נציע משפחה של פונקציות פרמטריות, לדוגמא משפחת הגאוסיאנים עם תוחלת ושונות כלשהם, בתקווה כי נוכל לקרב את פונקציית הפילוג בעזרת אחת הפונקציות מהמשפחה על ידי בחירה מתאימה של הפרמטרים. את משפחת הפונקציות הזו אנו מכנים המודל, או המודל הפרמטרי. את סט הפרמטרים של המודל נהוג לייצג כוקטור ולסמנו ב-$$\boldsymbol{\theta}$$. המטרה שלנו, אם כן, הינה בהינתן מודל פרמטרי כלשהו, לשערך את וקטור הפרמטרים האופטימאלי $$\hat{\boldsymbol{\theta}}^*$$ שבעבורו שהמודל מתאים בצורה מיטבית למדגם הנתון.
 
-### הגישה באייסיאנית והלא-בייסיאנית
+נבדיל עתה בין הגישה הבייסאנית ללא-בייסיאנית לשערוך פרמטרים:
 
-#### הגישה באייסיאנית
+### הגישה הבייסיאנית והלא-בייסיאנית
 
-בגישה זו אנו מניחים וקטור הפרמטרים $$\boldsymbol{\theta}$$ הינו ריאליזציה של וקטור אקראי בעל פילוג כלשהוא $$P_{\boldsymbol{\Theta}}$$. פילוג זה מכונה ה**פילוג הפריורי** (**prior distribution**) או ה**א-פריורי** (**a priori distribution**). בנוסף לכך ישנו גם הפילוג המשותף של וקטור הפרמטרים והמדגם $$P_{\boldsymbol{\Theta,D}}$$. בהינתן מדגם מסויים נוכל להייחס לפילוג המותנה של וקטור הפרמטרים בהינתן המדגם $$P_{\boldsymbol{\Theta\lvert D}}$$. הפילוג המותנה מוכנה ה**פילוג הפוסטריורי** (**posterior distribution**) או **א-פוסטריורי** (**a posteriori distribution**) (או הפילוג בדיעבד). תחת גישה זו לרוב נבחר את הוקטור הפרמטרים האופטימאלי על פי פילוג זה (ההסתברות המקסימאלית, התוחלת וכו').
+#### הגישה הבייסיאנית
+
+בגישה זו אנו מניחים כי וקטור הפרמטרים $$\boldsymbol{\theta}$$ הינו ריאליזציה של וקטור אקראי בעל פילוג כלשהוא $$p_{0}\left(\boldsymbol{\theta}\right)$$. פילוג זה מכונה ה**פילוג הפריורי** (**prior distribution**) או ה**א-פריורי** (**a priori distribution**). מכיוון שאנו מניחים כי וקטור הפרמטרים הינו משתנה מקרי, בהינתן מדגם מסויים נוכל להתייחס לפילוג המותנה של וקטור הפרמטרים בהינתן המדגם $$p\left(\boldsymbol{\theta\lvert D}\right)$$. הפילוג המותנה מוכנה ה**פילוג הפוסטריורי** (**posterior distribution**) או **א-פוסטריורי** (**a posteriori distribution**) (או הפילוג בדיעבד). מתוך הפילוג המתקבל נוכל לגזור משערכים שונים עבור וקטור פרמטרים (למשל ההסתברות המקסימאלית, התוחלת וכו').
 
 #### הגישה הלא-בייסיאנית (המכונה גם: קלאסית או תדירותית (**Frequintist**))
 
-בגישה זו אנו נניח כי וקטור הפרמטרים היא גודל קבוע, אך לא יודע. תחת גישה זו אין כל העדפה של ערך מסויים של הוקטור על פני ערך אחר. במקרה זה נסמן את הפילוג של המדגם (או הדגמים במדגם) ב $$p_D\left(D;\boldsymbol{\theta}\right)$$ על מנת לסמן שהפילוג תלוי בפרמטרים $$\boldsymbol{\theta}$$ (להבדיל מהסימון של פילוג מותנה $$p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\boldsymbol{\theta}\right)$$). הפונקציה $$p_D\left(D;\boldsymbol{\theta}\right)$$ מכונה לרוב פונקציית ה**סבירות** (**likelihood**), שכן היא מציינת את הסבירות לקבלת המדגם אותו קיבלנו בעבור וקטור פרמטרים מסויים $$\boldsymbol{\theta}$$, מוקבל גם לסמן אותה באופן הבא:
+בגישה זו אנו נניח כי וקטור הפרמטרים היא גודל קבוע, אך לא ידוע. תחת גישה זו אין כל העדפה של ערך מסויים של הוקטור על פני ערך אחר. במקרה זה נסמן את הפילוג של המדגם  ב $$p\left(D;\boldsymbol{\theta}\right)$$ על מנת לסמן שהפילוג תלוי בפרמטרים $$\boldsymbol{\theta}$$ (להבדיל מהסימון של פילוג מותנה $$p\left(D\lvert\boldsymbol{\theta}\right)$$). הפונקציה $$p\left(D;\boldsymbol{\theta}\right)$$ מכונה לרוב פונקציית ה**סבירות** (**likelihood**), שכן היא מציינת את הסבירות לקבלת המדגם אותו קיבלנו בעבור וקטור פרמטרים מסויים $$\boldsymbol{\theta}$$, מוקבל גם לסמן אותה באופן הבא:
 
 $$
-\mathcal{L}\left(\boldsymbol{\theta};D\right)\triangleq p_D\left(D;\boldsymbol{\theta}\right)
+\mathcal{L}\left(\boldsymbol{\theta}\right)\triangleq p\left(D;\boldsymbol{\theta}\right)
 $$
-
-שהיא למעשה פונקציה של $$\boldsymbol{\theta}$$ עם פרמטר $$D$$, לשם הדגשת העובדה כי אנו מעוניינים להסתכל על המקרה בו יש בידינו מדגם נתון ואנו מעוניינים להסתכל על הסבירות כתלות בוקטור הפרמטרים. (ההבדל בין שני הפונקיות בהגדרה זו הנו סמנטי (שינוי בסימון) בלבד)
 
 
 ### שיטות שיערוך
@@ -61,7 +71,7 @@ $$
 משערך הMAP משתייך לקטגוריה של שערוך בייסיאני. בשיטה זו נבחר את המשערך האופטימאלי כוקטור הפרמטרים אשר ממקסם את צפיפות ההסתברות האפוסטריורית. כלומר:
 
 $$
-\hat{\boldsymbol{\theta}}_{\text{MAP}}=\underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad p_{\boldsymbol{\Theta}\lvert D}\left(\hat{\boldsymbol{\theta}}\lvert D\right)
+\hat{\boldsymbol{\theta}}_{\text{MAP}}=\underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(\boldsymbol{\theta}\lvert D\right)
 $$
 
 בפועל, לרוב נשתמש בכלל בייס על מנת לחשב את צפיפות ההסתברות האפוסטריורית. על ידי שימוש בכלל בייס נקבל:
@@ -69,17 +79,19 @@ $$
 $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MAP}}
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad p_{\boldsymbol{\Theta}\lvert D}\left(\hat{\boldsymbol{\theta}}\lvert D\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \frac{p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\hat{\boldsymbol{\theta}}\right)p_{\boldsymbol{\Theta}}\left(\hat{\boldsymbol{\theta}}\right)}{p_{D}\left(D\right)} \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\hat{\boldsymbol{\theta}}\right)p_{\boldsymbol{\Theta}}\left(\hat{\boldsymbol{\theta}}\right)
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(\boldsymbol{\theta}\lvert D\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \frac{p\left(D\lvert\boldsymbol{\boldsymbol{\theta}}\right)p_{0}\left(\boldsymbol{\theta}\right)}{p\left(D\right)} \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(D\lvert\boldsymbol{\theta}\right)p_{0}\left(\boldsymbol{\theta}\right)
 \end{aligned}
 $$
 
+(מדוע המעבר האחרון נכון?)
+
 ניתן לראות שלמעשה אנו מחפשים את הנקודה שמביאה למקסימום את המכפלה של: 
 
-1. הסבירות, $$p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\hat{\boldsymbol{\theta}}\right)$$, שמנסה להסביר בצורה מיטבית את תוצאות המדגם
+1. ה-Likelihood, $$p\left(D\lvert \boldsymbol{\theta}\right)$$, הסבירות של המדגם שקיבלנו בהינתן וקטור הפרמטרים
 
-2. צפיפות ההסתברות הא-פירורית, Prior: $$P_{\boldsymbol{\Theta}}\left(\boldsymbol\theta\right)$$, שלוקחת בחשבון את ההנחה המקדימה שלנו על הסבירות של ערכים שונים של הפרמטרים.
+2. צפיפות ההסתברות הא-פריורית, Prior: $$P_{\boldsymbol{\Theta}}\left(\boldsymbol\theta\right)$$, שלוקחת בחשבון את ההנחה המקדימה שלנו על הסבירות של ערכים שונים של הפרמטרים.
 
 #### משערך Maximum Likelihood Estimator (MLE) (שיטה לא בייסיאנית)
 
@@ -88,8 +100,8 @@ $$
 $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MLE}}
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \mathcal{L}\left(\boldsymbol{\theta};D\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad p_D\left(D;\hat{\boldsymbol{\theta}}\right)
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \mathcal{L}\left(\boldsymbol{\theta}\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(D;\boldsymbol{\theta}\right)
 \end{aligned}
 $$
 
@@ -98,7 +110,7 @@ $$
 תחת ההנחה כי הדגמים במדגם הינם i.i.d. (בעלי פילוג זהה ובלתי תלויים סטטיסטית) מתקיים כי:
 
 $$
-p_{D}\left(D;\boldsymbol{\theta}\right)=p_{D}\left(\left\lbrace \boldsymbol{x}_i\right\rbrace_{i=1}^N;\boldsymbol{\theta}\right)=\prod_{i=1}^N p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\hat{\boldsymbol{\theta}}\right)
+p_{D}\left(D;\boldsymbol{\theta}\right)=p\left(\left\lbrace \boldsymbol{x}_i\right\rbrace_{i=1}^N;\boldsymbol{\theta}\right)=\prod_{i=1}^N p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)
 $$
 
 בנוסף, נשתמש בעובדה של $$\log$$ הינה פונקציה מונוטונית עולה ולכן:
@@ -107,7 +119,7 @@ $$
 \underset{x}{\arg\max}\quad f\left(x\right)=\underset{x}{\arg\max}\quad \log\left(f\left(x\right)\right)
 $$
 
-מקובל לסמן את ה$$log$$ של פונקציית הסבירות כ $$l\left(\boldsymbol{\theta};D\right)\triangleq \log\left(\mathcal{L}\left(\boldsymbol{\theta};D\right)\right)$$
+מקובל לסמן את ה$$log$$ של פונקציית הסבירות כ $$l\left(\boldsymbol{\theta}\right)\triangleq \log\left(\mathcal{L}\left(\boldsymbol{\theta}\right)\right)$$
 
 מכאן ש:
 
@@ -115,11 +127,11 @@ $$
 $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MLE}}
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \mathcal{L}\left(\boldsymbol{\theta};D\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad l\left(\boldsymbol{\theta};D\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \log\left(p_{D}\left(D;\boldsymbol{\theta}\right)\right)\\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \log\left(\prod_{i=1}^N p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\hat{\boldsymbol{\theta}}\right)\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\hat{\boldsymbol{\theta}}\right)\right)
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \mathcal{L}\left(\boldsymbol{\theta}\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad l\left(\boldsymbol{\theta}\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \log\left(p\left(D;\boldsymbol{\theta}\right)\right)\\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \log\left(\prod_{i=1}^N p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)
 \end{aligned}
 $$
 
@@ -128,8 +140,8 @@ $$
 $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MAP}}
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad p_{D\lvert\boldsymbol{\Theta}}\left(D\lvert\boldsymbol{\Theta}=\hat{\boldsymbol{\theta}}\right)p_{\boldsymbol{\Theta}}\left(\hat{\boldsymbol{\theta}}\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad  \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\hat{\boldsymbol{\theta}}\right)\right)+\log\left(p_{\boldsymbol{\Theta}}\left(\hat{\boldsymbol{\theta}}\right)\right)
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(D\lvert\boldsymbol{\theta}\right)p_{0}\left(\boldsymbol{\theta}\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad  \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)+\log\left(p_{0}\left(\boldsymbol{\theta}\right)\right)
 \end{aligned}
 $$
 
@@ -156,9 +168,9 @@ $$\boldsymbol{\theta}=\left[\theta_1,\theta_2\right]^T=\left[\mu,\sigma^2\right]
 $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MLE}}
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\hat{\boldsymbol{\theta}}\right)\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad \sum_{i=1}^N\log\left(\frac{1}{\sqrt{2\pi\hat{\theta}_2}}\exp\left(-\frac{1}{2\sigma^2}\left(x_i-\hat{\theta_1}\right)^2\right)\right) \\
-& = \underset{\hat{\boldsymbol{\theta}}}{\arg\max}\quad -\frac{N}{2}\log\left(2\pi\hat{\theta}_2\right)-\sum_{i=1}^N\frac{1}{2\hat{\theta}_2}\left(x_i-\hat{\theta}_1\right)^2 \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(\frac{1}{\sqrt{2\pi\theta}_2}\exp\left(-\frac{1}{2\sigma^2}\left(x_i-\theta_1\right)^2\right)\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad -\frac{N}{2}\log\left(2\pi\theta_2\right)-\sum_{i=1}^N\frac{1}{2\theta}_2\left(x_i-\theta_1\right)^2 \\
 \end{aligned}
 $$
 
@@ -171,12 +183,12 @@ $$
 \frac{\partial}{\partial \theta_2}l\left(\theta\right)=0 \\
 \end{cases} \\
 \Leftrightarrow & \begin{cases}
-\sum_{i=1}^N\frac{1}{\hat{\theta}_2}\left(x_i-\hat{\theta}_1\right)=0 \\
--\sum_{i=1}^N\frac{1}{2\hat{\theta}_2}+\sum_{i=1}^N\frac{1}{2\hat{\theta}_2^2}\left(x_i-\hat{\theta}_1\right)^2=0
+\sum_{i=1}^N\frac{1}{\theta}_2\left(x_i-\theta_1\right)=0 \\
+-\frac{N}{2\theta_2}+\sum_{i=1}^N\frac{1}{2\theta}_2^2\left(x_i-\theta_1\right)^2=0
 \end{cases} \\
 \Leftrightarrow & \begin{cases}
-\hat{\theta}_1=\frac{1}{N}\sum_{i=1}^N x_i \\
-\hat{\theta}_2=\frac{1}{N}\sum_{i=1}^N\left(x_i-\theta_1\right)^2
+\theta_1=\frac{1}{N}\sum_{i=1}^N x_i \\
+\theta_2=\frac{1}{N}\sum_{i=1}^N\left(x_i-\theta_1\right)^2
 \end{cases} \\
 \end{aligned}
 $$
@@ -203,7 +215,7 @@ $$
 ולכן:
 
 $$
-\mathcal{L}\left(\theta;D\right)=p\left(D;\theta\right)=\prod_{i=1}^N p_X\left(x_i;\theta\right)=
+\mathcal{L}\left(\theta\right)=p\left(D;\theta\right)=\prod_{i=1}^N p_X\left(x_i;\theta\right)=
 \begin{cases}
 \tfrac{1}{\theta^N} & \forall x_i, x_i\leq\theta \\
 0 & \text{else}
@@ -213,7 +225,7 @@ $$
 מכאן ש:
 
 $$
-\hat{\theta}_{\text{MLE}} = \underset{\hat{\theta}}{\arg\max}\quad \mathcal{L}\left(\theta;D\right)=\max\left\lbrace x_i\right\rbrace_{i=0}^N
+\hat{\theta}_{\text{MLE}} = \underset{\hat{\theta}}{\arg\max}\quad \mathcal{L}\left(\theta;D\right)=\max_i x_i
 $$
 
 ---
@@ -229,9 +241,9 @@ $$
 $$
 \begin{aligned}
 \hat{\theta}_{\text{MLE}}
-& = \underset{\hat{\theta}}{\arg\max}\quad l\left(\theta;D\right) \\
-& = \underset{\hat{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\hat{\boldsymbol{\hat{\theta}}}\right)\right) \\
-& = \underset{\hat{\theta}}{\arg\max}\quad N\log\left(\hat{\theta}\right)-\hat{\theta}\sum_{i=1}^N x_i \\
+& = \underset{\theta}{\arg\max}\quad l\left(\theta\right) \\
+& = \underset{\theta}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right) \\
+& = \underset{\theta}{\arg\max}\quad N\log\left(\theta\right)-\theta\sum_{i=1}^N x_i \\
 \end{aligned}
 $$
 
@@ -239,9 +251,9 @@ $$
 
 $$
 \begin{aligned}
-& \frac{\partial}{\partial\theta}l\left(\hat{\theta};D\right)=0 \\
-\Leftrightarrow & \frac{N}{\hat{\theta}}-\sum_{i=1}^N x_i=0 \\
-\Leftrightarrow & \hat{\theta}=\frac{1}{\frac{1}{N}\sum_{i=1}^N x_i} \\
+& \frac{\partial}{\partial\theta}l\left(\theta;D\right)=0 \\
+\Leftrightarrow & \frac{N}{\theta}-\sum_{i=1}^N x_i=0 \\
+\Leftrightarrow & \theta=\frac{1}{\frac{1}{N}\sum_{i=1}^N x_i} \\
 \end{aligned}
 $$
 
@@ -267,7 +279,7 @@ $$
 
 $$
 \begin{aligned}
-\underset{\boldsymbol{\theta}}{\arg\max}\quad & l\left(\boldsymbol{\theta};D\right) \\
+\underset{\boldsymbol{\theta}}{\arg\max}\quad & l\left(\boldsymbol{\theta}\right) \\
 \text{s.t.} & \left\lVert\boldsymbol{\theta}\right\rVert_1=\sum_{j=1}^6\theta_j=1
 \end{aligned}
 $$
@@ -279,9 +291,10 @@ $$
 $$
 \begin{aligned}
 L\left(\boldsymbol{\theta},\lambda\right)
-& = l\left(\boldsymbol{\theta};D\right)-\lambda\left(\sum_{j=1}^6\theta_j-1\right) \\
-& = \sum_{i=1}^N\log\left(\theta_x\right)-\lambda\left(\sum_{j=1}^6\theta_i-1\right) \\
+& = l\left(\boldsymbol{\theta}\right)-\lambda\left(\sum_{j=1}^6\theta_j-1\right) \\
+& = \sum_{i=1}^N\log\left(\theta_{x_i}\right)-\lambda\left(\sum_{j=1}^6\theta_i-1\right) \\
 & = \sum_{j=1}^6\underbrace{\sum_{i=1}^N I\left\lbrace x_i=j\right\rbrace}_{\triangleq m_j}\log\left(\theta_j\right)-\lambda\left(\sum_{j=1}^6\theta_i-1\right) \\
+& = \sum_{j=1}^6m_j\log\left(\theta_j\right)-\lambda\left(\sum_{j=1}^6\theta_i-1\right) \\
 \end{aligned}
 $$
 
@@ -305,11 +318,11 @@ $$
 \end{cases} \\
 \Leftrightarrow & \begin{cases}
 \theta_l=\frac{m_l}{\lambda}\\
-\sum_{j=1}^6\frac{m_l}{\lambda}=1\\
+\sum_{j=1}^6\frac{m_j}{\lambda}=1\\
 \end{cases} \\
 \Leftrightarrow & \begin{cases}
 \theta_l=\frac{m_l}{N}\\
-\lambda=\sum_{j=1}^6m_l=N\\
+\lambda=\sum_{j=1}^6m_j=N\\
 \end{cases} \\
 \end{aligned}
 $$
@@ -333,11 +346,11 @@ $$
 
 #### ✍️ תרגיל 3.2
 
-נתון שהרווח היומי של חברת "רווחילי" מתפלג גאוסית $$X\sim N\left(\mu_X,\sigma_X\right)$$. נתון לנו מדגם אשר מכיל את הרווחים של החברה ב$$N$$ הימים האחרונים $$\left\lbrace x_i\right\rbrace_{i=1}^N$$.
+נתון שהרווח היומי של חברת "רווחילי" מתפלג גאוסית $$X\sim N\left(\theta,\sigma_X\right)$$. נתון לנו מדגם אשר מכיל את הרווחים של החברה ב$$N$$ הימים האחרונים $$\left\lbrace x_i\right\rbrace_{i=1}^N$$.
 
-לשם הפשטות נניח שהרווחים בימים שונים הינם בעלי פילוג זהה וכי רווח הם בלתי תלויים סטטיסטית, כלומר הם משתנים i.i.d.
+לשם הפשטות נניח שהרווחים בימים שונים הינם בעלי פילוג זהה וכי הם בלתי תלויים סטטיסטית, כלומר הם משתנים i.i.d.
 
-בשאלה זו נניח ש $$\sigma_X$$ הינו פרמטר ידוע וקבוע ונרצה לחשב את תוחלת הרווח היומי, כלומר לשערך את $$\mu_X$$. לשם כך, יוסי הציע להשתמש במודל עבור ההתפלגות הפירורית של $$\mu_x$$ בהתאם למחקר שביצעו על חברות שונות במשק. יוסי טען שתוחלת הרווח היומי של חברות מתפלגת נורמאלי 
+בשאלה זו נניח ש $$\sigma_X$$ הינו פרמטר ידוע וקבוע ונרצה לחשב את תוחלת הרווח היומי, כלומר לשערך את .$$\theta$$ לשם כך, יוסי הציע להשתמש במודל עבור ההתפלגות הפירורית של $$\mu_x$$ בהתאם למחקר שביצעו על חברות שונות במשק. יוסי טען שתוחלת הרווח היומי של חברות מתפלגת נורמאלי 
 $$\mu_X\sim N\left(\mu_M,\sigma_M\right)$$
 , עם פרמטרים ידועים $$\mu_M$$ ו $$\sigma_M$$.
 
@@ -351,37 +364,38 @@ $$\mu_X\sim N\left(\mu_M,\sigma_M\right)$$
 
 $$
 \begin{aligned}
-\hat{\mu}_{X,\text{MAP}}
-& = \underset{\hat{\mu}_X}{\arg\max}\quad p_{M\lvert D}\left(\hat{\mu}_X\lvert D\right) \\
-& = \underset{\hat{\mu}_X}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{X\lvert\hat{\mu}_X}\left(x_i\lvert M=\hat{\mu}_X\right)\right) + \log\left(p_M\left(\hat{\mu}_X\right)\right) \\
-& = \underset{\hat{\mu}_X}{\arg\max}\quad \frac{N}{2}\log\left(2\pi\sigma_X^2\right)+\frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\hat{\mu}_X\right)^2 + \frac{1}{2}\log\left(2\pi\sigma_M^2\right) + \frac{1}{2\sigma_M^2}\left(\hat{\mu}_X-\mu_M\right)^2\\
-& = \underset{\hat{\theta}}{\arg\max}\quad \frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\hat{\mu}_X\right)^2 + \frac{1}{2\sigma_M^2}\left(\hat{\mu}_X-\mu_M\right)^2\\
+\hat{\theta}_{\text{MAP}}
+& = \underset{\theta}{\arg\max}\quad p\left(D\lvert \theta\right)p_o\left(\theta\right) \\
+& = \underset{\theta}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{x}\left(x_i\lvert \theta\right)\right) + \log\left(p_0\left(\theta\right)\right) \\
+& = \underset{\theta}{\arg\max}\quad \sum_{i=1}^N\log\left(\frac{1}{\sqrt{2\pi\sigma_X^2}}e^{-\frac{\left(x_i-\theta\right)^2}{2\sigma_X^2}}\right) + \log\left(\frac{1}{\sqrt{2\pi\sigma_M^2}}e^{-\frac{\left(\theta-\mu_M\right)^2}{2\sigma_M^2}}\right) \\
+& = \underset{\theta}{\arg\max}\quad -\frac{N}{2}\log\left(2\pi\sigma_X^2\right)-\frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\theta\right)^2 - \frac{1}{2}\log\left(2\pi\sigma_M^2\right) - \frac{1}{2\sigma_M^2}\left(\theta-\mu_M\right)^2\\
+& = \underset{\theta}{\arg\min}\quad \frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\theta\right)^2 + \frac{1}{2\sigma_M^2}\left(\theta-\mu_M\right)^2\\
 \end{aligned}
 $$
 
 נגזור ונשווה ל-0
 
 $$
-\frac{\partial}{\partial\hat{\mu}_X}\left(\frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\hat{\mu}_X\right)^2 + \frac{1}{2\sigma_M^2}\left(\hat{\mu}_X-\mu_M\right)^2\right)=0\\
-\Leftrightarrow \frac{1}{\sigma_X^2}\sum_{i=1}^N\left(\hat{\mu}_X-x_i\right) + \frac{1}{\sigma_M^2}\left(\hat{\mu}_X-\mu_M\right)=0 \\
-\Leftrightarrow \hat{\mu}_X=\frac{\frac{1}{\sigma_X^2}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\hat{\mu}_M}{\frac{N}{\sigma_X^2} + \frac{1}{\sigma_M^2}} \\
-\Leftrightarrow \hat{\mu}_X=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\hat{\mu}_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}} \\
+\frac{\partial}{\partial\theta}\left(\frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\theta\right)^2 + \frac{1}{2\sigma_M^2}\left(\theta-\mu_M\right)^2\right)=0\\
+\Leftrightarrow \frac{1}{\sigma_X^2}\sum_{i=1}^N\left(\theta-x_i\right) + \frac{1}{\sigma_M^2}\left(\theta-\mu_M\right)=0 \\
+\Leftrightarrow \theta=\frac{\frac{1}{\sigma_X^2}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{N}{\sigma_X^2} + \frac{1}{\sigma_M^2}} \\
+\Leftrightarrow \hat{\theta}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}} \\
 $$
 
 קיבלנו כי:
 
 $$
-\hat{\mu}_{X,\text{MAP}}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\hat{\mu}_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}}
+\hat{\theta}_{\text{MAP}}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\hat{\mu}_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}}
 $$
 
 
 נשים לב למספר דברים:
 
-- הביטוי $$\frac{1}{N}\sum_{i=1}^Nx_i$$ הינו הערך אשר ממקסם את הפילוג המותנה של המדגם בהינתן $$\mu_X$$ (פנקציית הlikelihood). זהו למעשה משערך הMLE.
+- הביטוי $$\frac{1}{N}\sum_{i=1}^Nx_i$$ הינו הערך אשר ממקסם את הפילוג המותנה של המדגם בהינתן  $$\theta$$ (פונקציית הlikelihood). זהו למעשה משערך הMLE.
 - הערך $$\mu_M$$ הינו הערך אשר ממקסם את הפילוג האפריורי.
 - הגודל $$\sigma_X^2/N$$ הינו השונות של הגודל $$\frac{1}{N}\sum_{i=1}^Nx_i$$
 
-התוצאה שאותה קיבלנו הינה למעשה ממוצע מושכלל בין הערך אשר ממקסם את הlikelihood, אשר תלוי במדגם, לבין הערך אשר ממקסם את הפילוג האפריורי. המשקל של כל ערך שווה לאחד חלקי שונות הפילוג של אותו ערך. הגודל של אחד חלקי שונות למעשה מבטא את הודאות שיש לנו לגבי הדיוק של הערך.
+התוצאה שאותה קיבלנו הינה למעשה ממוצע מושכלל בין הערך אשר ממקסם את הlikelihood, אשר תלוי במדגם, לבין הערך אשר ממקסם את הפילוג האפריורי. המשקל של כל ערך שווה לאחד חלקי שונות הפילוג של אותו ערך. הגודל של אחד חלקי שונות למעשה מבטא את רמת הוודאות שיש לנו לגבי הדיוק של הערך.
 
 
 ב) נסתכל על מקרי הקצה.
@@ -389,7 +403,7 @@ $$
 - כאשר $$\sigma_X/N\ll\sigma_M$$ אזי החלק אשר תלוי במדגם מקבל את מרבית המשקל, ומתקיים כי:
 
 $$
-\hat{\mu}_{X,\text{MAP}}\approx\frac{1}{N}\sum_{i=1}^Nx_i
+\hat{\theta}_{\text{MAP}}\approx\frac{1}{N}\sum_{i=1}^Nx_i
 $$
 
 במקרה זה הפילוג האפיריורי רחב מאד ואין הבדל גדול בין ההסתברות האפריורית של ערכים יחסית קרובים ולכן ההשפעה של הפילוג האפריורי קטנה.
@@ -397,7 +411,7 @@ $$
 - כאשר $$\sigma_X/N\gg\sigma_M$$ אזי החלק אשר תלוי בפילוג האפריורי מקבל את מרבית המשקל,  ומתקיים כי:
 
 $$
-\hat{\mu}_{X,\text{MAP}}\approx\mu_M
+\hat{\theta}_{\text{MAP}}\approx\mu_M
 $$
 
 ## בעיה מעשית
@@ -589,7 +603,7 @@ $$
   </tbody>
 </table>
 
-### ❓️ הבעיה: שיעורך משך הפילוג של משך הנסיעה
+### ❓️ הבעיה: שיערוך הפילוג של משך הנסיעה
 
 אנו מעוניינים לשערך את הפילוג של משך הנסיעה
 
@@ -601,7 +615,7 @@ $$
 
 סימונים והנחות:
 
-- $$N$$ - מספר הגדמים במדגם.
+- $$N$$ - מספר הדגימות במדגם.
 
 - $$\boldsymbol{\theta}=\left[\mu,\sigma\right]^T$$ - וקטור הפרמטרים של המודל
 - $$p_\text{normal}\left(x_i;\boldsymbol{\theta}\right)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{\left(x_i-\mu\right)^2}{2\sigma^2}\right), i=1,...,N$$ - המודל
@@ -626,13 +640,13 @@ $$
 
 נראה כי הפילוג הנורמאלי נותן קירוב מאד גס לפילוג האמיתי. במקרים רבים קירוב זה יהיה מספיק, אך במקרה זה ננסה לשפר את השיערוך שלנו.
 
-עובדה אחת שמאד מטרידה לגבי הפילוג שקיבלנו הינו שישנו סיכוי לא אפסי לקבל נסיעות עם משך נסיעה שלילי.
+עובדה אחת שמאד מטרידה לגבי הפילוג שקיבלנו הינה שישנו סיכוי לא אפסי לקבל נסיעות עם משך נסיעה שלילי.
 
-ננסה להציע מודל טוב יותר
+ננסה להציע מודל טוב יותר.
 
 ### 💡 נסיון 2: MLE ופילוג Rayleigh
 
-פילוג Rayleigh מתאר את הפילוג של האורך האוקלידי ($$l_2$$ norm) של וקטור גאוסי דו מימדי עם תוחלת 0 וחוסר קורלציה ופילוג זהה לשני רכיבי הוקטור. במלים אחרות וקטור בעל הפילוג הבא:
+פילוג Rayleigh מתאר את הפילוג של האורך האוקלידי ($$l_2$$ norm) של וקטור גאוסי דו מימדי עם תוחלת 0 וחוסר קורלציה ופילוג זהה לשני רכיבי הוקטור. במלים אחרות, עבור וקטור בעל הפילוג הבא:
 
 $$
 \boldsymbol{Z}\sim N\left(\begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma^2 & 0 \\ 0 & \sigma^2 \end{bmatrix}\right)
@@ -646,7 +660,7 @@ $$
 p_\text{Rayleigh}\left(z;\sigma\right)=\frac{z}{\sigma^2}\exp\left({-\frac{z^2}{2\sigma^2}}\right), \quad z\geq0
 $$
 
-נשים לב כי הפילוג מוגדר רק בעבור ערכים חיוביים. לפילוג זה פרמטר יחיד $$\sigma$$ שנקרא פרטמטר סקאלה (scale parameter). בניגוד לפילוג הנורמאלי, פה $$\sigma$$ אינה שווה לסטיית התקן של הפילוג.
+נשים לב כי הפילוג מוגדר רק בעבור ערכים חיוביים. לפילוג זה פרמטר יחיד $$\sigma$$ שנקרא פרמטר סקאלה (scale parameter). בניגוד לפילוג הנורמאלי, פה $$\sigma$$ אינה שווה לסטיית התקן של הפילוג.
 
 ניתן מוטיבציה קצרה לבחירה שלנו במודל זה.
 
@@ -716,13 +730,13 @@ $$
 
 (כשאר $$\Gamma$$ היא פונקציה המוכנה [פונקציית גמא (gamma function)](https://en.wikipedia.org/wiki/Gamma_function) )
 
-למודל זה 3 פרמטרים: $$\boldsymbol{\theta}=\left[\sigma, a, c\right]^T$$
+למודל זה 3 פרמטרים: $$\boldsymbol{\theta}=\left[\sigma, a, c\right]^T$$.
 
-בעבור $$c=2$$ ו $$a=1$$ נקבל את פילוג Rayleight כאשר $$\sigma_{gamma}=2\sigma_{rayleigh}$$ 
+בעבור $$c=2$$ ו $$a=1$$ נקבל את פילוג Rayleight כאשר $$\sigma_{gamma}=2\sigma_{rayleigh}$$ .
 
-בניגוד למקרים של פילוג נורמאלי ופילוג Rayleigh, במקרה זה לא נוכל למצוא בקלות את הפרמטרים האופטימאלים של המשערך באופן אנליטי, שם מציאת הפרמטרים נאלץ להעזר פתרון נומרי. בפועל נעזה שימוש באחת החבילה של Python הנקראת SciPy. בחבילה זו מכילה מודלים הסברותיים רבים ומכילה מספר רב של כלים הקשורים למודלים אלו, כגון מציאת הפרמטרים האופטימאלים בשיטת MLE על סמך מגדם נתון. את הפונקציות הקשורות למודל הGeneralized Gamma Distribution ניתן למצא [כאן](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gengamma.html#scipy.stats.gengamma).
+בניגוד למקרים של פילוג נורמאלי ופילוג Rayleigh, במקרה זה לא נוכל למצוא בקלות את הפרמטרים האופטימאלים של המשערך באופן אנליטי. לכן, לשם מציאת הפרמטרים נאלץ להעזר בפתרון נומרי. בפועל נעשה שימוש באחת החבילה של Python הנקראת SciPy. חבילה זו מכילה מודלים הסברותיים רבים ומכילה מספר רב של כלים הקשורים למודלים אלו, כגון מציאת הפרמטרים האופטימאלים בשיטת MLE על סמך מדגם נתון. את הפונקציות הקשורות למודל הGeneralized Gamma Distribution ניתן למצוא [כאן](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gengamma.html#scipy.stats.gengamma).
 
-אתם תעשו שימוש בפונקציות זההות בתרגיל הבית הרטוב.
+אתם תעשו שימוש בפונקציות אלו בתרגיל הבית הרטוב.
 
 שימוש בפונקציה הנ"ל, מניב את התוצאות הבאות:
 
@@ -732,7 +746,7 @@ $$
 \hat{\sigma} = 1.6
 $$
 
-נוסיף את השיערוך החדש שקיבלנו לגרף ממקודם:
+נוסיף את השיערוך החדש שקיבלנו לגרף הקודם:
 
 ![generalized_gamma](./media/generalized_gamma.png)
 
@@ -757,21 +771,21 @@ $$
 א) פונקציית הlikelihood (הפעם כפונקציה של $$\mu$$ כי הוא המשתנה הלא ידוע בסעיף זה):
 
 $$
-L\left(\mu\right)\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x-\theta\right)}I\left\lbrace\mu>0\right\rbrace
+L\left(\mu\right)=\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x_i-\theta\right)}=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x_i-\theta\right)}I\left\lbrace\mu>0\right\rbrace
 $$
 
-נניח כאן כי $$\mu>0$$ אחרת האינדוקטור מתאפס.
+נניח כאן כי $$\mu>0$$ אחרת האינדיקטור מתאפס.
 
 $$
-l\left(\mu\right)=\log\left(L\left(\mu\right)\right)=-N\log\left(\mu\right)-\frac{1}{\mu}\sum_{i=1}^N\left(x-\theta\right)
+l\left(\mu\right)=\log\left(L\left(\mu\right)\right)=-N\log\left(\mu\right)-\frac{1}{\mu}\sum_{i=1}^N\left(x_i-\theta\right)
 $$
 
 מגזירה והשוואה לאפס נקבל:
 
 
 $$
-\frac{\partial}{\partial\mu}l\left(\mu\right)=\frac{N}{\mu}-\frac{1}{\mu^2}\sum_{i=1}^N\left(x-\theta\right)=0 \\
-\Rightarrow \hat{\mu}_{\text{MLE}}=\frac{1}{N}\sum_{i=1}^N\left(x-\theta\right)=0
+\frac{\partial}{\partial\mu}l\left(\mu\right)=-\frac{N}{\mu}+\frac{1}{\mu^2}\sum_{i=1}^N\left(x_i-\theta\right)=0 \\
+\Rightarrow \hat{\mu}_{\text{MLE}}=\frac{1}{N}\sum_{i=1}^N\left(x_i-\theta\right)=0
 $$
 
 הנגזרת השנייה שלילית ולכן זוהי אכן נקודת מקסימום.
@@ -779,7 +793,7 @@ $$
 ב) נכתוב את ה-likelihood:
 
 $$
-L\left(\theta\right)\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}I\left\lbrace x_i\geq\theta\right\rbrace=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x-\theta\right)}I\left\lbrace \min\left\lbrace x_i\right\rbrace\geq\theta\right\rbrace
+L\left(\theta\right)=\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x_i-\theta\right)}I\left\lbrace x_i\geq\theta\right\rbrace=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x_i-\theta\right)}I\left\lbrace \min\left\lbrace x_i\right\rbrace\geq\theta\right\rbrace
 $$
 
 נשים לב כי $$L\left(\theta\right)$$ היא פונקציה מונוטונית עולה ב $$\theta$$ בתחום שבו $$\min\left\lbrace x_i\right\rbrace\geq\theta$$. לכן שמערך הסבירות המירבית יתקבל בערך המקסימאלי האפשרי עבור $$\theta$$ בתחום זה: $$\hat{\theta}_{\text{MLE}}=\min\left\lbrace x_i\right\rbrace$$.
