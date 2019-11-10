@@ -339,7 +339,7 @@ $$
 קיבלנו כי
 
 $$
-\hat{p}_{l,\text{MLE}}=\hat{\theta}_l=\frac{m_l}{N}=\frac{1}{N}\sum_{i=1}^N I\left\lbrace x_i=j\right\rbrace
+\hat{p}_{l,\text{MLE}}=\hat{\theta}_l=\frac{m_l}{N}=\frac{1}{N}\sum_{i=1}^N I\left\lbrace x_i=l\right\rbrace
 $$
 
 כלומר משערך הMLE הינו המדידה האמפירית של ההסתברות של לקבלת הערך מסויים.
@@ -394,7 +394,7 @@ $$
 קיבלנו כי:
 
 $$
-\hat{\theta}_{\text{MAP}}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\hat{\mu}_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}}
+\hat{\theta}_{\text{MAP}}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}}
 $$
 
 
