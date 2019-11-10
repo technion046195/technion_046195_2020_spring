@@ -37,7 +37,7 @@ docker build . -t course046195
 - Then you can run the server using the following command:
 
 ``` bash
-docker run --rm -it -v "$PWD:/app" -p 4444:4444 -p 35729:35729 course046195
+docker run --rm -it -v "$PWD:/app" -p 4444:4444 -p 35729:35729 --name course046195 course046195
 ```
 
 - Open the browser at: <localhost:4444>
@@ -46,4 +46,6 @@ docker run --rm -it -v "$PWD:/app" -p 4444:4444 -p 35729:35729 course046195
 
 - Apparently in markdown the convention is to use the double dollar sign ("$$") for both inline and display equations.
 
-- For some reason Jekyll replaces the combination "\{" with "{". This is problematic when trying to use curly brackets in LaTeX equations such as "\left\{x\right\}". A workaround is to use "\lbrace" and "rbrace" instead: "\left\brace x\right\rbrace"
+- For some reason Jekyll replaces the combination "\\{" with "{". This is problematic when trying to use curly brackets in LaTeX equations such as "\left\\{x\right\\}". A workaround is to use "\lbrace" and "rbrace" instead: "\left\brace x\right\rbrace"
+
+- The "|" sign in markdown is used to define tables. It is problematic when defining conditional probability, such as "p\left(x|y\right)". A work around is to use "\lvert" instead: "p\left(x\lvert y\right)"
