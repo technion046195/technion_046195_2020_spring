@@ -178,7 +178,7 @@ $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MLE}}
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(p_{\boldsymbol{X}}\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right) \\
-& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(\frac{1}{\sqrt{2\pi\theta}_2}\exp\left(-\frac{1}{2\sigma^2}\left(x_i-\theta_1\right)^2\right)\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(\frac{1}{\sqrt{2\pi\theta}_2}\exp\left(-\frac{1}{2\theta_2}\left(x_i-\theta_1\right)^2\right)\right) \\
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad -\frac{N}{2}\log\left(2\pi\theta_2\right)-\sum_{i=1}^N\frac{1}{2\theta}_2\left(x_i-\theta_1\right)^2 \\
 \end{aligned}
 $$
@@ -193,7 +193,7 @@ $$
 \end{cases} \\
 \Leftrightarrow & \begin{cases}
 \sum_{i=1}^N\frac{1}{\theta}_2\left(x_i-\theta_1\right)=0 \\
--\frac{N}{2\theta_2}+\sum_{i=1}^N\frac{1}{2\theta}_2^2\left(x_i-\theta_1\right)^2=0
+-\frac{N}{2\theta_2}+\sum_{i=1}^N\frac{1}{2\theta_2^2}\left(x_i-\theta_1\right)^2=0
 \end{cases} \\
 \Leftrightarrow & \begin{cases}
 \theta_1=\frac{1}{N}\sum_{i=1}^N x_i \\
