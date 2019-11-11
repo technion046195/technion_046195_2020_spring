@@ -12,7 +12,7 @@ hide: true
 - $$\omega_i$$ - הדגם ה $$i$$
 - $$\boldsymbol{X}$$, $$\boldsymbol{Y}$$ - משתנים/וקטורים אקראיים
 - $$\boldsymbol{x}_i=\boldsymbol{X}\left(\omega_i\right)$$ - הריאלוזציה שמיוחסת לדגם $$\omega_i$$. ערכים אלו נקראים לרוב .**data points**.
-- $$D=\left\lbrace \boldsymbol{x}_i\right\rbrace_{i=1}^N$$ - המדגם (אשר כולל $$N$$ ראליזציות של וקטורים אקראיים בלתי תלויים סטטיסטית ובעלי פילוג זהה, i.i.d)
+- $$D=\left\lbrace \boldsymbol{x}_i\right\rbrace_{i=1}^N$$ - המדגם (אשר כולל $$N$$ ריאליזציות של וקטורים אקראיים בלתי תלויים סטטיסטית ובעלי פילוג זהה, i.i.d)
 - $$p_\boldsymbol{X}\left(\boldsymbol{x}\right)$$ - פונקציית ההסתברות (PMF) או הצפיפות ההסתברות (PDF) של משתנה/וקטור אקראי.
 - $$F_\boldsymbol{X}\left(\boldsymbol{x}\right)$$ - פנקציית הפילוג המצרפי של משתנה/וקטור אקראי.
 - $$I\left\lbrace E\right\rbrace$$ - פונקציית אינדיקטור של האם המאורע $$E$$ התרחש, לדוגמא: $$I\left\lbrace x<y\right\rbrace=\begin{cases}1\ \text{if}\ x<y\\0\ \text{else}\end{cases}$$.
