@@ -383,7 +383,7 @@ $$
 
 ## תרגיל מעשי
 
-<a href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/_tutorials/tutorial_01/code/non_parametric_distribution_estimation_hands_on.ipynb" target="_blank">
+<a href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/_tutorials/tutorial_02/code/non_parametric_distribution_estimation_hands_on.ipynb" target="_blank">
 <img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" style="display: inline">
 </a>
 
