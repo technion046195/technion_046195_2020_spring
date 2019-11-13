@@ -45,7 +45,7 @@
 </head>
 
 <body>
-  <div id="root" class="hide-hidden" style="display:none">
+  <div id="root" class="hide-hidden disabled-int-links">
   
     <header>
   
@@ -63,17 +63,14 @@
         <ul class="navbar-nav mr-auto">
           {% if page.collection %}
             <li class="nav-item">
-              <a class="nav-link int-nav-link{% unless prev_page %} disabled{% endunless %}{% if prev_page.hide %} hidden-nav-link {% endif %}" href="{{ site.baseurl }}{{ prev_page.url }}">&laquo;previous</a>
+              <a class="nav-link int-nav-link{% unless prev_page %} disabled{% endunless %}{% if prev_page.hide %} hide{% endif %}" href="{{ site.baseurl }}{{ prev_page.url }}">&laquo;previous</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link int-nav-link{% unless next_page %} disabled{% endunless %}{% if next_page.hide %} hidden-nav-link {% endif %}" href="{{ site.baseurl }}{{ next_page.url }}">next&raquo;</a>
+              <a class="nav-link int-nav-link{% unless next_page %} disabled{% endunless %}{% if next_page.hide %} hide{% endif %}" href="{{ site.baseurl }}{{ next_page.url }}">next&raquo;</a>
             </li>
           {% endif %}
           <li class="nav-item"{% unless slides_page %}{% unless slides_page.hide %} style="display:none"{% endunless %}{% endunless %}>
             <a class="nav-link" href="{{ site.baseurl }}{{ slides_page.url }}" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%8E%A5-slides-red.svg" alt="Open Slides" /></a>
-          </li>
-          <li class="nav-item"{% unless page.code %} style="display:none"{% endunless %}>
-            <a class="nav-link" href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/{{ page.code }}" target="_blank"><img src="https://img.shields.io/badge/📄-Code-yellow.svg" alt="Open Code" /></a>
           </li>
           <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle int-nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,7 +126,7 @@
         }
       }
     }
-    document.querySelector("#root").style.display = "";
+    document.querySelector("#root").classList.remove("disabled-int-links");
   </script>
 </body>
 </html>

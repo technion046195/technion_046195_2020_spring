@@ -49,3 +49,19 @@ docker run --rm -it -v "$PWD:/app" -p 4444:4444 -p 35729:35729 --name course0461
 - For some reason Jekyll replaces the combination "\\{" with "{". This is problematic when trying to use curly brackets in LaTeX equations such as "\left\\{x\right\\}". A workaround is to use "\lbrace" and "rbrace" instead: "\left\brace x\right\rbrace"
 
 - The "|" sign in markdown is used to define tables. It is problematic when defining conditional probability, such as "p\left(x|y\right)". A work around is to use "\lvert" instead: "p\left(x\lvert y\right)"
+
+## Comminting Jupyter Notebooks
+
+To commit Jupyter notebooks you must first do the following (once) in order clean up the notebooks before the commit. (Removing cell numbers and metadata):
+
+  1. Install jq
+
+      ``` bash
+      sudo apt install jq
+      ```
+
+  2. run the following command in the repository folder:
+
+      ```bash
+      git config --local include.path ../.gitconfig
+      ```

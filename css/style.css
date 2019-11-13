@@ -1,9 +1,18 @@
----
----
-
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");  /* font awesome */
 @import url('https://fonts.googleapis.com/css?family=Racing+Sans+One&display=swap');  /* Racing Sans One font - for site main title */
 @import url("https://cdn.jsdelivr.net/npm/pygments-css@1.0.0/monokai.css");  /* pygments code blocks theme */
+
+/* Fonts */
+/* ===== */
+@font-face {
+    font-family: KG Second Chances Sketch;
+    src: url("../lib/fonts/KGSecondChancesSketch.ttf");
+}
+
+@font-face {
+    font-family: Trashim;
+    src: url("../lib/fonts/TrashimCLM-Bold.otf");
+}
 
 /* Hidden sections */
 /* =============== */
@@ -12,8 +21,13 @@
 }
 
 .hide-hidden .hide.nav-link{
-    display: initial;
+    display: block;
     color: rgba(255,255,255,.25);
+    pointer-events: none;
+    cursor: default;
+}
+
+.disabled-int-links .int-nav-link{
     pointer-events: none;
     cursor: default;
 }
@@ -30,24 +44,49 @@
 /* Headers */
 /* ======= */
 
-.course-title {
-    font-family: 'Racing Sans One', cursive;
-}
-
 .bg-primary {
     background: #006992 !important;
 }
 
+h1 {
+    color: #f8f9fa !important;
+    position: relative !important;  
+    text-align: center !important;
+    font-size: 3.5em;
+    font-family: 'KG Second Chances Sketch' !important;
+    font-weight: normal !important;
+}
+
+@media print {
+    h1{
+        color: black !important;
+    }
+}
+
+#notebook-container h1 {
+    background: #006992!important;
+    padding: 15px !important;
+    font-size: 5em;
+}
+
+.hebrew h1{
+    font-family: 'Trashim' !important;
+}
+
+.course-title h1 {
+    font-family: 'Racing Sans One', cursive !important;
+}
+
 h2 {
     background: white !important;
-    padding: 15px 15px !important;
+    color: #355681 !important;
+    padding: 15px !important;
     border: 3px solid rgba(53,86,129, 0.5) !important;
     border-radius: 10px !important;
     position: relative !important;  
     text-align: center !important;
     font-size: 2.25em;
     font-weight: 600 !important;
-    color: #355681 !important;
     margin: 1em 0 0.5em 0;
 }
 

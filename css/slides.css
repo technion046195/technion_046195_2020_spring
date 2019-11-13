@@ -1,20 +1,5 @@
----
----
-
 @import url("https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.min.css") not print;
 @import url("https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.min.css") print;
-
-/* Fonts */
-/* ===== */
-@font-face {
-    font-family: KG Second Chances Sketch;
-    src: url("{{ site.baseurl }}/lib/fonts/KGSecondChancesSketch.ttf");
-}
-
-@font-face {
-    font-family: Trashim;
-    src: url("{{ site.baseurl }}/lib/fonts/TrashimCLM-Bold.otf");
-}
 
 /* Title slide */
 /* =========== */
@@ -26,7 +11,7 @@
               rgba(0, 0, 0, 0.5), 
               rgba(0, 0, 0, 0.5)
             ),
-            url({{ site.baseurl }}/media/black-board.jpg);
+            url("../media/black-board.jpg");
         background-size: cover;
     }
     .reveal .title-slide h1{
@@ -35,17 +20,8 @@
 }
 
 .reveal .title-slide h1{
-    font-family:'KG Second Chances Sketch';
-    font-size:100px;
-    line-height:2;
-    font-weight:normal;
-}
-
-.reveal .hebrew .title-slide h1{
-    font-family:'Trashim';
     font-size:150px;
-    line-height:2;
-    font-weight:normal;
+    line-height: 1.5 !important;
 }
 
 /* Lists */

@@ -1,0 +1,15 @@
+[push]
+	default = simple
+[core]
+    attributesfile = .additional_gitattributes
+[filter "nbstrip_full"]
+    clean = "jq --indent 1 \
+                ' (.cells[] | select(has(\"execution_count\")) | .execution_count) = null \
+                | .cells[].metadata = {} \
+                | .metadata_tmp = {} \
+                | .metadata_tmp.kernelspec = .metadata.kernelspec \
+                | .metadata = .metadata_tmp \
+                | del(.metadata_tmp) \
+                '"
+    smudge = cat
+    required = true

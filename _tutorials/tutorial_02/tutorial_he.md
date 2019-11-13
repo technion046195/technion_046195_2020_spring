@@ -383,6 +383,10 @@ $$
 
 ## תרגיל מעשי
 
+<a href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/_tutorials/tutorial_01/code/non_parametric_distribution_estimation_hands_on.ipynb" target="_blank">
+<img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" style="display: inline">
+</a>
+
 ### 🚖 מדגם נסיעות המונית בעיר New York
 
 כחלק מהמאץ של העיר New York להנגיש את המידע אותו אוספת העיר לציבור, היא מפרסמת בכל חודש את רשימת כל נסיעות המונית ופרטיהם אשר בוצעו בעיר באותו חודש. בקורס זה, אנו נעשה שימוש ברשימת הנסיעות מחודש ינואר 2016. ניתן למצוא את הרשימה, [פה](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page).

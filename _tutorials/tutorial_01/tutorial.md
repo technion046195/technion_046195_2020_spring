@@ -1,8 +1,8 @@
 ---
 number: 1
 title: "Probability Theory and Predictions" 
-code: _tutorials/tutorial_01/code/tutorial_01.ipynb
 ---
+
 ## Background - Probability Theory Review
 
 One of the most common tasks in machine learning is to produce a system that can make predictions based on some observed data. This is done by building a model to describes the relationship between the observed data and the quantity which we would like to predict. One of the common ways to describe this relationship is through a probabilistic model.
@@ -58,6 +58,8 @@ $$
 $$
 
 ### Toy Model: The 🍕 Pizza & Pancakes 🥞 Drive-Thru
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg){: style="display: inline"}](https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/_tutorials/tutorial_01/code/intro_to_prob_toy_model.ipynb)
 
 We would like to help a new local drive-thru business that sells pizzas and pancakes. Which would like to be able to make some predictions regarding his business.
 
