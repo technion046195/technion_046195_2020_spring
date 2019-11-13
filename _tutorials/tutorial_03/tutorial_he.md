@@ -235,7 +235,7 @@ $$
 מכאן ש:
 
 $$
-\hat{\theta}_{\text{MLE}} = \underset{\theta}{\arg\max}\quad \mathcal{L}\left(\theta;D\right)=\max_i x_i
+\hat{\theta}_{\text{MLE}} = \underset{\theta}{\arg\max}\quad \mathcal{L}\left(\theta\right)=\max_i x_i
 $$
 
 ---
@@ -261,7 +261,7 @@ $$
 
 $$
 \begin{aligned}
-& \frac{\partial}{\partial\theta}l\left(\theta;D\right)=0 \\
+& \frac{\partial}{\partial\theta}l\left(\theta\right)=0 \\
 \Leftrightarrow & \frac{N}{\theta}-\sum_{i=1}^N x_i=0 \\
 \Leftrightarrow & \theta=\frac{1}{\frac{1}{N}\sum_{i=1}^N x_i} \\
 \end{aligned}
@@ -389,40 +389,57 @@ $$
 \frac{\partial}{\partial\theta}\left(\frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\theta\right)^2 + \frac{1}{2\sigma_M^2}\left(\theta-\mu_M\right)^2\right)=0\\
 \Leftrightarrow \frac{1}{\sigma_X^2}\sum_{i=1}^N\left(\theta-x_i\right) + \frac{1}{\sigma_M^2}\left(\theta-\mu_M\right)=0 \\
 \Leftrightarrow \theta=\frac{\frac{1}{\sigma_X^2}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{N}{\sigma_X^2} + \frac{1}{\sigma_M^2}} \\
-\Leftrightarrow \hat{\theta}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}} \\
 $$
 
 קיבלנו כי:
 
 $$
-\hat{\theta}_{\text{MAP}}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}}
+\hat{\theta}_{\text{MAP}}=\frac{\frac{1}{\sigma_X^2}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{N}{\sigma_X^2} + \frac{1}{\sigma_M^2}}
+$$
+
+נרשום זאת באופן מעט שונה:
+
+$$
+\hat{\theta}_{\text{MAP}}=\frac{\alpha \bar{x} + \beta\mu_M}{\alpha + \beta}
+$$
+
+כאשר:
+
+$$
+\bar{x}=\frac{1}{N}\sum_{i=1}^N x_i\quad,
+\alpha=\frac{1}{\frac{\sigma_X^2}{N}}\quad,
+\beta=\frac{1}{\sigma_M^2}
 $$
 
 נשים לב למספר דברים:
 
-- הביטוי $$\frac{1}{N}\sum_{i=1}^Nx_i$$ הינו הערך אשר ממקסם את הפילוג המותנה של המדגם בהינתן  $$\theta$$ (פונקציית הlikelihood). זהו למעשה משערך הMLE.
+- $$\bar{x}$$ הינו ממוצע הדגימות. זהו הערך אשר ממקסם את פונקציית הסבירות (והוא למעשה משערך הMLE של $$\theta$$).
 - הערך $$\mu_M$$ הינו הערך אשר ממקסם את הפילוג האפריורי.
-- הגודל $$\sigma_X^2/N$$ הינו השונות של הגודל $$\frac{1}{N}\sum_{i=1}^Nx_i$$
+- הגודל $$\sigma_X^2/N$$ הינו השונות של $$\bar{x}$$.
 
 התוצאה שאותה קיבלנו הינה למעשה ממוצע מושכלל בין הערך אשר ממקסם את הlikelihood, אשר תלוי במדגם, לבין הערך אשר ממקסם את הפילוג האפריורי. המשקל של כל ערך שווה לאחד חלקי שונות הפילוג של אותו ערך. הגודל של אחד חלקי שונות למעשה מבטא את רמת הוודאות שיש לנו לגבי הדיוק של הערך.
 
 ב) נסתכל על מקרי הקצה.
 
-- כאשר $$\sigma_X/N\ll\sigma_M$$ אזי החלק אשר תלוי במדגם מקבל את מרבית המשקל, ומתקיים כי:
+- כאשר $$\alpha\gg\beta$$ אזי החלק אשר תלוי במדגם מקבל את מרבית המשקל, ומתקיים כי:
 
 $$
-\hat{\theta}_{\text{MAP}}\approx\frac{1}{N}\sum_{i=1}^Nx_i
+\hat{\theta}_{\text{MAP}}\approx\bar{x}
 $$
 
 במקרה זה הפילוג האפיריורי רחב מאד ואין הבדל גדול בין ההסתברות האפריורית של ערכים יחסית קרובים ולכן ההשפעה של הפילוג האפריורי קטנה.
 
-- כאשר $$\sigma_X/N\gg\sigma_M$$ אזי החלק אשר תלוי בפילוג האפריורי מקבל את מרבית המשקל,  ומתקיים כי:
+- כאשר $$\alpha\ll\beta$$ אזי החלק אשר תלוי בפילוג האפריורי מקבל את מרבית המשקל,  ומתקיים כי:
 
 $$
 \hat{\theta}_{\text{MAP}}\approx\mu_M
 $$
 
 ## בעיה מעשית
+
+<a href="https://colab.research.google.com/github/{{ site.data.general.github_user }}/{{ site.data.general.github_repo }}/blob/master/_tutorials/tutorial_01/code/mle_hands_on.ipynb" target="_blank">
+<img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" style="display: inline">
+</a>
 
 ### 🚖 תזכורת: מדגם נסיעות המונית בNew York
 
@@ -692,7 +709,7 @@ $$
 
 $$
 \begin{aligned}
-l_\text{rayleigh}\left(\theta|\{x\}\right)
+l_\text{rayleigh}\left(\theta\right)
 & = \sum_i\log\left(p_\text{rayleigh}\left(x_i;\theta\right)\right) \\
 & = \sum_i\log\left(x_i\right)-2N\log\left(\theta\right)-\frac{1}{2\theta^2}\sum_ix_i^2
 \end{aligned}
@@ -701,13 +718,13 @@ $$
 בעיית האופטימיזציה שלנו תהיה:
 
 $$
-\hat{\boldsymbol{\theta}}=\underset{\boldsymbol{\theta}}{\arg\min}\ -\sum_i\log\left(x_i\right)+2N\log\left(\theta\right)+\frac{1}{2\theta^2}\sum_ix_i^2
+\hat{\boldsymbol{\theta}}=\underset{\boldsymbol{\theta}}{\arg\min}\quad-\sum_i\log\left(x_i\right)+2N\log\left(\theta\right)+\frac{1}{2\theta^2}\sum_ix_i^2
 $$
 
 גם בעבור המקרה הזה נוכל לפתור את בעיית האופטימיזציה באופן אנליטי על ידי גזירה והשוואה לאפס:
 
 $$
-\frac{\partial l_\text{rayleigh}\left(\theta|\{x\}\right)}{\partial\theta}=0 \\
+\frac{\partial l_\text{rayleigh}\left(\theta\right)}{\partial\theta}=0 \\
 \Leftrightarrow -\frac{2N}{\theta}+\frac{\sum_ix^2}{\theta^3}=0 \\
 \Leftrightarrow \hat{\sigma} = \theta=\sqrt{\frac{1}{2N}\sum_i x^2}
 $$
@@ -767,7 +784,7 @@ $$
 נתונות לנו $$N$$ מדידות i.i.d., $$\left\lbrace x_i\right\rbrace_{i=1}^N$$ כאשר $$x_i$$ מגיע מההתפלגות הבאה:
 
 $$
-p\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}\qquad x\geq\theta,\mu>0
+p\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}I\left\lbrace x\geq\theta\right\rbrace\qquad \mu>0
 $$
 
 א) מצאו את משערך הMLE עבור הפרמטר $$\mu$$ בהנחה כי $$\theta$$ פרמטר ידוע
@@ -779,10 +796,12 @@ $$
 א) פונקציית הlikelihood (הפעם כפונקציה של $$\mu$$ כי הוא המשתנה הלא ידוע בסעיף זה):
 
 $$
-L\left(\mu\right)=\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x_i-\theta\right)}=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x_i-\theta\right)}I\left\lbrace\mu>0\right\rbrace
+L\left(\mu\right)=\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x_i-\theta\right)}=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x_i-\theta\right)}
 $$
 
-נניח כאן כי $$\mu>0$$ אחרת האינדיקטור מתאפס.
+תחת התנאי כי $$\mu>0$$.
+
+פונקציית הlog-likelihood הינה:
 
 $$
 l\left(\mu\right)=\log\left(L\left(\mu\right)\right)=-N\log\left(\mu\right)-\frac{1}{\mu}\sum_{i=1}^N\left(x_i-\theta\right)

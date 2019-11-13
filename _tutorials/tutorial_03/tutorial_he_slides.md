@@ -142,8 +142,8 @@ $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MAP}}
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(\boldsymbol{\theta}\lvert D\right) \\
-& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \frac{p\left(D\lvert\boldsymbol{\Theta}=\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right)}{p\left(D\right)} \\
-& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(D\lvert\boldsymbol{\Theta}=\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right)
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad \frac{p\left(D\lvert\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right)}{p\left(D\right)} \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(D\lvert\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right)
 \end{aligned}
 $$
 
@@ -151,7 +151,7 @@ $$
 
 אנו מחפשים את המקסימום של המכפלה של:
 
-1. הסבירות: $$p\left(D\lvert\boldsymbol{\Theta}=\hat{\boldsymbol{\theta}}\right)$$
+1. הסבירות: $$p\left(D\lvert\hat{\boldsymbol{\theta}}\right)$$
 
 2. צפיפות ההסתברות הא-פריורית: $$p\left(\boldsymbol\theta\right)$$
 
@@ -200,7 +200,7 @@ $$
 נסמן:
 
 $$
-l\left(\boldsymbol{\theta};D\right)\triangleq \log\left(\mathcal{L}\left(\boldsymbol{\theta}\right)\right)
+l\left(\boldsymbol{\theta}\right)\triangleq \log\left(\mathcal{L}\left(\boldsymbol{\theta}\right)\right)
 $$
 
 </section><section markdown="1">
@@ -215,7 +215,7 @@ $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MLE}}
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad \mathcal{L}\left(\boldsymbol{\theta}\right) \\
-& = \underset{\boldsymbol{\theta}}{\arg\max}\quad l\left(\boldsymbol{\theta};D\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad l\left(\boldsymbol{\theta}\right) \\
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad \log\left(p\left(D;\boldsymbol{\theta}\right)\right)\\
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad \log\left(\prod_{i=1}^N p\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right) \\
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad \sum_{i=1}^N\log\left(p\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)
@@ -233,7 +233,7 @@ $$
 $$
 \begin{aligned}
 \hat{\boldsymbol{\theta}}_{\text{MAP}}
-& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(D\lvert\boldsymbol{\Theta}=\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right) \\
+& = \underset{\boldsymbol{\theta}}{\arg\max}\quad p\left(D\lvert\boldsymbol{\theta}\right)p\left(\boldsymbol{\theta}\right) \\
 & = \underset{\boldsymbol{\theta}}{\arg\max}\quad  \sum_{i=1}^N\log\left(p\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right)+\log\left(p\left(\boldsymbol{\theta}\right)\right)
 \end{aligned}
 $$
@@ -370,7 +370,7 @@ $$
 $$
 \begin{aligned}
 \hat{\theta}_{\text{MLE}}
-& = \underset{\theta}{\arg\max}\quad l\left(\theta;D\right) \\
+& = \underset{\theta}{\arg\max}\quad l\left(\theta\right) \\
 & = \underset{\theta}{\arg\max}\quad \sum_{i=1}^N\log\left(p\left(\boldsymbol{x}_i;\boldsymbol{\theta}\right)\right) \\
 & = \underset{\theta}{\arg\max}\quad N\log\left(\theta\right)-\theta\sum_{i=1}^N x_i \\
 \end{aligned}
@@ -386,7 +386,7 @@ $$
 
 $$
 \begin{aligned}
-& \frac{\partial}{\partial\theta}l\left(\theta;D\right)=0 \\
+& \frac{\partial}{\partial\theta}l\left(\theta\right)=0 \\
 \Leftrightarrow & \frac{N}{\theta}-\sum_{i=1}^N x_i=0 \\
 \Leftrightarrow & \theta=\frac{1}{\frac{1}{N}\sum_{i=1}^N x_i} \\
 \end{aligned}
@@ -418,7 +418,7 @@ $$
 
 $$
 \begin{aligned}
-\underset{\boldsymbol{\theta}}{\arg\max}\quad & l\left(\boldsymbol{\theta};D\right) \\
+\underset{\boldsymbol{\theta}}{\arg\max}\quad & l\left(\boldsymbol{\theta}\right) \\
 \text{s.t.} & \left\lVert\boldsymbol{\theta}\right\rVert_1=\sum_{j=1}^6\theta_j=1
 \end{aligned}
 $$
@@ -434,7 +434,7 @@ $$
 $$
 \begin{aligned}
 L\left(\boldsymbol{\theta},\lambda\right)
-& = l\left(\boldsymbol{\theta};D\right)-\lambda\left(\sum_{j=1}^6\theta_j-1\right) \\
+& = l\left(\boldsymbol{\theta}\right)-\lambda\left(\sum_{j=1}^6\theta_j-1\right) \\
 & = \sum_{i=1}^N\log\left(\theta_x\right)-\lambda\left(\sum_{j=1}^6\theta_i-1\right) \\
 & = \sum_{j=1}^6\underbrace{\sum_{i=1}^N I\left\lbrace x_i=j\right\rbrace}_{\triangleq m_j}\log\left(\theta_j\right)-\lambda\left(\sum_{j=1}^6\theta_i-1\right) \\
 \end{aligned}
@@ -543,8 +543,7 @@ $$
 $$
 \frac{\partial}{\partial\theta}\left(\frac{1}{2\sigma_X^2}\sum_{i=1}^N\left(x_i-\theta\right)^2 + \frac{1}{2\sigma_M^2}\left(\theta-\mu_M\right)^2\right)=0\\
 \Leftrightarrow \frac{1}{\sigma_X^2}\sum_{i=1}^N\left(\theta-x_i\right) + \frac{1}{\sigma_M^2}\left(\theta-\mu_M\right)=0 \\
-\Leftrightarrow \theta=\frac{\frac{1}{\sigma_X^2}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{N}{\sigma_X^2} + \frac{1}{\sigma_M^2}} \\
-\Leftrightarrow \theta=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}} \\
+\Leftrightarrow \theta=\frac{\frac{1}{\sigma_X^2}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{N}{\sigma_X^2} + \frac{1}{\sigma_M^2}}
 $$
 
 </section><section markdown="1">
@@ -556,14 +555,48 @@ $$
 קיבלנו כי:
 
 $$
-\hat{\mu}_{X,\text{MAP}}=\frac{\frac{1}{\sigma_X^2/N}\frac{1}{N}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\hat{\mu}_M}{\frac{1}{\sigma_X^2/N} + \frac{1}{\sigma_M^2}}
+\hat{\theta}_{\text{MAP}}=\frac{\frac{1}{\sigma_X^2}\sum_{i=1}^Nx_i + \frac{1}{\sigma_M^2}\mu_M}{\frac{N}{\sigma_X^2} + \frac{1}{\sigma_M^2}}
 $$
+
+<br>
+
+נרשום זאת באופן מעט שונה:
+
+$$
+\hat{\theta}_{\text{MAP}}=\frac{\alpha \bar{x} + \beta\mu_M}{\alpha + \beta}
+$$
+
+כאשר:
+
+$$
+\bar{x}=\frac{1}{N}\sum_{i=1}^N x_i\quad,
+\alpha=\frac{1}{\frac{\sigma_X^2}{N}}\quad,
+\beta=\frac{1}{\sigma_M^2}
+$$
+
+</section><section markdown="1">
+
+#### ✍️ תרגיל 3.2
+
+##### 💡 פיתרון - המשך 3
+
+$$
+\hat{\theta}_{\text{MAP}}=\frac{\alpha \bar{x} + \beta\mu_M}{\alpha + \beta}
+$$
+
+$$
+\bar{x}=\frac{1}{N}\sum_{i=1}^N x_i\quad,
+\alpha=\frac{1}{\frac{\sigma_X^2}{N}}\quad,
+\beta=\frac{1}{\sigma_M^2}
+$$
+
+<br>
 
 נשים לב למספר דברים:
 
-- $$\frac{1}{N}\sum_{i=1}^Nx_i$$ הערך אשר ממקסם את (פנקציית הlikelihood).
-- $$\mu_M$$ הערך אשר ממקסם את הפילוג האפריורי.
-- $$\sigma_X^2/N$$ השונות של הגודל $$\frac{1}{N}\sum_{i=1}^Nx_i$$
+- $$\bar{x}$$ הינו ממוצע הדגימות. זהו הערך אשר ממקסם את פונקציית הסבירות (והוא למעשה משערך הMLE של $$\theta$$).
+- הערך $$\mu_M$$ הינו הערך אשר ממקסם את הפילוג האפריורי.
+- הגודל $$\sigma_X^2/N$$ הינו השונות של $$\bar{x}$$.
 
 התוצאה היא ממוצע מושכלל בין הערך אשר ממקסם את הlikelihood, אשר תלוי במדגם, לבין הערך אשר ממקסם את הפילוג האפריורי.
 
@@ -575,13 +608,15 @@ $$
 
 ב) מקרי הקצה.
 
-- כאשר $$\sigma_X/N\ll\sigma_M$$ אזי החלק אשר תלוי במדגם מקבל את מרבית המשקל, ומתקיים כי:
+- כאשר $$\alpha\gg\beta$$ אזי החלק אשר תלוי במדגם מקבל את מרבית המשקל, ומתקיים כי:
 
 $$
 \hat{\mu}_{X,\text{MAP}}\approx\frac{1}{N}\sum_{i=1}^Nx_i
 $$
 
-- כאשר $$\sigma_X/N\gg\sigma_M$$ אזי החלק אשר תלוי בפילוג האפריורי מקבל את מרבית המשקל,  ומתקיים כי:
+<br>
+
+- כאשר $$\alpha\ll\beta$$ אזי החלק אשר תלוי בפילוג האפריורי מקבל את מרבית המשקל,  ומתקיים כי:
 
 $$
 \hat{\mu}_{X,\text{MAP}}\approx\mu_M
@@ -878,7 +913,7 @@ $$
 
 $$
 \begin{aligned}
-l_\text{rayleigh}\left(\theta|\{x\}\right)
+l_\text{rayleigh}\left(\theta\right)
 & = \sum_i\log\left(p_\text{rayleigh}\left(x_i;\theta\right)\right) \\
 & = \sum_i\log\left(x_i\right)-2N\log\left(\theta\right)-\frac{1}{2\theta^2}\sum_ix_i^2
 \end{aligned}
@@ -903,7 +938,7 @@ $$
 גם בעבור המקרה הזה נוכל לפתור את בעיית האופטימיזציה באופן אנליטי על ידי גזירה והשוואה לאפס:
 
 $$
-\frac{\partial l_\text{rayleigh}\left(\theta|\{x\}\right)}{\partial\theta}=0 \\
+\frac{\partial l_\text{rayleigh}\left(\theta\right)}{\partial\theta}=0 \\
 \Leftrightarrow -\frac{2N}{\theta}+\frac{\sum_ix^2}{\theta^3}=0 \\
 \Leftrightarrow \hat{\sigma} = \theta = \sqrt{\frac{1}{2N}\sum_i x^2}
 $$
@@ -996,16 +1031,18 @@ $$
 #### ✍️ תרגיל 3.3: תרגיל ממבחן - אביב 2019, מועד ב' שאלה 3
 
 $$
-p\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}\qquad x\geq\theta,\mu>0
+p\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}I\left\lbrace x\geq\theta\right\rbrace\qquad \mu>0
 $$
 
 ##### 💡 פתרון: א
 
 $$
-L\left(\mu\right)\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x-\theta\right)}I\left\lbrace\mu>0\right\rbrace
+L\left(\mu\right)=\prod_{i=1}^N\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x_i-\theta\right)}=\frac{1}{\mu^N}e^{-\frac{1}{\mu}\sum_{i=1}^N\left(x_i-\theta\right)}
 $$
 
-נניח כאן כי $$\mu>0$$ אחרת האינדיקטור מתאפס.
+תחת התנאי כי $$\mu>0$$.
+
+פונקציית הlog-likelihood הינה:
 
 $$
 l\left(\mu\right)=\log\left(L\left(\mu\right)\right)=-N\log\left(\mu\right)-\frac{1}{\mu}\sum_{i=1}^N\left(x-\theta\right)
@@ -1028,7 +1065,7 @@ $$
 p\left(x\right)=\frac{1}{\mu}e^{-\frac{1}{\mu}\left(x-\theta\right)}\qquad x\geq\theta,\mu>0
 $$
 
-##### 💡 פתרו: ב
+##### 💡 פתרון: ב
 
 נכתוב את ה-likelihood:
 
