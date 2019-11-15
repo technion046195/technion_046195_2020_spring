@@ -7,40 +7,18 @@ layout: "default"
 </section>
 
 <section class="px-2">
-  <div class="container" dir="auto" style="text-align: initial">
-    <div class="row">
-      <div class="col mx-auto">
-        <h3>תרגולים</h3>
-        {% assign tutorials_he = "" | split: "," %}
-        {% for cur_page in site.tutorials %}{% if cur_page.type == "תרגול" %}{% unless cur_page.slides %}{% unless cur_page.ignore %}
-          {% assign tutorials_he = tutorials_he | push: cur_page %}
-        {% endunless %}{% endunless %}{% endif %}{% endfor %}
-        {% assign tutorials_he = tutorials_he | sort: "number" %}
-        <ul>
-          {% for cur_page in tutorials_he %}
-          <li {% if cur_page.hide %}class="hide"{% endif %}><h4>
-            <a class="int-nav-link" href="{{ site.baseurl }}{{ cur_page.url }}">{{ cur_page.type | capitalize }} {{ cur_page.number }} - {{ cur_page.title }}</a>
-          </h4></li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="px-2">
   <div class="container">
     <div class="row">
       <div class="col mx-auto">
         <h3>Tutorials</h3>
         {% assign tutorials = "" | split: "," %}
-        {% for cur_page in site.tutorials %}{% if cur_page.type == "tutorial" %}{% unless cur_page.slides %}{% unless cur_page.ignore %}
+        {% for cur_page in site.tutorials %}{% if cur_page.type == "tutorial" or cur_page.type == "תרגול" %}{% unless cur_page.slides %}{% unless cur_page.ignore %}
           {% assign tutorials = tutorials | push: cur_page %}
         {% endunless %}{% endunless %}{% endif %}{% endfor %}
         {% assign tutorials = tutorials | sort: "number" %}
         <ul>
           {% for cur_page in tutorials %}
-          <li {% if cur_page.hide %}class="hide"{% endif %}><h4>
+          <li {% if cur_page.hide %}class="hide"{% endif %} dir="auto" style="text-align: initial"><h4>
             <a class="int-nav-link" href="{{ site.baseurl }}{{ cur_page.url }}">{{ cur_page.type | capitalize }} {{ cur_page.number }} - {{ cur_page.title }}</a>
           </h4></li>
           {% endfor %}

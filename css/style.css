@@ -182,7 +182,7 @@ blockquote {
     background: #6192d39b;
 }
 
-.main-content img {
+.main-content img:not(.inline-img) {
     margin: 0 auto;
     display: block;
 }
