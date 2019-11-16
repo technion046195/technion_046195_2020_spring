@@ -182,7 +182,18 @@ blockquote {
     background: #6192d39b;
 }
 
-.main-content img:not(.inline-img) {
-    margin: 0 auto;
+.main-content .centered {
+    text-align: center;
+}
+
+.main-content img {
+    margin-left: auto;
+    margin-right: auto;
     display: block;
+}
+
+.main-content .centered img {
+    margin-left: initial;
+    margin-right: initial;
+    display: initial;
 }
