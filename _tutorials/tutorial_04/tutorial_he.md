@@ -509,8 +509,7 @@ $$
 
 #### ויזואליזציה של נקודות ההורדה
 
-![png](output_16_0.png)
-
+![png](./media/dropoffs.png)
 
 ### הגדרה פורמאלית של הבעיה
 
@@ -526,7 +525,7 @@ $$
 R\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\mathbb{E}\left[\min_{i}\left\lVert\boldsymbol{x}-\boldsymbol{c}_i\right\rVert\right]
 $$
 
-מכיוון שאנו לא יודעים משהו הפילוג של $$X$$ נחליף את התחולת על $$X$$ בתוחלת האימפירית 
+מכיוון שאנו לא יודעים משהו הפילוג של $$X$$ נחליף את התחולת על $$X$$ בתוחלת האימפירית
 
 $$
 \hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{j}\min_{i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
@@ -548,7 +547,7 @@ $$
 
 הרצה של K-Means על הנתונים נותנת את התוצאה הבאה:
 
-![png](output_24_1.png)
+![png](./media/k_means.png)
 
 המרחק נסיעה הממוצע המתקבל הינו 700 מ'.
 
@@ -558,14 +557,13 @@ $$
 
 2) הציעו דרכים לשפר את התוצאות על סמך הסיבות מסעיף הקודם.
 
-
 #### פתרון
 
 שתי סיבות לחוסר אופטימאליות והצעות לשיפור:
 
 1) K-Mean לא מבטיח התכנסות למינימום הגולבאלי. דרך אחת לשפר את תוצאות האלגוריתם הינה להריץ אותו מספר פעמים עם איתחולים שונים.
 
-2) כפי שציינו קודם K-Mean ממזערת את השגיאה הריבועית הממוצעת. ניתן אם כן לשפר קלות את התוצאות על ידי שמירה על האשכולות אך תיקון המרכז לנקודה אשר ממזערת את המרחק עצמו. 
+2) כפי שציינו קודם K-Mean ממזערת את השגיאה הריבועית הממוצעת. ניתן אם כן לשפר קלות את התוצאות על ידי שמירה על האשכולות אך תיקון המרכז לנקודה אשר ממזערת את המרחק עצמו.
 
 **הערה** הנקודה אשר ממזערת את המרחק עצמו בינה לבין כל שאר הנקודות באשכול נקראת החציון הגיאומטרי *The Geometric Median* ([wiki](https://en.wikipedia.org/wiki/Geometric_median)). ניתן למצוא נקודה זו על ידי שימוש באלגוריתם המוכונה *Weiszfeld's algorithm*.
 
@@ -586,7 +584,6 @@ R\left(\left\lbrace\boldsymbol{c}_i\right\rbrace, K\right)= 10\cdot K+100\cdot3\
 $$
 
 והמקבילה האמפירית:
-
 
 $$
 \hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace, K\right)= 10\cdot K+300\cdot\frac{1}{N}\sum_{i=1}^K\sum_{\boldsymbol{x}_j\in G_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
@@ -610,14 +607,13 @@ $$
 
 נריץ את אלגוריתם הK-Means בעבור כל ערך של $$K$$ בתחום $$1\leq K \leq 25$$, נשרטט את עלות הנסיעה, עלות אחזקת החניונים והעלות הכוללת:
 
-![png](output_39_1.png)
+![png](./media/scan_for_k.png)
 
 נקבל כי:
 
 - מספר החניונים האופטימאלי הינו: 12.
 - מרחק הנסיעה הממוצע יהיה 630 מ'.
 - העלות הכוללת תהיה 308.12k$ לחודש.
-
 
 ## תרגילים נוספים
 
@@ -626,13 +622,9 @@ $$
 נתבונן בבעיית "האשכול" החד-מימדית הבאה:
 ![normal](./media/ex_4_3_data.png){: width="600px"}
 
- 
-
 כאשר הנקודות $$\left\lbrace x_i\right\rbrace_{i=0}^N$$ ממוקמות באופן אחיד באינטרוול $$\left[0,d\right]$$ ומספרן $$N\rightarrow\infty$$. (וכמובן $$\Delta\rightarrow 0$$).
 
 הראו כי האלגוריתם K-Means עם $$K=2$$ מתכנס למינימום הגלובלי של השגיאה הריבועית **מכל תנאי התחלה סביר** (כלומר, המרכזים ההתחלתיים ממוקמים באינטרוול $$\left[0,d\right]$$).
-
- 
 
 ##### 💡 פיתרון
 
@@ -642,7 +634,6 @@ $$
 x^{\left(0\right)}=\frac{\mu_1^{\left(0\right)}+\mu_2^{\left(0\right)}}{\alpha d}
 $$
   
-
 עם $$0\geq\alpha\geq1$$ כלשהו.
 
 באיטרציה הראשונה, נקבל
@@ -655,7 +646,7 @@ $$
 \Rightarrow x^{\left(1\right)}=\frac{\mu_1^{\left(1\right)}+\mu_2^{\left(1\right)}}{\alpha d}=\frac{1}{2}\alpha d+\frac{1}{4}d
 $$
 
-ובאופן כללי, 
+ובאופן כללי,
 
 $$
 \begin{cases}
@@ -665,12 +656,10 @@ $$
 \Rightarrow x^{\left(n\right)}=\frac{1}{2}x^{\left(n-1\right)}+\frac{1}{4}d
 $$
 
-נפתור את הרקורסיה: 
+נפתור את הרקורסיה:
 
 $$
 x^{\left(n\right)}=\frac{1}{2}x^{\left(n-1\right)}+\frac{1}{4}d=d\left(\frac{1}{4}+\frac{1}{8}\right)+\frac{1}{2^2}x^{\left(n-2\right)}=\frac{d}{4}\sum_{i=0}^{n-1}\frac{1}{2^i}+\frac{1}{2^n}x^{\left(0\right)}
-$$ 
+$$
 
 מכאן שבגבול $$n\rightarrow\infty$$ מתקיים כי $$x^{\left(n\right)}\rightarrow\frac{d}{2}$$, שזהו כמובן הפתרון האופטימאלי (חלוקה של הקטע לשני חלקים שווים).
- 
-
