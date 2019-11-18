@@ -659,7 +659,7 @@ $$
 נסמן ב $$x^{\left(n\right)}$$ את נקודת ההחלטה באיטרציה $$n$$ וב- $$\mu_2^{\left(n\right)},mu_1^{\left(n\right)}$$ את המרכזים באיטרציה $$n$$. מהנתון, בקירוב הרצף:
 
 $$
-x^{\left(0\right)}=\frac{\mu_1^{\left(0\right)}+\mu_2^{\left(0\right)}}{\alpha d}
+x^{\left(0\right)}=\frac{\mu_1^{\left(0\right)}+\mu_2^{\left(0\right)}}{2}=\alpha d
 $$
 
 עם $$0\geq\alpha\geq1$$ כלשהו.
@@ -671,7 +671,7 @@ $$
 \mu_1^{\left(1\right)}=\frac{1}{2}\alpha d \\
 \mu_2^{\left(1\right)}=\alpha d+\frac{d-\alpha d}{2}=\frac{1+\alpha}{2}d
 \end{cases}\\
-\Rightarrow x^{\left(1\right)}=\frac{\mu_1^{\left(1\right)}+\mu_2^{\left(1\right)}}{\alpha d}=\frac{1}{2}\alpha d+\frac{1}{4}d
+\Rightarrow x^{\left(1\right)}=\frac{\mu_1^{\left(1\right)}+\mu_2^{\left(1\right)}}{2}=\frac{1}{2}\alpha d+\frac{1}{4}d
 $$
 
 ובאופן כללי,
