@@ -19,7 +19,7 @@ hide: true
 
 ### אלגוריתמי אשכול שונים
 
-קיימות דרכים רבות לבצע אישכול לאוסף של נתונים. בהתאם לכך קיימים גם מספר רב של אלגוריתמים לעשות כן. בתיעוד של החבילה הפייתונית  [scikit-learn](https://scikit-learn.org/), בה נעשה שימוש רב בתרגילים הרטובים בקורס, ישנה השוואה בין האשכולות המתקבלים מאלגוריתמים האישכול השונים בחבילה, בעבורשישה toy models דו מימדיים:
+קיימות דרכים רבות לבצע אישכול לאוסף של נתונים. בהתאם לכך קיימים גם מספר רב של אלגוריתמים לעשות כן. בתיעוד של החבילה הפייתונית  [scikit-learn](https://scikit-learn.org/), בה נעשה שימוש רב בתרגילים הרטובים בקורס, ישנה השוואה בין האשכולות המתקבלים מאלגוריתמים האישכול השונים בחבילה, בעבור שישה toy models דו מימדיים:
 
 ![scikit-learn's clustering](./media/sphx_glr_plot_cluster_comparison_001.png){: width="100%"}
 
@@ -47,7 +47,7 @@ $$
 
 ##### הבעיה השקולה
 
-מרכז המסה (center of mass or centroid) או המרכז של אשכול מוגדר כנקודה הממוצעת של כל הפריטים בו: $$\boldsymbol{\mu}_i=\frac{1}{\left\lvert G_i\right\rvert}\sum_{\boldsymbol{x}\in G_i}\boldsymbol{x}$$
+מרכז המסה (center of mass or centroid) או המרכז של אשכול מוגדר כנקודה הממוצעת של כל הפריטים בו: $$\boldsymbol{\mu}_i=\frac{1}{\left\lvert G_i\right\rvert}\sum_{i\in G_i}\boldsymbol{x}_i$$
 
 ניתן להראות כי בעיית האופטימיזציה לעיל, שקולה לבעיה של מיזעור הסכום על פני כל הוקטורים של המרחק הריבועי בין הוקטור למרכז המסה של האשכול שלו:
 
@@ -69,7 +69,7 @@ $$
 
     (במקרה של שני מרכזים במרחק זהה נבחר בזה בעל האינדקס הנמוך יותר).
 
-  - עדכון מרכזי האשכולות על פי: $$\boldsymbol{\mu}_i^{\left(t+1\right)}=\frac{1}{\left\lvert G_i^{\left(t\right)}\right\rvert}\sum_{\boldsymbol{x}\in G_i^{\left(t\right)}}\boldsymbol{x}$$ (אם $$\left\lvert G_i^{\left(t\right)}\right\rvert=0$$ אז $$\mu_i^{\left(t+1\right).}=\mu_i^{\left(t\right)}$$)
+  - עדכון מרכזי האשכולות על פי: $$\boldsymbol{\mu}_i^{\left(t+1\right)}=\frac{1}{\left\lvert G_i^{\left(t\right)}\right\rvert}\sum_{i\in G_i^{\left(t\right)}}\boldsymbol{x}_i$$ (אם $$\left\lvert G_i^{\left(t\right)}\right\rvert=0$$ אז $$\mu_i^{\left(t+1\right).}=\mu_i^{\left(t\right)}$$)
   - קידום: $$t\leftarrow t+1$$
 
 #### דוגמא
