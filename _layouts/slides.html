@@ -88,6 +88,33 @@
     });
   </script>
 
+  <script>
+    set_ferg_index = function( event ) {
+      if (!Reveal.isReady()) {return }
+      let index = Reveal.getIndices();
+      let fragIndex = index.f;
+
+      let slide = Reveal.getCurrentSlide();
+      let fragEls = slide.querySelectorAll(".frag");
+      fragEls.forEach(function (fragEl){
+        if (fragEl.dataset.fragIndex == fragIndex) {
+          fragEl.classList.add("active-frag");
+          fragEl.classList.remove("prev-frag");
+        } else if (fragEl.dataset.fragIndex < fragIndex) {
+          fragEl.classList.remove("active-frag");
+          fragEl.classList.add("prev-frag");
+        } else {
+          fragEl.classList.remove("active-frag");
+          fragEl.classList.remove("prev-frag");
+        }
+      });
+    }
+
+    Reveal.addEventListener('slidechanged', set_ferg_index);
+    Reveal.addEventListener('fragmentshown', set_ferg_index);
+    Reveal.addEventListener('fragmenthidden', set_ferg_index);
+  </script>
+
   <!-- <script>
     function set_svg_layer(svg_id, layer) {
         let elements = document.querySelector("#" + svg_id).contentDocument.querySelectorAll("[data-layers]")

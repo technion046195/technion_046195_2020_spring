@@ -103,6 +103,8 @@ $$
 ![normal](./media/gaussians_step6b.png){: width="350px"}
 ![normal](./media/gaussians_step7a.png){: width="350px"}
 ![normal](./media/gaussians_step7b.png){: width="350px"}
+![normal](./media/gaussians_step8a.png){: width="350px"}
+![normal](./media/gaussians_step8b.png){: width="350px"}
 </div>
 
 #### תכונות
