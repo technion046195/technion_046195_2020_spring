@@ -88,3 +88,29 @@
 .reveal .main-content pre code {
     max-height: 700px !important;
 }
+
+
+/* Fragments */
+/* ========= */
+
+.reveal .frag.replace,
+.reveal .frag.add {
+  display: none;
+}
+.reveal .frag.replace.active-frag,
+.reveal .frag.add.active-frag {
+  display: initial;
+}
+.reveal .frag.add.prev-frag {
+  display: initial;
+}
+
+.reveal .frag.highlight {
+  border: initial;
+  border-radius: initial;
+  background-color: initial;
+}
+.reveal .frag.highlight.active-frag {
+  border-radius:10px;
+  background-color:#7b1c1c;
+}

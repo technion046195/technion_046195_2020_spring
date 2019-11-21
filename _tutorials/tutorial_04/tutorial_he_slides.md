@@ -109,28 +109,41 @@ $$
 #### דוגמא
 
 <style>
-.reveal .frag.replace,
-.reveal .frag.add {
-  display: none;
-}
-.reveal .frag.replace.active-frag,
-.reveal .frag.add.active-frag{
-  display: initial;
-}
-.reveal .frag.add.prev-frag{
-  display: initial;
-}
 </style>
 
 <div style="display:grid;grid-template-columns:50% 50%"><div style="grid-column:1/2" markdown="1">
 
-- איתחול
-<br><br>
-- חזרה עד להתכנסות:
-  <br><br>
-  - שיוך כל נקודה לאשכול, על פי המרכז הקרוב
-  <br><br>
-  - עדכון מרכזי האשכולות
+<ul>
+<li><span class="frag highlight" data-frag-index="-1">איתחול</span><br><br></li>
+<li>חזרה עד להתכנסות:<br><br><ul>
+  <li>
+  <span class="frag highlight" data-frag-index="-1">
+  <span class="frag highlight" data-frag-index="1">
+  <span class="frag highlight" data-frag-index="3">
+  <span class="frag highlight" data-frag-index="5">
+  <span class="frag highlight" data-frag-index="7">
+  שיוך כל נקודה לאשכול, על פי המרכז הקרוב
+  </span>
+  </span>
+  </span>
+  </span>
+  </span>
+  <br><br></li>
+  <li>
+  <span class="frag highlight" data-frag-index="0">
+  <span class="frag highlight" data-frag-index="2">
+  <span class="frag highlight" data-frag-index="4">
+  <span class="frag highlight" data-frag-index="6">
+  <span class="frag highlight" data-frag-index="8">
+  עדכון מרכזי האשכולות
+  </span>
+  </span>
+  </span>
+  </span>
+  </span>
+  </li>
+</ul></li>
+</ul>
 
 </div><div style="grid-column:2/2;" markdown="1">
 
@@ -174,37 +187,8 @@ $$
 ![normal](./media/gaussians_step5b.png){: width="700px"}
 </div>
 
-<div class="frag replace" data-frag-index="9" markdown="1">
-![normal](./media/gaussians_step6a.png){: width="700px"}
-</div>
-
-<div class="frag replace" data-frag-index="10" markdown="1">
-![normal](./media/gaussians_step6b.png){: width="700px"}
-</div>
-
-<div class="frag replace" data-frag-index="11" markdown="1">
-![normal](./media/gaussians_step7a.png){: width="700px"}
-</div>
-
-<div class="frag replace" data-frag-index="12" markdown="1">
-![normal](./media/gaussians_step7b.png){: width="700px"}
-</div>
-
-<div class="frag replace" data-frag-index="13" markdown="1">
-![normal](./media/gaussians_step8a.png){: width="700px"}
-</div>
-
-<div class="frag replace" data-frag-index="14" markdown="1">
-![normal](./media/gaussians_step8b.png){: width="700px"}
-</div>
-
 </div></div>
 
-<p class="fragment"></p>
-<p class="fragment"></p>
-<p class="fragment"></p>
-<p class="fragment"></p>
-<p class="fragment"></p>
 <p class="fragment"></p>
 <p class="fragment"></p>
 <p class="fragment"></p>
@@ -1017,49 +1001,47 @@ $$
 
 ##### 💡 פיתרון
 
-- $$x^{\left(n\right)}$$ את נקודת ההחלטה באיטרציה $$n$$
-- $$\mu_2^{\left(n\right)},\mu_1^{\left(n\right)}$$ את המרכזים באיטרציה $$n$$. 
+- נסמן ב $$x^{\left(t\right)}$$ את נקודת ההחלטה באיטרציה $$t$$
+- וב- $$\mu_2^{\left(t\right)},\mu_1^{\left(t\right)}$$ את המרכזים באיטרציה $$t$$
+
+בצעד הראשון נקבל כי:
+
+$$
+x^{\left(0\right)}=\frac{\mu_1^{\left(0\right)}+\mu_2^{\left(0\right)}}{2}
+$$
 
 <br>
 
-אזי:
-
-$$
-x^{\left(0\right)}=\frac{\mu_1^{\left(0\right)}+\mu_2^{\left(0\right)}}{\alpha d}
-$$
-  
-עם $$0\geq\alpha\geq1$$ כלשהו.
-
-באיטרציה הראשונה, נקבל
+באיטרציה ה$$t$$ נקבל ש:
 
 $$
 \begin{cases}
-\mu_1^{\left(1\right)}=\frac{1}{2}\alpha d \\
-\mu_2^{\left(1\right)}=\alpha d+\frac{d-\alpha d}{2}=\frac{1+\alpha}{2}d
+\mu_1^{\left(t\right)}=\frac{1}{2} x^{\left(t-1\right)}\\
+\mu_2^{\left(t\right)}=\frac{x^{\left(t-1\right)}+d}{2}\\
 \end{cases}\\
-\Rightarrow x^{\left(1\right)}=\frac{\mu_1^{\left(1\right)}+\mu_2^{\left(1\right)}}{\alpha d}=\frac{1}{2}\alpha d+\frac{1}{4}d
+\Rightarrow x^{\left(t\right)}=\frac{\mu_1^{\left(t\right)}+\mu_2^{\left(t\right)}}{2}=\frac{1}{2}x^{\left(t-1\right)}+\frac{1}{4}d
 $$
 
 </section><section markdown="1">
 
 ##### 💡 פיתרון - המשך
 
-ובאופן כללי,
-
 $$
-\begin{cases}
-\mu_1^{\left(n\right)}=\frac{1}{2} x^{\left(n-1\right)}\\
-\mu_2^{\left(n\right)}=\frac{x^{\left(n-1\right)}+d}{2}\\
-\end{cases}\\
-\Rightarrow x^{\left(n\right)}=\frac{1}{2}x^{\left(n-1\right)}+\frac{1}{4}d
+x^{\left(t\right)}=\frac{\mu_1^{\left(t\right)}+\mu_2^{\left(t\right)}}{2}=\frac{1}{2}x^{\left(t-1\right)}+\frac{1}{4}d
 $$
 
-נפתור את הרקורסיה:
+נרשום את כלל הרקוסרסיה של $$x^{\left(t\right)}$$:
 
 $$
-x^{\left(n\right)}=\frac{1}{2}x^{\left(n-1\right)}+\frac{1}{4}d=d\left(\frac{1}{4}+\frac{1}{8}\right)+\frac{1}{2^2}x^{\left(n-2\right)}=\frac{d}{4}\sum_{i=0}^{n-1}\frac{1}{2^i}+\frac{1}{2^n}x^{\left(0\right)}
+\begin{aligned}
+x^{\left(t\right)}
+& = \frac{1}{2}x^{\left(t-1\right)}+\frac{1}{4}d \\
+& = \frac{1}{2}\left(\frac{1}{2}x^{\left(t-2\right)}+\frac{1}{4}d\right)+\frac{1}{4}d \\
+& = \frac{1}{2}\left(\frac{1}{2}\left(\frac{1}{2}x^{\left(t-3\right)}+\frac{1}{4}d\right)+\frac{1}{4}d\right)+\frac{1}{4}d \\
+& = \frac{1}{2^t}x^{\left(0\right)}+\frac{d}{4}\sum_{i=0}^{t-1}\frac{1}{2^i}
+\end{aligned}
 $$
 
-מכאן שבגבול $$n\rightarrow\infty$$ מתקיים כי $$x^{\left(n\right)}\rightarrow\frac{d}{2}$$, שזהו כמובן הפתרון האופטימאלי (חלוקה של הקטע לשני חלקים שווים).
+מכאן שבגבול $$t\rightarrow\infty$$ מתקיים כי $$x^{\left(t\right)}\rightarrow\frac{d}{2}$$, שזהו כמובן הפתרון האופטימאלי (חלוקה של הקטע לשני חלקים שווים).
 
 </section>

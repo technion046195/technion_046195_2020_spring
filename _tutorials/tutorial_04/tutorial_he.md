@@ -1,7 +1,6 @@
 ---
 number: 4
 title: "K-Means"
-hide: true
 ---
 
 ## תיאוריה -אשכול
@@ -99,12 +98,6 @@ $$
 ![normal](./media/gaussians_step4b.png){: width="350px"}
 ![normal](./media/gaussians_step5a.png){: width="350px"}
 ![normal](./media/gaussians_step5b.png){: width="350px"}
-![normal](./media/gaussians_step6a.png){: width="350px"}
-![normal](./media/gaussians_step6b.png){: width="350px"}
-![normal](./media/gaussians_step7a.png){: width="350px"}
-![normal](./media/gaussians_step7b.png){: width="350px"}
-![normal](./media/gaussians_step8a.png){: width="350px"}
-![normal](./media/gaussians_step8b.png){: width="350px"}
 </div>
 
 #### תכונות
@@ -658,38 +651,33 @@ $$
 
 #### 💡 פיתרון
 
-נסמן ב $$x^{\left(n\right)}$$ את נקודת ההחלטה באיטרציה $$n$$ וב- $$\mu_2^{\left(n\right)},mu_1^{\left(n\right)}$$ את המרכזים באיטרציה $$n$$. מהנתון, בקירוב הרצף:
+נסמן ב $$x^{\left(t\right)}$$ את נקודת ההחלטה באיטרציה $$t$$ וב- $$\mu_2^{\left(t\right)},\mu_1^{\left(t\right)}$$ את המרכזים באיטרציה $$t$$. בצעד הראשון נקבל כי:
 
 $$
-x^{\left(0\right)}=\frac{\mu_1^{\left(0\right)}+\mu_2^{\left(0\right)}}{2}=\alpha d
+x^{\left(0\right)}=\frac{\mu_1^{\left(0\right)}+\mu_2^{\left(0\right)}}{2}
 $$
 
-עם $$0\geq\alpha\geq1$$ כלשהו.
-
-באיטרציה הראשונה, נקבל
+באיטרציה ה$$t$$ נקבל ש:
 
 $$
 \begin{cases}
-\mu_1^{\left(1\right)}=\frac{1}{2}\alpha d \\
-\mu_2^{\left(1\right)}=\alpha d+\frac{d-\alpha d}{2}=\frac{1+\alpha}{2}d
+\mu_1^{\left(t\right)}=\frac{1}{2} x^{\left(t-1\right)}\\
+\mu_2^{\left(t\right)}=\frac{x^{\left(t-1\right)}+d}{2}\\
 \end{cases}\\
-\Rightarrow x^{\left(1\right)}=\frac{\mu_1^{\left(1\right)}+\mu_2^{\left(1\right)}}{2}=\frac{1}{2}\alpha d+\frac{1}{4}d
+\Rightarrow x^{\left(t\right)}=\frac{\mu_1^{\left(t\right)}+\mu_2^{\left(t\right)}}{2}=\frac{1}{2}x^{\left(t-1\right)}+\frac{1}{4}d
 $$
 
-ובאופן כללי,
+נרשום את כלל הרקוסרסיה של $$x^{\left(t\right)}$$:
 
 $$
-\begin{cases}
-\mu_1^{\left(n\right)}=\frac{1}{2} x^{\left(n-1\right)}\\
-\mu_2^{\left(n\right)}=\frac{x^{\left(n-1\right)}+d}{2}\\
-\end{cases}\\
-\Rightarrow x^{\left(n\right)}=\frac{1}{2}x^{\left(n-1\right)}+\frac{1}{4}d
+\begin{aligned}
+x^{\left(t\right)}
+& = \frac{1}{2}x^{\left(t-1\right)}+\frac{1}{4}d \\
+& = \frac{1}{2}\left(\frac{1}{2}x^{\left(t-2\right)}+\frac{1}{4}d\right)+\frac{1}{4}d \\
+& = \frac{1}{2}\left(\frac{1}{2}\left(\frac{1}{2}x^{\left(t-3\right)}+\frac{1}{4}d\right)+\frac{1}{4}d\right)+\frac{1}{4}d \\
+& = \frac{1}{2^k}x^{\left(t-k\right)} + \frac{d}{4}\left(1+\frac{1}{2}+\ldots+\frac{1}{2^{k-1}}\right) \\
+& = \frac{1}{2^t}x^{\left(0\right)}+\frac{d}{4}\sum_{i=0}^{t-1}\frac{1}{2^i}
+\end{aligned}
 $$
 
-נפתור את הרקורסיה:
-
-$$
-x^{\left(n\right)}=\frac{1}{2}x^{\left(n-1\right)}+\frac{1}{4}d=d\left(\frac{1}{4}+\frac{1}{8}\right)+\frac{1}{2^2}x^{\left(n-2\right)}=\frac{d}{4}\sum_{i=0}^{n-1}\frac{1}{2^i}+\frac{1}{2^n}x^{\left(0\right)}
-$$
-
-מכאן שבגבול $$n\rightarrow\infty$$ מתקיים כי $$x^{\left(n\right)}\rightarrow\frac{d}{2}$$, שזהו כמובן הפתרון האופטימאלי (חלוקה של הקטע לשני חלקים שווים).
+מכאן שבגבול $$t\rightarrow\infty$$ מתקיים כי $$x^{\left(t\right)}\rightarrow\frac{d}{2}$$, שזהו כמובן הפתרון האופטימאלי (חלוקה של הקטע לשני חלקים שווים).
