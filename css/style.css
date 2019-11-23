@@ -133,6 +133,11 @@ blockquote {
 /* Tables (taken from Pandas/Jupyter) */
 /* =========================== */
   
+.main-content .table-container{
+    direction: ltr;
+    overflow-x: auto;
+}
+
 .main-content table {
     margin-left: auto !important;
     margin-right: auto !important;

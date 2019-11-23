@@ -18,7 +18,7 @@ hide: true
 המטרה היא סיווג דוגמאות לאחת מבין מספר סופי של מחלקות אשר הגדרנו מראש. לדוגמא: זיהוי חתול וכלב מתמונה.
 
 - $$\Omega$$ - מרחב סופי של קטגוריות (מחלקות), $$\omega_i\in \Omega, i=1,\ldots,N$$.
-- $$f:X\rightarrow\mathcal{R}$$ - חזאי ארש מסווג כל $$x\in X$$ ל-$$y\in\Omega$$.
+- $$f:X\rightarrow\mathcal{R}$$ - חזאי אשר מסווג כל $$x\in X$$ ל-$$y\in\Omega$$.
 
 ##### רגרסיה (regression)
 
@@ -240,6 +240,7 @@ $$
 **הערה**: התמונות נלקחו מאתר [http://scott.fortmann-roe.com/docs/BiasVariance.html](http://scott.fortmann-roe.com/docs/BiasVariance.html), מומלץ לקרוא את ההסבר המלא.
 
 ## בעיה מעשית
+
 ### תיאור המדגם: Breast Cancer Wisconsin
 
 שיטה נפוצה כיום לאבחנה של סרטן הינה בשיטת Fine-needle aspiration. בשיטה זו נלקחת דגימה של הרקמה בעזרת מחט ומבוצעת אנליזה בעזרת מיקרוסקופ על מנת לאבחן שני מקרים:
@@ -270,7 +271,7 @@ $$
 ### השדות במדגם
 
 להלן 10 השורות הראשונות במדגם:
-
+<div class="table-container">
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -541,6 +542,7 @@ $$
     </tr>
   </tbody>
 </table>
+</div>
 
 לשם פשטות (וממגבלות ויזואליזציה) אנו נעבוד רק עם שני שדות בנוסף לתווית:
 
