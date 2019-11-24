@@ -597,7 +597,7 @@ $$
 R\left\lbrace h, \left\lbrace\boldsymbol{x},y\right\rbrace\right\rbrace=\frac{1}{N}\sum_i I\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace
 $$
 
-על מנת לחשב את פונקציית הסיכון עלינו להפריש חלק מהמדם לשם יצירה של סט בחן. נקדיש 20% מהמדם לשם כך.
+על מנת לחשב את פונקציית הסיכון עלינו להפריש חלק מהמדגם לשם יצירה של סט בחן. נקדיש 20% מהמדגם לשם כך.
 
 ### 💡 סיווג בעזרת 1-NN
 
@@ -625,7 +625,7 @@ $$
 
 ## Train-Validation-Test Separation
 
-כפי שציינו קודם לכן, בחירה של $$K$$ על פי הינה שגויה מפני שהיא תניב שיערוך אופטימי מידי של הסיכון. בכדי להמנע מכך עלינו הינה להפריש מן המדגם חלק נוסף לשם יצירה של סט אימות.
+כפי שציינו קודם לכן, בחירה של $$K$$ על פי סט האימון הינה שגויה מפני שהיא תניב שיערוך אופטימי מידי של הסיכון. בכדי להמנע מכך עלינו הינה להפריש מן המדגם חלק נוסף לשם יצירה של סט אימות.
 
 נחלק את המדגם ל:
 - 60% סט אימון.
