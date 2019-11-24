@@ -1,7 +1,7 @@
 ---
 number: 5
 title: "מבוא ללמידה מודרכת וK-NN" 
-hide: true
+hide: false
 ---
 
 ## תיאוריה
@@ -35,8 +35,7 @@ $$f:X\rightarrow\mathcal{R}$$ מסווג כל $$x\in X$$ ל $$y\in \mathcal{R}$$
 ![Regression Example](./figs/regression_example.png)
 
 #### סיווג - דוגמא
-חלוקה לדמות קומיקס מועדפת
-
+חיזוי של דוגמא חדשה לאיזה למחלקה אחת משני דמויות קומיקס מועדפות.
 ![Classification Example](./figs/classification_example.png)
 
 
@@ -91,13 +90,14 @@ $$
 - Variance גבוה - מודל מסובך מידי (בעל סדר גבוה) הוא בעל מספר גדול של דרגות חופש, ולפיכך עלול לדרוש מספר רב של דוגמאות על מנת לבצע הכללה סבירה. (שגיאת $$E_{\text{est}}\left(\hat{f},F\right)$$ גבוהה).
 
 #### התאמת יתר - דוגמא
-ניתן לראות שככל שהמודל בעל שונות יותר גדולה (הסדר של המודל גדל) נכנסים למצב של התאמת יתר, כל שהמודל לומד באופן מדויק את הדוגמאות מתוך סט הספציפי ויכולת ההכללה נפגעת. 
+ניתן לראות שככל שהמודל בעל שונות יותר גדולה (הסדר של המודל גדל) נכנסים למצב של התאמת יתר, כך שהמודל לומד באופן מדויק את הדוגמאות מתוך סט הספציפי ויכולת ההכללה נפגעת. 
 
 
 ![Overfitting Example](./figs/overfitting_example.png)
 
 
 #### Bias vs. Variance אילוסטרציה
+הפגיעה במרכז המטרה מציג ה- Bias (שגיאת הקירוב), הפיזור מציג את ה- Variance (שגיאת השערוך). 
 
 ![Bias vs. Variance targets](./media/bias_variance_targets.png)
 ![Bias vs. Variance targets](./media/bias_variance_graphs.png)
