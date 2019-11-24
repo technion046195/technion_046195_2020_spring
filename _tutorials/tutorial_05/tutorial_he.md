@@ -17,8 +17,8 @@ hide: true
 
 המטרה היא סיווג דוגמאות לאחת מבין מספר סופי של מחלקות אשר הגדרנו מראש. לדוגמא: זיהוי חתול וכלב מתמונה.
 
-- $$\Omega$$ - מרחב סופי של קטגוריות (מחלקות), $$\omega_i\in \Omega, i=1,\ldots,N$$.
-- $$f:X\rightarrow\mathcal{R}$$ - חזאי אשר מסווג כל $$x\in X$$ ל-$$y\in\Omega$$.
+- $$\Omega$$ - מרחב סופי של קטגוריות (מחלקות), i=1,\ldots,N$$.
+- $$f:X\rightarrow\Omega$$ - חזאי אשר מסווג כל $$x\in X$$ ל-$$y\in\Omega$$.
 
 ##### רגרסיה (regression)
 
@@ -29,6 +29,16 @@ hide: true
 $$f:X\rightarrow\mathcal{R}$$ מסווג כל $$x\in X$$ ל $$y\in \mathcal{R}$$.
 
 #### רגרסיה - דוגמא
+ ביהנתן סט של דירות בקרבת הטכניון בעל מאפיין של מרחק הליכה ומחיר הדירה, נרצה ללמוד פונקציה המקיימת את בקשר בין מרחק הליכה למחיר הדירה.
+
+ 
+![Regression Example](./figs/regression_example.png)
+
+#### סיווג - דוגמא
+חלוקה לדמות קומיקס מועדפת
+
+![Classification Example](./figs/classification_example.png)
+
 
 ### בחירת סדר המודל
 
@@ -81,6 +91,11 @@ $$
 - Variance גבוה - מודל מסובך מידי (בעל סדר גבוה) הוא בעל מספר גדול של דרגות חופש, ולפיכך עלול לדרוש מספר רב של דוגמאות על מנת לבצע הכללה סבירה. (שגיאת $$E_{\text{est}}\left(\hat{f},F\right)$$ גבוהה).
 
 #### התאמת יתר - דוגמא
+ניתן לראות שככל שהמודל בעל שונות יותר גדולה (הסדר של המודל גדל) נכנסים למצב של התאמת יתר, כל שהמודל לומד באופן מדויק את הדוגמאות מתוך סט הספציפי ויכולת ההכללה נפגעת. 
+
+
+![Overfitting Example](./figs/overfitting_example.png)
+
 
 #### Bias vs. Variance אילוסטרציה
 
@@ -88,8 +103,6 @@ $$
 ![Bias vs. Variance targets](./media/bias_variance_graphs.png)
 
 **הערה**: התמונות נלקחו מהאתר: [https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229](https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229).
-
-#### סיווג דוגמא
 
 ### תהליך הלימוד (ולידציה)
 
@@ -102,6 +115,8 @@ $$
   **הערה**: השימוש בסט זה הינו השלב האחרון בתהליך הלמידה, ואין להשתמש בו כדי להעריך את ביצועי המודל במהלך הלימוד.
 
 #### דוגמא לאימות בבעיית רגרסיה
+![Overfitting Example](./figs/regression_validation_example.png)
+
 
 ### K-fold Cross Validataion
 
@@ -120,6 +135,8 @@ $$
 </div>
 
 #### דוגמא
+![K-fold Example](./figs/k-fold_example.png)
+
 
 ### סיווג בעזרת אלגוריתם K-NN (K-Nearest Neighbours)
 
