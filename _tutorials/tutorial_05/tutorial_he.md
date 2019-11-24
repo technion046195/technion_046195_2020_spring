@@ -277,11 +277,11 @@ $$
 
 ניתן למצוא את המדגם המקורי פה: [Breast Cancer Wisconsin (Diagnostic) Data Set](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29)
 
-בקורס נשתנש בגרסא דומה לזו הנמצאת [פה](https://yairomer.github.io/ml_course/datasets/breast_cancer.csv)
+בקורס נשתמש בגרסא דומה לזו הנמצאת [פה](https://yairomer.github.io/ml_course/datasets/breast_cancer.csv)
 
 ## ❓️ הבעיה: חיזוי האם תא הינו סרטני או לא
 
-אנו מעוניינים לעזור לצוות הרפואי לבצע אבחון נכון של הדגימות על מסך הנתונים המספריים שמחושבים לכל דגימה.
+אנו מעוניינים לעזור לצוות הרפואי לבצע אבחון נכון של הדגימות על סמך הנתונים המספריים שמחושבים לכל דגימה.
 
 **הערה**: בהרבה שימושים רפואיים השאיפה הינה לספק סיוע לצוות הרפואי, לרוב על ידי סיפוק המלצות, ולא להחליף אותו.
 
@@ -567,7 +567,7 @@ $$
 - **radius_mean** - רדיוס התא הממוצא בדגימה
 - **texture_mean** - סטיית התקן הממוצעת של רמת האפור בצבע של כל תא בדגימה.
 
-תיאור מלא של כל השדות ניתן למצוא [כאן](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.names))
+תיאור מלא של כל השדות ניתן למצוא [כאן](https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.names)
 
 ### קצת סטטיסטיקות
 
@@ -575,7 +575,7 @@ $$
 
 ![png](figs/output_14_0.png)
 
-הפילוג של הדגימות כתלות בשתי השדות שנעבוד איתם:
+הפילוג של הדגימות כתלות בשני השדות שנעבוד איתם:
 
 ![png](figs/output_16_0.png)
 
