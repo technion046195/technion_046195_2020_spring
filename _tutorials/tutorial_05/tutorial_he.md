@@ -35,7 +35,7 @@ $$f:X\rightarrow\mathcal{R}$$ מסווג כל $$x\in X$$ ל $$y\in \mathcal{R}$$
 ![Regression Example](./figs/regression_example.png)
 
 #### סיווג - דוגמא
-חיזוי של דוגמא חדשה לאיזה למחלקה אחת משני דמויות קומיקס מועדפות.
+חיזוי של שייכות דוגמא חדשה לאחת מהחלקות של דמויות קומיקס מועדפות.
 ![Classification Example](./figs/classification_example.png)
 
 
