@@ -55,7 +55,7 @@ $$
 R\left(\hat{f}\right)=\mathbb{E}_{\left(\boldsymbol{x},y\right)\sim p_{X,Y}}\left(\ell\left(\hat{f}\left(\boldsymbol{x}\right),y\right)\right)
 $$
 
-פונקציית הסיכון (risk):
+פונקציית הסיכון האימפירית (empirical risk):
 
 $$
 \hat{R}\left(\hat{f}\right)=\frac{1}{N}\sum_i \ell\left(\hat{f}\left(\boldsymbol{x}\right),y\right)
