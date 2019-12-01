@@ -3,15 +3,21 @@ number: 6
 title: "סיווג גנרטיבי"
 ---
 
-## תיאוריה
+<section markdown="1">
 
 ### בעיית חיזוי - תזכורת
 
-- $$\boldsymbol{X}$$ - משתנה/וקטור אקראי אשר יש באפשרותינו למדוד. לרוב נקרא המדידה או התצפית.
-- $$Y$$ - משתנה אקראי אשר ברצונינו לחזות על סמך $$X$$. לרוב נקרא התווית.
+- $$\boldsymbol{X}$$ - התצפיות/המדידות משתנה/וקטור אקראי אשר יש באפשרותינו למדוד.
+  <br><br>
+- $$Y$$ - התויות. משתנה אקראי אשר ברצונינו לחזות על סמך $$X$$.
+  <br><br>
 - $$\hat{y}=h\left(x\right)$$ - פונקציית חיזוי של $$Y$$ כתלות ב$$X$$.
-- $$\ell\left(\hat{y},y\right)$$ - פונקציית הפסד. קובעת את ה"כנס" המתקבל בעבור חיזוי שגוי $$\hat{y}$$ בהשוואה לערך האמיתי $$y$$.
+  <br><br>
+- $$\ell\left(\hat{y},y\right)$$ - פונקציית הפסד. ה"כנס" המתקבל בעבור חיזוי שגוי.
+  <br><br>
 - $$R\left\lbrace h\right\rbrace=\mathbb{E}\left[\ell\left(h\left(X\right),Y\right)\right]$$ - פנקציית הסיכון. התוחלת של ההפסד.
+
+<br><br>
 
 **המטרה**: למצוא פונקציית חיזוי אופטימאלית:
 
@@ -19,12 +25,21 @@ $$
 h^*\left(x\right) = \underset{h}{\arg\min}\ R\left\lbrace h\right\rbrace= \underset{h}{\arg\min}\ \mathbb{E}\left[\ell\left(h\left(X\right),Y\right)\right]
 $$
 
+</section><section markdown="1">
+
+### בעיית חיזוי - תזכורת - המשך
+
+<br>
+
 אנו מבחינים בין שני סוגי בעיות חיזוי:
 
+<br>
+
 - **סיווג**: כאשר תחום הערכים של התוויות הינו דיסקרטי וסופי.
+  <br><br><br>
 - **רגרסיה**: כאשר תחום הערכים של התוויות הינו תחום רציף.
 
-(בעיות שבהם התחום דיסקרטי ואין סופי לרוב פותרים בשיטות דומות לאלו של רגרסיה כאשר מעגלים את תוצאת החיזוי)
+</section><section markdown="1">
 
 #### פונקציות הספד נפוצות
 
@@ -38,6 +53,8 @@ $$
 - פונקציית הסיכון שלו נקראת: misclassification rate
 - החזאי האופטימאלי תחת הפסד זה הינו: $$h\left(x\right)=\underset{y}{\arg\min}\quad p\left(y\lvert x\right)$$
 
+<br>
+
 ##### הפסד מרחק ריבועי ($$l_2$$ loss)
 
 $$
@@ -48,71 +65,105 @@ $$
 - פונקציית הסיכון שלו נקראת: Mean Square Error (MSE)
 - החזאי האופטימאלי תחת הפסד זה הינו משערך התוחלת המותנית: $$h\left(x\right)=E\left[Y\lvert x\right]$$
 
+</section><section markdown="1">
+
 ### למידה מודרכת
 
-בעיית למידה מודרכת עוסקת בבעיות חיזוי שבהם אין אנו יודעים את הפילוג המשותף של $$\boldsymbol{X}$$ ו $$Y$$, אך יש ברשותינו מדגם של $$N$$ דיגימות משותפות שלהם: $$D=\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$
+<br>
+
+- בבעיות חיזוי שבהם אין אנו יודעים את הפילוג המשותף של $$\boldsymbol{X}$$ ו $$Y$$
+  <br><br>
+- יש ברשותינו מדגם של $$N$$ דיגימות משותפות שלהם: $$D=\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$
+
+<br>
 
 #### גישה גנרטיבית
 
-בגישה הגנרטיבית אנו נשתמש במדגם על מנת לשערך את פונקציית הפילוג המשותפת $$p_{\boldsymbol{X},Y}$$, ובעזרתה לבנות את החזאי. שיטות אלו נקראות גנרטיביות משום שהם מנסות ללמוד את האופן שבו נוצר (generated) המגדם.
+- נשתמש במדגם על מנת לשערך את פונקציית הפילוג המשותפת $$p_{\boldsymbol{X},Y}$$
+  <br><br>
+- ובעזרת הפילוג המשותף נבנה את החזאי.
 
-### שיטות סיווג גנרטיביות
+<br>
 
-בתרגול זה נעסוק בשיטות סיווג גנרטיביות. בבעיות אלו נפרק לרוב את הפונקציית הצפיפות המושתפת באופן הבא:
+(שיטות אלו נקראות גנרטיביות משום שהם מנסות ללמוד את האופן שבו נוצר (generated) המגדם)
+
+</section><section markdown="1">
+
+#### גישה גנרטיבית - המשך
+
+נפרק לרוב את הפונקציית הצפיפות המושתפת באופן הבא:
 
 $$
 p_{\boldsymbol{X},Y}\left(\boldsymbol{x},y\right)=p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert y\right)p_Y\left(y\right)
 $$
 
-ונשערך בנפדר את כל אחד משני הרכבים:
+<br><br>
 
-- מכיוון מאנו עוסקים בבעיות סיווג, אזי, $$p_Y$$ הינו פילוג דיסקרטי וסופי, ולכן ניתן לשערך אותו בקלות על פי:
+- בבעיות סיווג $$p_Y$$ דיסקרטי וסופי.<br>
+  ניתן לשערך אותו על פי: $$p_Y\left(j\right)=\frac{1}{N}\sum_{i=1}^N I\left\lbrace y_i=j\right\rbrace$$
+  <br><br>
+- את $$p_{\boldsymbol{X}\lvert Y}$$ נשערך בנפרד בעבור כל ערך של $$Y$$.<br>
+  זאת אומרת שאת $$P\left(x\lvert Y=j\right)$$ נשערך מתוך אוסף דגמים שמקיימות $$y_i=j$$.
 
-  $$
-  p_Y\left(j\right)=\frac{1}{N}\sum_{i=1}^N I\left\lbrace y_i=j\right\rbrace
-  $$
+<br><br>
 
-- את $$p_{\boldsymbol{X}\lvert Y}$$ נשערך בנפרד בעבור כל ערך של $$Y$$ מתוך החלק של המדגם המתאים לו. זאת אומרת שאת $$P\left(x\lvert Y=j\right)$$ נשערך מתוך אוסף דגמים שמקיימות $$y_i=j$$.
+שיטות הסיווג הגנרטיביות נבדלות במודל של $$p_{\boldsymbol{X}\lvert Y}$$, ואופן הלימוד שלו.
 
-שיטות הסיווג הגנרטיביות נבדלות אחת מהשניה במודל אותו הן מציעות בעבור הפילוג של $$p_{\boldsymbol{X}\lvert Y}$$, ואופן הלימוד שלו.
-
-נתאר כאן שלוש שיטות לביצוע סיווג גנרטיבי.
+</section><section markdown="1">
 
 #### מסווג בייס נאיבי (Naïve Bayse Classifier)
 
 ההנחה: הרכיבים של $$\boldsymbol{X}$$ הינם בלתי תלויים סטטיסטית.
 
-תחת הנחה זו $$p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert y\right)=\prod_{i=1}^d p_q\left(x_q\lvert y\right)$$, כאשר $$x_q$$ הוא הרכיב ה$$q$$ בוקטור $$\boldsymbol{x}$$ ו $$d$$ הוא המימד (אורך) שלו.
+<br><br>
 
-את הפילוגים החד מימדיים $$p_q\left(x_q\lvert y\right)$$ משערכים באופן בלתי תלוי בעבור כל ערך של $$Y$$ וכל אחד מ$$d$$ הרכיבים של $$\boldsymbol{X}$$.
+תחת הנחה זו:
 
-שיטה זו לא מגדירה כיצד ללמוד את הפילוגים החד מימדיים, וניתן לדוגמא להשתמש בכל אחת מהשיטות שראינו בקורס לשיערוך פילוגים, כגון מודל של פילוג נורמאלי או KDE.
+$$
+p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert y\right)=\prod_{i=1}^d p_q\left(x_q\lvert y\right)
+$$
 
-מצד אחד, שיטה זו פותרת את בעיית הCurse of Dimenionality, אך מצד שני, כשמה כן היא, היא מאד נאיבית שכן הנחת החוסר תלות בין הרכיבים לרוב רחוקה מלהיות נכונה)
+את $$p_q\left(x_q\lvert y\right)$$ משערכים בעבור כל $$Y$$ וכל $$q$$.
+
+<br><br>
+
+- שיטה זו לא מגדירה כיצד ללמוד את הפילוגים החד מימדיים.
+- שיטה זו פותרת את בעיית הCurse of Dimenionality.
+- הנחת החוסר תלות בין הרכיבים לרוב רחוקה מלהיות נכונה.
+
+</section><section markdown="1">
 
 #### Linear Discriminant Analysis (LDA)
 
 הנחות:
 
-1. הפילוגים $$p_{\boldsymbol{X}\lvert Y}$$ הינם פילוגים נורמאלייים לכל ערך של $$Y$$.
-2. מטריצת convariance של הפילוג הנורמאלי $$p_{\boldsymbol{X}\lvert Y}$$ אינו תלוי בערך של $$Y$$.
+1. $$p_{\boldsymbol{X}\lvert Y}$$ מפולגים נומאלית.
+2. לכל הפילוגים $$p_{\boldsymbol{X}\lvert Y}$$ אותה מטריצת covariance.
 
-ללא הגבלת הכלליות, נניח כי תחום הערכים שאותו מקבל $$Y$$ הינו $$\left\lbrace1,\ldots,M\right\rbrace$$. נשתמש בסימונים הבאים:
+<br>
 
-- $$G_j=\left\lbrace i:y_i=j\right\rbrace$$ - אוסף האינדקסים של הדגמים במדגם שמקיימים $$y_i=j$$.
-- $$\mu_j$$ - וקטורי התוחלות של הפילוגים הנורמאלים בעבור כל אחד מ$$N$$ הערכים האפשריים של התוויות.
+נניח כי $$Y$$ מקבל את סט הערכים $$\left\lbrace1,\ldots,M\right\rbrace$$, ונשתמש בסימונים הבאים:
+
+- $$G_j=\left\lbrace i:y_i=j\right\rbrace$$ - תת-המדגם המקיים $$y_i=j$$.
+- $$\mu_j$$ - התוחלות של הפילוגים הנורמאלים.
 - $$\Sigma$$ - מטריצת הcovariance של הפילוגים. (מטריצה אחת בעבור כל ה$$N$$ פילוגים).
 
-את הפרמטרים של מודל, $$\mu_j$$ ו $$\Sigma$$ הנרומאלים נמצא בעזרת MLE. התוצאה המתקבלת הינה:
+<br>
+
+שיערוך MLE של פרמטרי המודלים נותן:
 
 $$
 \boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T
 $$
 
+</section><section markdown="1">
+
+#### Linear Discriminant Analysis (LDA) - המשך
+
 ##### הפרדה לינארית
 
-בעבור המקרה של סיווג בינארי (סיווג לשני מחלקות) ושימוש בzero-one loss מתקבל החזאי הבא:
+בעבור המקרה של סיווג בינארי (סיווג לשני מחלקות) וzero-one loss מתקבל:
 
 $$
 h\left(x\right)=
@@ -129,7 +180,11 @@ $$
 b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p_Y\left(1\right)}{p_Y\left(0\right)}\right)
 $$
 
-נשים לב כי תנאי ההחלטה שבין שני התחומים הינו לינארי, ומכאן מקבל האלגוריתמם את שמו)
+<br>
+
+נשים לב כי תנאי ההחלטה שבין שני התחומים הינו לינארי, ומכאן מקבל האלגוריתמם את שמו
+
+</section><section markdown="1">
 
 #### Quadric Discriminant Analysis (QDA)
 
@@ -137,16 +192,26 @@ $$
 
 1. הפילוגים $$p_{\boldsymbol{X}\lvert Y}$$ הינם פילוגים נורמאלייים לכל ערך של $$Y$$.
 
-QDA דומה מאד לLDA רק ללא ההנחה השניה. במקרה זה אנו משערכים באופן בלתי תלוי $$N$$ גאוסיאנים שונים. במקרה נקבל ש:
+<br>
+
+QDA דומה מאד לLDA רק ללא ההנחה השניה.
+
+<br>
+
+משערך MLE נותן:
 
 $$
 \boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma_j = \frac{1}{N}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
 $$
 
+(כעת יש $$\Sigma_j$$ בעבור כל ערך של $$Y$$, והוא מחושב על פי תת-המדגם $$G_j$$ המתאים.
+
+</section><section markdown="1">
+
 ##### משטח הפרדה ריבועי
 
-בעבור המקרה של סיווג בינארי (סיווג לשני מחלקות) ושימוש בzero-one loss מתקבל החזאי הבא:
+בעבור המקרה של סיווג בינארי (סיווג לשני מחלקות) וzero-one loss מתקבל:
 
 $$
 h\left(x\right)=
@@ -164,9 +229,11 @@ C=\tfrac{1}{2}\left(\Sigma_0^{-1}-\Sigma_1^{-1}\right) \\
 b=\tfrac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma_1^{-1}\boldsymbol{\mu}_1 - \boldsymbol{\mu}_0^T\Sigma_0^{-1}\boldsymbol{\mu}_0\right) + \log\left(\frac{\left\lvert\Sigma_0\right\rvert^{1/2}p_Y\left(1\right)}{\left\lvert\Sigma_1\right\rvert^{1/2}p_Y\left(0\right)}\right)
 $$
 
+<br>
+
 במקרה זה, משטח ההפרדה נתון על ידי פונקציה ריבועית ומכאן האלגוריתם מקבל את שמו.
 
-## תרגיל
+</section><section markdown="1">
 
 #### תרגיל 6.1
 
@@ -181,32 +248,68 @@ $$
 |   2  | -2 |  2 |
 |   3  |  0 | -1 |
 |   3  |  0 | -5 |
-{: dir="ltr" style="font-size:15px !important"}
+{: dir="ltr" style="font-size:25px !important"}
 
 השתמש במסווג LDA על מנת לבנות חזאי אשר ישערך את הזן הזפוץ ביותר בכל קואורדינטה.
 
-##### פתרון
+</section><section markdown="1">
 
-נסמן ב$$\boldsymbol{x}_i$$ את הקאורדינטה של התצפית ה$$i$$, וב$$y_i$$ את הזן של התצפית ה$$i$$. לדוגמא:
+##### תרגיל 6.1 - פתרון
 
-$$
-\boldsymbol{x}_4=\begin{pmatrix}0\\-1\end{pmatrix}\\
-y_4=3
-$$
+| Type |  X |  Y |
+| ---- | -- | -- |
+|   1  |  1 |  2 |
+|   1  |  3 |  2 |
+|   2  | -2 |  2 |
+|   3  |  0 | -1 |
+|   3  |  0 | -5 |
+{: dir="ltr" style="font-size:25px !important"}
 
-נסמן ב$$G_j$$ את אוסף כל התצפיות של שבהם הזן הוא $$j$$. לדוגמא:
+סימונים:
 
-$$
-G_3=\left\lbrace 4,5\right\rbrace
-$$
+- $$\boldsymbol{x}_i$$ הקאורדינטה. לגודמא: $$\boldsymbol{x}_4=\begin{pmatrix}0 & -1\end{pmatrix}^T$$
+  <br><br>
+- $$y_i$$ הזן. לדוגמא: $$y_4=3$$
+  <br><br>
+- $$G_j$$ אוסף כל התצפיות של שבהם הזן הוא $$j$$. לדוגמא: $$G_3=\left\lbrace 4,5\right\rbrace$$
 
-ראשית נחשב את הפילוג הא-פריורי של כל אחד מן הזנים:
+</section><section markdown="1">
+
+##### תרגיל 6.1 - פתרון - המשך
+
+| Type |  X |  Y |
+| ---- | -- | -- |
+|   1  |  1 |  2 |
+|   1  |  3 |  2 |
+|   2  | -2 |  2 |
+|   3  |  0 | -1 |
+|   3  |  0 | -5 |
+{: dir="ltr" style="font-size:25px !important"}
+
+<br>
+
+נחשב את הפילוג הא-פריורי של כל אחד מן הזנים:
 
 $$
 p_Y\left(1\right)=\frac{\left\lvert G_1\right\rvert}{N}=\frac{2}{5} \\
 p_Y\left(2\right)=\frac{\left\lvert G_2\right\rvert}{N}=\frac{1}{5} \\
 p_Y\left(3\right)=\frac{\left\lvert G_3\right\rvert}{N}=\frac{2}{5}
 $$
+
+</section><section markdown="1">
+
+##### תרגיל 6.1 - פתרון - המשך 2
+
+| Type |  X |  Y |
+| ---- | -- | -- |
+|   1  |  1 |  2 |
+|   1  |  3 |  2 |
+|   2  | -2 |  2 |
+|   3  |  0 | -1 |
+|   3  |  0 | -5 |
+{: dir="ltr" style="font-size:25px !important"}
+
+<br>
 
 נחשב את הפרמטרים של שלושת הפילוגים הנורמאלים:
 
@@ -224,11 +327,17 @@ $$
 =\begin{pmatrix}0\\-3\end{pmatrix}\\
 $$
 
+</section><section markdown="1">
+
+##### תרגיל 6.1 - פתרון - המשך 3
+
 נחשב את מטריצת covariance המשותפת של הפילוגים:
 
 $$
 \Sigma=\frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T
 $$
+
+<br>
 
 דרך נוחה לחשב את הסכום בביטוי זה הינה באופן הבא. נגדיר את המטריצה של התצפיות לאחר חיסור של התוחלת המתאימה לכל זן:
 
@@ -238,6 +347,10 @@ $$
 =\begin{pmatrix}1 & 2 \\ 3 & 2 \\ -2 & 2 \\ 0 & -1 \\ 0 & -5 \end{pmatrix}-\begin{pmatrix} 2 & 2 \\ 2 & 2 \\ -2  & 2 \\ 0 & -3 \\ 0 & -3 \end{pmatrix}
 =\begin{pmatrix}-1 & 0 \\ 1 & 0 \\ 0 & 0 \\ 0 & 2 \\ 0 & -2 \end{pmatrix}
 $$
+
+</section><section markdown="1">
+
+##### תרגיל 6.1 - פתרון - המשך 4
 
 ניתן להראות בקלות כי ניתן לכתוב את הסכום בביטוי ל $$\Sigma$$ באופן הבא:
 
@@ -249,6 +362,10 @@ $$
 & =\frac{1}{5}\begin{pmatrix} 2  & 0 \\ 0 & 8 \end{pmatrix}
 \end{aligned}
 $$
+
+</section><section markdown="1">
+
+##### תרגיל 6.1 - פתרון - המשך 5
 
 נשתמש כעת בפילוגים שאותם שיערכנו על מנת לבנות את החזאי. האיזור שבו זן 1 הינו הזן הסביר ביותר הינו האיזור שבו מתקיים:
 
@@ -271,6 +388,14 @@ p_{Y\lvert X}\left(1\lvert x\right)&> p_{Y\lvert X}\left(1\lvert x\right) \\
 \Leftrightarrow x^T\Sigma^{-1}\left(\mu_1-\mu_2\right)+\tfrac{1}{2}\left(\mu_2^T\Sigma^{-1}\mu_2 -\mu_1^T\Sigma^{-1}\mu_1\right)+\log\left(\frac{p_Y\left(1\right)}{p_Y\left(2\right)}\right)>0\\
 $$
 
+</section><section markdown="1">
+
+##### תרגיל 6.1 - פתרון - המשך 6
+
+$$
+\Leftrightarrow x^T\Sigma^{-1}\left(\mu_1-\mu_2\right)+\tfrac{1}{2}\left(\mu_2^T\Sigma^{-1}\mu_2 -\mu_1^T\Sigma^{-1}\mu_1\right)+\log\left(\frac{p_Y\left(1\right)}{p_Y\left(2\right)}\right)>0\\
+$$
+
 זוהי למעשה הפרדה לשני תחומים על ידי הקו הבא:
 
 $$
@@ -286,22 +411,31 @@ b=\tfrac{1}{2}\left(\boldsymbol{\mu}_2^T\Sigma^{-1}\boldsymbol{\mu}_2 - \boldsym
 =\log\left(2\right)
 $$
 
-זוהי כמובן התוצאה עבור מסווג LDA בינארי בין שני הזנים של $$Y=1$$ ו $$Y=2$$.
+<br>
 
-מכאן שקו המפריד בין זן 1 ל זן 2 נתון על ידי:
+מכאן שקו הםרדה המפריד בין זן 1 ל זן 2 נתון על ידי:
 
 $$
 1-2:\quad 10x+\log\left(2\right)=0
 $$
 
+</section><section markdown="1">
+
+##### תרגיל 6.1 - פתרון - המשך 7
+
 באופן דומה ניתן לחשב גם את שני קווי ההפרדה האחרים (בין 1 ל 3 ובין 2 ל 3):
 
 $$
-1-3:\quad 5x+\frac{25}{8}y+\frac{55}{16}=0 \\
-2-3:\quad -5x+\frac{25}{8}y+\frac{55}{16}-\log\left(2\right)=0
+\begin{aligned}
+1-2: & \quad 10x+\log\left(2\right)=0 \\
+1-3: & \quad 5x+\frac{25}{8}y+\frac{55}{16}=0 \\
+2-3: & \quad -5x+\frac{25}{8}y+\frac{55}{16}-\log\left(2\right)=0
+\end{aligned}
 $$
 
 ![elephants classification](./media/elephants_classification.png)
+
+</section><section markdown="1">
 
 ## בעיה מעשית
 
@@ -309,18 +443,22 @@ $$
 
 נעבוד שוב עם המדגם של דגימות התא לאבחון סרטן שד. (את המדגם המקורי ניתן למצוא [פה](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29), בקורס נעבוד עם הגרסא [הזו](https://yairomer.github.io/ml_course/datasets/breast_cancer.csv))
 
-![FNA image](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Adenoid_cystic_carcinoma_cytology.jpg/1024px-Adenoid_cystic_carcinoma_cytology.jpg){: width="500px"}
+![FNA image](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Adenoid_cystic_carcinoma_cytology.jpg/1024px-Adenoid_cystic_carcinoma_cytology.jpg){: width="800px"}
 
-*התמונה לקוחה [מויקיפדיה](https://en.wikipedia.org/wiki/Fine-needle_aspiration)
+</section><section markdown="1">
 
 ### תזכורת לבעיה: חיזוי האם תא הינו סרטני או לא
 
 אנו מעוניינים לעזור לצוות הרפואי לבצע אבחון נכון של דגימות לדגימות סרטיניות (malignant) או בריאות (benign) על מסך הנתונים המספריים שמחושבים לכל דגימה.
 
-באופן פורמאלי, נגדיר את שני המשתנים האקראיים:
+<br>
+
+באופן פורמאלי:
 
 - $$X=\left[\text{mean_radius},\text{mean_texture}\right]^T$$ - ערכי התצפית של דגימה מסויימת.
 - $$Y$$ - התווית הבינארית של האם הדגימה סרטנית או לא. (0-בריא, 1-סרטני)
+
+<br>
 
 נהיה מעוניינים למוא את פונקציית החיזוי אשר ממזערת את:
 
@@ -328,7 +466,11 @@ $$
 R\left\lbrace h\right\rbrace=E\left[I\left\lbrace h\left(\boldsymbol{X}\right)\neq Y\right\rbrace\right]
 $$
 
-(השתמשנו כאן בzero-one loss)
+<br>
+
+(zero-one loss)
+
+</section><section markdown="1">
 
 ### השדות במדגם
 
@@ -608,7 +750,7 @@ $$
 
 במדגם 569 שורות (דגימות).
 
-גם הפעם, לשם הפשטות (וממגבלות הויזואליזציה) אנו נעבוד תחילה רק עם התווית ושני השדות הבאים:
+לשם הפשטות (וויזואליזציה) אנו נעבוד תחילה רק עם התווית ושני השדות הבאים:
 
 - **diagnosis** - התווית של הדגימה: M = malignant (סרטני), B = benign (בריא)
 - **radius_mean** - רדיוס התא הממוצא בדגימה
@@ -616,25 +758,49 @@ $$
 
 (בהמשך נעבוד עם יתר השדות)
 
+</section><section markdown="1">
+
+### השדות במדגם - המשך
+
 הפילוג של נתונים אלו נראה כך:
 
-![Raw data](./media/bcw_data.png)
+<br>
+
+![Raw data](./media/bcw_data.png){: width="600px"}
+
+</section><section markdown="1">
 
 ### הפרשה של סט בחן
 
-לפני תחילת העבודה נפריש 20% מהמדגם לסט בחן (test set). זאת לשם שיערוך ביצועיו של החזאי. במודלים שאיתם נעבוד בתרגול זה אין hyper-parameters ולכן לא יהיה לנו צורך בסט אימות (validataion set).
+<br><br>
+
+- לשם שיערוך ביצועיו של החזאי נפריש 20% מהמדגם לסט בחן (test set).
+
+<br><br>
+
+(במודלים שאיתם נעבוד בתרגול זה אין hyper-parameters ולכן לא יהיה לנו צורך בסט אימות (validataion set))
+
+</section><section markdown="1">
 
 ### שיטה 1: LDA.
 
+<br>
+
 נבנה חזאי על ידי שימוש בLDA.
 
-נחשב את הפרמטרים של המודל על פי:
+<br>
 
 $$
 p_Y\left(j\right)=\frac{1}{N}\sum_{i=1}^N I\left\lbrace y_i=0\right\rbrace,\quad j\in\left(\lbrace 0,1\right\rbrace \\
 \boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T
 $$
+
+</section><section markdown="1">
+
+### שיטה 1: LDA - המשך
+
+<br>
 
 החזאי המקבל הינו:
 
@@ -653,9 +819,17 @@ $$
 b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p_Y\left(1\right)}{p_Y\left(0\right)}\right)
 $$
 
+</section><section markdown="1">
+
+### שיטה 1: LDA - המשך 2
+
 נשרטט את הפילוגים הנורמאלים המתקבלים ואת קו ההפרדה הליניארי על גבי הנתונים:
 
-![LDA results](./media/bcw_lda.png)
+![LDA results](./media/bcw_lda.png){: width=600px}
+
+</section><section markdown="1">
+
+### שיטה 1: LDA - המשך 3
 
 ##### הערכת ביצועים
 
@@ -667,23 +841,53 @@ $$
 
 הסיכון המשוערך המתקבל הינו: 0.096
 
+</section><section markdown="1">
+
 ##### ✍️ תרגיל 6.2
+
+<br><br>
 
 א) הציעו שיטה להעריך את מידת הודאות של החיזוי על סמך המודל שקיבלנו.
 
+<br>
+
 ב) כיצד היה משתנה החזאי במידה והיינו יודעים כי הסיכוי הא-פריוירי של דגימה להיות סרטנית הינה 5% (ולא כמו הפילוג המופיע במדגם)
+
+</section><section markdown="1">
+
+##### ✍️ תרגיל 6.2 א
+
+הציעו שיטה להעריך את מידת הודאות של החיזוי על סמך המודל שקיבלנו.
 
 ##### פתרון
 
-א) מכיוון שמדובר באלגוריתם גנרטיבי, יש בידינו את המודל ההסתברותי המלא (המשוערך), ולכן נוכל לשערך את ההסתברות לקבל תווית מסויימת בהניתן התצפיות. הסיכוי של דגימה נתונה להיות סרטנית (מתוך המודל ששיערכנו) הינו:
+אלגוריתם גנרטיבי -> שיערכנו מודל ההסתברותי המלא -><br>
+נוכל לשערך את ההסתברות לקבל תווית מסויימת בהניתן התצפיות.
+
+<br>
+
+הסיכוי של דגימה נתונה להיות סרטנית נתון על ידי:
 
 $$
 p_{Y\lvert \boldsymbol{X}}\left(1\lvert\boldsymbol{x}\right) = \frac{p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert 1\right)p_Y\left(1\right)}{p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert 0\right)p_Y\left(0\right)+p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert 1\right)p_Y\left(1\right)} \\
 $$
 
-כאשר $$p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert j\right)=\frac{1}{2\pi\left\lvert\Sigma\right\rvert}\exp\left(-\tfrac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_j\right)^T\Sigma^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}_j\right)\right)$$, ו $$\mu_j$$, $$\Sigma$$ ו $$p_Y\left(j\right)$$ הם הפרמטרים שכבר שיערכנו.
+כאשר:
 
-ב) במקרה והפילוג $$p_Y$$ ידוע נוכל פשוט להשתמש בפילוג הידוע במקום לשערך אותו. כל שאר החישוב יהיה זהה. במקרה של LDA, פילוג זה מופיע רק באיבר $$b$$ של פונקצייית החיזוי, אשר מגדיר את המיקום של משטח ההפרדה.
+- $$p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert j\right)=\frac{1}{2\pi\left\lvert\Sigma\right\rvert}\exp\left(-\tfrac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_j\right)^T\Sigma^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}_j\right)\right)$$
+- $$\mu_j$$, $$\Sigma$$ ו $$p_Y\left(j\right)$$ הם הפרמטרים שכבר שיערכנו.
+
+</section><section markdown="1">
+
+##### ✍️ תרגיל 6.2 ב
+
+כיצד היה משתנה החזאי במידה והיינו יודעים כי הסיכוי הא-פריוירי של דגימה להיות סרטנית הינה 5% (ולא כמו הפילוג המופיע במדגם)
+
+##### פתרון
+
+נוכל להשתמש בפילוג הידוע של $$p_Y$$ במקום לשערך אותו. (כל שאר החישוב יהיה זהה).
+
+במקרה של LDA, פילוג זה מופיע רק באיבר $$b$$ של פונקצייית החיזוי, אשר מגדיר את המיקום של משטח ההפרדה.
 
 $$
 b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p_Y\left(1\right)}{p_Y\left(0\right)}\right)
@@ -698,19 +902,25 @@ p_Y\left(y\right)=\begin{cases}
 \end{cases}
 $$
 
+</section><section markdown="1">
+
+##### ✍️ תרגיל 6.2 ב - המשך
+
 ונקבל את פונקציית החיזוי הבאה:
 
 ![LDA results with prior](./media/bcw_lda_prior.png)
 
-כפי שניתן לראות, במקרה זה קו ההפרדה זז משמעותית לימין. ההסבר לזה היא העובדה היא שהפילוג הא-פריורי על התווית מקטין משמעותית את ההסתברות א-פריוירית שדגימה מסויימת הינה סרטנית, מה שמתבטא באופן דומה גם בסיכוי הפוסטריורי. לכן איזור גדול יותר ממופה כעת לתווית של "לא סרטני".
+קו ההפרדה זז לימין.
 
-העובדה שאנו משתמשים בשיטה גנרטיבית מאפשרת לנו בקלות לפרש את התוצאה ולהכניס מידע א-פריורי נוסף. כאשר נדבר על שיטות לא גנרטיביות (דיסקימינטיביות), נראה שלא כך הדבר בעבור שיטות אלו.
+הפילוג הא-פריורי מקטין את ההסתברות שדגימה מסויימת הינה סרטנית, שמתבטא באופן דומה גם בסיכוי הפוסטריורי. לכן איזור גדול יותר ממופה כעת לתווית של "לא סרטני".
+
+</section><section markdown="1">
 
 ### שיטה 2: QDA
 
 נבנה חזאי על ידי שימוש בQDA.
 
-לשם כך נחשב מטריצת covariance בעבור כל אחת מהתוויות בנפרד (שאר הפרמטרים לא משתנים בין LDA ל QDA).
+נחשב מטריצת covariance בעבור כל אחת מהתוויות בנפרד (שאר הפרמטרים לא משתנים).
 
 $$
 \Sigma_j = \frac{1}{N}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
@@ -734,47 +944,58 @@ C=\tfrac{1}{2}\left(\Sigma_0^{-1}-\Sigma_1^{-1}\right) \\
 b=\tfrac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma_1^{-1}\boldsymbol{\mu}_1 - \boldsymbol{\mu}_0^T\Sigma_0^{-1}\boldsymbol{\mu}_0\right) + \log\left(\frac{\left\lvert\Sigma_0\right\rvert^{1/2}p_Y\left(1\right)}{\left\lvert\Sigma_1\right\rvert^{1/2}p_Y\left(0\right)}\right)
 $$
 
+</section><section markdown="1">
+
+### שיטה 2: QDA - המשך
+
 נשרטט את הפילוגים הנורמאלים המתקבלים ואת קו ההפרדה הליניארי על גבי הנתונים:
 
+<div class="centered" markdown="1">
 ![QDA results](./media/bcw_qda.png)
-
-נשרטט זאת גם על תחום גדול יותר רק על מנת לראות את צורת משטח ההפרדה המתקבל:
-
 ![QDA results](./media/bcw_qda_zoom_out.png)
+</div>
 
-הסיכון המשוערך על סט הבחן הינו: 0.088
+הסיכון המשוערך על סט הבחן הינו: 0.088 (קיבלנו שיפור קל בביצועים)
 
-קיבלנו שיפור קל בביצועים, ניתן לראות כי במקרה זה אכן יש לכל אחד מהפילוגים צורה מעט שונה וכי קו ההפרדה כבר לא לינארי, (אם כי בקרבת נקודות המדגם עצמם הקו יחסית קרוב לקו הלינארי של LDA).
+</section><section markdown="1">
 
 ### הגדלת כמות השדות בוקטור התצפיות
-
-עד כה השתמשנו רק בשתי השדות הראשונים מתוך המדגם. נבחן כעת את ביצועי החזאי ככל שנעלה את כמות השדות.
-
-(נושא זה מקשר לא מושג של מאפיינים שאותו נגדיר בשבוע הבא)
 
 נחזור על התהיל של חיזוי בשיטת QDA כאשר אנו לוקחים בכל פעם את $$K$$ השדות הראשונים במדגם.
 
 נשרטט את הסיכון המתקבל על סט האימון ועל סט הבחן כתלות ב$$K$$:
 
-![Risk vs. number of features](./media/bcw_qda_num_of_features.png)
+![Risk vs. number of features](./media/bcw_qda_num_of_features.png){: width="700px"}
+
+</section><section markdown="1">
 
 #### תרגיל 6.3
+
+![Risk vs. number of features](./media/bcw_qda_num_of_features.png){: width="500px"}
 
 כיצד תסבירו את העובדה כי מנקודה מסויימת הסיכון על סט הבחן הולך ונעשה גרוע ככל שאנו מגדילים את כמות השדות? מהי כמות הפרמטרים במודל כתלות ב$$K$$? מה גודלו של סט האימון?
 
 הציעו מניפולציה אותה ניתן לעשות למדגם על מנת לבנות חזאי אשר כן משתמש במידע מכל השדות אך עם מספר פרמטרים מוגבל.
 
-#### פתרון
+</section><section markdown="1">
 
-תופעה זו הינה דוגמא קלסית להתאמת יתר (overfitting). ככל שמספר השדות גדל, מספר הפרמטרים של המודל גדל והמודל יכול לייצג תלויות יותר ויותר מורכבות של התוויות בדגמים שבסט האימון. חלק מתלויות אלו אמיתיות (נובעות מהצורה של הפילוג האמיתי) וחלק מתלויות אלו אקראיות (נמצאות במדגם במקרה). ככל המספר שמורכבות המודל גדלה המשקל של אותם תלויות אקראיות גדלה. ספיציפית במקרה של QDA מספר הפרמטרים במודל הינו בערך $$K^2$$ בעיקר בגלל הפרמטרים שבמטריצות הcovariance, זאת אומרת במקרה של 30 שדות יש במודל בערך 900 פרמטרים בעוד שסט האימון הינו בגודל של $$80%\cdot596=455$$ דגימות.
+#### תרגיל 6.3 - פתרון
 
-ככלל אצבע, נרצה לרוב שמספר הפרמטרים במודל שלנו יהיה קטן בלפחות סדר גודל אחד ממספר הדגמים בסט האימון. (אם כי כלל זה נכון בעבור מרבית האלגוריתמים הקלאסיים בmachine learning, ישנם דוגמאות חדשות מהתקופה האחרונה, בעיקר בעבור מודלים של רשתות נוירונים, שמראים ביצועים טובים גם במקרים בהם חורגים מכלל זה)
+- זוהי דוגמא קלסית להתאמת יתר (overfitting).
+  <br><br>
+- ככל שמספר השדות גדל, מספר הפרמטרים של המודל גדל והמודל יכול לייצג תלויות יותר ויותר מורכבות.
+  <br><br>
+- בQDA מספר הפרמטרים הינו בערך $$K^2$$, במקרה של 30 שדות יש במודל בערך 900 פרמטרים בעוד שסט האימון יש $$80%\cdot596=455$$ דגימות.
+  <br><br>
+- ככלל אצבע, נרצה לרוב שמספר הפרמטרים במודל שלנו יהיה קטן בלפחות סדר גודל אחד ממספר הדגמים בסט האימון (נכון חלקית).
 
-דרך אחת להתמודד עם הבעיה זו הינה להגביל את גודל הוקטור שעליו פועל האלגוריתם. בכדי לעשות זאת מבלי להתעלם מחלק מהנתונים ניתן לבצע הורדת מימד לוקטור התצפיות בשיטות כגון PCA. בעזרת אלגוריתם יעיל להורדת מימד ניתן לרכז את מרבית המידע שאר קיימת בוקטור התצפיות בוקטור קטן יותר שעליו יפעל האלגוריתם.
+<br><br>
 
-## תרגילים נוספים
+דרך אחת להתמודד עם בעיה זו הינה לבצע הורדת מימד לוקטור התצפיות בשיטות כגון PCA.
 
-#### תרגיל 6.4 - MAP
+</section><section markdown="1">
+
+#### תרגיל 6.4 - סיווג בייסיאני
 
 ביום טוב, עומרי כספי קולע בהסתברות $$p$$ מהקו. ביום רע, הוא קולע בהסתברות $$q$$ מהקו. $$\alpha$$ מהימים הם ימים טובים עבור עומרי.
 
@@ -784,12 +1005,16 @@ $$
 
 הניחו כי בהינתן המידע של האם יום מסויים הוא טוב או לא, ההסברות לקלוע זריקות שונות הינה הסתברות בלתי תלויה.
 
-##### פתרון
+</section><section markdown="1">
+
+##### תרגיל 6.4 - סיווג בייסיאני - פתרון
 
 נגדיר את המשתנים האקראיים והפילוגים שלהם:
 
-- $$X_i$$ - משתנה אקראי בינארי של האם עומרי קלע או לא בזריקה ה-$$i$$. (0-החטיא, 1-קלע)
-- $$Y$$ - משתנה אקראי בינארי של האם היום הינו יום טוב או לא. (0-יום לא טוב, 1-יום טוב).
+- $$X_i$$ - האם קלע או לא. (0-החטיא, 1-קלע)
+- $$Y$$ - האם יום טוב או לא. (0-יום לא טוב, 1-יום טוב).
+
+<br>
 
 על פי הנתונים בשאלה:
 
@@ -808,7 +1033,13 @@ p\left(y\right)=\begin{cases}
 \end{cases}
 $$
 
-זוהי למעשה בעיית MAP קלאסית, כאשר $$Y$$ משמש למעשה כפרמטר בפילוג של $$X\lvert Y$$. החזאי האופטימאלי של $$Y$$ הינו הערך אשר ממקסם את $$p\left(y\lvert \left\lbrace x_i\right\rbrace\right)$$:
+</section><section markdown="1">
+
+##### תרגיל 6.4 - MAP - פתרון - המשך
+
+- בעיית MAP
+- $$Y$$ פרמטר בפילוג $$X\lvert Y$$.
+- החזאי האופטימאלי של $$Y$$ הינו:
 
 $$
 \begin{aligned}
@@ -818,6 +1049,22 @@ $$
 & = \underset{y}{\arg\max}\quad \left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) \\
 \end{aligned}
 $$
+
+בעבור $$y=0$$ נקבל:
+
+$$
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^k\left(1-q\right)^{N-k}\left(1-\alpha\right)
+$$
+
+בעבור $$y=1$$ נקבל:
+
+$$
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^k\left(1-p\right)^{N-k}\alpha
+$$
+
+</section><section markdown="1">
+
+##### תרגיל 6.4 - MAP - פתרון - המשך 2
 
 בעבור $$y=0$$ נקבל:
 
@@ -847,87 +1094,25 @@ $$
 \end{aligned}
 $$
 
-#### תרגיל 6.5
-
-ממידע מוקדם, ידוע כי ישנם שלושה אזורים בהם נפרסים מערכי שיגור רקטות, $$Y=\left\lbrace 1,2,3\right\rbrace$$. כאשר כל מערך מפולג גאוסייאנית סביב:
-
-$$
-\mu_1=\begin{pmatrix}0\\3\end{pmatrix},\mu_2=\begin{pmatrix}3\\0\end{pmatrix},\mu_3=\begin{pmatrix}-3\\0\end{pmatrix}
-$$
-
-בנוסף, הפילוג האפריורי הינו אחיד: $$p_Y\left(1\right)=p_Y\left(2\right)=p_Y\left(3\right)=\frac{1}{3}$$, וכן נתון כי מטריצת הקווארינס (האמפירית) בכל מערך שיגור היא
-
-$$
-\Sigma=\begin{pmatrix}\frac{1}{2}&0\\0&\frac{1}{2}\end{pmatrix}
-$$
-
-יש להחליט מאיזה מערך בוצע שיגור מסוים.
-
-א) מהו חוק ההחלטה הבייסיאני האופטימאלי לזיהוי מערך השיגור? מהם תחומי ההחלטה במישור?
-
-ב) האם עקום ההפרדה המתקבל במקרה הגאוסי תמיד זהה בצורתו? במה תלוי עקום זה?
-
-ג) נתונות שתי קטגוריות $$\omega _{0} ,\omega _{1}$$ בעלות הסתברות אפריורית זהה, וכן נתונים הפילוגים
-
-$$
-p(x\lvert y=\omega _{0} )=\frac{1}{\sqrt{2\pi } } \exp \{ -(x-2)^{2} /2\} ,\, \, \, \, \, \, \, p(x\lvert y=\omega _{1} )=\frac{1}{2\sqrt{2\pi } } \exp \{ -(x-4)^{2} /8\}
-$$
-
-מהו חוק ההחלטה הבייסיאני האופטימאלי?
-
-##### פתרון
-
-א) נחשב את התנאי עבורו מתקיים: $$p_{Y\lvert X}\left(1\lvert x\right)\ge p_{Y\lvert X}\left(1\lvert x\right)$$:
-
-$$
-\begin{aligned}
-p_{Y\lvert X}\left(1\lvert x\right)&\ge p_{Y\lvert X}\left(1\lvert x\right) \\
-\Leftrightarrow p_{X\lvert Y}\left(x\lvert 1\right)p_Y\left(1\right)&\ge p_{X\lvert Y}\left(x\lvert 2\right)p_Y\left(2\right) \\
-\Leftrightarrow \frac{1}{\sqrt{4\pi^2\left\lvert\Sigma\right\rvert}}e^{-\tfrac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)}p_Y\left(1\right)&\ge\frac{1}{\sqrt{4\pi^2\left\lvert\Sigma\right\rvert}}e^{-\tfrac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)}p_Y\left(2\right) \\
-\Leftrightarrow -\tfrac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)+\log\left(p_Y\left(1\right)\right)&\ge-\tfrac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)\log\left(p_Y\left(2\right)\right) \\
-\end{aligned} \\
-\Leftrightarrow x^T\Sigma^{-1}\left(\mu_1-\mu_2\right)+\tfrac{1}{2}\left(\mu_2^T\Sigma^{-1}\mu_2 -\mu_1^T\Sigma^{-1}\mu_1\right)+\log\left(\frac{p_Y\left(1\right)}{p_Y\left(2\right)}\right)\ge0\\
-$$
-
-זוהי למעשה הפרדה לשני תחומים על ידי הקו הבא:
-
-$$
-\boldsymbol{a}^T \boldsymbol{x}+b=0
-$$
-
-כאשר:
-
-$$
-\boldsymbol{a}=\Sigma^{-1}\left(\boldsymbol{\mu}_1-\boldsymbol{\mu}_2\right) \\
-b=\tfrac{1}{2}\left(\boldsymbol{\mu}_2^T\Sigma^{-1}\boldsymbol{\mu}_2 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p_Y\left(1\right)}{p_Y\left(2\right)}\right)
-$$
-
-שזהו כמובן קו ההפרדה שקיבלנו בעבור מסווג LDA במקרה הבנארי.
-
-ניתן באופן דומה למצוא את שני קווי ההפרדה הנוספים (ראה תרגיל 6.1)
-
-ב) באופן כללי, נקבל כי משטח ההפרדה בין וקטורים גאוסיאנים הוא פולינום מדרגה שנייה בקוארדינטות. בדו מימד משטח ההפרדה הוא קו, מעגל, אליפסה, פרבולה או היפרבולה. במקרים בהם מטריצת הcovariance של ההגאוסיאנים זהה, משטח ההפרדה יתנוון למשטח הפרדה לינארי.
-
-ג)
-
-$$
-\Pr (y=w_{1} \lvert x)\ge \Pr (y=w_{2} \lvert x) \\
-\Leftrightarrow \Pr (x\lvert y=w_{1} )\Pr \left(y=w_{1} \right)\ge \Pr (x\lvert y=w_{2} )\Pr \left(y=w_{2} \right) \\
-\Leftrightarrow \frac{1}{\sqrt{2\pi } } \exp \left(-\frac{1}{2} \left(x-2\right)^{2} \right)\ge \frac{1}{2\sqrt{2\pi } } \exp \left(-\frac{1}{8} \left(x-4\right)^{2} \right) \\
-4\left(x-2\right)^{2} \le \left(x-4\right)^{2} +8\log 2 \\
-3x^{2} -8x-8\log 2\le 0 \\
-x_{1} =3.23,x_{2} =-0.57
-$$
-
-ולכן נשייך את $$x$$ במחלקה הראשונה אם ורק אם $$x\in [-0.57,3.23]$$.
+</section><section markdown="1">
 
 #### תרגיל 6.6 - פונקציית הפסד לא סימטרית
 
-נסתכל על בעיית החיזוי הבאה. ידוע הפילוג המותף של שני מתנים אקאריים $$X$$ ו $$Y$$, כאשר $$Y$$ הוא משתנה בינארי. כמו כן נתונה לנו פונקציית ההפסד הבאה:
+נסתכל על בעיית החיזוי הבאה.
+
+ידוע הפילוג המותף של שני מתנים אקאריים $$X$$ ו $$Y$$, כאשר $$Y$$ הוא משתנה בינארי. כמו כן נתונה לנו פונקציית ההפסד הבאה:
 
 $$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\ 0 & \text{otherwise} \end{cases}.$$
 
+<br>
+
 מצאו ביטוי לחזאי האופטימאלי של $$Y$$ בהינתן $$X$$ אשר ממזער את פונקציית הסיכון המתאימה לפנוקציית ההספד הנתונה.
+
+</section><section markdown="1">
+
+#### תרגיל 6.6 - פונקציית הפסד לא סימטרית - המשך
+
+$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\ 0 & \text{otherwise} \end{cases}.$$
 
 ##### פתרון
 
@@ -938,6 +1123,8 @@ h^*\left(x\right)
 & = \underset{\hat{y}}{\arg\min}\quad p_{Y\lvert X}\left(0\lvert x\right)l\left(0,\hat{y}\right)+p_{Y\lvert X}\left(1\lvert x\right)l\left(1,\hat{y}\right) \\
 \end{aligned}
 $$
+
+<br>
 
 בעבור $$\hat{y}=0$$ נקבל:
 
@@ -950,6 +1137,14 @@ $$
 $$
 p_{Y\lvert X}\left(0\lvert x\right)l\left(0,1\right)+p_{Y\lvert X}\left(1\lvert x\right)l\left(1,1\right)=p_{Y\lvert X}\left(0\lvert x\right)
 $$
+
+</section><section markdown="1">
+
+#### תרגיל 6.6 - פונקציית הפסד לא סימטרית - המשך 2
+
+$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\ 0 & \text{otherwise} \end{cases}.$$
+
+##### פתרון
 
 מכאן שהחזאי האופטימאלי יהיה:
 
@@ -966,3 +1161,5 @@ h^*\left(x\right)
 \end{cases}
 \end{aligned}
 $$
+
+</section>
