@@ -1100,7 +1100,7 @@ $$
 
 ידוע הפילוג המשותף של שני משתנים אקאריים $$X$$ ו $$Y$$, כאשר $$Y$$ הוא משתנה בינארי. כמו כן נתונה לנו פונקציית ההפסד הבאה:
 
-$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\ 0 & \text{otherwise} \end{cases}.$$
+$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,\hat{y}=0 \\ 0 & \text{otherwise} \end{cases}.$$
 
 <br>
 
@@ -1140,7 +1140,7 @@ $$
 
 #### תרגיל 6.6 - פונקציית הפסד לא סימטרית - המשך 2
 
-$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\ 0 & \text{otherwise} \end{cases}.$$
+$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,\hat{y}=0 \\ 0 & \text{otherwise} \end{cases}.$$
 
 ##### פתרון
 
