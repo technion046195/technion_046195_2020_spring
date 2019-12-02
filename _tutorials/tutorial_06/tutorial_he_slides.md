@@ -411,7 +411,7 @@ $$
 
 <br>
 
-מכאן שקו המפריד בין זן 1 ל זן 2 נתון על ידי:
+מכאן שהקו המפריד בין זן 1 ל זן 2 נתון על ידי:
 
 $$
 1-2:\quad 10x_1+\log\left(2\right)=0
@@ -447,7 +447,7 @@ $$
 
 ### תזכורת לבעיה: חיזוי האם תא הינו סרטני או לא
 
-אנו מעוניינים לעזור לצוות הרפואי לבצע אבחון נכון של דגימות לדגימות סרטיניות (malignant) או בריאות (benign) על מסך הנתונים המספריים שמחושבים לכל דגימה.
+אנו מעוניינים לעזור לצוות הרפואי לבצע אבחון נכון של דגימות לדגימות סרטניות (malignant) או בריאות (benign) על סמך הנתונים המספריים שמחושבים לכל דגימה.
 
 <br>
 
@@ -458,7 +458,7 @@ $$
 
 <br>
 
-נהיה מעוניינים למוא את פונקציית החיזוי אשר ממזערת את:
+נהיה מעוניינים למצוא את פונקציית החיזוי אשר ממזערת את:
 
 $$
 R\left\lbrace h\right\rbrace=E\left[I\left\lbrace h\left(\boldsymbol{X}\right)\neq Y\right\rbrace\right]
@@ -751,7 +751,7 @@ $$
 לשם הפשטות (וויזואליזציה) אנו נעבוד תחילה רק עם התווית ושני השדות הבאים:
 
 - **diagnosis** - התווית של הדגימה: M = malignant (סרטני), B = benign (בריא)
-- **radius_mean** - רדיוס התא הממוצא בדגימה
+- **radius_mean** - רדיוס התא הממוצע בדגימה
 - **texture_mean** - סטיית התקן הממוצעת של רמת האפור בצבע של כל תא בדגימה.
 
 (בהמשך נעבוד עם יתר השדות)
@@ -834,7 +834,7 @@ $$
 נשערך את ביצועי החזאי על ידי חישוב הסיכון האמפירי המתקבל על סט הבחן.
 
 $$
-\hat{R}\left\lbrace h, \right\rbrace=\frac{1}{N}\sum_{i=1}^N I\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace
+\hat{R}\left\lbrace h\right\rbrace=\frac{1}{N}\sum_{i=1}^N I\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace
 $$
 
 הסיכון המשוערך המתקבל הינו: 0.096
@@ -946,7 +946,7 @@ $$
 
 ### שיטה 2: QDA - המשך
 
-נשרטט את הפילוגים הנורמאלים המתקבלים ואת קו ההפרדה הליניארי על גבי הנתונים:
+נשרטט את הפילוגים הנורמאלים המתקבלים ואת קו ההפרדה על גבי הנתונים:
 
 <div class="centered" markdown="1">
 ![QDA results](./media/bcw_qda.png)
@@ -971,7 +971,7 @@ $$
 
 ![Risk vs. number of features](./media/bcw_qda_num_of_features.png){: width="500px"}
 
-כיצד תסבירו את העובדה כי מנקודה מסויימת הסיכון על סט הבחן הולך ונעשה גרוע ככל שאנו מגדילים את כמות השדות? מהי כמות הפרמטרים במודל כתלות ב$$K$$? מה גודלו של סט האימון?
+כיצד תסבירו את העובדה כי מנקודה מסויימת הסיכון על סט הבחן הולך ונעשה גרוע ככל שאנו מגדילים את כמות השדות? מהי כמות הפרמטרים במודל כתלות ב$$K$$ (מספר השדות)? מה גודלו של סט האימון?
 
 הציעו מניפולציה אותה ניתן לעשות למדגם על מנת לבנות חזאי אשר כן משתמש במידע מכל השדות אך עם מספר פרמטרים מוגבל.
 
@@ -1051,13 +1051,13 @@ $$
 בעבור $$y=0$$ נקבל:
 
 $$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^k\left(1-q\right)^{N-k}\left(1-\alpha\right)
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^m\left(1-q\right)^{N-m}\left(1-\alpha\right)
 $$
 
 בעבור $$y=1$$ נקבל:
 
 $$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^k\left(1-p\right)^{N-k}\alpha
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^m\left(1-p\right)^{N-m}\alpha
 $$
 
 </section><section markdown="1">
@@ -1067,13 +1067,13 @@ $$
 בעבור $$y=0$$ נקבל:
 
 $$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^k\left(1-q\right)^{N-k}\left(1-\alpha\right)
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^m\left(1-q\right)^{N-m}\left(1-\alpha\right)
 $$
 
 בעבור $$y=1$$ נקבל:
 
 $$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^k\left(1-p\right)^{N-k}\alpha
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^m\left(1-p\right)^{N-m}\alpha
 $$
 
 לכן החיזוי האופטימאלי יהיה:
@@ -1082,11 +1082,11 @@ $$
 \begin{aligned}
 \hat{y}
 & = \begin{cases}
-0 && q^k\left(1-q\right)^{N-k}\left(1-\alpha\right) > p^k\left(1-p\right)^{N-k}\alpha \\ 
+0 && q^m\left(1-q\right)^{N-m}\left(1-\alpha\right) > p^m\left(1-p\right)^{N-m}\alpha \\ 
 1 && \text{otherwise}
 \end{cases} \\
 & = \begin{cases}
-0 && \left(\frac{q}{p}\right)^k\left(\frac{1-q}{1-p}\right)^{N-k}\frac{1-\alpha}{\alpha} > 1 \\
+0 && \left(\frac{q}{p}\right)^m\left(\frac{1-q}{1-p}\right)^{N-m}\frac{1-\alpha}{\alpha} > 1 \\
 1 && \text{otherwise}
 \end{cases} \\
 \end{aligned}
@@ -1098,13 +1098,13 @@ $$
 
 נסתכל על בעיית החיזוי הבאה.
 
-ידוע הפילוג המותף של שני מתנים אקאריים $$X$$ ו $$Y$$, כאשר $$Y$$ הוא משתנה בינארי. כמו כן נתונה לנו פונקציית ההפסד הבאה:
+ידוע הפילוג המשותף של שני משתנים אקאריים $$X$$ ו $$Y$$, כאשר $$Y$$ הוא משתנה בינארי. כמו כן נתונה לנו פונקציית ההפסד הבאה:
 
 $$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\ 0 & \text{otherwise} \end{cases}.$$
 
 <br>
 
-מצאו ביטוי לחזאי האופטימאלי של $$Y$$ בהינתן $$X$$ אשר ממזער את פונקציית הסיכון המתאימה לפנוקציית ההפסד הנתונה.
+מצאו ביטוי לחזאי האופטימאלי של $$Y$$ בהינתן $$X$$ אשר ממזער את פונקצית הסיכון המתאימה לפנוקציית ההפסד הנתונה.
 
 </section><section markdown="1">
 
