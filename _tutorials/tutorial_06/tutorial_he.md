@@ -265,7 +265,7 @@ $$
 p_{Y\lvert X}\left(1\lvert x\right)&> p_{Y\lvert X}\left(1\lvert x\right) \\
 \Leftrightarrow p_{X\lvert Y}\left(x\lvert 1\right)p_Y\left(1\right)&> p_{X\lvert Y}\left(x\lvert 2\right)p_Y\left(2\right) \\
 \Leftrightarrow \frac{1}{\sqrt{4\pi^2\left\lvert\Sigma\right\rvert}}e^{-\tfrac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)}p_Y\left(1\right)&>\frac{1}{\sqrt{4\pi^2\left\lvert\Sigma\right\rvert}}e^{-\tfrac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)}p_Y\left(2\right) \\
-\Leftrightarrow -\tfrac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)+\log\left(p_Y\left(1\right)\right)&>-\tfrac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)\log\left(p_Y\left(2\right)\right) \\
+\Leftrightarrow -\tfrac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)+\log\left(p_Y\left(1\right)\right)&>-\tfrac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)+\log\left(p_Y\left(2\right)\right) \\
 \end{aligned} \\
 \Leftrightarrow x^T\Sigma^{-1}\left(\mu_1-\mu_2\right)+\tfrac{1}{2}\left(\mu_2^T\Sigma^{-1}\mu_2 -\mu_1^T\Sigma^{-1}\mu_1\right)+\log\left(\frac{p_Y\left(1\right)}{p_Y\left(2\right)}\right)>0\\
 $$
