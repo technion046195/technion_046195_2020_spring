@@ -120,7 +120,7 @@ $$
 תחת הנחה זו:
 
 $$
-p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert y\right)=\prod_{i=1}^d p_q\left(x_q\lvert y\right)
+p_{\boldsymbol{X}\lvert Y}\left(\boldsymbol{x}\lvert y\right)=\prod_{q=1}^d p_q\left(x_q\lvert y\right)
 $$
 
 את $$p_q\left(x_q\lvert y\right)$$ משערכים בעבור כל $$Y$$ וכל $$q$$.
@@ -137,7 +137,7 @@ $$
 
 הנחות:
 
-1. $$p_{\boldsymbol{X}\lvert Y}$$ מפולגים נומאלית.
+1. $$p_{\boldsymbol{X}\lvert Y}$$ מפולגים נורמאלית.
 2. לכל הפילוגים $$p_{\boldsymbol{X}\lvert Y}$$ אותה מטריצת covariance.
 
 <br>
@@ -241,14 +241,14 @@ $$
 
 הפילוג של זני הפילים על פני הסוואנה אינו ידוע אך נתונות לנו התצפית הבאה של הקואורדינטות בהם נצפו הפילים:
 
-| Type |  X |  Y |
-| ---- | -- | -- |
-|   1  |  1 |  2 |
-|   1  |  3 |  2 |
-|   2  | -2 |  2 |
-|   3  |  0 | -1 |
-|   3  |  0 | -5 |
-{: dir="ltr" style="font-size:25px !important"}
+| Type | X_1 | X_2 |
+| ---- | --- | --- |
+|   1  |  1  |  2  |
+|   1  |  3  |  2  |
+|   2  | -2  |  2  |
+|   3  |  0  | -1  |
+|   3  |  0  | -5  |
+{: dir="ltr    " style="font-size:25px !important"}
 
 השתמש במסווג LDA על מנת לבנות חזאי אשר ישערך את הזן הזפוץ ביותר בכל קואורדינטה.
 
@@ -256,18 +256,18 @@ $$
 
 ##### תרגיל 6.1 - פתרון
 
-| Type |  X |  Y |
-| ---- | -- | -- |
-|   1  |  1 |  2 |
-|   1  |  3 |  2 |
-|   2  | -2 |  2 |
-|   3  |  0 | -1 |
-|   3  |  0 | -5 |
+| Type | X_1 | X_2 |
+| ---- | --- | --- |
+|   1  |  1  |  2  |
+|   1  |  3  |  2  |
+|   2  | -2  |  2  |
+|   3  |  0  | -1  |
+|   3  |  0  | -5  |
 {: dir="ltr" style="font-size:25px !important"}
 
 סימונים:
 
-- $$\boldsymbol{x}_i$$ הקאורדינטה. לגודמא: $$\boldsymbol{x}_4=\begin{pmatrix}0 & -1\end{pmatrix}^T$$
+- $$\boldsymbol{x}_i$$ הקאורדינטה. לדוגמא: $$\boldsymbol{x}_4=\begin{pmatrix}0 & -1\end{pmatrix}^T$$
   <br><br>
 - $$y_i$$ הזן. לדוגמא: $$y_4=3$$
   <br><br>
@@ -277,13 +277,13 @@ $$
 
 ##### תרגיל 6.1 - פתרון - המשך
 
-| Type |  X |  Y |
-| ---- | -- | -- |
-|   1  |  1 |  2 |
-|   1  |  3 |  2 |
-|   2  | -2 |  2 |
-|   3  |  0 | -1 |
-|   3  |  0 | -5 |
+| Type | X_1 | X_2 |
+| ---- | --- | --- |
+|   1  |  1  |  2  |
+|   1  |  3  |  2  |
+|   2  | -2  |  2  |
+|   3  |  0  | -1  |
+|   3  |  0  | -5  |
 {: dir="ltr" style="font-size:25px !important"}
 
 <br>
@@ -300,13 +300,13 @@ $$
 
 ##### תרגיל 6.1 - פתרון - המשך 2
 
-| Type |  X |  Y |
-| ---- | -- | -- |
-|   1  |  1 |  2 |
-|   1  |  3 |  2 |
-|   2  | -2 |  2 |
-|   3  |  0 | -1 |
-|   3  |  0 | -5 |
+| Type | X_1 | X_2 |
+| ---- | --- | --- |
+|   1  |  1  |  2  |
+|   1  |  3  |  2  |
+|   2  | -2  |  2  |
+|   3  |  0  | -1  |
+|   3  |  0  | -5  |
 {: dir="ltr" style="font-size:25px !important"}
 
 <br>
@@ -411,10 +411,10 @@ $$
 
 <br>
 
-מכאן שקו הםרדה המפריד בין זן 1 ל זן 2 נתון על ידי:
+מכאן שקו המפריד בין זן 1 ל זן 2 נתון על ידי:
 
 $$
-1-2:\quad 10x+\log\left(2\right)=0
+1-2:\quad 10x_1+\log\left(2\right)=0
 $$
 
 </section><section markdown="1">
@@ -425,9 +425,9 @@ $$
 
 $$
 \begin{aligned}
-1-2: & \quad 10x+\log\left(2\right)=0 \\
-1-3: & \quad 5x+\frac{25}{8}y+\frac{55}{16}=0 \\
-2-3: & \quad -5x+\frac{25}{8}y+\frac{55}{16}-\log\left(2\right)=0
+1-2: & \quad 10x_1+\log\left(2\right)=0 \\
+1-3: & \quad 5x_1+\frac{25}{8}x_2+\frac{55}{16}=0 \\
+2-3: & \quad -5x_1+\frac{25}{8}x_2+\frac{55}{16}-\log\left(2\right)=0
 \end{aligned}
 $$
 
