@@ -1110,7 +1110,7 @@ $$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\
 
 #### תרגיל 6.6 - פונקציית הפסד לא סימטרית - המשך
 
-$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,y=0 \\ 0 & \text{otherwise} \end{cases}.$$
+$$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,\hat{y}=0 \\ 0 & \text{otherwise} \end{cases}.$$
 
 ##### פתרון
 
