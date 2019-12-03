@@ -235,7 +235,108 @@ $$
 
 </section><section markdown="1">
 
-#### תרגיל 6.1
+#### תרגיל 6.1 - סיווג בייסיאני
+
+ביום טוב, עומרי כספי קולע בהסתברות $$p$$ מהקו. ביום רע, הוא קולע בהסתברות $$q$$ מהקו. $$\alpha$$ מהימים הם ימים טובים עבור עומרי.
+
+ביום מסויים זרק עומרי $$N$$ זריקות וקלע $$m$$ מתוכם. מאמנו של עומרי צריך לזהות האם מדובר ביום טוב או רע של השחקן (ולהשאיר אותו או להחליף אותו בהתאמה).
+
+מהו חוק ההחלטה אשר ממקסם את סיכויי המאמן לצדוק?
+
+הניחו כי בהינתן המידע של האם יום מסויים הוא טוב או לא, ההסברות לקלוע זריקות שונות הינה הסתברות בלתי תלויה.
+
+</section><section markdown="1">
+
+##### תרגיל 6.1 - סיווג בייסיאני - פתרון
+
+נגדיר את המשתנים האקראיים והפילוגים שלהם:
+
+- $$X_i$$ - האם קלע או לא. (0-החטיא, 1-קלע)
+- $$Y$$ - האם יום טוב או לא. (0-יום לא טוב, 1-יום טוב).
+
+<br>
+
+על פי הנתונים בשאלה:
+
+$$
+p\left(x_i\lvert Y=0\right)=\begin{cases}
+1-q && x_i=0 \\
+q && x_i=1 \\
+\end{cases} \\
+p\left(x_i\lvert Y=1\right)=\begin{cases}
+1-p && x_i=0 \\
+p && x_i=1 \\
+\end{cases} \\
+p\left(y\right)=\begin{cases}
+1-\alpha && y=0 \\
+\alpha && y=1 \\
+\end{cases}
+$$
+
+</section><section markdown="1">
+
+##### תרגיל 6.1 - MAP - פתרון - המשך
+
+- בעיית MAP
+- $$Y$$ פרמטר בפילוג $$X\lvert Y$$.
+- החזאי האופטימאלי של $$Y$$ הינו:
+
+$$
+\begin{aligned}
+\hat{y}
+& = \underset{y}{\arg\max}\quad p\left(y \lvert \left\lbrace x_i\right\rbrace\right) \\
+& = \underset{y}{\arg\max}\quad p\left(\left\lbrace x_i\right\rbrace \lvert y\right)p\left(y\right) \\
+& = \underset{y}{\arg\max}\quad \left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) \\
+\end{aligned}
+$$
+
+בעבור $$y=0$$ נקבל:
+
+$$
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^m\left(1-q\right)^{N-m}\left(1-\alpha\right)
+$$
+
+בעבור $$y=1$$ נקבל:
+
+$$
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^m\left(1-p\right)^{N-m}\alpha
+$$
+
+</section><section markdown="1">
+
+##### תרגיל 6.1 - MAP - פתרון - המשך 2
+
+בעבור $$y=0$$ נקבל:
+
+$$
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^m\left(1-q\right)^{N-m}\left(1-\alpha\right)
+$$
+
+בעבור $$y=1$$ נקבל:
+
+$$
+\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^m\left(1-p\right)^{N-m}\alpha
+$$
+
+לכן החיזוי האופטימאלי יהיה:
+
+$$
+\begin{aligned}
+\hat{y}
+& = \begin{cases}
+0 && q^m\left(1-q\right)^{N-m}\left(1-\alpha\right) > p^m\left(1-p\right)^{N-m}\alpha \\ 
+1 && \text{otherwise}
+\end{cases} \\
+& = \begin{cases}
+0 && \left(\frac{q}{p}\right)^m\left(\frac{1-q}{1-p}\right)^{N-m}\frac{1-\alpha}{\alpha} > 1 \\
+1 && \text{otherwise}
+\end{cases} \\
+\end{aligned}
+$$
+
+</section><section markdown="1">
+
+#### תרגיל 6.2
 
 בסוואנה חיים שלושה זני פילים אשר נמצאים בסכנת הכחדה. ידוע כי כל אחד משלושת הזנים ניזון מצמחיה מעט שונה ועל מנת לשמר את אוכלוסיית הפילים מעוניינים לפזר להם אוכל ברחבי הסוואנה. בכדי למקסם את האפקטיביות של פעולה זו מעוניינים לשערך בכל נקודת חלוקה מהו הזן שהכי סביר להמצא באותה נקודה על מנת להתאים את סוג המזון לזן זה.
 
@@ -254,7 +355,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון
+##### תרגיל 6.2 - פתרון
 
 | Type | X_1 | X_2 |
 | ---- | --- | --- |
@@ -275,7 +376,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון - המשך
+##### תרגיל 6.2 - פתרון - המשך
 
 | Type | X_1 | X_2 |
 | ---- | --- | --- |
@@ -298,7 +399,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון - המשך 2
+##### תרגיל 6.2 - פתרון - המשך 2
 
 | Type | X_1 | X_2 |
 | ---- | --- | --- |
@@ -329,7 +430,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון - המשך 3
+##### תרגיל 6.2 - פתרון - המשך 3
 
 נחשב את מטריצת covariance המשותפת של הפילוגים:
 
@@ -349,7 +450,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון - המשך 4
+##### תרגיל 6.2 - פתרון - המשך 4
 
 ניתן להראות בקלות כי ניתן לכתוב את הסכום בביטוי ל $$\Sigma$$ באופן הבא:
 
@@ -364,7 +465,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון - המשך 5
+##### תרגיל 6.2 - פתרון - המשך 5
 
 נשתמש כעת בפילוגים שאותם שיערכנו על מנת לבנות את החזאי. האיזור שבו זן 1 הינו הזן הסביר ביותר הינו האיזור שבו מתקיים:
 
@@ -388,7 +489,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון - המשך 6
+##### תרגיל 6.2 - פתרון - המשך 6
 
 $$
 \Leftrightarrow x^T\Sigma^{-1}\left(\mu_1-\mu_2\right)+\tfrac{1}{2}\left(\mu_2^T\Sigma^{-1}\mu_2 -\mu_1^T\Sigma^{-1}\mu_1\right)+\log\left(\frac{p_Y\left(1\right)}{p_Y\left(2\right)}\right)>0\\
@@ -419,7 +520,7 @@ $$
 
 </section><section markdown="1">
 
-##### תרגיל 6.1 - פתרון - המשך 7
+##### תרגיל 6.2 - פתרון - המשך 7
 
 באופן דומה ניתן לחשב גם את שני קווי ההפרדה האחרים (בין 1 ל 3 ובין 2 ל 3):
 
@@ -841,7 +942,7 @@ $$
 
 </section><section markdown="1">
 
-##### ✍️ תרגיל 6.2
+##### ✍️ תרגיל 6.3
 
 <br><br>
 
@@ -853,7 +954,7 @@ $$
 
 </section><section markdown="1">
 
-##### ✍️ תרגיל 6.2 א
+##### ✍️ תרגיל 6.3 א
 
 הציעו שיטה להעריך את מידת הודאות של החיזוי על סמך המודל שקיבלנו.
 
@@ -877,7 +978,7 @@ $$
 
 </section><section markdown="1">
 
-##### ✍️ תרגיל 6.2 ב
+##### ✍️ תרגיל 6.3 ב
 
 כיצד היה משתנה החזאי במידה והיינו יודעים כי הסיכוי הא-פריוירי של דגימה להיות סרטנית הינה 5% (ולא כמו הפילוג המופיע במדגם)
 
@@ -902,7 +1003,7 @@ $$
 
 </section><section markdown="1">
 
-##### ✍️ תרגיל 6.2 ב - המשך
+##### ✍️ תרגיל 6.3 ב - המשך
 
 ונקבל את פונקציית החיזוי הבאה:
 
@@ -967,7 +1068,7 @@ $$
 
 </section><section markdown="1">
 
-#### תרגיל 6.3
+#### תרגיל 6.4
 
 ![Risk vs. number of features](./media/bcw_qda_num_of_features.png){: width="500px"}
 
@@ -977,7 +1078,7 @@ $$
 
 </section><section markdown="1">
 
-#### תרגיל 6.3 - פתרון
+#### תרגיל 6.4 - פתרון
 
 - זוהי דוגמא קלסית להתאמת יתר (overfitting).
   <br><br>
@@ -993,118 +1094,17 @@ $$
 
 </section><section markdown="1">
 
-#### תרגיל 6.4 - סיווג בייסיאני
-
-ביום טוב, עומרי כספי קולע בהסתברות $$p$$ מהקו. ביום רע, הוא קולע בהסתברות $$q$$ מהקו. $$\alpha$$ מהימים הם ימים טובים עבור עומרי.
-
-ביום מסויים זרק עומרי $$N$$ זריקות וקלע $$m$$ מתוכם. מאמנו של עומרי צריך לזהות האם מדובר ביום טוב או רע של השחקן (ולהשאיר אותו או להחליף אותו בהתאמה).
-
-מהו חוק ההחלטה אשר ממקסם את סיכויי המאמן לצדוק?
-
-הניחו כי בהינתן המידע של האם יום מסויים הוא טוב או לא, ההסברות לקלוע זריקות שונות הינה הסתברות בלתי תלויה.
-
-</section><section markdown="1">
-
-##### תרגיל 6.4 - סיווג בייסיאני - פתרון
-
-נגדיר את המשתנים האקראיים והפילוגים שלהם:
-
-- $$X_i$$ - האם קלע או לא. (0-החטיא, 1-קלע)
-- $$Y$$ - האם יום טוב או לא. (0-יום לא טוב, 1-יום טוב).
-
-<br>
-
-על פי הנתונים בשאלה:
-
-$$
-p\left(x_i\lvert Y=0\right)=\begin{cases}
-1-q && x_i=0 \\
-q && x_i=1 \\
-\end{cases} \\
-p\left(x_i\lvert Y=1\right)=\begin{cases}
-1-p && x_i=0 \\
-p && x_i=1 \\
-\end{cases} \\
-p\left(y\right)=\begin{cases}
-1-\alpha && y=0 \\
-\alpha && y=1 \\
-\end{cases}
-$$
-
-</section><section markdown="1">
-
-##### תרגיל 6.4 - MAP - פתרון - המשך
-
-- בעיית MAP
-- $$Y$$ פרמטר בפילוג $$X\lvert Y$$.
-- החזאי האופטימאלי של $$Y$$ הינו:
-
-$$
-\begin{aligned}
-\hat{y}
-& = \underset{y}{\arg\max}\quad p\left(y \lvert \left\lbrace x_i\right\rbrace\right) \\
-& = \underset{y}{\arg\max}\quad p\left(\left\lbrace x_i\right\rbrace \lvert y\right)p\left(y\right) \\
-& = \underset{y}{\arg\max}\quad \left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) \\
-\end{aligned}
-$$
-
-בעבור $$y=0$$ נקבל:
-
-$$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^m\left(1-q\right)^{N-m}\left(1-\alpha\right)
-$$
-
-בעבור $$y=1$$ נקבל:
-
-$$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^m\left(1-p\right)^{N-m}\alpha
-$$
-
-</section><section markdown="1">
-
-##### תרגיל 6.4 - MAP - פתרון - המשך 2
-
-בעבור $$y=0$$ נקבל:
-
-$$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = q^m\left(1-q\right)^{N-m}\left(1-\alpha\right)
-$$
-
-בעבור $$y=1$$ נקבל:
-
-$$
-\left(\prod_{i=1}^d p\left(x_i \lvert y\right)\right)p\left(y\right) = p^m\left(1-p\right)^{N-m}\alpha
-$$
-
-לכן החיזוי האופטימאלי יהיה:
-
-$$
-\begin{aligned}
-\hat{y}
-& = \begin{cases}
-0 && q^m\left(1-q\right)^{N-m}\left(1-\alpha\right) > p^m\left(1-p\right)^{N-m}\alpha \\ 
-1 && \text{otherwise}
-\end{cases} \\
-& = \begin{cases}
-0 && \left(\frac{q}{p}\right)^m\left(\frac{1-q}{1-p}\right)^{N-m}\frac{1-\alpha}{\alpha} > 1 \\
-1 && \text{otherwise}
-\end{cases} \\
-\end{aligned}
-$$
-
-</section><section markdown="1">
-
 #### תרגיל 6.6 - פונקציית הפסד לא סימטרית
 
 נסתכל על בעיית החיזוי הבאה.
 
-ידוע הפילוג המשותף של שני משתנים אקאריים $$X$$ ו $$Y$$, כאשר $$Y$$ הוא משתנה בינארי. כמו כן נתונה לנו פונקציית ההפסד הבאה:
+ידוע הפילוג המשותף של שני משתנים אקראיים $$X$$ ו $$Y$$, כאשר $$Y$$ הוא משתנה בינארי. כמו כן נתונה לנו פונקציית ההפסד הבאה:
 
 $$l\left(y,\hat{y}\right)=\begin{cases} 1 & y=0,\hat{y}=1 \\ \alpha & y=1,\hat{y}=0 \\ 0 & \text{otherwise} \end{cases}.$$
 
 <br>
 
-מצאו ביטוי לחזאי האופטימאלי של $$Y$$ בהינתן $$X$$ אשר ממזער את פונקצית הסיכון המתאימה לפנוקציית ההפסד הנתונה.
+מצאו ביטוי לחזאי האופטימאלי של $$Y$$ בהינתן $$X$$ אשר ממזער את פונקציית הסיכון המתאימה לפונקציית ההפסד הנתונה.
 
 </section><section markdown="1">
 
