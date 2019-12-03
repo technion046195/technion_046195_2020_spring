@@ -105,7 +105,7 @@ $$
 את הפרמטרים של מודל, $$\mu_j$$ ו $$\Sigma$$ הנרומאלים נמצא בעזרת MLE. התוצאה המתקבלת הינה:
 
 $$
-\boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
+\boldsymbol{\mu}_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T
 $$
 
@@ -139,7 +139,7 @@ $$
 QDA דומה מאד לLDA רק ללא ההנחה השניה. במקרה זה אנו משערכים באופן בלתי תלוי $$N$$ גאוסיאנים שונים. במקרה נקבל ש:
 
 $$
-\boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
+\boldsymbol{\mu}_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma_j = \frac{1}{N}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
 $$
 
@@ -704,7 +704,7 @@ $$
 
 $$
 p_Y\left(j\right)=\frac{1}{N}\sum_{i=1}^N I\left\lbrace y_i=0\right\rbrace,\quad j\in\left(\lbrace 0,1\right\rbrace \\
-\boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
+\boldsymbol{\mu}_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T
 $$
 

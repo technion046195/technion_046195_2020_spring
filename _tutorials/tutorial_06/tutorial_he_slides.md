@@ -153,7 +153,7 @@ $$
 שיערוך MLE של פרמטרי המודלים נותן:
 
 $$
-\boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
+\boldsymbol{\mu}_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T
 $$
 
@@ -201,7 +201,7 @@ QDA דומה מאד לLDA רק ללא ההנחה השניה.
 משערך MLE נותן:
 
 $$
-\boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
+\boldsymbol{\mu}_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma_j = \frac{1}{N}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
 $$
 
@@ -349,7 +349,7 @@ $$
 |   2  | -2  |  2  |
 |   3  |  0  | -1  |
 |   3  |  0  | -5  |
-{: dir="ltr    " style="font-size:25px !important"}
+{: dir="ltr" style="font-size:25px !important"}
 
 השתמש במסווג LDA על מנת לבנות חזאי אשר ישערך את הזן הזפוץ ביותר בכל קואורדינטה.
 
@@ -543,31 +543,6 @@ $$
 נעבוד שוב עם המדגם של דגימות התא לאבחון סרטן שד. (את המדגם המקורי ניתן למצוא [פה](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29), בקורס נעבוד עם הגרסא [הזו](https://yairomer.github.io/ml_course/datasets/breast_cancer.csv))
 
 ![FNA image](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Adenoid_cystic_carcinoma_cytology.jpg/1024px-Adenoid_cystic_carcinoma_cytology.jpg){: width="800px"}
-
-</section><section markdown="1">
-
-### תזכורת לבעיה: חיזוי האם תא הינו סרטני או לא
-
-אנו מעוניינים לעזור לצוות הרפואי לבצע אבחון נכון של דגימות לדגימות סרטניות (malignant) או בריאות (benign) על סמך הנתונים המספריים שמחושבים לכל דגימה.
-
-<br>
-
-באופן פורמאלי:
-
-- $$X=\left[\text{mean_radius},\text{mean_texture}\right]^T$$ - ערכי התצפית של דגימה מסויימת.
-- $$Y$$ - התווית הבינארית של האם הדגימה סרטנית או לא. (0-בריא, 1-סרטני)
-
-<br>
-
-נהיה מעוניינים למצוא את פונקציית החיזוי אשר ממזערת את:
-
-$$
-R\left\lbrace h\right\rbrace=E\left[I\left\lbrace h\left(\boldsymbol{X}\right)\neq Y\right\rbrace\right]
-$$
-
-<br>
-
-(zero-one loss)
 
 </section><section markdown="1">
 
@@ -869,6 +844,31 @@ $$
 
 </section><section markdown="1">
 
+### תזכורת לבעיה: חיזוי האם תא הינו סרטני או לא
+
+אנו מעוניינים לעזור לצוות הרפואי לבצע אבחון נכון של דגימות לדגימות סרטניות (malignant) או בריאות (benign) על סמך הנתונים המספריים שמחושבים לכל דגימה.
+
+<br>
+
+באופן פורמאלי:
+
+- $$X=\left[\text{mean_radius},\text{mean_texture}\right]^T$$ - ערכי התצפית של דגימה מסויימת.
+- $$Y$$ - התווית הבינארית של האם הדגימה סרטנית או לא. (0-בריא, 1-סרטני)
+
+<br>
+
+נהיה מעוניינים למצוא את פונקציית החיזוי אשר ממזערת את:
+
+$$
+R\left\lbrace h\right\rbrace=E\left[I\left\lbrace h\left(\boldsymbol{X}\right)\neq Y\right\rbrace\right]
+$$
+
+<br>
+
+(zero-one loss)
+
+</section><section markdown="1">
+
 ### הפרשה של סט בחן
 
 <br><br>
@@ -891,7 +891,7 @@ $$
 
 $$
 p_Y\left(j\right)=\frac{1}{N}\sum_{i=1}^N I\left\lbrace y_i=0\right\rbrace,\quad j\in\left(\lbrace 0,1\right\rbrace \\
-\boldsymbol{\mu}_j = \frac{1}{N_j}\sum_{i\in G_j}\boldsymbol{x}_i \\
+\boldsymbol{\mu}_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\boldsymbol{x}_i \\
 \Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T
 $$
 
