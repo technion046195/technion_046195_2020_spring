@@ -30,12 +30,12 @@ $$
 ##### הפסד אפס-אחד (zero-one loss)
 
 $$
-\ell\left(\hat{y},y\right) = I\left\lbrace \hat{y}=y\right\rbrace
+\ell\left(\hat{y},y\right) = I\left\lbrace \hat{y}\neq y\right\rbrace
 $$
 
 - ההפסד הנפוץ בבעיות סיווג.
 - פונקציית הסיכון שלו נקראת: misclassification rate
-- החזאי האופטימאלי תחת הפסד זה הינו: $$h\left(x\right)=\underset{y}{\arg\min}\quad p\left(y\lvert x\right)$$
+- החזאי האופטימאלי תחת הפסד זה הינו: $$h\left(x\right)=\underset{y}{\arg\max}\quad p\left(y\lvert x\right)$$
 
 ##### הפסד מרחק ריבועי ($$l_2$$ loss)
 
@@ -140,7 +140,7 @@ QDA דומה מאד לLDA רק ללא ההנחה השניה. במקרה זה א�
 
 $$
 \boldsymbol{\mu}_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\boldsymbol{x}_i \\
-\Sigma_j = \frac{1}{N}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
+\Sigma_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
 $$
 
 ##### משטח הפרדה ריבועי
@@ -335,7 +335,7 @@ $$
 
 $$
 \begin{aligned}
-p_{Y\lvert X}\left(1\lvert x\right)&> p_{Y\lvert X}\left(1\lvert x\right) \\
+p_{Y\lvert X}\left(1\lvert x\right)&> p_{Y\lvert X}\left(2\lvert x\right) \\
 \Leftrightarrow p_{X\lvert Y}\left(x\lvert 1\right)p_Y\left(1\right)&> p_{X\lvert Y}\left(x\lvert 2\right)p_Y\left(2\right) \\
 \Leftrightarrow \frac{1}{\sqrt{4\pi^2\left\lvert\Sigma\right\rvert}}e^{-\tfrac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)}p_Y\left(1\right)&>\frac{1}{\sqrt{4\pi^2\left\lvert\Sigma\right\rvert}}e^{-\tfrac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)}p_Y\left(2\right) \\
 \Leftrightarrow -\tfrac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)+\log\left(p_Y\left(1\right)\right)&>-\tfrac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)+\log\left(p_Y\left(2\right)\right) \\
@@ -785,7 +785,7 @@ $$
 לשם כך נחשב מטריצת covariance בעבור כל אחת מהתוויות בנפרד (שאר הפרמטרים לא משתנים בין LDA ל QDA).
 
 $$
-\Sigma_j = \frac{1}{N}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
+\Sigma_j = \frac{1}{\left\lvert G_j\right\rvert}\sum_{i\in G_j}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_j\right)^T
 $$
 
 החזאי המקבל הינו:
