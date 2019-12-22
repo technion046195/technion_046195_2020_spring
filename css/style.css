@@ -1,6 +1,6 @@
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");  /* font awesome */
 @import url('https://fonts.googleapis.com/css?family=Racing+Sans+One&display=swap');  /* Racing Sans One font - for site main title */
-@import url("https://cdn.jsdelivr.net/npm/pygments-css@1.0.0/monokai.css");  /* pygments code blocks theme */
+@import url("../lib/monokai.css");  /* pygments code blocks theme */
 
 /* Fonts */
 /* ===== */
@@ -39,6 +39,10 @@
     direction: rtl;
     unicode-bidi: bidi-override;
     text-align: initial !important;
+}
+
+.highlighter-rouge {
+    direction: ltr;
 }
 
 /* Headers */
