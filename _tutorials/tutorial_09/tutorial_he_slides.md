@@ -362,7 +362,7 @@ $$
 - נבנה את הגרף לחישוב הנגזרת על פי העקרונות ממקודם.
 - בעבור הפונקציה הלוגיסטית מתקיים: $$\varphi'\left(x\right)=\varphi\left(x\right)\left(1-\varphi\left(x\right)\right)$$
 
-![Backward graph](./media/question_9_2_back.png){: width="1200px"}
+![Backward graph](./media/question_9_2_back.png){: width="1100px"}
 
 </section><section markdown="1">
 
@@ -378,7 +378,7 @@ $$
 
 וכעת את הbackward pass:
 
-![Backward pass](./media/question_9_2_back_pass.png){: width="1200px"}
+![Backward pass](./media/question_9_2_back_pass.png){: width="1100px"}
 
 </section><section markdown="1">
 
@@ -402,7 +402,7 @@ $$
 
 - נשתמש בMLP בעל שיכבה נסתרת אחת<br><br>
 - השכבה הנסתרת תדאג לחלוקה למקטעים.<br><br>
-- שכבת המוצא תדאג לנגזרות.
+- שכבת המוצא תדאג לשיפועים.
 
 </section><section markdown="1">
 
