@@ -1,7 +1,6 @@
 ---
 number: 9
-title: "MLP & Back propogation"
-hide: true
+title: "MLP & Back propagation"
 ---
 
 <section markdown="1">
@@ -64,11 +63,11 @@ $$
 - **רשת הזנה קדמית** (**Feed-forward networks**): רשת אשר אינה מכילה מסלולים מעגליים (המידע זורם מהכניסה למוצא).<br><br>
 - **רשתות נשנות** (**recurrent networks**): ארכיטקטורות אשר מכילות מסלולים מעגליים. בקורס זה לא נעסוק ברשתות מסוג זה.<br><br>
 
-אנו נשתמש ברשתות אלו כמודל, ונאמן אותן בעזרת אלגוריתם הגרדיאנט ושיטה המכונה **back-propogation**.
+אנו נשתמש ברשתות אלו כמודל, ונאמן אותן בעזרת אלגוריתם הגרדיאנט ושיטה המכונה **back-propagation**.
 
 </section><section markdown="1">
 
-### Back-Propogation
+### Back-Propagation
 
 #### ייצוג פונקציה גרף - דוגמא
 
@@ -256,7 +255,7 @@ Hyperparameters:
 
 ## תרגילים
 
-#### תרגיל 9.1 - Back propogation
+#### תרגיל 9.1 - Back propagation
 
 נתונה הפונקציה הבאה:
 
@@ -308,7 +307,7 @@ Backward pass:
 
 </section><section markdown="1">
 
-#### תרגיל 9.2 - Back propogation in MLP
+#### תרגיל 9.2 - Back propagation in MLP
 
 נתונה רשת מסוג MLP בעלת שתי כניסות, $$x_1,x_2$$, שכבה נסתרת אחת המכילה 2 נוירונים ושתי יציאות $$\hat{y}_1,\hat{y}_2$$. פונקציית האקטיבציה ברשת זו הינה הפונקציה הלוגיסטית ($$\varphi\left(x\right)=\frac{1}{1+e^{-x}}$$). בנוסף נתון כי כל נוירונים בכל שכבה חולקים את אותו רכיב bias.
 
@@ -322,11 +321,11 @@ Backward pass:
 
 </section><section markdown="1">
 
-#### תרגיל 9.2 - Back propogation in MLP
+#### תרגיל 9.2 - Back propagation in MLP
 
 ![Network](./media/question_9_2_network.png){: width="1000px"}
 
-בעבור ערך התצפית $$\boldsymbol{x}=\left(0.05,0.1\right)^T$$ והתוויות $$\boldsymbol{y}=\left(0.01, 0.99\right)$$, השתמש בשיטת הback propogation על מנת לחשב את הגרטיאנט המקבל בעבור פרמטרי הרשת הבאים:
+בעבור ערך התצפית $$\boldsymbol{x}=\left(0.05,0.1\right)^T$$ והתוויות $$\boldsymbol{y}=\left(0.01, 0.99\right)$$, השתמש בשיטת הback propagation על מנת לחשב את הגרטיאנט המקבל בעבור פרמטרי הרשת הבאים:
 
 $$
 w_1=0.15 \\
@@ -487,7 +486,7 @@ $$
 ספיריות (או toolboxs) בעבור שפות תכנות קיימת אשר מפשטות מאד את תהליך הפיתוח של מערכות המבוססות על רשתות נוירונים. הן לרוב מציעות יכולות כגון:
 
 - מימוש של מגוון פונקציות נפוצות כגון פונקציות אקטיבציה וכלים לבניית רשתות.<br><br>
-- ביצוע back propogation באופן אוטומטי.<br><br>
+- ביצוע back propagation באופן אוטומטי.<br><br>
 - הרצת אלגומיתמי גרדינאט מתוחכמים.<br><br>
 - הרצת הרשתות והאופטימיזציה על GPU לשם האצה.<br><br>
 
@@ -515,7 +514,8 @@ $$
 
 <br><br>
 
-תרגול הקודם פתרנו את בעיית סיווג התאים הסרטניים בעזרת מודל של linear logistic regression.
+בתרגול הקודם פתרנו את בעיית סיווג התאים הסרטניים בעזרת מודל של linear logistic regression.
+
 
 <br><br>
 
@@ -523,17 +523,19 @@ $$
 
 </section><section markdown="1">
 
-### PyTorch - Logistic Regression
+## PyTorch - Logistic Regression - המשך
 
-הדרך הנפוצה לבניה והרצה של מודלים ורשתות בPyTorch היא על ידי הגדרת class יעודי לרשת שאיתו נרצה לעבוד. הדבר נעשה באופן הבא:
+בPyTorch בונים מודלים על ידי הגדרה של class חדש.
+
+הרשת הנל מתארת מודל linear logistic regresion (קומבינציה לינארית של 2 משתני כניסה, אשר מוזנים לsigmoid):
+
+<br>
 
 ```python
 ## Defining the network
 class Net(torch.nn.Module):
     def __init__(self):
-        ## The following line should appear in the begining of the __init__ function.
-        ## It is realted to inheretance issues and we will not elaborate on this here.
-        super(Net, self).__init__()
+        super(Net, self).__init__()  ## Ignore this line for now
 
         ## Defining some objects which will be used in the forward function.
         self.linear = torch.nn.Linear(2, 1)  ## A linear model with input of 2 and output of 1.
@@ -547,13 +549,17 @@ class Net(torch.nn.Module):
         return x
 ```
 
-הרשת הנל מתארת מודל של linear logistic regresion, המוצא הינו קומבינציה לינארית של 2 משתני כניסה, אשר מוזנים לsigmoid כפונקציית אקטיבציה. במימוש של פונקציה זו אנו עושים שימוש באובייקטים הבאים מהחבילה של PyTorch:
-
-- **torch.nn.Model**: אובייקט שממנו יש לרשת כאשר יוצרים רשת חדש בPyTorch. בקורס זה לא נרחיב על הנושא ונתייחס לצורה זו כאל תבנית שבה יש להשתמש.
-- **[torch.nn.Linear](https://pytorch.org/docs/stable/nn.html#linear)**: אובייקט אשר מבעת טרנספורמציה לינארית (לייתר דיוק אפינית) על וקטור כניסה מסיים.
+- **torch.nn.Model**: מודל בסיס שממנו יש לרשת בבניה של מודלים חדשים.
+- **[torch.nn.Linear](https://pytorch.org/docs/stable/nn.html#linear)**: אובייקט אשר מבעת טרנספורמציה לינארית (אפינית).
 - **[torch.nn.Sigmoid](https://pytorch.org/docs/stable/nn.html#sigmoid)** אובייקט הממש את פונקציית sigmoid.
 
+</section><section markdown="1">
+
+## PyTorch - Logistic Regression - המשך 2
+
 הקוד הבא עושה שימוש ברשת אשר הוגדרה לעיל, ומאמן אותה על מדגם נתון:
+
+<br>
 
 ```python
 def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
@@ -563,26 +569,28 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
     ## Initizalie the optimizer
     opt = torch.optim.SGD(net.parameters(), lr=alpha)
 
-    while True:
+    last_objective = None
+    objective = None
+    while (last_objective None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
+        last_objective = objective
+
         opt.zero_grad()
         prob = net(x_train)
         objective = loss_func(prob, y_train.float())  ## Forward pass
         objective.backward()  ## Backward pass
         opt.step()  ## Perform the update step
 
-        ## Check the stop criteria
-        if (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
-            break
-
-## Optimization parameters
-## =======================
 tol = 1e-7
 max_iter = 100000
 alpha = 1e-2
 
-net = Net().cuda()
+net = Net()
 basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
 ```
+
+</section><section markdown="1">
+
+## PyTorch - Logistic Regression - המשך 3
 
 - האובייקט של **[torch.nn.BCELoss](https://pytorch.org/docs/stable/nn.html#bceloss)** BCELoss מגדיר loss באופן הבא:
 
@@ -591,23 +599,34 @@ basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
   $$
 
   והוא שקול לפתרון המתקבל בשיטת MLE.
+
+<br>
+
 - האובייקט של **[torch.optim.SGD](https://pytorch.org/docs/stable/optim.html?highlight=sgd#torch.optim.SGD)** מגדיר את אלגוריתם האופטמיזציה ומקבל באיתחול את רשימת הפרמטרים שעליהם מבוצעת האופטימיזציה.
+
+</section><section markdown="1">
 
 #### תוצאה
 
-הסיכון המשוערך על סט הבחן הינו: 0.096. הגרף של פונקציית המטרה של האופטימיציזה כפונקציה של מספר האיטרציה הינו:
+הסיכון המשוערך על סט הבחן הינו: 0.096.
+
+הגרף של פונקציית המטרה של האופטימיציזה כפונקציה של מספר האיטרציה הינו:
+
+<br>
 
 ![Logistig regression loss](./media/wbc_logistic_loss.png)
 
+</section><section markdown="1">
+
 ### MLP
 
-ניתן כעת בקלות להרחיב מודל זה לMLP פשוט על ידי הוספה של שכבות נוספות. נוסיף שכבה נוספת של 2 נוירונים ונרה כיצד הדבר משפיע על התוצאות.
+ניתן כעת בקלות להרחיב מודל זה לMLP פשוט על ידי הוספה של שכבות נוספות. 
+
+נוסיף שכבה מוספת של 2 נוירונים:
 
 ```python
 class NetMLP(nn.Module):
     def __init__(self):
-        ## The following line should appear in the begining of the __init__ function.
-        ## It is realted to inheretance issues and we will not elaborate on this here.
         super(NetMLP, self).__init__()
 
         self.linear1 = nn.Linear(2, 2)  ## input: 2 feature, output: 2 features
@@ -627,16 +646,21 @@ class NetMLP(nn.Module):
         return x
 ```
 
+</section><section markdown="1">
+
 #### תוצאה
 
-הסיכון המשוערך על סט הבחן הינו: 0.07. הגרף של פונקציית המטרה של האופטימיציזה כפונקציה של מספר האיטרציה הינו:
+הסיכון המשוערך על סט הבחן הינו: 0.07.
+
+<div style="display:grid;grid-template-columns:50% 50%"><div style="grid-column:1/2" markdown="1">
+הגרף האופטימיזציה נראה כך:
 
 ![MLP loss](./media/wbc_mlp_loss.png)
-
+</div><div style="grid-column:2/2;" markdown="1">
 כלל החלטה נראה כך:
 
-The test risk is: $$0.07$$
-
 ![MLP loss](./media/wbc_mlp.png)
+</div></div>
+
 
 </section>
