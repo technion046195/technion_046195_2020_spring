@@ -323,22 +323,27 @@ Backward pass:
 
 #### תרגיל 9.2 - Back propagation in MLP
 
-![Network](./media/question_9_2_network.png){: width="1000px"}
+![Network](./media/question_9_2_network.png){: width="800px"}
 
-בעבור ערך התצפית $$\boldsymbol{x}=\left(0.05,0.1\right)^T$$ והתוויות $$\boldsymbol{y}=\left(0.01, 0.99\right)$$, השתמש בשיטת הback propagation על מנת לחשב את הגרטיאנט המקבל בעבור פרמטרי הרשת הבאים:
+בעבור ערך התצפית $$\boldsymbol{x}=\left(0.05,0.1\right)^T$$ והתוויות $$\boldsymbol{y}=\left(0.01, 0.99\right)$$, השתמש בשיטת הback propagation על מנת לחשב את הגרדיאנט המקבל בעבור פרמטרי הרשת הבאים:
 
+<div style="display:grid;grid-template-columns:50% 50%"><div style="grid-column:1/2" markdown="1">
 $$
-w_1=0.15 \\
-w_2=0.2 \\
-w_3=0.25 \\
-w_4=0.30 \\
-b_1=0.35 \\
 w_5=0.4 \\
 w_6=0.45 \\
 w_7=0.5 \\
 w_8=0.55 \\
 b_2=0.6
 $$
+</div><div style="grid-column:2/2;" markdown="1">
+$$
+w_1=0.15 \\
+w_2=0.2 \\
+w_3=0.25 \\
+w_4=0.30 \\
+b_1=0.35 \\
+$$
+</div></div>
 
 </section><section markdown="1">
 
