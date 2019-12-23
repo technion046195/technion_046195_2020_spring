@@ -12,6 +12,7 @@
 @font-face {
     font-family: Trashim;
     src: url("../lib/fonts/TrashimCLM-Bold.otf");
+    unicode-range: U+0590-05FF, U+FB1D-FB4F;
 }
 
 /* Hidden sections */

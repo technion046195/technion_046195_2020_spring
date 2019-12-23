@@ -1,6 +1,6 @@
 ---
 number: 9
-title: "MLP & Backpropogation"
+title: "MLP & Back propogation"
 hide: true
 ---
 
@@ -128,7 +128,7 @@ $$
 
 #### חישוב הנגזרות בעזרת הגרף
 
-![Graph values calculation](../../media/diagrams/networks/forward_calc.png){: width="700px"}
+![Function's graph](../../media/diagrams/networks/graph.png){: width="700px"}
 
 נשתמש בכלל השרשרת על מנת לרשום את הנגזרת של המוצא על פי הכניסות:
 
@@ -152,7 +152,7 @@ $$
 
 #### חישוב הנגזרות בעזרת הגרף - המשך
 
-![Graph values calculation](../../media/diagrams/networks/forward_calc.png){: width="700px"}
+![Function's graph](../../media/diagrams/networks/graph.png){: width="700px"}
 
 או באופן גרפי:
 
@@ -162,7 +162,7 @@ $$
 
 #### חישוב הנגזרות בעזרת הגרף - המשך 2
 
-![Graph values calculation](../../media/diagrams/networks/forward_calc.png){: width="700px"}
+![Function's graph](../../media/diagrams/networks/graph.png){: width="700px"}
 
 נאחד את כל החישובים הזהים:
 
@@ -172,19 +172,23 @@ $$
 
 #### חישוב הנגזרות בעזרת הגרף - המשך 3
 
-<div style="display:grid;grid-template-columns:50% 50%"><div style="grid-column:1/2" markdown="1">
-![Backwoard graph](../../media/diagrams/networks/back.png){: width="1000px"}
-</div><div style="grid-column:2/2;" markdown="1">
-![Graph values calculation](../../media/diagrams/networks/forward_calc.png){: width="1000px"}
-</div></div>
+![Function's graph](../../media/diagrams/networks/graph.png){: width="800px"}
+
+![Backwoard graph](../../media/diagrams/networks/back.png){: width="800px"}
 
 לשני הגרפים צורה זהה אך כיוון החישוב בהם הינו הפוך.
+
+</section><section markdown="1">
+
+#### חישוב הנגזרות בעזרת הגרף - המשך 3
 
 ניתן להפוך כל גרף של פונקציה להגרף של הנגזרת שלו באופן הבא:
 
 1. הופכים את כיוון הזרימה בגרף<br><br>
 2. מוסיפים כפל בנגזרת לכל יציאה מייחידת חישוב.<br><br>
 3. את יחידות החישוב המקוריות מחליפים בפעולת סכימה על הכניסות.
+
+![Backwoard graph](../../media/diagrams/networks/backward_replacment.png){: width="1000px"}
 
 </section><section markdown="1">
 
@@ -480,34 +484,48 @@ $$
 
 ### סביבות פיתוח - Deep Learning Frameworks
 
-עם הצמיחה בפופולריות של התחום של deep learning הופיעו מספר רב של סביבות פיתוח (frameworks). סביבות אלו מגיעות לרוב כספיריה (או toolbox) בעבור שפת תכנות קיימת. ספריות אלו מפשטות מאד את תהליך הפילוח של מערכות המבוססות על רשתות נוירונים. הם לרוב מציעות יכולות כגון:
+ספיריות (או toolboxs) בעבור שפות תכנות קיימת אשר מפשטות מאד את תהליך הפיתוח של מערכות המבוססות על רשתות נוירונים. הן לרוב מציעות יכולות כגון:
 
-- מימוש של מגוון פונקציות נפוצות כגון פונקציות אקטיבציה וכלים לבניית רשתות.
-- ביצוע back propogation באופן אוטומטי.
-- הרצת אלגומיתמי גרדינאט מתוחכמים.
-- הרצת הרשתות והאופטימיזציה על GPU לשם האצה.
+- מימוש של מגוון פונקציות נפוצות כגון פונקציות אקטיבציה וכלים לבניית רשתות.<br><br>
+- ביצוע back propogation באופן אוטומטי.<br><br>
+- הרצת אלגומיתמי גרדינאט מתוחכמים.<br><br>
+- הרצת הרשתות והאופטימיזציה על GPU לשם האצה.<br><br>
 
-מצורפת רשימה חלקית של סביבות שכאלה:
+</section><section markdown="1">
 
-- **[TensorFlow](https://www.tensorflow.org/)**: סיפריית Python אשר פותחה ומתוחזקת על ידי Google. כיום סביבת הפילוח הפופולרית ביותר.
+### סביבות פיתוח - Deep Learning Frameworks - המשך
 
-- **[PyTorch](https://pytorch.org/)**: ספרית Python נוספת אשר מבוססת על ספריה ישנה יותר הנקראת [Torch](http://torch.ch/) אשר נכתבה לשפה בשם [LUA](https://en.wikipedia.org/wiki/Lua_(programming_language)). הספריה מפותחת ומתוחזקת על ידי Facebook. ספריה זו מעט יותר צעירה וצוברת פופולריות בקצב מהיר. כיום פופולרית כמעט כמו TensorFlow.
+רשימה חלקית של סביבות שכאלה:
 
-- **[Caffe](https://caffe.berkeleyvision.org/) & [Caffe2](https://caffe2.ai/)**: ספריה מעט ישנה יותר בעל תמיכה ל C, C++, Pyhton ו Matlab. הספריה פותחה במקור בBerkley וכיום מתוחזקת על ידי פייסבוק. הפופולריות של ספריה זו הולך ופוחת בשנים האחרונות.
+- **[TensorFlow](https://www.tensorflow.org/)**: סיפריית Python. פותחה ומתוחזקת על ידי Google. כיום סביבת הפיתוח הפופולרית ביותר.
 
-- **[Keras](https://keras.io/)**: ספרית Python אשר נבנתה על גבי ספריות אחרות כגון TensorFlow ומציע ממשק יותר "ידידותי". ספריה זו יותר אבסטרקציה גבוהה יותר של תהליך התכנון והאימון של הרשת אך גם עקב כך גם מאשפרת פחות שליטה עך תהליך זה.
+- **[PyTorch](https://pytorch.org/)**: ספריית Python. מבוססת על ספריה הנקראת [Torch](http://torch.ch/) אשר נכתבה ל[LUA](https://en.wikipedia.org/wiki/Lua_(programחming_language)). מפותחת ומתוחזקת על ידי Facebook. יותר צעירה וצוברת פופולריות. כיום פופולרית כמעט כמו TensorFlow.
 
-- **[fast.ai](https://www.fast.ai/)**: סביבת פיתוח חדשה יחסית אשר עוטפת את PyTorch ומציעה יכולות נוספות והגדרות ברירת מחדל טובות יותר על מנת לייעל את תהליך התכנון והאימון של הרשתות. סביבה זו קיבלה תגובות חיוביות רבות בקהילת הdeep learning ומתחילה לאט לאט לצבור פופולריות.
+- **[Caffe](https://caffe.berkeleyvision.org/) & [Caffe2](https://caffe2.ai/)**: ספריה ישנה יותר. בעלת תמיכה ב C, C++, Pyhton ו Matlab. פותחה במקור בBerkley וכיום מתוחזקת על ידי פייסבוק. הפופולריות של ספריה זו הולך ופוחת בשנים האחרונות.
+
+- **[Keras](https://keras.io/)**: ספריית Python אשר נבנתה על גבי ספריות אחרות כגון TensorFlow ומציעה ממשק יותר "ידידותי", אך מאפשרת פחות שליטה.
+
+- **[fast.ai](https://www.fast.ai/)**: חדשה יחסית. עוטפת את PyTorch ומציעה יכולות נוספות והגדרות ברירת מחדל טובות יותר. קיבלה תגובות חיוביות רבות ומתחילה לצבור פופולריות.
 
 - **[Matlab](https://www.mathworks.com/help/deeplearning/getting-started-with-deep-learning-toolbox.html)**: לאחרונה, פרסמה MathWorks (החברה שכותבת את Matlab) Toolbox לעבודה עם רשתות ניורונים.
 
-בתרגול הבית הרטוב בקורס זה תתנסו בבניה ואימון של רשת בעזרת PyTorch. הבחירה לעבוד עם PyTorch הינה בעיקר בגלל הדמיון שלו לNum-Py אשר מאפשר התחלת עבודה מהירה ואינטואיטיבית.
+</section><section markdown="1">
 
-### PyTorch
+### PyTorch - Logistic Regression
 
-בתרגול זה נחזור לבעיית הסיווג של תאים סרטניים. אנו נשתמש בPyTorch על מנת לשחזר את הפתרון מהתרגול הקודם של מציאת מודל linear logistic regression אופטימאלי. לאחר מכן נרחיב את התפרון למודל של MLP.
+<br><br>
 
-הדרך הנכונה ביותר לבניה והרצה של רשתות בPyTorch היא על ידי הגדרת class יעודי לרשת שאיתה נרצה לעבוד. הדבר נעשה באופן הבא:
+תרגול הקודם פתרנו את בעיית סיווג התאים הסרטניים בעזרת מודל של linear logistic regression.
+
+<br><br>
+
+נשחזר כעת פיתרון זה על ידי שימוש בPyTorch, ולאחר מכן נרחיב את הפתרון למודל של MLP.
+
+</section><section markdown="1">
+
+### PyTorch - Logistic Regression
+
+הדרך הנפוצה לבניה והרצה של מודלים ורשתות בPyTorch היא על ידי הגדרת class יעודי לרשת שאיתו נרצה לעבוד. הדבר נעשה באופן הבא:
 
 ```python
 ## Defining the network
