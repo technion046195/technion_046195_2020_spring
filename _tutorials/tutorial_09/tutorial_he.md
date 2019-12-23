@@ -1,7 +1,6 @@
 ---
 number: 9
 title: "MLP & Back propogation"
-hide: true
 ---
 
 ## תיאוריה
@@ -332,16 +331,16 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
     ## Initizalie the optimizer
     opt = torch.optim.SGD(net.parameters(), lr=alpha)
 
-    while True:
+    last_objective = None
+    objective = None
+    while (last_objective None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
+        last_objective = objective
+
         opt.zero_grad()
         prob = net(x_train)
         objective = loss_func(prob, y_train.float())  ## Forward pass
         objective.backward()  ## Backward pass
         opt.step()  ## Perform the update step
-
-        ## Check the stop criteria
-        if (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
-            break
 
 ## Optimization parameters
 ## =======================
@@ -349,7 +348,7 @@ tol = 1e-7
 max_iter = 100000
 alpha = 1e-2
 
-net = Net().cuda()
+net = Net()
 basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
 ```
 
