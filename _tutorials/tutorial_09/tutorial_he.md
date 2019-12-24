@@ -265,7 +265,7 @@ $$
 1. נוירון בעל פונקציית הפעלה מסוג ReLU מייצג פונקציה רציפה ולינארית למקוטעין.
 2. כל הרכבה או סכימה של פונקציות רציפות ולינאריות למקוטעין יצרו תמיד פונקציה חדשה שגם היא רציפה ולינארית למקוטעין.
 
-בעזרת נוירונים מסוג ReLU נוכל רק לייצג פונקציות רציפות ולנאריות למקוטעין. מכיוון ש$$x^2$$ אינה לינארית אנו נוכל רק לקרב אותה אך לא לייצג אותה במדוייק.
+בעזרת נוירונים מסוג ReLU נוכל רק לייצג פונקציות רציפות ולנאריות למקוטעין. מכיוון ש$$x^2$$ אינה לינארית אנו נוכל רק לקרב אותה, אך לא לייצג אותה במדוייק.
 
 ## בעיה מעשית
 
@@ -275,7 +275,7 @@ $$
 
 - מימוש של מגוון פונקציות נפוצות כגון פונקציות אקטיבציה וכלים לבניית רשתות.
 - ביצוע back propagation באופן אוטומטי.
-- הרצת אלגומיתמי גרדינאט מתוחכמים.
+- הרצת אלגוריתמי גרדינאט מתוחכמים.
 - הרצת הרשתות והאופטימיזציה על GPU לשם האצה.
 
 מצורפת רשימה חלקית של סביבות שכאלה:
@@ -318,7 +318,7 @@ class Net(torch.nn.Module):
 הרשת הנל מתארת מודל של linear logistic regresion, המוצא הינו קומבינציה לינארית של 2 משתני כניסה, אשר מוזנים לsigmoid כפונקציית אקטיבציה. במימוש של פונקציה זו אנו עושים שימוש באובייקטים הבאים מהחבילה של PyTorch:
 
 - **torch.nn.Model**: אובייקט שממנו יש לרשת כאשר יוצרים רשת חדש בPyTorch. בקורס זה לא נרחיב על הנושא ונתייחס לצורה זו כאל תבנית שבה יש להשתמש.
-- **[torch.nn.Linear](https://pytorch.org/docs/stable/nn.html#linear)**: אובייקט אשר מבעת טרנספורמציה לינארית (לייתר דיוק אפינית) על וקטור כניסה מסיים.
+- **[torch.nn.Linear](https://pytorch.org/docs/stable/nn.html#linear)**: אובייקט אשר מבצע טרנספורמציה לינארית (לייתר דיוק אפינית) על וקטור כניסה מסיים.
 - **[torch.nn.Sigmoid](https://pytorch.org/docs/stable/nn.html#sigmoid)** אובייקט הממש את פונקציית sigmoid.
 
 הקוד הבא עושה שימוש ברשת אשר הוגדרה לעיל, ומאמן אותה על מדגם נתון:
@@ -333,12 +333,12 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
 
     last_objective = None
     objective = None
-    while (last_objective None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
+    while (last_objective is None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
         last_objective = objective
 
         opt.zero_grad()
-        prob = net(x_train)
-        objective = loss_func(prob, y_train.float())  ## Forward pass
+        prob = net(x_train)  ## Forward pass
+        objective = loss_func(prob, y_train.float())  ## Loss calculation
         objective.backward()  ## Backward pass
         opt.step()  ## Perform the update step
 
@@ -346,7 +346,7 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
 ## =======================
 tol = 1e-7
 max_iter = 100000
-alpha = 1e-2
+alpha = 1e-2  ## Learning rate
 
 net = Net()
 basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
@@ -363,7 +363,7 @@ basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
 
 #### תוצאה
 
-הסיכון המשוערך על סט הבחן הינו: 0.096. הגרף של פונקציית המטרה של האופטימיציזה כפונקציה של מספר האיטרציה הינו:
+הסיכון המשוערך על סט הבחן הינו: 0.097. הגרף של פונקציית המטרה של האופטימיציזה כפונקציה של מספר האיטרציה הינו:
 
 ![Logistig regression loss](./media/wbc_logistic_loss.png)
 

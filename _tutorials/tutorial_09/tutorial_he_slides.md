@@ -480,7 +480,7 @@ $$
 
 <br><br>
 
-מכיוון ש$$x^2$$ אינה לינארית אנו נוכל רק לקרב אותה אך לא לייצג אותה במדוייק.
+מכיוון ש$$x^2$$ אינה לינארית אנו נוכל רק לקרב אותה, אך לא לייצג אותה במדוייק.
 
 </section><section markdown="1">
 
@@ -492,7 +492,7 @@ $$
 
 - מימוש של מגוון פונקציות נפוצות כגון פונקציות אקטיבציה וכלים לבניית רשתות.<br><br>
 - ביצוע back propagation באופן אוטומטי.<br><br>
-- הרצת אלגומיתמי גרדינאט מתוחכמים.<br><br>
+- הרצת אלגוריתמי גרדינאט מתוחכמים.<br><br>
 - הרצת הרשתות והאופטימיזציה על GPU לשם האצה.<br><br>
 
 </section><section markdown="1">
@@ -576,7 +576,7 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
 
     last_objective = None
     objective = None
-    while (last_objective == None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
+    while (last_objective is None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
         last_objective = objective
 
         opt.zero_grad()
@@ -587,7 +587,7 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
 
 tol = 1e-7
 max_iter = 100000
-alpha = 1e-2 # Learning Rate
+alpha = 1e-2  ## Learning Rate
 
 net = Net()
 basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
@@ -613,7 +613,7 @@ basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
 
 #### תוצאה
 
-הסיכון המשוערך על סט הבחן הינו: 0.096.
+הסיכון המשוערך על סט הבחן הינו: 0.097.
 
 הגרף של פונקציית המטרה של האופטימיציזה כפונקציה של מספר האיטרציה הינו:
 
