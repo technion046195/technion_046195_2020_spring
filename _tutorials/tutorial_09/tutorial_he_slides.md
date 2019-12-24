@@ -67,6 +67,55 @@ $$
 
 </section><section markdown="1">
 
+### Multilayer Perceptron (MLP)
+
+![MLP](../../media/diagrams/networks/mlp.png){: width="800px"}
+
+<br>
+
+- אחת הארכיטקטורות הפשוטות ביותר הנמצאות בשימוש.<br><br>
+- הנוירונים מסודרים בשתייים או יותר שכבות (layers) (שכבת הכניסה לא נספרת).<br><br>
+- כל נוירון מוזן מ**כל** הנוריונים שבשכבה שלפניו. (**fully connected leyers**)<br><br>
+
+</section><section markdown="1">
+
+### Multilayer Perceptron (MLP) - המשך
+
+![MLP](../../media/diagrams/networks/mlp.png){: width="800px"}
+
+<div style="display:grid;grid-template-columns:50% 50%"><div style="grid-column:1/2" markdown="1">
+Hyperparameters:
+
+- מספר השכבות<br><br>
+- מספר הנוירונים בכל שכבה<br><br>
+- פונקציית האקטיבציה<br><br>
+
+</div><div style="grid-column:2/2;" markdown="1">
+פרמטרים:
+
+- המשקולות ואברי הbias בקומבינציה הלניארית.
+
+</div></div>
+
+</section><section markdown="1">
+
+### הערה חשובה!!!!
+
+<br><br>
+
+בבואנו להשתמש בארגוריתם הגרדיאנט אנו נהיה מעוניינים בחישוב הנגזרת של פונקציית ההפסד/סיכון על פי ה**פרמטרים** של הרשת (ולא על פי התצפיות $$x$$).
+
+</section><section markdown="1">
+
+### הערה נוספת לגבי שמות
+
+<br>
+
+1. במתמטיקה ובdeep learning השם **loss function** מתאר פונקציה כל שהיא שאותה אנו רוצים למזער (ולא בהכרח ה"כנס" על שגיאת החיזוי)<br><br><br><br><br>
+2. במתמטיקה **sigmoid** מתייחס לאוסף רחב של פונקצייות בעלות צורת S, בהקשר של deep learning, שם זה מתייחס לרוב לפונקציה הלוגיסטית.
+
+</section><section markdown="1">
+
 ### Back-Propagation
 
 #### ייצוג פונקציה גרף - דוגמא
@@ -201,55 +250,6 @@ $$
 - על מנת לחשב את הנגזרות עלינו לחשב את הערכים המקבלים בגרף המקורי.<br><br>
 - החישוב של הפונקציה המקורית נקרא הforward pass.<br><br>
 - החישוב של הנגזרות מתוך הגרך ההפוך נקרא הbackward pass.<br><br>
-
-</section><section markdown="1">
-
-### Multilayer Perceptron (MLP)
-
-![MLP](../../media/diagrams/networks/mlp.png){: width="800px"}
-
-<br>
-
-- אחת הארכיטקטורות הפשוטות ביותר הנמצאות בשימוש.<br><br>
-- הנוירונים מסודרים בשתייים או יותר שכבות (layers) (שכבת הכניסה לא נספרת).<br><br>
-- כל נוירון מוזן מ**כל** הנוריונים שבשכבה שלפניו. (**fully connected leyers**)<br><br>
-
-</section><section markdown="1">
-
-### Multilayer Perceptron (MLP) - המשך
-
-![MLP](../../media/diagrams/networks/mlp.png){: width="800px"}
-
-<div style="display:grid;grid-template-columns:50% 50%"><div style="grid-column:1/2" markdown="1">
-Hyperparameters:
-
-- מספר השכבות<br><br>
-- מספר הנוירונים בכל שכבה<br><br>
-- פונקציית האקטיבציה<br><br>
-
-</div><div style="grid-column:2/2;" markdown="1">
-פרמטרים:
-
-- המשקולות ואברי הbias בקומבינציה הלניארית.
-
-</div></div>
-
-</section><section markdown="1">
-
-### הערה חשובה!!!!
-
-<br><br>
-
-בבואנו להשתמש בארגוריתם הגרדיאנט אנו נהיה מעוניינים בחישוב הנגזרת של פונקציית ההפסד/סיכון על פי ה**פרמטרים** של הרשת (ולא על פי התצפיות $$x$$).
-
-</section><section markdown="1">
-
-### הערה נוספת לגבי שמות
-
-<br>
-
-1. במתמטיקה ובdeep learning השם **loss function** מתאר פונקציה כל שהיא שאותה אנו רוצים למזער (ולא בהכרח ה"כנס" על שגיאת החיזוי)<br><br><br><br><br>
-2. במתמטיקה **sigmoid** מתייחס לאוסף רחב של פונקצייות בעלות צורת S, בהקשר של deep learning, שם זה מתייחס לרוב לפונקציה הלוגיסטית.
 
 </section><section markdown="1">
 
