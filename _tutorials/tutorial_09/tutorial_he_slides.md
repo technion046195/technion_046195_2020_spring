@@ -555,7 +555,7 @@ class Net(torch.nn.Module):
 ```
 
 - **torch.nn.Model**: מודל בסיס שממנו יש לרשת בבניה של מודלים חדשים.
-- **[torch.nn.Linear](https://pytorch.org/docs/stable/nn.html#linear)**: אובייקט אשר מבעת טרנספורמציה לינארית (אפינית).
+- **[torch.nn.Linear](https://pytorch.org/docs/stable/nn.html#linear)**: אובייקט אשר מבצע טרנספורמציה לינארית (אפינית).
 - **[torch.nn.Sigmoid](https://pytorch.org/docs/stable/nn.html#sigmoid)** אובייקט הממש את פונקציית sigmoid.
 
 </section><section markdown="1">
@@ -576,18 +576,18 @@ def basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train):
 
     last_objective = None
     objective = None
-    while (last_objective None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
+    while (last_objective == None) or (torch.abs(objective - last_objective) < tol) or (i_iter == max_iter):
         last_objective = objective
 
         opt.zero_grad()
-        prob = net(x_train)
-        objective = loss_func(prob, y_train.float())  ## Forward pass
+        prob = net(x_train) ## Forward pass
+        objective = loss_func(prob, y_train.float())  ## Loss calculation
         objective.backward()  ## Backward pass
         opt.step()  ## Perform the update step
 
 tol = 1e-7
 max_iter = 100000
-alpha = 1e-2
+alpha = 1e-2 # Learning Rate
 
 net = Net()
 basic_gradient_decent(net, alpha, tol, max_iter, x_train, y_train)
