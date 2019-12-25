@@ -21,9 +21,11 @@ $$
 וקטור המשקולות של שכבת הקונבולציה $$\boldsymbol{w}$$ נקרא **גרעין הקונבולוציה (convolution kernel)** 
  
 **הערה:**
-הפעולה היא **לא** פעולת קונבולציה: $$\boldsymbol{y}\left[n\right]=\sum_{m=0}^{K-1} \boldsymbol{x}\left[n-m\right]\boldsymbol{w}\left[m\right]$$
+הפעולה היא **לא** פעולת קונבולציה כפי שאתם מכירים: $$\boldsymbol{y}\left[n\right]=\sum_{m=0}^{K-1} \boldsymbol{x}\left[n-m\right]\boldsymbol{w}\left[m\right]$$
+
+![png](figs/conv_layer.png)
   
-<center><img src="/figs/conv_layer.png" width="300px" style="width:300px"/></center>
+<center><img src="conv_layer.png" width="300px" style="width:300px"/></center>
 
 Note that this structure resembles the fully connected layer, except for two main differences:
 
@@ -43,7 +45,7 @@ As stated before, the convolutional layer uses the spatial structure of the inpu
 
 A more common way to plot the convolutional layer is as follow:
 
-<center><img src="../media/diagrams/networks/conv_layer.gif?3" height="250px" style="height:250px"/></center>
+<center><img src="figs/conv_layer.gif?3" height="250px" style="height:250px"/></center>
 
 Where $$h\left(\boldsymbol{z}\right)=\boldsymbol{w}^T\boldsymbol{z}=w_1z_1+w_2z_3+w_4z_5$$.
 
