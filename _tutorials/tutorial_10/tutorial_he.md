@@ -7,27 +7,23 @@ title: "CNN"
 
 אחת מהתכונות של רשת Fully Connected MLP היא חוסר רגישות לסדר בכניסות לרשת. תכונה זאת נרכשת משום שכל היחידות בכל שכבה מחוברות לכל היחידות בשכבה העוקבת. במקרים רבים תכונה זאת נדרשת אך עולה במספר רב של פרמטרים.
 
-נתונה רשת קונבולוציה קטנה, הממירה תמונה בגודל 13×13 לווקטור מוצא בגודל 4×1. הרשת מורכבת מהפעולות הבאות: משכבות קונבולוציה עם 3 פילטרים ללא אקטיבציה, max-pooling, Relu כפונקציית אקטיבציה ו Fully-connected (FC) בסוף. ברשת זאת אין שימוש בפרמטר חופשי -bias .נתונה רשת קונבולוציה קטנה, הממירה תמונה בגודל 13×13 לווקטור מוצא בגודל 4×1. הרשת מורכבת מהפעולות הבאות: משכבות קונבולוציה עם 3 פילטרים ללא אקטיבציה, max-pooling, Relu כפונקציית אקטיבציה ו Fully-connected (FC) בסוף. ברשת זאת אין שימוש בפרמטר חופשי -bias .
+לכן במקרים בהם לכניסות לרשת (data) יש מבנה או תלות מרחבית, כלומר יש משמעות לסדר של הכניסות, נרצה לנצל את ההיתרון המרחבי של הכניסות בזמן קביעת ארכיטקטורת הרשת. דוגמא לסוג כזה של מידע היא תמונות.
 
-
-One of the properties of the MLP model is that it is insensitive to the ordering of the input data. This is due to the fact that it uses fully connected layers, in which all data points are connected to all other data points. In many cases, this is a desired property, but it comes at the price of having a very high number of parameters.
-
-Therefore, in cases where the data has some spatial structure to it, where the data is stored in a meaningful order, we would like to take advantage of this spatial structure when designing the network's architecture. An example of such spatially structured data are images, which are stored as a 2D array of pixels.
-
-Convolutional Neural Networks are feed-forward ANN, which tries to make use of this property by using spatial aware layers such as convolutional layers.
+רשת קונבולציה היא רשת feed-forward בעלת ארכיטקטורה אשר מנצלת את התלות המרחבית בכניסות לכל שכבה.
 
 ## 1D Convolutional Layer
-
-The 1D convolutional layer performs a cross-correlation operation between an input vector $$\boldsymbol{x}$$ and a vector of parameters $$\boldsymbol{w}$$ of length $$K$$:
+קונבולוציה חד-ממדית מבצעת פעולת קרוס קורלציה בין שני ווקטורים, וקטור הכניסות $$\boldsymbol{x}$$ ווקטור המשקולות $$\boldsymbol{w}$$ באורך $$K$$: 
 
 $$
 \boldsymbol{y}\left[n\right]=\sum_{m=0}^{K-1} \boldsymbol{x}\left[n+m\right]\boldsymbol{w}\left[m\right]
 $$
 
-The vector $$\boldsymbol{w}$$ is usually known as the **convolution kernel** or the layer's weights, and is usually a short vector of length no longer than 7.
-
-Graphically this operation can be drawn as so:
-<center><img src="../media/diagrams/networks/conv_layer.png" width="300px" style="width:300px"/></center>
+וקטור המשקולות של שכבת הקונבולציה $$\boldsymbol{w}$$ נקרא **גרעין הקונבולוציה (convolution kernel)** 
+ 
+**הערה:**
+הפעולה היא **לא** פעולת קונבולציה: $$\boldsymbol{y}\left[n\right]=\sum_{m=0}^{K-1} \boldsymbol{x}\left[n-m\right]\boldsymbol{w}\left[m\right]$$
+  
+<center><img src="/figs/conv_layer.png" width="300px" style="width:300px"/></center>
 
 Note that this structure resembles the fully connected layer, except for two main differences:
 
