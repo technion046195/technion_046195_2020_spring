@@ -22,10 +22,9 @@ $$
  
 **הערה:**
 הפעולה היא **לא** פעולת קונבולציה כפי שאתם מכירים: $$\boldsymbol{y}\left[n\right]=\sum_{m=0}^{K-1} \boldsymbol{x}\left[n-m\right]\boldsymbol{w}\left[m\right]$$
-
 ![png](figs/conv_layer.png)
-  
-<center><img src="conv_layer.png" width="300px" style="width:300px"/></center>
+<center><img src="./figs/conv_layer.png" width="300px" style="width:300px"/></center>
+
 
 Note that this structure resembles the fully connected layer, except for two main differences:
 
