@@ -7,6 +7,8 @@ title: "CNN"
 
 אחת מהתכונות של רשת Fully Connected MLP היא חוסר רגישות לסדר בכניסות לרשת. תכונה זאת נרכשת משום שכל היחידות בכל שכבה מחוברות לכל היחידות בשכבה העוקבת. במקרים רבים תכונה זאת נדרשת אך עולה במספר רב של פרמטרים.
 
+נתונה רשת קונבולוציה קטנה, הממירה תמונה בגודל 13×13 לווקטור מוצא בגודל 4×1. הרשת מורכבת מהפעולות הבאות: משכבות קונבולוציה עם 3 פילטרים ללא אקטיבציה, max-pooling, Relu כפונקציית אקטיבציה ו Fully-connected (FC) בסוף. ברשת זאת אין שימוש בפרמטר חופשי -bias .נתונה רשת קונבולוציה קטנה, הממירה תמונה בגודל 13×13 לווקטור מוצא בגודל 4×1. הרשת מורכבת מהפעולות הבאות: משכבות קונבולוציה עם 3 פילטרים ללא אקטיבציה, max-pooling, Relu כפונקציית אקטיבציה ו Fully-connected (FC) בסוף. ברשת זאת אין שימוש בפרמטר חופשי -bias .
+
 
 One of the properties of the MLP model is that it is insensitive to the ordering of the input data. This is due to the fact that it uses fully connected layers, in which all data points are connected to all other data points. In many cases, this is a desired property, but it comes at the price of having a very high number of parameters.
 
