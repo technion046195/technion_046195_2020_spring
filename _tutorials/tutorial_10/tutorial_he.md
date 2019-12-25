@@ -5,7 +5,7 @@ title: "CNN"
 {% raw %}
 ## Convolutional Neural Networks (CNN) - רשתות קונבולוציה
 
-אחת מהתכונות של רשת Fully Connected MLP היא חוסר רגישות לסדר בכניסות לרשת. תכונה זאת נרכשת משום שכל היחידות בכל שכבה מחוברות לכל היחידות בשכבה העוקבת. במקרים רבים תכונה זאת נדרשת אך עולה במספר רב של פרמטרים.
+אחת מהתכונות של רשת Fully Connected (FC) MLP היא חוסר רגישות לסדר בכניסות לרשת. תכונה זאת נרכשת משום שכל היחידות בכל שכבה מחוברות לכל היחידות בשכבה העוקבת. במקרים רבים תכונה זאת נדרשת אך עולה במספר רב של פרמטרים.
 
 לכן במקרים בהם לכניסות לרשת (data) יש מבנה או תלות מרחבית, כלומר יש משמעות לסדר של הכניסות, נרצה לנצל את ההיתרון המרחבי של הכניסות בזמן קביעת ארכיטקטורת הרשת. דוגמא לסוג כזה של מידע היא תמונות.
 
@@ -22,41 +22,32 @@ $$
  
 **הערה:**
 הפעולה היא **לא** פעולת קונבולציה כפי שאתם מכירים: $$\boldsymbol{y}\left[n\right]=\sum_{m=0}^{K-1} \boldsymbol{x}\left[n-m\right]\boldsymbol{w}\left[m\right]$$
+
 ![png](figs/conv_layer.png)
-<center><img src="./figs/conv_layer.png" width="300px" style="width:300px"/></center>
+
+[ <center><img src="./figs/conv_layer.png" width="300px" style="width:300px"/></center> ]
+
+נשים לב להבדלים מרשת FC:
+
+1. היציאות מחוברות לחלק מהכניסות, כאשר הכניסות קרובות אחת לשניה
+2. כל היציאות מופקות מאותן משקולות
+
+ההנחות שמובילות לארכיטקטורה זאת:
+- הקשר בין כניסות קרובות הוא יותר חזק ומשמעותי מאשר כניסות רחוקות.
+-  אזורים מקומיים במידע חולקים את אותם מאפיינים מקומיים משותפים, כך שלאזורים שונים יש מאפיינים שונים.
+
+שכבת קונבולוציה מורידה באופן דרסטי את מס' במשקולות לעומת שכבת FC. בשכבת FC קיימות $$N_\text{inputs}\times N_\text{outputs}$$ משקולות בעוד שלשכבת קונבולציה יש $$K$$ משקולות.
+
+דרך נוספת להצגת שכבת קונבולוציה:
+
+![Alt Text](figs/conv_layer.gif)
+
+[<center><img src="figs/conv_layer.gif?3" height="250px" style="height:250px"/></center>]
+
+כאשר:  $$h\left(\boldsymbol{z}\right)=\boldsymbol{w}^T\boldsymbol{z}=w_1z_1+w_2z_2+w_3z_5+b$$, ו- $$b$$ היינו איבר ההסט.
 
 
-Note that this structure resembles the fully connected layer, except for two main differences:
-
-1. Each output is only connected to a subset of the inputs which are within all in a finite range from one another.
-
-2. All outputs are generated using the same weights.
-
-These two differences are usually related to the following two properties of the input data:
-
-- The relation between data points located close to one another by is more significant than the relation between far away data points.
-
-- Small local areas in different regions of the data, share some common properties.
-
-These two differences significantly reduce the number of parameters of the layer. While a fully connected layer would have $$N_\text{inputs}\times N_\text{outputs}$$ parameters, which can usually be very large, the convolutional layer has only $$K$$ parameters.
-
-As stated before, the convolutional layer uses the spatial structure of the input data to reduce the number of the network's parameters significantly.
-
-A more common way to plot the convolutional layer is as follow:
-
-<center><img src="figs/conv_layer.gif?3" height="250px" style="height:250px"/></center>
-
-Where $$h\left(\boldsymbol{z}\right)=\boldsymbol{w}^T\boldsymbol{z}=w_1z_1+w_2z_3+w_4z_5$$.
-
-We will usually also add an additional offset term $$b$$, commonly knows as the bias, to the function $$h$$ to get the following function:
-
-$$
-h\left(\boldsymbol{z}\right)=\boldsymbol{w}^T\boldsymbol{z} + b
-$$
-
-The bias term is an additional parameter of the layer.
-
-## Activation (Non-Linear) Layers
+## אקטיבציה לא לינארית 
 
 As the same as in the case of the MLP, we would usually want to have an activation function (a non-linear function) following the linear layers. The most common activation function used in CNNs is the ReLU (Rectified Linear Unit) function: $$\varphi\left(x\right)=\max\left(x,0\right)$$.
 <center><img src="../media/other/relu.png" width="250px" style="width:250px"/></center>
