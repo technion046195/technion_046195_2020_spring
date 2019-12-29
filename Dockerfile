@@ -8,7 +8,7 @@ RUN apt-get update && \
         locales \
         && \
     rm -rf /var/lib/apt/lists/*
-RUN gem install bundler
+RUN gem install bundler -v 2.0.2
 
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen
