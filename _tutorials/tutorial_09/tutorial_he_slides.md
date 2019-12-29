@@ -667,5 +667,4 @@ class NetMLP(nn.Module):
 ![MLP loss](./media/wbc_mlp.png)
 </div></div>
 
-
 </section>
