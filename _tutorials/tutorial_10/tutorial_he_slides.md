@@ -311,11 +311,11 @@ $$
 
 א) הrecptive field של שלוש שכבות קונבולוציה $$3\times 3$$ הינו $$7\times 7$$:
 
-![First convilution](Q2a.png)
+![First convilution](./media/question_10_2_a.png)
 
-![Second convilution](Q2b.png)
+![Second convilution](./media/question_10_2_b.png)
 
-![Third convilution](Q2c.png)
+![Third convilution](./media/question_10_2_c.png)
 
 </section><section markdown="1">
 
@@ -354,7 +354,7 @@ $$
 
 ## סכמות אתחול
 
-### מוטיבציה
+#### מוטיבציה
 
 ראינו בתרגול 8 שבחירה לא טובה של האתחול יכולה להוביל לכך שפונקציית האקטיבציה תהיה ברוויה והעדכון של המשקולות יהיה איטי ולא אפקטיבי:
 
@@ -367,57 +367,111 @@ $$
 
 ## סכמות אתחול
 
-![png](init_1.png){: width="500px"}
+![initilization 1](./media/init_1.png){: width="700px"}
 
-![png](init_2.png){: width="500px"}
+![initilization 2](./media/init_2.png){: width="700px"}
 
-- ניתן לראות באיורים כי האות לא מפעפע בצורה טובה דרך הרשת:
-    - באיור הראשון אנו רואים כי ככל שמתקדמים לעומק הרשת האקטיבציות דועכות, כלומר, יש יותר אקטיבציות עם ערכים מאוד קרובים לאפס.
-    - באיור השני אנו רואים את הבעיה של vanishing gradients שלמדנו בתרגול הקודם.
-    
-</section><section markdown="1">
-
-### המטרה:
+בגרפים אלו ניתן לראות את הבעיה של הvanishing gradients.
 
 נרצה למצוא אתחול טוב של המשקולות אשר יאפשר לאות לפעפע דרך הרשת בצורה טובה.
+
+</section><section markdown="1">
 
 #### תרגיל 10.3
 
 בשאלה זו נרצה למצוא סכמת אתחול עבור משקולות הרשת. לשם כך, נתחיל מלבחון נוירון ליניארי בודד.
 
-![png](Q3_1.png)
-
-**הערה**: אם הממוצע של המוצא $$v$$ הוא 0 והשונות נשארת קבועה בין שכבות (לא דועכת או מתפוצצת) – אין התפוצצות או העלמות של האות לאורך הרשת. לכן, בסעיפים הבאים נתעניין בחישוב הממוצע והשונות של המוצא $$v$$.
- ספציפית: נרצה להראות כי $$Ev=0$$ ואז לחשב את השונות של המוצא על מנת לראות מה עלינו לדרוש על אתחול המשקולות על מנת להבטיח כי שונות המוצא תישאר קבועה לאורך הרשת.
-
-</section><section markdown="1">
-
-#### תרגיל 10.3
+![Graph](./media/question_10_3_1.png)
 
 **א)** נניח כי כל רכיבי המשקולות וכל רכיבי הכניסה הם משתנים אקראיים IID. בנוסף, נניח כי התפלגות המשקולות סימטרית סביב 0.
 
-1. חשבו את התוחלת של המוצא v כתלות בתוחלות של המשקולות והכניסה. בפרט, הראו כי $$Ev=0$$.
-2. הראו כי לכל זוג משתנים אקראיים בלתי תלויים $$w_i,x_i$$ מתקיים:
-$$ Var(w_i x_i )=(Ew_i )^2 Var(x_i )+(Ex_i )^2 Var(w_i )+Var(x_i )Var(w_i ) \quad (*) $$
-3. כעת, נניח כי לכל $$i$$: $$Ex_i=0$$ (בסעיף הבא נראה הצדקה להנחה זו).
-השתמשו בנוסחה מהסעיף הקודם על מנת לבטא את השונות של $$v$$ באמצעות השונות של $$x_1,w_1$$.
-4. כיצד ניתן לשמור על השונות של המוצא v זהה לשונות של כל אחת מרכיבי הכניסה $$x_i$$?
+</section><section markdown="1">
+
+#### תרגיל 10.3 א
+
+1) חשבו את התוחלת של המוצא $$v$$ כתלות בתוחלות של המשקולות והכניסה. בפרט, הראו כי $$\mathbb{E}\left[v\right]=0$$.
+
+<br>
+
+##### פתרון:
+
+$$\mathbb{E}\left[v\right]=\mathbb{E}\left[w_1 x_1+w_2 x_2+⋯+w_n x_n\right]=n\mathbb{E}\left[w_1 x_1\right]=n\mathbb{E}\left[w_1\right]\mathbb{E}\left[x_1\right]=0$$
 
 </section><section markdown="1">
 
-#### תרגיל 10.3
+#### תרגיל 10.3 א - המשך
+
+2) הראו כי לכל זוג משתנים אקראיים בלתי תלויים $$x,y$$ מתקיים:
+
+$$\text{Var}\left(xy\right)=\mathbb{E}\left[x\right]^2\text{Var}\left(y\right)+\mathbb{E}\left[y\right]^2\text{Var}\left(x\right)+\text{Var}\left(x\right)\text{Var}\left(y\right)$$
+
+<br>
+
+##### פתרון:
+
+נעזר בקשר $$\text{Var}\left(z\right)=\mathbb{E}\left[z^2\right]-\mathbb{E}\left[z\right]^2$$:
+
+$$
+\begin{aligned}
+\text{Var}\left(xy\right)
+& = \mathbb{E}\left[x^2y^2\right]-\mathbb{E}\left[xy\right]^2 \\
+& = \mathbb{E}\left[x^2\right]\mathbb{E}\left[y^2\right]-\mathbb{E}\left[x\right]^2\mathbb{E}\left[y\right]^2 \\
+& = \left(\mathbb{E}\left[x^2\right]-\mathbb{E}\left[x\right]^2+\mathbb{E}\left[x\right]^2\right)\left(\mathbb{E}\left[y^2\right]-\mathbb{E}\left[y\right]^2+\mathbb{E}\left[y\right]^2\right)-\mathbb{E}\left[x\right]^2\mathbb{E}\left[y\right]^2 \\
+& = \left(\text{Var}\left(x\right)+\mathbb{E}\left[x\right]^2\right)\left(\text{Var}\left(y\right)+\mathbb{E}\left[y\right]^2\right)-\mathbb{E}\left[x\right]^2\mathbb{E}\left[y\right]^2 \\
+& = \text{Var}\left(x\right)\text{Var}\left(y\right)+\text{Var}\left(x\right)\mathbb{E}\left[y\right]^2+\text{Var}\left(y\right)\mathbb{E}\left[x\right]^2 \\
+\end{aligned} \\
+$$
+
+</section><section markdown="1">
+
+#### תרגיל 10.3 א - המשך 2
+
+3) כעת, נניח כי לכל $$i$$: $$\mathbb{E}\left[x_i\right]=0$$ (בסעיף הבא נראה הצדקה להנחה זו). השתמשו בנוסחה מהסעיף הקודם על מנת לבטא את השונות של $$v$$ באמצעות השונות של $$x_1,w_1$$.
+
+<br>
+
+##### פתרון:
+
+תחת ההנחה כי התוחלות של המשקולות ושל הכניסה הן 0, הנוסחה שהוכחנו בסעיף הקודם מצטמצמת ל$$\text{Var}\left(w_ix_i\right)=\text{Var}\left(x_i\right)\text{Var}\left(w_i\right)$$. בנוסף, עבור מוצא הניורון $$v$$ ניתן לכתוב:
+
+$$
+v=w_1 x_1+w_2 x_2+\cdots+w_n x_n
+$$
+
+מכיוון שהנחנו שכל המשתנים מפולגים IID נקבל:
+
+$$
+\text{Var}\left(v\right)=n\text{Var}\left(w_1 x_1\right)=n\text{Var}\left(w_1\right)\text{Var}\left(x_1\right)
+$$
+
+</section><section markdown="1">
+
+#### תרגיל 10.3 א - המשך 3
+
+4) כיצד ניתן לשמור על השונות של המוצא $$v$$ זהה לשונות של כל אחת מרכיבי הכניסה $$x_i$$?
+
+<br>
+
+##### פתרון:
+
+קיבלנו בסעיף הקודם כי שונות המוצא הוא שונות הכניסה מוכפל בפקטור של $$n\text{Var}\left(w_i\right)$$ כאשר $$n$$ הוא מספר הניורונים המוזנים לניורון. לכן, על מנת לשמור על שונות זהה בין כניסה למוצא נבחר את אתחול המשקולות כך שיתקיים:
+
+$$
+\text{Var}\left(w_i\right)= \frac{1}{n}
+$$
+
+</section><section markdown="1">
+
+#### תרגיל 10.3 -המשך
 
 **ב)** כעת, נרצה להרחיב את הסכמה לנוירונים **לא ליניאריים**:
 
-![png](Q3_2.png)
+![Graph](./media/question_10_3_2.png)
 
-כלומר, כעת מתקיים כי $$x_i=\sigma(y_i ), \forall i=1, \dots,n$$
-כאשר $$sigma (\cdot)\$$  (היא פונקציית האקטיבציה ו-
-$$v=w_1 x_1+w_2 x_2+⋯+w_n x_n$$
-
-אנו נניח כי ניורון זה הוא חלק מרשת עמוקה, כלומר, נניח כי $$y_1,\dots,y_n$$ הם המוצאים של ניורונים מהשכבה הקודמת ברשת.
-**הערה:** בסעיף הבא נראה כי התוחלת של המוצא איננה 0 עבור אחת מהאקטיבציות שלמדנו בקורס. עם זאת, נראה כי הממוצע לפני האקטיבציה, כלומר, הממוצע של $$y_i$$,
- הוא עדיין 0 לכל i. לכן, אין לנו בעיה של התפוצצות הממוצע $$\leftarrow$$ אם השונות נשארת קבועה בין שכבות (לא דועכת או מתפוצצת) – אין התפוצצות או העלמות של האות לאורך הרשת.
+- כעת מתקיים כי $$x_i=\sigma\left(y_i\right), \forall i=1, \dots,n$$
+- $$\sigma\left(\cdot\right)\$$ היא פונקציית האקטיבציה.
+- $$v=w_1 x_1+w_2 x_2+\cdots+w_n x_n$$
+- $$y_1,\dots,y_n$$ הם המוצאים של ניורונים מהשכבה הקודמת ברשת.
 
 </section><section markdown="1">
 
@@ -432,217 +486,130 @@ $$v=w_1 x_1+w_2 x_2+⋯+w_n x_n$$
 
 </section><section markdown="1">
 
-#### תרגיל 10.3
+#### תרגיל 10.3 ב
 
-## פתרון:
+1) לאילו מפונקציות האקטיבציה הבאות: sigmoid, tahn ו-ReLU, ההנחה $$\mathbb{E}\left[x_i\right]=0$$ שביצענו בסעיף הקודם היא עדיין הנחה "סבירה"? תזכורת:
 
-**א.**
-
-1.
-
-  $$
-  Ev=E[w_1 x_1+w_2 x_2+⋯+w_n x_n ]=nE[w_1 x_1 ]=nE[w_1 ]E[x_1 ]=0
-  $$
+![Activation function](./media/question_10_3_3.png){: width="700px"}
 
 </section><section markdown="1">
 
-#### תרגיל 10.3
+#### תרגיל 10.3 ב1
 
-## פתרון:
+##### פתרון:
 
-**א.**
+אם התפלגות המשקולות סימטרית סביב 0, נקבל כי התפלגות $$y_i$$ סימטרית סביב 0 לכל $$i$$. לכן, ההנחה עדיין סבירה עבור tanh אך לא עבור ReLU וsigmoid. עבור tanh נקבל:
+  
+$$
+\mathbb{E}\left[x\right]=\mathbb{E}\left[\sigma\left(y\right)\right]=\int_{-\infty}^{\infty} \sigma\left(y\right) f_Y\left(y\right)dy=0
+$$
 
-2.
-  נעזר בקשר $$Var(z)=Ez^2-(Ez)^2$$ שמתקיים עבור כל משתנה אקראי $$z$$ ובעובדה שנתון כי $$w_i,x_i$$  בלתי תלויים. נקבל באגף השמאלי של (*):
-
-  $$
-  (Ew_i )^2 Var(x_i )+(Ex_i )^2 Var(w_i )+Var(x_i )Var(w_i )
-  $$
-
-  $$
-  =(Ew_i )^2 (Ex_i^2-(Ex_i )^2 )+(Ex_i )^2 (Ew_i^2-(Ew_i )^2 )+(Ex_i^2-(Ex_i )^2 )(Ew_i^2-(Ew_i )^2 )
-  $$
-
-  $$
-  =(Ew_i )^2 Ex_i^2-(Ew_i )^2 (Ex_i )^2+(Ex_i )^2 Ew_i^2-(Ew_i )^2 (Ex_i )^2+Ew_i^2 Ex_i^2
-        -(Ew_i )^2 Ex_i^2-Ew_i^2 (Ex_i )^2+(Ew_i )^2 (Ex_i )^2
-  $$
-
-  $$
-  =Ew_i^2 Ex_i^2-(Ew_i )^2 (Ex_i )^2
-  $$
-
-  משילוב שתי התוצאות קיבלנו את התוצאה הרצויה:
-
-  $$
-  Var(w_i x_i )=(Ew_i )^2 Var(x_i )+(Ex_i )^2 Var(w_i )+Var(x_i )Var(w_i )
-  $$
+כאשר סימנו $$x=x_i,y=y_i$$.
 
 </section><section markdown="1">
 
-#### תרגיל 10.3
+#### תרגיל 10.3 ב - המשך
 
-## פתרון:
+2) כעת לא נניח דבר על התוחלת של $$x_i$$. כיצד ישתנה הביטוי של השונות של $$v$$ מסעיף א.3?
 
-**א.**
+##### פתרון:
 
-3.
-  תחת ההנחה כי התוחלות של המשקולות ושל הכניסה הן 0, הנוסחה שהוכחנו בסעיף הקודם מצטמצמת ל-
-  $$
-  Var(w_i x_i )=Var(x_i )Var(w_i )
-  $$
-  בנוסף, עבור מוצא הניורון v ניתן לכתוב:
-  $$
-  v=w_1 x_1+w_2 x_2+⋯+w_n x_n
-  $$<br><br>
-  מכיוון שהנחנו שכל המשתנים מפולגים IID נקבל:
-  $$
-  Var(v)=nVar(w_1 x_1 )=nVar(w_1 )Var(x_1 )
-  $$
+משימוש בתוצאות הסעיפים הקודמים, נקבל:
+  
+$$
+\begin{aligned}
+\text{Var}\left(v\right)
+& = n\text{Var}\left(w_1 x_1\right) \\
+& = n\left(\mathbb{E}\left[w_1\right]^2 \text{Var}\left(x_1\right)+\mathbb{E}\left[x_1\right]^2\text{Var}\left(w_1\right)+\text{Var}\left(x_1\right)\text{Var}\left(w_1\right)\right) \\
+& = n\text{Var}\left(w_1\right)\left(\mathbb{E}\left[x_1\right]^2+\text{Var}\left(x_1\right)\right) \\
+& = n\text{Var}\left(w_1\right)\mathbb{E}\left[x_1^2\right]
+\end{aligned}
+$$
 
 </section><section markdown="1">
 
-#### תרגיל 10.3
+#### תרגיל 10.3 ב - המשך
 
-## פתרון:
+3) עבור פונקציית האקטיבציה ReLU, בטאו את השונות של $$v$$ באמצעות השונות של אחת הכניסות $$y_i$$. הניחו כי $$\text{Var}\left(y_1\right)=\text{Var}\left(y_2\right)=\cdots=\text{Var}\left(y_n\right)$$
 
-**א.**
+##### פתרון:
 
-4.
-  קיבלנו בסעיף הקודם כי שונות המוצא הוא שונות הכניסה מוכפל בפקטור של 
-  $$nVar(w_i )$$ כאשר $$n$$ הוא מספר הניורונים המוזנים לניורון. לכן, על מנת לשמור על שונות זהה בין כניסה למוצא נבחר את אתחול המשקולות כך שיתקיים:
-
-  $$
-  Var(w_i )= \frac{1}{n}
-  $$
+אם התפלגות המשקולות סימטרית סביב 0, נקבל כי התפלגות $$y_i$$ סימטרית סביב 0 לכל $$i$$. לכן, עבור פונקציית אקטיבציה ReLU נקבל:
+  
+$$
+\begin{align}
+\mathbb{E}\left[x_1^2\right]
+& = \mathbb{E}\left[\max\left(0,y_1\right)^2 \right] \\
+& = \int_{-\infty}^{\infty} \max\left(0,y_1\right)^2 f_Y\left(y\right)dy \\
+& = \int_{0}^{\infty} y_1^2 f_Y\left(y\right)dy \\
+& = \frac{1}{2}\int_{-\infty}^{\infty} y_1^2 f_Y\left(y\right)dy \\
+& = \frac{1}{2}\mathbb{E}\left[y_1^2\right] = \frac{1}{2}\text{Var}\left(y_1\right)
+\end{align}
+$$
 
 </section><section markdown="1">
 
-#### תרגיל 10.3
+#### תרגיל 10.3 ב - המשך
 
-## פתרון:
+נשלב את התוצאה יחד עם תוצאות הסעיפים הקודמים ונקבל:
 
-**ב.**
+$$
+\text{Var}\left(v\right)=n\text{Var}\left(w_1\right)\mathbb{E}\left[x_1^2\right]=\frac{n}{2}\text{Var}\left(w_1\right)\text{Var}\left(y_1\right)
+$$
 
-1.
-  אם התפלגות המשקולות סימטרית סביב 0, נקבל כי התפלגות $$y_i$$ סימטרית סביב 0 לכל $$i$$. לכן, ההנחה עדיין סבירה עבור tanh אך לא עבור ReLU וsigmoid, עבור tanh נקבל:
-  
-  $$
-  Ex=E[\sigma(y)]=\int_{-\infty}^{\infty} \sigma(y) f_Y (y)dy=0
-  $$
-  
-  כאשר סימנו $$x=x_i,y=y_i$$.
+לכן, על מנת לשמור על שונות זהה בין כניסה למוצא נבחר את אתחול המשקולות כך שיתקיים:
 
-</section><section markdown="1">
-
-#### תרגיל 10.3
-
-## פתרון:
-
-**ב.**
-
-2.
-  משימוש בתוצאות הסעיפים הקודמים, נקבל:
-  
-  $$
-  Var(v)=nVar(w_1 x_1 )=n((Ew_1 )^2 Var(x_1 )+(Ex_1 )^2 Var(w_1 )+Var(x_1 )Var(w_1 ))
-  $$
-  
-  $$
-  =nVar(w_1 )((Ex_1 )^2+Var(x_1 ))=nVar(w_1 )Ex_1^2
-  $$
-
-</section><section markdown="1">
-
-#### תרגיל 10.3
-
-## פתרון:
-
-**ב.**
-
-3.
-  אם התפלגות המשקולות סימטרית סביב 0, נקבל כי התפלגות $$y_i$$ סימטרית סביב 0 לכל $$i$$. לכן, עבור פונקציית אקטיבציה ReLU נקבל:
-  
-  $$
-  Ex_1^2=E((max ((0,y_1 ) )^2 ) = \int_{-\infty}^{\infty} (max (0,y_1 ) )^2 f_Y (y)dy
-  $$
-  
-  $$
-  =\int_{0}^{\infty} y_1^2 f_Y (y)dy = \frac{1}{2} \int_{-\infty}^{\infty} y_1^2 f_Y (y)dy = 1/2 Ey_1^2= \frac{1}{2} Var(y_1 )
-  $$
-  
-  נשלב את התוצאה יחד עם תוצאות הסעיפים הקודמים ונקבל:
-  
-  $$
-  Var(v)=nVar(w_1 )Ex_1^2= \frac{n}{2} Var(w_1 )Var(y_1 )
-  $$
-  
-  לכן, על מנת לשמור על שונות זהה בין כניסה למוצא נבחר את אתחול המשקולות כך שיתקיים:
-  
-  $$
-  Var(w_i )= \frac{2}{n}
-  $$
+$$
+\text{Var}\left(w_i\right)= \frac{2}{n}
+$$
 
 </section><section markdown="1">
 
 ## חלק מעשי
 
 ### LeNet-5
+
 בחלק זה נעבור על היישום המעשי הראשון של רשתות קונבולוציה. הארכיטקטורה זאת שימשה ב1998 ושימש לזהות ספרות בכתב יד על צק'ים במערכות בנקאיות.
-![Alt text](./media/lenet.gif)
+
+![LeNet results](./media/lenet.gif){: width="500px"}
 
 הרשת מקבלת תמונה רמת אפור בגודל 32x32 ומשתמש באריטקטורה הבאה על מנת להוציא וקטור פלט באורך 10 אשר מציג את הסבירות שהתמונה שייכת לכל אחת מ 10 הספרות.  
 
 </section><section markdown="1">
 
-###  אריכטקטורה
-![png](./media/lenet_arch.png){: width="100%"}
+#### אריכטקטורה
 
-אם לא צויין אחרת הארכיטקטורה לא עושה שימוש בריפוד ו-dilation. 
+![LeNet architecture](./media/lenet_arch.png){: width="100%"}
 
-- C1: Convolutional layer + ReLU activation: kernel size=5x5, output channels=6.
+<div dir="ltr" markdown="1">
+- C1: Conv + ReLU: kernel size=5x5, output channels=6.
 - S2: Max pooling layer: size=2x2, stride=2
-- C3: Convolutional layer + ReLU activation: kernel size=5x5, output channels=16.
+- C3: Conv + ReLU: kernel size=5x5, output channels=16.
 - S4: Max pooling layer: size=2x2, stride=2
-- C5: Convolutional layer + ReLU activation: kernel size=5x5, output channels=120. (this is, in fact, a fully connected layer)
+- C5: Conv + ReLU: kernel size=5x5, output channels=120.<br>(this is, in fact, a fully connected layer)
 - F6: Fully connected layer + ReLU: output vector length= 84
 - Output layer: Fully connected layer: output vector length=10
+</div>
 
-על מנת לייצג הסתברות שהתמונה שייכת לאחת מהמחלקות נעשה ביציאה שימוש בשכבת Softmax, שלא נרחיב עליה בקורס.
-
-</section><section markdown="1">
-
-### Dataset: MNIST
-.לאימון הרשת נעשה שימוש במאגר המידע MNIST. הוא סט פופולרי מאוד שנעשה בו שימוש נרחב עד היום. הסט מורכב 70000  תמונות בינאריות בגודל 28x28 של ספרות בכתב יד, מתוכן 10000 הינם בסט המבחן.
-
-
-ניתן להוריד את הסט מ
-[Yann LeCun's web site](http://yann.lecun.com/exdb/mnist/) 
- או לחילופין, ישרות מ -PyTorch
- [torchvision.datasets.MNIST](https://pytorch.org/docs/stable/torchvision/datasets.html#mnist)
- 
-</section><section markdown="1">
-
-### דוגמא מתוך המאגר 
-
-
-Number of rows in the train dataset: $$N=60000$$
-
-Number of rows in the test dataset: $$N=10000$$
-
-Image size: 28x28
-
-Pixels value range: [0.0, 1.0]
-
-![png](output_21_4.png)
+על מנת לייצג הסתברות נעשה ביציאה שימוש בשכבת Softmax.
 
 </section><section markdown="1">
 
-## 📜 הגדרת הבעיה 
+#### Dataset: MNIST
+
+לאימון הרשת נעשה שימוש במאגר המידע MNIST. הוא סט פופולרי מאוד שנעשה בו שימוש נרחב עד היום. הסט מורכב 70000  תמונות בינאריות בגודל 28x28 של ספרות בכתב יד, מתוכן 10000 הינם בסט המבחן.
+
+![mnist](output_21_4.png){: width="700px"}
+
+</section><section markdown="1">
+
+#### הגדרת הבעיה
 
 - המשתנים בבעיה:
   - תמונה בגודל 28x28 של סיפרה בכתב יד - $$x$$
   - ערך הסיפרה: \[0-9\] - $$y$$
+
+<br>
 
 המודל יהיה החזאי $$\hat{y}=h^*\left(\boldsymbol{x}\right)$$ שתפקידו למזעזר את פונקציית המחיר misclassification rate:
 
@@ -652,35 +619,33 @@ $$
 
 </section><section markdown="1">
 
-### 📚 חלוקה של מאגר המידע
+#### חלוקה של מאגר המידע
+
 משום שהמאגר המידע מחולק כבר לסט מבחן, כל מה שנותר לנו הוא לחלק את סט האימון לסט ולידציה וסט אימון.
 אין צורך לקחת סט ולידציה גדול משום שהרצת המודל על סט גדול דורשת הרבה משאבים, נקח סט קטן בגודל 1024 על מנת להעריך את ביצועי המודל בתהליך הלמידה באופן מהיר וחסכוני.
 
 </section><section markdown="1">
 
-## 💡 אלגוריתם למידה 
+### לימוד
 
-נשתמש באלגוריתם הגרדיאנט בגרסת ה-mini-batch, או בשמו stochastic gradient descent (SGD), המשמעות הסטוכנסטית היינה שהBatch מוגרל באופן אחיד מתך מאגר המידע.
-האלגוריתם ישמש למציאת משקולות הרשת להקטנת פונקצית המחיר.
+נשתמש באלגוריתם הגרדיאנט בגרסת ה-mini-batch, או בשמו stochastic gradient descent (SGD), המשמעות הסטוכנסטית היינה שהBatch מוגרל באופן אחיד מתך מאגר המידע. האלגוריתם ישמש למציאת משקולות הרשת להקטנת פונקצית המחיר.
 
 תזכורות: משקולות הרשת הינם המשקולות בגרעיני קונבולוציה, בשכבות FC ואיברי ההסט.
 
 </section><section markdown="1">
 
-### Hyper-parameters
+#### Hyper-parameters
 
 - הארכיטקטורה של הרשת, שבה לא נעשה כל שינוי.
 - אלגוריתם SDG:
   - גודל צעד הלימוד.
   - גודל הBatch, אשר אותו נשאיר קבוע בגודל 64.
-  - מס' מקסימלי של epochs. 
+  - מס' מקסימלי של epochs.
     epochs - מס המעברים על כל סט האימון
 
 </section><section markdown="1">
 
-## ⚙️ Learning
-
-### Selecting the Learning Rate
+#### בחירת גודל צעד הלימוד
 
 נבחן את השפעת גדלי צעד לימוד על תהליך הלימוד.
 נריץ את האלגוריתם למשך epoch אחד עם הגדלים הבאים: $$\alpha=10^{0},10^{-1},10^{-2}$$
@@ -688,24 +653,24 @@ $$
 
 קיבלנו שעבור $$\alpha=10^{0}$$ המערכת לא מצליחה לבצע למידה (להקטין את פונקציית המחיר). ניתן להגיד שצעד הלימוד גדול מידי משום שעבור צעד לימוד קטן יותר המערכת כן מצליחה ללמוד.
 
-כמו כן עבור $$\alpha=10^{-1}$$ קיבלנו תהליך התכנסות מהיר הרבה יותר ולמחיר נמוך יותר על פני $$10^{-2}$$. לכן נבחר את גודל הצעד להיות $$\alpha=10^{-1}$$   
+כמו כן עבור $$\alpha=10^{-1}$$ קיבלנו תהליך התכנסות מהיר הרבה יותר ולמחיר נמוך יותר על פני $$10^{-2}$$. לכן נבחר את גודל הצעד להיות $$\alpha=10^{-1}$$
 
 </section><section markdown="1">
 
-## Training
+#### האימון
+
 נריץ את באלגוריתם עבור גודל צעד $$\alpha=10^{-1}$$ למשך 20 epochs.
+
 ![png](output_37_0.png)
 
 נראה שמודל התכנס יפה, משום שמחיר על סט הולידציה הגיע למישור. ניתן להניח שהמודל הגיע למינימום מקומי (אבל לא ניתן לדעת בוודאות)
 
 </section><section markdown="1">
 
-## ⏱️ הערכת ביצועים#
-נריץ את המודל לאחר הלימוד על סט המבחן ונקבל שפונקצית המחיר היינה
+### הערכת ביצועים
 
-The test risk is: $$0.0091$$
+קיבלנו  misclassification rate של כמעט אחוז בודד, כלומר שעבור אחוז מסט המבחן טעינו בחיזוי הסיפרה או לחילופין צדקנו ב99% מסט המבחן.
 
-קיבלנו  misclassification rate של כמעט אחוז בודד, כלומר שעבור אחוז מסט המבחן טעינו בחיזוי הסיפרה או לחילופין צדקנו ב99% מסט המבחן. 
-![png](output_42_0.png)
+![png](output_42_0.png){: width="700px"}
 
 </section>
