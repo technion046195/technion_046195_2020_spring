@@ -1,7 +1,6 @@
 ---
 number: 10
 title: "CNN" 
-hide: True
 ---
 
 <section markdown="1">
@@ -104,7 +103,7 @@ $$
 ![multi-input multi-output conv layer](./media/conv_layer_multi_channel2.gif){: width="600px"}
 
 - בשכבות אלו אין שיתוף של משקולות בין ערוצי הפלט השונים.
-- מספר הפרמטרים בשכבת כזאת היינו:  $$\underbrace{C_\text{in}\times C_\text{out}\times K}_\text{the weights}+\underbrace{C_\text{out}}_\text{the bias}$$
+- מספר הפרמטרים בשכבת שכזאת הינו:  $$\underbrace{C_\text{in}\times C_\text{out}\times K}_\text{the weights}+\underbrace{C_\text{out}}_\text{the bias}$$
 
 כאשר:
 
@@ -118,7 +117,7 @@ $$
 
 #### היפר-פרמטרים של שכבות קונבולוציה
 
-בנוסף לפהיפר-פרמטרים **גודל הגרעין** ו **מספר ערוצי הפלט**, מקובל להגדיר גם את הפרמטרים הבאים:
+בנוסף להיפר-פרמטרים של **גודל הגרעין** ו **מספר ערוצי הפלט**, מקובל להגדיר גם את הפרמטרים הבאים:
 
 <br>
 
@@ -134,7 +133,9 @@ $$
 
 ##### Stride - גודל צעד
 
-ניתן לבצע את הקונבולוציה בדילוגים על מנת לדלל את המוצא. לרוב גודל הצעד מסומן ב $$s$$. בדוגמא הבאה גודל הצעד היינו $$s=2$$ .
+ניתן לבצע את הקונבולוציה בדילוגים על מנת לדלל את המוצא.
+
+לרוב גודל הצעד מסומן ב $$s$$. בדוגמא הבאה גודל הצעד היינו $$s=2$$ .
 
 ![stride](./media/conv_layer_stride.gif){: width="700px"}
 
@@ -144,7 +145,9 @@ $$
 
 ##### Dilation - התרחבות
 
-על מנת להקטיןן עוד את מספר הפרמטרים, ניתן לדלל את המשקולות בגרעין הקונבולוציה. פעולה זו נקראת הרחבה (dilation) של הקונבולוציה. לרוב נסמן את ההתרחבות ב $$d$$ בדוגמא הבאה $$d=2$$.
+על מנת להקטיןן עוד את מספר הפרמטרים, ניתן לדלל את המשקולות בגרעין הקונבולוציה. פעולה זו נקראת הרחבה (dilation) של הקונבולוציה.
+
+לרוב נסמן את ההתרחבות ב $$d$$ בדוגמא הבאה $$d=2$$.
 
 ![dilation](./media/conv_layer_dilation.gif){: width="700px"}
 
@@ -167,11 +170,11 @@ $$
 
 #### 2D Convolutional Layer
 
-ניתן באופן דומה להגדיר שכבות קונבולוציה בעבור מימדים שונים מ1. לדוגמאת קונבולוציה דו-מימדית, במקרה זה הכניסות והיציאות יהיו מטריצות.
+ניתן להגדיר גם שכבות קנבולוציה למימדים גבוהים יותר, לדוגמא, בדו מימד:
 
-כמה דוגמאות לקונבולוציות (השכבה הכחולה היא הקלט והשכבה הירוקה היא הפלט):
+הכניסות והיציאות הן מטריצות. השכבה הכחולה היא הקלט והירוקה היא הפלט.
 
-<table style="width:100%; table-layout:fixed;">
+<table dir="ltr" style="width:100%; table-layout:fixed;">
   <tr>
     <td><center>kernel size=3<br>padding=0<br>stride=1<br>dilation=1</center></td>
     <td><center>kernel size=4<br>padding=2<br>stride=1<br>dilation=1</center></td>
@@ -179,10 +182,10 @@ $$
     <td><center>kernel size=3<br>padding=2<br>stride=1<br>dilation=1<br>(Full padding)</center></td>
   </tr>
   <tr>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/no_padding_no_strides.gif?raw=true"></td>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/arbitrary_padding_no_strides.gif?raw=true"></td>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/same_padding_no_strides.gif?raw=true"></td>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/full_padding_no_strides.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/no_padding_no_strides.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/arbitrary_padding_no_strides.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/same_padding_no_strides.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/full_padding_no_strides.gif?raw=true"></td>
   </tr>
   <tr>
     <td><center>kernel size=3<br>padding=0<br>stride=2<br>dilation=1</center></td>
@@ -191,14 +194,14 @@ $$
     <td><center>kernel size=3<br>padding=0<br>stride=1<br>dilation=2</center></td>
   </tr>
   <tr>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/no_padding_strides.gif?raw=true"></td>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/padding_strides.gif?raw=true"></td>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/padding_strides_odd.gif?raw=true"></td>
-    <td><img width="150px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/dilation.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/no_padding_strides.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/padding_strides.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/padding_strides_odd.gif?raw=true"></td>
+    <td><img width="230px" src="https://github.com/vdumoulin/conv_arithmetic/blob/master/gif/dilation.gif?raw=true"></td>
   </tr>
 </table>
 
-- \[1\] Vincent Dumoulin, Francesco Visin - [A guide to convolution arithmetic for deep learning](https://arxiv.org/abs/1603.07285)([BibTeX](https://gist.github.com/fvisin/165ca9935392fa9600a6c94664a01214))
+[By Vincent Dumoulin, Francesco Visin](https://arxiv.org/abs/1603.07285)
   
 </section><section markdown="1">
 
@@ -221,31 +224,17 @@ $$
 
 </section><section markdown="1">
 
-#### תרגיל 10.1 - המשך
-
-![network](./media/question_10_1_network.png){: width="450px"}
-
-א) כמה פרמטרים נלמדים יש בשכבת הקונבולוציה
-
-ב) כמה פעולות אקטיבציה מבוצעות (Relu) במעבר קדמי אחד (forward pass)?
-
-ג) כמה משקולות יש בכל הרשת?
-
-ד) האם רשת בקישוריות מלאה (FC) בעלת גודל שכבות זהה – כלומר רשת זהה שבה שכבת הקונבולוציה מוחלפת בשכבת FC, יכולה לייצג את אותה הפונקציה אותה ממשת הרשת המקורית?
-
-ה) מה ההבדל העיקרי בין רשת CNN ל FC שיכולות לייצג את אותו מסווג?
-
-</section><section markdown="1">
-
 #### תרגיל 10.1 - המשך 2
 
 ![network](./media/question_10_1_network.png){: width="450px"}
 
 א) כמה פרמטרים נלמדים יש בשכבת הקונבולוציה
 
+<div class="fragment" markdown="1">
 ##### פתרון
 
 א) סה"כ 48 פרמטרים. קיימים 3 פילטרים בגודל 4×4, לכן 3⋅4⋅4=48.
+</div>
 
 </section><section markdown="1">
 
@@ -255,9 +244,11 @@ $$
 
 ב) כמה פעולות אקטיבציה מבוצעות (Relu) במעבר קדמי אחד (forward pass)?
 
+<div class="fragment" markdown="1">
 ##### פתרון
 
 ב) מבוצעות 304 פעולות Relu. פעולת האקטיבציה מתבצעת לכל מאפיין במוצא שכבת הקונבולוציה ועוד 4 במוצא שכבת הFC. כלומר: $$10 \cdot 10 \cdot 3 + 4 =304$$
+</div>
 
 </section><section markdown="1">
 
@@ -267,9 +258,11 @@ $$
 
 ג) כמה משקולות יש בכל הרשת?
 
+<div class="fragment" markdown="1">
 ##### פתרון
 
 ג) 348 פרמטרים. נפרט את החישוב. בשכבת הקונבולוציה יש 48 פרמטרים (סעיף א), בשכבת הFC יש $$3\times 5\times 5$$ כניסות שמחוברות ל $$4$$ יציאות, סה"כ $$3\times 5\times 5\times 4=300$$.
+</div>
 
 </section><section markdown="1">
 
@@ -279,9 +272,11 @@ $$
 
 ד) האם רשת בקישוריות מלאה (FC) בעלת גודל שכבות זהה – כלומר רשת זהה שבה שכבת הקונבולוציה מוחלפת בשכבת FC, יכולה לייצג את אותה הפונקציה אותה ממשת הרשת המקורית?
 
+<div class="fragment" markdown="1">
 ##### פתרון
 
 ד) כן, הרשת עם שכבת הקונבולוציה הינה מקרה פרטי של רשת FC, עם בחירה ספציפית של המשקולות.
+</div>
 
 </section><section markdown="1">
 
@@ -291,9 +286,11 @@ $$
 
 ה) מה ההבדל העיקרי בין רשת CNN ל FC שיכולות לייצג את אותו מסווג?
 
+<div class="fragment" markdown="1">
 ##### פתרון
 
 ה) הרשת עם שכבת הקונבולוציה מתארת תת-תחום של מרחב הפונקציות שאותה יכולה לתאר רשת הFC. היתרון שברשת עם שכבת הקונבולוציה הינה שהיא עושה זאת על ידי מספר קטן משמעותית של פרמטרים. לכן, בהנחה שניתן לקרב במידה טובה מספיק את פונקצייית המטרה על ידי פונקציות מתת-תחום זה, היא תגרום פחות לoverfit ולכן בעלת סיכוי להניב תוצאות טובות יותר. לשם השוואה ברשת הFC ישנם כ50k פרמטרים.
+</div>
 
 </section><section markdown="1">
 
@@ -393,9 +390,11 @@ $$
 
 <br>
 
+<div class="fragment" markdown="1">
 ##### פתרון:
 
 $$\mathbb{E}\left[v\right]=\mathbb{E}\left[w_1 x_1+w_2 x_2+⋯+w_n x_n\right]=n\mathbb{E}\left[w_1 x_1\right]=n\mathbb{E}\left[w_1\right]\mathbb{E}\left[x_1\right]=0$$
+</div>
 
 </section><section markdown="1">
 
@@ -407,6 +406,7 @@ $$\text{Var}\left(xy\right)=\mathbb{E}\left[x\right]^2\text{Var}\left(y\right)+\
 
 <br>
 
+<div class="fragment" markdown="1">
 ##### פתרון:
 
 נעזר בקשר $$\text{Var}\left(z\right)=\mathbb{E}\left[z^2\right]-\mathbb{E}\left[z\right]^2$$:
@@ -421,6 +421,7 @@ $$
 & = \text{Var}\left(x\right)\text{Var}\left(y\right)+\text{Var}\left(x\right)\mathbb{E}\left[y\right]^2+\text{Var}\left(y\right)\mathbb{E}\left[x\right]^2 \\
 \end{aligned} \\
 $$
+</div>
 
 </section><section markdown="1">
 
@@ -430,6 +431,7 @@ $$
 
 <br>
 
+<div class="fragment" markdown="1">
 ##### פתרון:
 
 תחת ההנחה כי התוחלות של המשקולות ושל הכניסה הן 0, הנוסחה שהוכחנו בסעיף הקודם מצטמצמת ל$$\text{Var}\left(w_ix_i\right)=\text{Var}\left(x_i\right)\text{Var}\left(w_i\right)$$. בנוסף, עבור מוצא הניורון $$v$$ ניתן לכתוב:
@@ -443,6 +445,7 @@ $$
 $$
 \text{Var}\left(v\right)=n\text{Var}\left(w_1 x_1\right)=n\text{Var}\left(w_1\right)\text{Var}\left(x_1\right)
 $$
+</div>
 
 </section><section markdown="1">
 
@@ -452,6 +455,7 @@ $$
 
 <br>
 
+<div class="fragment" markdown="1">
 ##### פתרון:
 
 קיבלנו בסעיף הקודם כי שונות המוצא הוא שונות הכניסה מוכפל בפקטור של $$n\text{Var}\left(w_i\right)$$ כאשר $$n$$ הוא מספר הניורונים המוזנים לניורון. לכן, על מנת לשמור על שונות זהה בין כניסה למוצא נבחר את אתחול המשקולות כך שיתקיים:
@@ -459,6 +463,7 @@ $$
 $$
 \text{Var}\left(w_i\right)= \frac{1}{n}
 $$
+</div>
 
 </section><section markdown="1">
 
@@ -475,22 +480,11 @@ $$
 
 </section><section markdown="1">
 
-#### תרגיל 10.3
-
-1. לאילו מפונקציות האקטיבציה שלמדנו בקורס (sigmoid, tahn ו-ReLU) ההנחה $$Ex_i=0$$ שביצענו בסעיף הקודם היא עדיין הנחה "סבירה"? תזכורת:
-  ![png](Q3_3.png)
-2. כעת לא נניח דבר על התוחלת של  $$x_i$$. כיצד ישתנה הביטוי של השונות של  $$v$$ מסעיף א.3?
-3. עבור פונקציית האקטיבציה ReLU, בטאו את השונות של $$v$$ באמצעות השונות של אחת הכניסות $$y_i$$. הניחו כי $$Var(y_1 )=Var(y_2 )=\cdots=Var(y_n)$$ 
-
-הדרכה: היעזרו בתוצאות הסעיפים הקודמים.
-
-</section><section markdown="1">
-
 #### תרגיל 10.3 ב
 
 1) לאילו מפונקציות האקטיבציה הבאות: sigmoid, tahn ו-ReLU, ההנחה $$\mathbb{E}\left[x_i\right]=0$$ שביצענו בסעיף הקודם היא עדיין הנחה "סבירה"? תזכורת:
 
-![Activation function](./media/question_10_3_3.png){: width="700px"}
+![Activation function](./media/question_10_3_3.png){: width="1100px"}
 
 </section><section markdown="1">
 
@@ -512,6 +506,7 @@ $$
 
 2) כעת לא נניח דבר על התוחלת של $$x_i$$. כיצד ישתנה הביטוי של השונות של $$v$$ מסעיף א.3?
 
+<div class="fragment" markdown="1">
 ##### פתרון:
 
 משימוש בתוצאות הסעיפים הקודמים, נקבל:
@@ -525,6 +520,7 @@ $$
 & = n\text{Var}\left(w_1\right)\mathbb{E}\left[x_1^2\right]
 \end{aligned}
 $$
+</div>
 
 </section><section markdown="1">
 
@@ -532,6 +528,7 @@ $$
 
 3) עבור פונקציית האקטיבציה ReLU, בטאו את השונות של $$v$$ באמצעות השונות של אחת הכניסות $$y_i$$. הניחו כי $$\text{Var}\left(y_1\right)=\text{Var}\left(y_2\right)=\cdots=\text{Var}\left(y_n\right)$$
 
+<div class="fragment" markdown="1">
 ##### פתרון:
 
 אם התפלגות המשקולות סימטרית סביב 0, נקבל כי התפלגות $$y_i$$ סימטרית סביב 0 לכל $$i$$. לכן, עבור פונקציית אקטיבציה ReLU נקבל:
@@ -546,6 +543,7 @@ $$
 & = \frac{1}{2}\mathbb{E}\left[y_1^2\right] = \frac{1}{2}\text{Var}\left(y_1\right)
 \end{align}
 $$
+</div>
 
 </section><section markdown="1">
 

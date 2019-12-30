@@ -1,7 +1,6 @@
 ---
 number: 10
 title: "CNN" 
-hide: True
 ---
 
 ## תיאוריה
