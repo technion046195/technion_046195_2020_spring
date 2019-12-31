@@ -159,8 +159,9 @@ $$
 
 - שכבת קונבולוציה עם 3 פילטרים (גרעינים) בגודל 4x4
 - פונקציית אקטיבציה Relu
-- max pooling
+- max pooling 2x2 עם stride=2
 - שכבת Fully-connected (FC)
+- פונקציית אקטיבציה Relu
 
 ברשת זאת אין שימוש בbias.
 

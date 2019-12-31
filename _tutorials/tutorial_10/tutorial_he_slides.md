@@ -217,8 +217,9 @@ $$
 
 - שכבת קונבולוציה עם 3 פילטרים (גרעינים) בגודל 4x4
 - פונקציית אקטיבציה Relu
-- max pooling
+- max pooling 2x2 עם stride=2
 - שכבת Fully-connected (FC)
+- פונקציית אקטיבציה Relu
 
 ברשת זאת אין שימוש בbias.
 
@@ -321,7 +322,7 @@ $$
 ב. נרשום את הפילטרים ככפל מטריצות, עבור הפילטר הראשון:
 
 $$
-w^1 = 
+w^1 =
 \begin{pmatrix}
 w_1 & w_2 & w_3 & 0 & \cdots & 0 & w_4 & w_5 & w_6 & 0 & \cdots \\
 0 & w_1 & w_2 & w_3 & 0 & \cdots & 0 & w_4 & w_5 & w_6 &  \cdots \\
@@ -520,6 +521,7 @@ $$
 & = n\text{Var}\left(w_1\right)\mathbb{E}\left[x_1^2\right]
 \end{aligned}
 $$
+
 </div>
 
 </section><section markdown="1">
@@ -543,6 +545,7 @@ $$
 & = \frac{1}{2}\mathbb{E}\left[y_1^2\right] = \frac{1}{2}\text{Var}\left(y_1\right)
 \end{align}
 $$
+
 </div>
 
 </section><section markdown="1">
