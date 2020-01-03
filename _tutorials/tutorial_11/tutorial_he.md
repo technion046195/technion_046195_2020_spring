@@ -954,17 +954,19 @@ $$
 
 
 
+<br>
 
+```tex
+The first 10 values if w in the primal problem are:
+[ 0.32403667 -0.13227075 -0.06096529  0.41782102 -0.48840472]
+The first 10 values if w in the dual problem are:
+[ 0.32138073 -0.13206916 -0.05900207  0.4178552  -0.48799808]
 
-    The first 10 values if w in the primal problem are:
-    [ 0.32403667 -0.13227075 -0.06096529  0.41782102 -0.48840472]
-    The first 10 values if w in the dual problem are:
-    [ 0.32138073 -0.13206916 -0.05900207  0.4178552  -0.48799808]
-    
-    The b value of the primal problem is: 0.6602256435596877
-    The b value of the dual problem is: 0.658170109096357
+The b value of the primal problem is: 0.6602256435596877
+The b value of the dual problem is: 0.658170109096357
+```
 
-
+<br>
 
 
 ## בחירת מודל - כיוונון היפר פרמטרים
