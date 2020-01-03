@@ -299,6 +299,7 @@ $$
 
 ## הבעיה הפריאמלית:
 
+
 $$
 \boldsymbol{w}^*,b^*=\underset{\boldsymbol{w},b}{\arg\min} \frac{1}{2}\left\lVert\boldsymbol{w}\right\rVert^2+C\sum_i\xi_i \\
 \begin{align*}
@@ -310,6 +311,7 @@ $$
 
 
 ## הבעיה הדואלית:
+
 
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\

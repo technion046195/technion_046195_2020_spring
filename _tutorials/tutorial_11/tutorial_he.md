@@ -54,6 +54,7 @@ $$
 
 ניתן להראות שבעית האופטימיזציה הבאה, אשר נקראת הבעיה הדואלית, שקולה לבעיה לעיל:
 
+
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
 \begin{align*}
@@ -61,7 +62,11 @@ $$
 &\sum_i\alpha_iy_i=0
 \end{align*}
 $$
+
+
 כאשר, נחזור לפתרון המשקולות על ידי הקשר הבא בין $$\alpha$$ ו- $$w$$,
+
+
 $$
 \boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i\\
 $$
@@ -207,6 +212,8 @@ $$
 לכן, ניתן להשתמש בגרסה אחרת של בעית האופטימיזציה אשר עושה שימוש במשתנים $$\left\lbrace\xi_i\right\rbrace$$ שמאפשרים את הפרת האילוץ. באנגלית, משתנים אלו מכונים Slack Variables. בעזרת השימוש במשתנים אלה, ניתן להפר את האילוץ, ולכן להגיע לפתרון שלא מסווג באופן מושלם את כל הדוגמאות. אולם, כדי שעדיין תהיה משמעות לבעיית האופטימיזציה, נעניש את השימוש במשתנים האלה, כדי למנוע ככל הניתן את כמות ההפרות של האילוץ.
 
 הבעיה הפריאמלית במקרה זה הינה:
+
+
 $$
 \boldsymbol{w}^*,b^*=\underset{\boldsymbol{w},b}{\arg\min} \frac{1}{2}\left\lVert\boldsymbol{w}\right\rVert^2+C\sum_i\xi_i \\
 \begin{align*}
@@ -215,7 +222,10 @@ $$
 \end{align*}
 $$
 
+
+
 והבעיה הדואלית:
+
 
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
@@ -224,10 +234,16 @@ $$
 &\sum_i\alpha_iy_i=0
 \end{align*}
 $$
+
+
 כאשר, הקשר הבא עדיין מתקיים:
+
+
 $$
 \boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i\\
 $$
+
+
 
 כעת, הדוגמאות ב- Data יקיימו את אחד משלושת התנאים האים:
 
@@ -258,9 +274,13 @@ $$
 במרחב $$x$$ אין מפריד לינארי, אך הטרנספורמציה $$\Phi(x)=[x_1^2,x_2^2]$$ מאפשרת לסווג את הדוגמאות
 
 ללא שגיאה עם המסווג הלינארי:
+
+
 $$
 \text{sign}\left( -(x_{1}^{2}+x_{2}^{2}-{{R}^{2}}) \right)
 $$
+
+
  כלומר, $$b=R^2$$ ו- $$w=[-1,-1]$$
 
 
@@ -268,6 +288,8 @@ $$
  
 
 דוגמה נוספת**:** טרנספורמציה למרחב הפולינומים ממעלה עד 2, בקואורדינטות של הווקטור $$ x\in {{\mathbb{R}}^{2}} $$:
+
+
 $$
 \Phi(x)={{[1,{{x}_{1}},{{x}_{2}},\sqrt{2}{{x}_{1}}{{x}_{2}},x_{1}^{2},x_{2}^{2}]}^{T}}\in {{\mathbb{R}}^{6}}
 $$
@@ -282,14 +304,22 @@ $$
 **פתרון:** 
 
 ניזכר שבאמצעות פתרון הבעיה הדואלית ל- SVM עבור $$\left\{ {{\alpha }_{i}} \right\}_{i=1}^{n}$$, הפתרון האופטימלי הינו:
+
+
 $$
 w=\sum\nolimits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}\Phi \left( {{x}_{i}} \right)}
 $$
+
+
 אם המסווג תלוי רק במכפלות פנימיות בין ווקטורי הקלט, אין צורך לחשב את $$\Phi(x)$$, 
 אלא רק את המכפלות הפנימיות במרחב החדש, $$\Phi {{({{x}_{i}})}^{T}}\Phi (x)$$ :
+
+
 $$
 \hat{y}=f(\Phi (x))=sign\left( \underset{i=1}{\overset{n}{\mathop \sum }}\,{{{\tilde{\alpha }}}_{i}}{{y}_{i}}\Phi {{({{x}_{i}})}^{T}}\Phi (x)+\tilde{b} \right)
 $$
+
+
 לצורך זה נציג את פונקציית הגרעין.
 
 
@@ -308,13 +338,21 @@ $$
 
 
 אזי, תחת תנאים טכניים סבירים, קיים מרחב $$\phi \left( x \right)$$ כך שפונקציית הגרעין הינה מכפלה פנימית מהצורה:
+
+
 $$
 K\left( {{x}_{k}},{{x}_{l}} \right)=\phi {{\left( {{x}_{k}} \right)}^{T}}\phi \left( {{x}_{l}} \right)=\left\langle \phi \left( {{x}_{k}} \right),\phi \left( {{x}_{l}} \right) \right\rangle
 $$
+
+
  כעת הסיווג שלנו יהיה כדלקמן:
+
+
 $$
 \hat{y}=sign\left( \underset{i=1}{\overset{n}{\mathop \sum }}\,{{{\tilde{\alpha }}}_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)+\tilde{b} \right)
 $$
+
+
 תכונה זו מאפשרת לנו לחשב ישירות את $$K(x_i,x_j)$$, במקום את $$\phi(x_i)^T\phi(x_j)$$ שיכול להיות יקר לחישוב.
 
 זאת, מאחר שחישוב זה פרופורציוני לגודל מרחב הקלט $$n$$ ולחישוביות הפונקציה $$K\left( \cdot ,\cdot \right)$$, אך איננו תלוי ב- $$M$$ - גודל מרחב ה- Features.
@@ -415,15 +453,20 @@ $$
 
 נזכר כי כלל ההחלטה הוא $$\text{ sign}({{w}^{T}}\phi (x))=\text{ sign}\left( \sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)} \right)$$ ולכן משטח גבול ההחלטה מקיים $$\sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)}=0$$. 
 
-על מנת לחשב את המשטח יש למצוא את המקדמים $$\left\{ {{\alpha }_{k}} \right\}$$. לצורך כך, נפתור את הבעיה הדואלית (הפרידה).
+על מנת לחשב את המשטח יש למצוא את המקדמים $$\left\{ {{\alpha }_{k}} \right\}$$. לצורך כך, נפתור את הבעיה הדואלית (הפרידה):
+
+
 $$
 \underset{\alpha }{\mathop{\max }}\,\ \ \sum\limits_{k=1}^{n}{{{\alpha }_{k}}}-\frac{1}{2}\ \sum\limits_{k,l=1}^{n}{{{\alpha }_{k}}}{{\alpha }_{l}}{{y}_{k}}{{y}_{l}}K\left( {{x}_{k}},{{x}_{l}} \right) \\
 
 \text{s.t.}\ \quad  \text{ }{{\alpha }_{k}}\ge 0, \quad k=1,2,\ldots ,n \\
 \sum\nolimits_{k=1}^{n}{{{\alpha }_{k}}{{y}_{k}}=0}\
 $$
-במקרה שלנו 
 
+
+במקרה שלנו
+
+ 
 
 $$
 \underset{\alpha }{\mathop{\max }}\,\ \ {{\alpha }_{1}}+{{\alpha }_{2}}-\frac{1}{2}\ \left( {{\alpha }_{1}}^{2}K\left( {{x}_{1}},{{x}_{1}} \right)+{{\alpha }_{2}}^{2}K\left( {{x}_{2}},{{x}_{2}} \right)+2{{\alpha }_{1}}{{\alpha }_{2}}K\left( {{x}_{1}},{{x}_{2}} \right) \right) \\ 
@@ -434,24 +477,35 @@ $$
 $$
 
 
+
 נשים לב כי $$K\left( {{x}_{1}},{{x}_{1}} \right)=K\left( {{x}_{2}},{{x}_{2}} \right)={{e}^{0}}=1$$ וכן כי $$K\left( {{x}_{1}},{{x}_{2}} \right)={{e}^{-\left\| {{x}_{1}}-{{x}_{2}} \right\|}}={{e}^{-4}}={{c}_{0}}$$.
 
 מהאילוץ השני נקבל $${{\alpha }_{1}}={{\alpha }_{2}}$$.
 
 בהצבה בפונקציית המטרה נקבל
+
+
 $$
 \underset{\alpha }{\mathop{\max }}\,\ \ 2{{\alpha }_{1}}-{{\alpha }_{1}}^{2}\ \left( 1+{{c}_{0}} \right) \\
 
 \text{s.t. }\ \text{ }{{\alpha }_{1}}\ge 0
 $$
+
+
 זוהי בעיה חד מימדית ריבועית, נגזור על מנת למצוא נקודת מקסימום ונקבל 
+
+
 $$
 {{\alpha }_{1}}^{{}}\ \left( 1+{{c}_{0}} \right)=1 \\ 
 
 {{\alpha }_{1}}=\frac{1}{1+{{c}_{0}}} 
 
 $$
-ומכאן הפתרון הוא למשטח ההפרדה הוא 
+
+
+ומכאן הפתרון הוא למשטח ההפרדה הוא
+
+ 
 $$
 0=\sum\limits_{k=1}^{n}{{{\alpha }_{k}}{{y}_{k}}K\left( {{x}_{k}},x \right)}={{\alpha }_{1}}{{y}_{1}}K({{x}_{1}},x)+{{\alpha }_{2}}{{y}_{2}}K({{x}_{2}},x)={{\alpha }_{1}}\left( K({{x}_{1}},x)-K({{x}_{2}},x) \right) \\ 
 
@@ -461,6 +515,7 @@ $$
 
  \Leftrightarrow \left\| x-{{x}_{1}} \right\|=\left\| x-{{x}_{2}} \right\|
 $$
+
 
 
 זוהי משוואת קו ישר (כצפוי).
@@ -772,6 +827,7 @@ $$
 
 נמזער את שגיאת ה- Misclassification
 
+
 $$
 h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
 $$
@@ -827,6 +883,8 @@ $$
 ## ⚙️ שלב הלמידה - הבעייה הדואלית
 
 ראשית, נפתור את הבעיה הדואלית.
+
+
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
 \begin{align*}
@@ -855,9 +913,12 @@ $$
 
 
 כעת, ניתן להשתמש בנוסחא שנלמדה על מנת לחשב את $$w$$ ו- $$b$$
+
+
 $$
 \boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i
 $$
+
 
 
 את $$b$$ ניתן לחשב על ידי לבחור נקודה שעבורה $$0<\alpha_i<C$$ ולהשתמש במשוואה: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) = 1$$.
@@ -881,6 +942,7 @@ $$
 ## ⚙️ שלב הלמידה - הבעייה הפרימאלית
 
 כתרגיל, ננסה גם לפתור את הבעיה הפרימאלית ישירות ונשווה בין הפתרונות:
+
 
 $$
 \boldsymbol{w}^*,b^*=\underset{\boldsymbol{w},b}{\arg\min} \frac{1}{2}\left\lVert\boldsymbol{w}\right\rVert^2+C\sum_i\xi_i \\
