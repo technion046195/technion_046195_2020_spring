@@ -251,7 +251,7 @@ $$
 
 1. $$\alpha_i=0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)>1$$
 2. $$C>\alpha_i>0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)=1$$
-2. $$\alpha_i=C$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)<11$$
+2. $$\alpha_i=C$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)<1$$
 
 
 
@@ -269,7 +269,9 @@ $$
 
 **דוגמה:**** נתון קלט $$x\in {{\mathbb{R}}^{2}}$$. הדוגמאות עם $$y=+1$$ נמצאות בתוך מעגל עם רדיוס $$R$$, והדוגמאות עם $$y=-1$$ נמצאות מחוץ למעגל. 
 
-![binaryClassCircle](file:///C:/Users/LIOR~1.SHA/AppData/Local/Temp/msohtmlclip1/01/clip_image008.jpg)
+![png](q2.png)
+
+
 
 במרחב $$x$$ אין מפריד לינארי, אך הטרנספורמציה $$\Phi(x)=[x_1^2,x_2^2]$$ מאפשרת לסווג את הדוגמאות
 
