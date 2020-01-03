@@ -541,13 +541,15 @@ $$
 
 א.   גרעין גאוסי: $$K(x,z)=\exp (-{{\left\| x-z \right\|}^{2}}/c)$$.
 
-<br> הפונקציות הן גאוסיאנים ו- $$c$$ הינו פרמטר שיש לקבוע ידנית.
+<br> * הפונקציות הן גאוסיאנים ו- $$c$$ הינו פרמטר שיש לקבוע ידנית.
 
 <br>
 
 ב.    גרעין פולינומיאלי:  $$K(x,z)={{(1+{{x}^{T}}z)}^{p}}$$,
 
-<br> כאשר $$p\ge 1$$ פרמטר שיש לקבוע ידנית.
+<br> * כאשר $$p\ge 1$$ פרמטר שיש לקבוע ידנית.
+
+
 
 <br>מפתיחת הגרעין ניתן לוודא שנקבל פולינום רב-משתנים מסדר עד $$p$$ באיברי הווקטורים $$x,z$$. לכן, גרעין זה מתאים ל- Feature Space פולינומיאלי.
 
@@ -649,7 +651,9 @@ $$
 
 נשים לב, שאכן אין כאן תלות במרחב ה- Feature-ים החדש, אלא רק בחישוביות של ה- Kernel!
 
+ </section><section markdown="1">
 
+## 
 
 **מסקנה:**
 
@@ -664,17 +668,12 @@ $$
 נתונות שתי נקודות במרחב דו מימדי, 
 
 
+
 $$
 {{x}_{1}}=\left( 1,1 \right),\quad {{y}_{1}}=+1 \\ 
  {{x}_{2}}=(-1,-1)\quad {{y}_{2}}=-1 \\
 $$
-  </section><section markdown="1">
-
-חשבו את משטח ההפרדה עבור הגרעין הגאוסי בעל $$c=1$$,
-
-<br>
-
-ו -  $$K(x,z)=\exp (-{{\left\| x-z \right\|}^{2}})$$.
+חשבו את משטח ההפרדה עבור הגרעין הגאוסי בעל $$c=1$$, ו -  $$K(x,z)=\exp (-{{\left\| x-z \right\|}^{2}})$$.
 
  </section><section markdown="1">
 
@@ -691,7 +690,7 @@ $$
 \text{s.t.}\ \quad  \text{ }{{\alpha }_{k}}\ge 0, \quad k=1,2,\ldots ,n \\
 \sum\nolimits_{k=1}^{n}{{{\alpha }_{k}}{{y}_{k}}=0}\
 $$
- 
+
 
 </section><section markdown="1">
 
@@ -777,7 +776,12 @@ $$
 
 
 
-בחלק זה, ננסה להשתמש ב- SVM כדי לזהות את מינו של הדובר באמצעות קולו. מוטיבציה למערכת כזאת יכולה להיות עוזר וירטואלי שרוצה לפנות לדובר לפי מינו. הרחבה לניסיון זה יכולה להיות זיהוי דובר על סמך קולו וכו'.
+* בחלק זה, ננסה להשתמש ב- SVM כדי לזהות את מינו של הדובר באמצעות קולו.
+
+<br>
+
+* מוטיבציה למערכת כזאת יכולה להיות עוזר וירטואלי שרוצה לפנות לדובר לפי מינו. 
+  * הרחבה לניסיון זה יכולה להיות זיהוי דובר על סמך קולו וכו'.
 
  </section><section markdown="1">
 
@@ -787,7 +791,7 @@ $$
 
 הרעיון וה- DATA נלקחו מ- Dataset והערכת ביצועים של קורי בקר, אשר נמצאים [באתר הבא](http://www.primaryobjects.com/2016/06/22/identifying-the-gender-of-a-voice-using-machine-learning/).
 
-, along with the data for this workshop, came form the dataset and evaluation performed by Kory Becker, which can be found on her
+
 
 בפרוייקט זה נאספו 3168 דגימות קול מתוייגות מהמקורות הבאים:
 
@@ -817,7 +821,9 @@ $$
 
 מספר הרשומות : $$N=3168$$
 
+<br>
 
+<br>
 
 <table border="1" class="dataframe">
   <thead>
@@ -1000,7 +1006,7 @@ $$
 
 
 
-# The Data Fields and Types
+##  Data Fields and Types
 
 להלן התאור של שדות ה- Data מאתר הפרוייקט:
 
@@ -1020,13 +1026,10 @@ $$
 
 - **kurt**: kurtosis (see note in specprop description)
 
-- **sp.ent**: spectral entropy
-
-- **sfm**: spectral flatness
-
 - **label**: The label of each track: male/female
 
    </section><section markdown="1">
+
 
   
 
@@ -1143,7 +1146,7 @@ $$
 
 # 📚 ב) נרמול ה- Data
 
-
+<br>
 
 חשוב לנרמל את ה- Data לפני הרצת האלגוריתם, משתי סיבות עיקריות:
 
@@ -1157,11 +1160,15 @@ $$
 
    
 
-2. האלגוריתם מנסה למזער את Objective אשר מבוסס מרחק, מה שהופך אותו לרגיש ביחס למרחק לכל כיוון. לדוגמא, אם נכפיל מאפיין מסוייף בערך קבוע גדול מ-1, למעשה ניתן לו חשיבות יתרה ב- Objective
+2. האלגוריתם מנסה למזער את Objective אשר מבוסס מרחק, מה שהופך אותו לרגיש ביחס למרחק לכל כיוון.
+
+   * לדוגמא, אם נכפיל מאפיין מסוייo בערך קבוע גדול מ-1, למעשה ניתן לו חשיבות יתרה ב- Objective.
 
  </section><section markdown="1">
 
 # ⚙️ שלב הלמידה - הבעייה הדואלית
+
+<br>
 
 * ראשית, נפתור את הבעיה הדואלית:
 
@@ -1174,6 +1181,8 @@ $$
 $$
 
 
+
+<br>
 
 נתחיל עם $$C=1$$ ולאחר מכן ננסה לכוונן היפר-פרמטר זה.
 
@@ -1222,7 +1231,7 @@ $$
 
 * הצבעים מייצגים את 3 המקרים לעיל.
 
-
+<br>
 
 הסיכון שהתקבל על סט הבוחן הינו: $$0.0205$$
 
@@ -1243,7 +1252,7 @@ $$
 
 
 
-
+<br>
 
     The first 10 values if w in the primal problem are:
     [ 0.32403667 -0.13227075 -0.06096529  0.41782102 -0.48840472]
@@ -1256,7 +1265,7 @@ $$
  </section><section markdown="1">
 
 
-# בחירת מודל - כיוונון היפר פרמטרים
+## בחירת מודל - כיוונון היפר פרמטרים
 
 * כעת, ננסה לבחור את ההיפר-פרמטר $$C$$. 
 
@@ -1276,7 +1285,7 @@ $$
 
  </section><section markdown="1">
 
-# שימוש בפונקציית גרעין:
+## שימוש בפונקציית גרעין:
 
 * נשתמש בפורמולצייה של הבעייה הדואלית:
   * ניתן להחליף את המכפלה הפנימית  $$\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right>$$ בפונקציית גרעין.
