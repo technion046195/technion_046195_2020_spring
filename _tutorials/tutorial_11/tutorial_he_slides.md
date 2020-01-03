@@ -7,22 +7,35 @@ title: "SVM"
 <section markdown="1">
 
 <center><h1 class="workshop-title">תרגול 11 - SVM ופונקציות גרעין (Kernels)</h1></center>
-עסקנו בתרגולים קודמים בסיווג לינארי - מציאת מישור לינארי אשר מפריד בין המחקות.
+* עסקנו בתרגולים קודמים בסיווג לינארי:
+  * מציאת מישור לינארי אשר מפריד בין המחקות.
 
-עם זאת, למעשה ניתן למצוא אינסוף מישורי הפרדה כאלה במקרה הלא לינארי.
+ 
 
-SVM הינו אלגוריתם סיווג לינארי המבוסס על הרעיון לבחור את מישור ההפרדה אשר ממקסם את השוליים (Margin) בין המחלקות, בכיוון המאונך למישור ההפרדה.
+* עם זאת, למעשה ניתן למצוא אינסוף מישורי הפרדה כאלה במקרה הלא לינארי.
+
+
+
+* SVM הינו אלגוריתם סיווג לינארי המבוסס על הרעיון הבא:
+* לבחור את מישור ההפרדה אשר ממקסם את השוליים (Margin) בין המחלקות.
 
 
 
 </section><section markdown="1">
 
-### 
-
 ## תזכורת - גאומטריה של המישור
 
-* משוואה של מישור ב- $\mathbb{R}^d$ הינה $w^Tx+b=0$, עבור $w\in\mathbb{R}^d$ ו- $b\in\mathbb{R}$, קבועים המגדירים את המישור.
+* משוואה של מישור ב- $\mathbb{R}^d$ :
+  $$
+  w^Tx+b=0
+  $$
+  
+
+   ,עבור $w\in\mathbb{R}^d$ ו- $b\in\mathbb{R}$, קבועים המגדירים את המישור.
+
 * מרחק אוקלידי של נקודה $x_0$ מהמישור הינו:
+
+* 
 
 $$
 d=\frac{w^Tx_0+b}{\lVert w \rVert}
@@ -32,9 +45,7 @@ $$
 
 </section><section markdown="1">
 
-
-
-### Hard SVM
+# Hard SVM
 
 
 
@@ -42,7 +53,8 @@ $$
 
 
 
-ניתן להראות שבחירת ה- Margin המקסימלי שקולה לפתרון בעיית האופטימיזציה הבאה, אשר מכונה הבעיה הפרימאלית:
+בחירת ה- Margin המקסימלי שקולה לפתרון בעיית האופטימיזציה הבאה:
+
 
 
 $$
@@ -54,19 +66,19 @@ $$
 
 
 
-* נשים לב, שהאילוץ $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right)\geq 1 $ דורש שכל הנקודות יסווגו נכון על ידי המסווג הלינארי.
+* בעיה זו מכונה הבעיה הפרימאלית.
 
 
+
+* שהאילוץ $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right)\geq 1 $ דורש שכל הנקודות יסווגו נכון על ידי המסווג הלינארי.
 
 </section><section markdown="1">
 
-
-
-### הבעיה הדואלית
+# הבעיה הדואלית
 
 
 
-ניתן להראות שבעית האופטימיזציה הבאה, אשר נקראת הבעיה הדואלית, שקולה לבעיה לעיל:
+בעית האופטימיזציה הבאה, אשר נקראת הבעיה הדואלית, שקולה לבעיה לעיל:
 
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
@@ -75,7 +87,10 @@ $$
 &\sum_i\alpha_iy_i=0
 \end{align*}
 $$
-כאשר, נחזור לפתרון המשקולות על ידי הקשר הבא בין $\alpha$ ו- $w$,
+
+
+* ניתן לחשב את המשקולות באמצעות הקשר הבא:
+
 $$
 \boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i\\
 $$
@@ -84,37 +99,61 @@ $$
 
 </section><section markdown="1">
 
-### 
+# הבעיה הדואלית - המשך
+
+
 
 הבעיה הדואלית מדגישה תכונה מעניינת של הפתרון:
 
-בעת פתרון בעית האופטימיזציה, כל דוגמא מסט הלימוד תצייט לאחד מהתנאים הבאים:
+עבור פתרון בעיית ה- SVM, **כל דוגמא מסט הלימוד** תצייט לאחד מהתנאים הבאים:
+
+
 
 1. $$\alpha_i=0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)>1$$
+
+   
+
 2. $$\alpha_i>0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)=1$$
 
 
 
-מהמשוואה $$\boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i$$, ניתן להסיק שרק דוגמא $x_i$ שעבורה מתקיים $\alpha_i>0$ , משתתפת בהגדרת הערך של $w$. נקודות אלה נקראות וקטורי תמיכה (Support Vectors) ובמקרה הכללי, המספר שלהם יהיה נמוך.
+* מהמשוואה $$\boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i$$, ניתן לראות שהפתרון הוא קומבינציה לינארית של הדוגמאות $\{x_i\}$ .
+
+  
+
+* רק עבור דוגמא $x_i$ שעבורה מתקיים $\alpha_i>0$ , משתתפת בהגדרת הערך של $w$. 
+
+  
+
+* נקודות אלה נקראות וקטורי תמיכה (Support Vectors) ובמקרה הכללי, המספר שלהם יהיה נמוך.
 
 </section><section markdown="1">
 
+# תכונות ה- Support Vectors
 
 
-### תכונות ה- Support Vectors
 
 1. מרחקן למישור המפריד הוא מינימלי.
+
+   
+
 2. $\alpha_i>0$ אם ורק אם ${{x}_{i}}$ היא SV.
 
+   
+
 3. אם ${{x}_{i}}$ היא SV, מתקיים ${{y}_{i}}({{w}^{T}}{{x}_{i}}+b)=1$ 
+
+
    (הכיוון ההפוך לא בהכרח מתקיים, כלומר יכולה להיות דוגמה ${{x}_{j}}$ עבורה השוויון הנ"ל מתקיים אך $\alpha_j=0$).
+
+   
 
 4. המרחק האוקלידי של ה SV מהמישור המפריד נקרא ה- margin של הבעיה, והוא שווה ל $\frac{1}{||w||}$ 
    (**תרגיל**: הוכיחו את הביטוי הנ"ל, בעזרת הביטוי למרחק נקודה ממישור ותכונה מס' 3).
 
 </section><section markdown="1">
 
-## שאלה 1 - דוגמאות ניתנות להפרדה לינארית
+# שאלה 1 - דוגמאות ניתנות להפרדה לינארית
 
 נתונות שתי המחלקות הבאות:
 
@@ -123,6 +162,8 @@ $$
 מחלקה 2: $[6,1], [7,6],[10,4]$  ( $y_k=+1$)
 
 ![png](q1.png)
+
+</section><section markdown="1">
 
 א.   צייר את מסווג ה-SVM  הלינארי לבעיה זו? מהם וקטורי התמיכה (support vectors)?
 
@@ -148,10 +189,6 @@ $$
 
  </section><section markdown="1">
 
-### 
-
-
-
 א.   צייר את מסווג ה-SVM  הלינארי לבעיה זו? מהם וקטורי התמיכה (support vectors)?
 
  </section><section markdown="1">
@@ -161,25 +198,26 @@ $$
 נבדוק מה המספר האפשרי ${{n}_{SV}}$ של ווקטורי תמיכה  בבעיה זו:
 
 1. ${{n}_{SV}}=0$:
-   אפשרי באופן עקרוני, אם כל הנקודות בסט הלימוד שייכות רק למחלקה אחת. הפתרון האופטימלי המתקבל הוא $\forall i:{{\alpha }_{i}}=0\to w=0$. מצב זה לא מתקיים בסט הלימוד הנתון בשאלה. </section><section markdown="1">
+   אפשרי באופן עקרוני, אם כל הנקודות בסט הלימוד שייכות רק למחלקה אחת. הפתרון האופטימלי המתקבל הוא $\forall i:{{\alpha }_{i}}=0\to w=0$. מצב זה לא מתקיים בסט הלימוד הנתון בשאלה. 
+
+</section><section markdown="1">
 
 2. ${{n}_{SV}}=1$:
    לא אפשרי במקרה הכללי, שכן אי אפשר לקיים את התנאי $\sum\limits_{i}{{{\alpha }_{i}}}{{y}_{i}}=0$ עם $\alpha_i$ אחד בלבד ששונה מ- 0. **היוצא מהכלל** הוא מקרה פרטי בו אנו מאלצים את המישור המפריד לעבור בראשית, כלומר  קובעים $b=0$. במצב זה $b$ אינו מופיע בבעית האופטימיזציה, ולא נקבל את התנאי $\sum\limits_{i}{{{\alpha }_{i}}}{{y}_{i}}=0$. השאלה דנה במקרה הכללי ולכן לא נבדוק את המקרה הזה.
 
-    </section><section markdown="1">
+ </section><section markdown="1">
 
 3. ${{n}_{SV}}=2$: 
    אפשרי. במקרה זה הווקטור $w$ ניצב לקו המחבר את ווקטורי התמיכה. זוגות אפשריים הן הנקודות (ראו ציור) $\{1,4\};\{1,5\};\{3,4\};\{3,5\}$. ע"י בדיקה רואים שכל הזוגות מובילים לסתירה עם ההנחה שהם ווקטורי תמיכה, שכן עבור כל זוג קייימת נקודה אחרת שיותר קרובה למישור המפריד, בסתירה לתכונות ה- SV.
 
-    </section><section markdown="1">
+ </section><section markdown="1">
 
 4. ${{n}_{SV}}=3$:
    אפשרי. השלשות המועמדות הן נקודות $\{1,3,5\}$ או $\{3,4,5\}$. עבור כל שלשה ניתן לפתור עבור $w,b$ תוך שימוש באילוץ ${{y}_{i}}({{w}^{T}}x+b)=1$ (שמתקיים בשוויון עבור ה- SV). הצבת 3 נקודות תיתן 3 משוואות ב 3 נעלמים, ונקבל פתרון יחיד לנעלמים $w$ ו- $b$.
 
-   
 
-   מקבלים:
 
+מקבלים:
 $$
 \{1,3,5\}:\quad w=\frac{1}{15}\left[\begin{matrix} & 5 \\ & -3 \\ \end{matrix} \right],b=-\frac{2}{15} \\
 $$
@@ -238,15 +276,29 @@ $$
 
  </section><section markdown="1">
 
-### Soft SVM
+# Soft SVM
 
 
 
-במקרה שהמחלקות לא פרידות לינארית, בעית האופטימיזציה לעיל איננה פתירה, שכן לא ניתן לקיים את האילוץ $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right)$ לכל הנקודות.
+* במקרה שהמחלקות לא פרידות לינארית, בעית האופטימיזציה לעיל איננה פתירה:
 
-לכן, ניתן להשתמש בגרסה אחרת של בעית האופטימיזציה אשר עושה שימוש במשתנים $$\left\lbrace\xi_i\right\rbrace$$ שמאפשרים את הפרת האילוץ. באנגלית, משתנים אלו מכונים Slack Variables. בעזרת השימוש במשתנים אלה, ניתן להפר את האילוץ, ולכן להגיע לפתרון שלא מסווג באופן מושלם את כל הדוגמאות. אולם, כדי שעדיין תהיה משמעות לבעיית האופטימיזציה, נעניש את השימוש במשתנים האלה, כדי למנוע ככל הניתן את כמות ההפרות של האילוץ.
+  
+  * לא ניתן לקיים את האילוץ $y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right)$ לכל הנקודות.
 
-הבעיה הפריאמלית במקרה זה הינה:
+  
+
+* לכן, ניתן להשתמש בגרסה אחרת של בעית האופטימיזציה אשר עושה שימוש במשתנים $$\left\lbrace\xi_i\right\rbrace$$ שמאפשרים את הפרת האילוץ. באנגלית, משתנים אלו מכונים Slack Variables. 
+  * בעזרת השימוש במשתנים אלה, ניתן להפר את האילוץ, ולכן להגיע לפתרון שלא מסווג באופן מושלם את כל הדוגמאות. 
+  * כדי שעדיין תהיה משמעות לבעיית האופטימיזציה, נעניש את השימוש במשתנים האלה, כדי למנוע ככל הניתן את כמות ההפרות של האילוץ.
+
+
+
+ </section><section markdown="1">
+
+# Soft SVM - בעית האופטימיזציה
+
+## הבעיה הפריאמלית:
+
 $$
 \boldsymbol{w}^*,b^*=\underset{\boldsymbol{w},b}{\arg\min} \frac{1}{2}\left\lVert\boldsymbol{w}\right\rVert^2+C\sum_i\xi_i \\
 \begin{align*}
@@ -255,7 +307,9 @@ $$
 \end{align*}
 $$
 
-והבעיה הדואלית:
+
+
+## הבעיה הדואלית:
 
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
@@ -269,19 +323,21 @@ $$
 \boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i\\
 $$
 
+ </section><section markdown="1">
+
 כעת, הדוגמאות ב- Data יקיימו את אחד משלושת התנאים האים:
 
 
 
 1. $$\alpha_i=0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)>1$$
 2. $$C>\alpha_i>0$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)=1$$
-2. $$\alpha_i=C$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)<11$$
+2. $$\alpha_i=C$$ and $$y_i\left(\boldsymbol{w}_i^Tx_i+b\right)<1$$
 
 
 
  </section><section markdown="1">
 
-## פונקציות גרעין:
+# פונקציות גרעין:
 
 
 
@@ -493,7 +549,6 @@ $$
 {{\alpha }_{1}}^{{}}\ \left( 1+{{c}_{0}} \right)=1 \\ 
 
 {{\alpha }_{1}}=\frac{1}{1+{{c}_{0}}} 
-
 $$
  </section><section markdown="1">
 
@@ -768,7 +823,7 @@ $$
 - **label**: The label of each track: male/female
 
    </section><section markdown="1">
-  
+
   
 
 #  📉 סטטיסטיקה של ה- Data
@@ -788,7 +843,7 @@ $$
 
 
 
-# היסטוגרמה של כל דגימה כפונקציה של הערך הנמדד:
+## היסטוגרמות של הערכים השונים:
 
 
 
@@ -804,9 +859,20 @@ $$
 
 
 - דגימת קול אקראית - $w$
+
+  
+
 - משתנים אקראיים:
+  
+  
+  
   - $$\boldsymbol{x}=X\left(\omega\right)$$: רשימה של $20$ ערכים שהוצאו עבור דגימת הקול.
+  
+    
+  
   - $$y=Y\left(\omega\right)$$: מין הדובר: $1$ עבור נקבה, $-1$ עבור זכר
+  
+    
 
 נמזער את שגיאת ה- Misclassification
 
@@ -822,7 +888,7 @@ $$
 
 
 
-נשתמש בחבילת האופטימיזציה הקונבקסית [cvxpy](https://www.cvxpy.org/) על מנת לפתור את בעיית האופטימיזציה של SVM.
+* נשתמש בחבילת האופטימיזציה הקונבקסית [cvxpy](https://www.cvxpy.org/) על מנת לפתור את בעיית האופטימיזציה של SVM.
 
 
 
@@ -859,14 +925,20 @@ $$
 
 חשוב לנרמל את ה- Data לפני הרצת האלגוריתם, משתי סיבות עיקריות:
 
+
+
 1. ה- Data מתאר מאפיינים ביחידות וסקלות שונות.
+
+   
+
 2. האלגוריתם מנסה למזער את Objective אשר מבוסס מרחק, מה שהופך אותו לרגיש ביחס למרחק לכל כיוון. לדוגמא, אם נכפיל מאפיין מסוייף בערך קבוע גדול מ-1, למעשה ניתן לו חשיבות יתרה ב- Objective
 
  </section><section markdown="1">
 
 # ⚙️ שלב הלמידה - הבעייה הדואלית
 
-ראשית, נפתור את הבעיה הדואלית.
+* ראשית, נפתור את הבעיה הדואלית:
+
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
 \begin{align*}
@@ -905,12 +977,16 @@ $$
 
  </section><section markdown="1">
 
-#### נצייר את ההיסטוגרמה של התיוגים של כל הנקודות, ונצבע את 3 המקרים שתיארנו לעיל:
+##  ההיסטוגרמה של התיוגים של כל הנקודות
 
 
 
 
 ![png](output_35_0.png)
+
+
+
+* הצבעים מייצגים את 3 המקרים לעיל.
 
 
 
@@ -948,18 +1024,17 @@ $$
 
 # בחירת מודל - כיוונון היפר פרמטרים
 
-כעת, ננסה לבחור את ההיפר-פרמטר $C$. 
+* כעת, ננסה לבחור את ההיפר-פרמטר $C$. 
 
-נסתכל על ערכים בטווח $$10^{-3}$$ - $$10^3$$ ונשווה את התוצאות על סט האימות
-
-
-
-
-ה- $C$ האופטימלי הינו $$0.03162277660168379$$
+* נסתכל על ערכים בטווח $$10^{-3}$$ - $$10^3$$ ונשווה את התוצאות על סט האימות
 
 
 
-הסיכון שהתקבל על סט הבוחן הינו: $$0.017$$
+* ה- $C$ האופטימלי הינו $$0.03162277660168379$$
+
+
+
+* הסיכון שהתקבל על סט הבוחן הינו: $$0.017$$
 
 
 
@@ -969,11 +1044,14 @@ $$
 
 # שימוש בפונקציית גרעין:
 
-כפי שלמדנו, אם נשתמש בפורמולצייה של הבעייה הדואלית, ניתן להחליף את המכפלה הפנימית  $$\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right>$$ בפונקציית גרעין.
+* נשתמש בפורמולצייה של הבעייה הדואלית:
+  * ניתן להחליף את המכפלה הפנימית  $$\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right>$$ בפונקציית גרעין.
 
 
 
-בגרף זה, החלפנו את פונקציית הגרעין ב- Kernel פופולרי המכונה Radial Basis Function או RBF בקיצור.
+* החלפנו את פונקציית הגרעין בגרעין פופולרי המכונה Radial Basis Function.
+
+
 
 ה- $C$ האופטימלי שהתקבל הינו $$1.0$$.
 
