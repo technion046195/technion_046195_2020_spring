@@ -31,9 +31,8 @@ title: "SVM"
 
   <br>
 
-  
+  לבחור את מישור ההפרדה אשר ממקסם את השוליים (Margin) בין המחלקות.
 
-* לבחור את מישור ההפרדה אשר ממקסם את השוליים (Margin) בין המחלקות.
 
 
 
@@ -411,11 +410,9 @@ $$
 
  </section><section markdown="1">
 
-# פונקציות גרעין:
+# פונקציות גרעין - מסווג לא לינארי
 
 
-
-**מסווג לא לינארי**
 
 <br>
 
@@ -473,7 +470,7 @@ $$
 
 **בעיה:** טרנספורמציה למרחב חדש יכולה להיות יקרה חישובית אם המימד של המרחב החדש גבוה מאוד. 
 
-
+<br>
 
 **פתרון:** 
 
@@ -516,21 +513,28 @@ $$
 אזי, תחת תנאים טכניים סבירים, קיים מרחב $$\phi \left( x \right)$$ כך שפונקציית הגרעין הינה מכפלה פנימית מהצורה:
 
 
+
 $$
 K\left( {{x}_{k}},{{x}_{l}} \right)=\phi {{\left( {{x}_{k}} \right)}^{T}}\phi \left( {{x}_{l}} \right)=\left\langle \phi \left( {{x}_{k}} \right),\phi \left( {{x}_{l}} \right) \right\rangle
 $$
 
 
-### **פונקציית גרעין (Kenel)** - המשך
+
+ </section><section markdown="1">
+
+### פונקציית גרעין (Kernel) - המשך
 
 
 
  כעת הסיווג שלנו יהיה כדלקמן:
 
 <br>
+
+
 $$
 \hat{y}=sign\left( \underset{i=1}{\overset{n}{\mathop \sum }}\,{{{\tilde{\alpha }}}_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)+\tilde{b} \right)
 $$
+
 
 
 <br>
@@ -649,6 +653,7 @@ $$
 הבעיה הדואלית ניתנת לתאור בצורה הבא עבור פונקציית גרעין:
 
 
+
 $$
 \underset{\alpha }{\mathop{\max }}\,\ \ \sum\limits_{k=1}^{n}{{{\alpha }_{k}}}-\frac{1}{2}\ \sum\limits_{k,l=1}^{n}{{{\alpha }_{k}}}{{\alpha }_{l}}{{y}_{k}}{{y}_{l}}K\left( {{x}_{k}},{{x}_{l}} \right) \\
 \text{s.t.}\ \quad  \text{ }{{\alpha }_{k}}\ge 0, \quad k=1,2,\ldots ,n \\
@@ -657,17 +662,23 @@ $$
 
 
 
+<br>
+
 נשים לב, שאכן אין כאן תלות במרחב ה- Feature-ים החדש, אלא רק בחישוביות של ה- Kernel!
 
  </section><section markdown="1">
 
-## 
 
-**מסקנה:**
+
+## **מסקנה:**
 
 <br>
 
-נבצע סיווג לא לינארי באמצעות מרחב Feature-ים שמתואר על ידי kernel, נוכל לחסוך חישובים רבים עקב הטרנספורמציה הזולה חישובית של ה- Kernel במסגרת הבעיה הדואלית.
+* נבצע סיווג לא לינארי באמצעות מרחב Feature-ים שמתואר על ידי kernel.
+
+  <br>
+
+* נוכל לחסוך חישובים רבים עקב הטרנספורמציה הזולה חישובית של ה- Kernel במסגרת הבעיה הדואלית.
 
  </section><section markdown="1">
 
@@ -681,15 +692,31 @@ $$
 {{x}_{1}}=\left( 1,1 \right),\quad {{y}_{1}}=+1 \\ 
  {{x}_{2}}=(-1,-1)\quad {{y}_{2}}=-1 \\
 $$
+
+
 חשבו את משטח ההפרדה עבור הגרעין הגאוסי בעל $$c=1$$, ו -  $$K(x,z)=\exp (-{{\left\| x-z \right\|}^{2}})$$.
 
  </section><section markdown="1">
 
 ### **פתרון**
 
-נזכר כי כלל ההחלטה הוא $$\text{ sign}({{w}^{T}}\phi (x))=\text{ sign}\left( \sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)} \right)$$ ולכן משטח גבול ההחלטה מקיים $$\sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)}=0$$. 
+* נזכר כי כלל ההחלטה הוא $$\text{ sign}({{w}^{T}}\phi (x))=\text{ sign}\left( \sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)} \right)$$
 
-על מנת לחשב את המשטח יש למצוא את המקדמים $$\left\{ {{\alpha }_{k}} \right\}$$. לצורך כך, נפתור את הבעיה הדואלית (הפרידה):
+
+
+* לכן, משטח גבול ההחלטה מקיים
+
+  
+  $$
+  \sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)}=0
+  $$
+  
+
+  
+
+* על מנת לחשב את המשטח יש למצוא את המקדמים $$\left\{ {{\alpha }_{k}} \right\}$$. לצורך כך, נפתור את הבעיה הדואלית (הפרידה):
+
+  
 
 
 $$
@@ -700,9 +727,11 @@ $$
 $$
 
 
+
 </section><section markdown="1">
 
-במקרה שלנו 
+במקרה שלנו, 
+
 
 
 $$
@@ -717,15 +746,16 @@ $$
 
 
 
-נשים לב כי $$K\left( {{x}_{1}},{{x}_{1}} \right)=K\left( {{x}_{2}},{{x}_{2}} \right)={{e}^{0}}=1$$ וכן כי $$K\left( {{x}_{1}},{{x}_{2}} \right)={{e}^{-\left\| {{x}_{1}}-{{x}_{2}} \right\|}}={{e}^{-4}}={{c}_{0}}$$.
+* נשים לב כי $$K\left( {{x}_{1}},{{x}_{1}} \right)=K\left( {{x}_{2}},{{x}_{2}} \right)={{e}^{0}}=1$$ וכן כי $$K\left( {{x}_{1}},{{x}_{2}} \right)={{e}^{-\left\| {{x}_{1}}-{{x}_{2}} \right\|}}={{e}^{-4}}={{c}_{0}}$$.
 
 <br>
 
-מהאילוץ השני נקבל $${{\alpha }_{1}}={{\alpha }_{2}}$$.
+* מהאילוץ השני נקבל $${{\alpha }_{1}}={{\alpha }_{2}}$$.
 
 </section><section markdown="1">
 
-בהצבה בפונקציית המטרה נקבל
+* בהצבה בפונקציית המטרה נקבל,
+
 
 
 $$
@@ -736,7 +766,8 @@ $$
 
 
 
-זוהי בעיה חד מימדית ריבועית, נגזור על מנת למצוא נקודת מקסימום ונקבל 
+* זוהי בעיה חד מימדית ריבועית, נגזור על מנת למצוא נקודת מקסימום ונקבל,
+
 
 
 $$
@@ -1036,10 +1067,14 @@ $$
 
 - **label**: The label of each track: male/female
 
-   </section><section markdown="1">
 
 
-  
+
+
+
+</section><section markdown="1">
+
+
 
 #  📉 סטטיסטיקה של ה- Data
 
@@ -1132,7 +1167,7 @@ $$
 
 #  עיבוד מקדים
 
-# 📚 א) פיצול ה- Data
+## 📚 א) פיצול ה- Data
 
 
 
@@ -1152,7 +1187,7 @@ $$
 
  </section><section markdown="1">
 
-# 📚 ב) נרמול ה- Data
+## 📚 ב) נרמול ה- Data
 
 <br>
 
@@ -1192,7 +1227,7 @@ $$
 
 <br>
 
-נתחיל עם $$C=1$$ ולאחר מכן ננסה לכוונן היפר-פרמטר זה.
+* נתחיל עם $$C=1$$ ולאחר מכן ננסה לכוונן היפר-פרמטר זה.
 
  </section><section markdown="1">
 
@@ -1201,7 +1236,7 @@ $$
 
 ![png](output_31_1.png)
 
-כצפוי, קיבלנו 3 סוגי ערכים: $$\alpha_i=0$$, $$0<\alpha_i<C$$ ו- $$\alpha_i=C$$. ערכים אלה מתאימים למצבים הבאים
+כצפוי, קיבלנו 3 סוגי ערכים: $$\alpha_i=0$$, $$0<\alpha_i<C$$ ו- $$\alpha_i=C$$. ערכים אלה מתאימים למצבים הבאים:
 
 - $$\alpha_i=0$$: דוגמאות שסווגו נכונה ורחוקות מה- Margin: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) > 1$$
 - $$0<\alpha_i<C$$: דוגמאות שיושבות בדיוק על ה- Margin: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) = 1$$
@@ -1213,7 +1248,8 @@ $$
 
 
 
-כעת, ניתן להשתמש בנוסחא שנלמדה על מנת לחשב את $$w$$ ו- $$b$$
+כעת, ניתן להשתמש בנוסחא שנלמדה על מנת לחשב את $$w$$ ו- $$b$$:
+
 
 
 $$
@@ -1223,6 +1259,8 @@ $$
 
 
 
+
+<br>
 
 את $$b$$ ניתן לחשב על ידי לבחור נקודה שעבורה $$0<\alpha_i<C$$ ולהשתמש במשוואה: $$y_i\left(\boldsymbol{w}^T\boldsymbol{x}_i+b\right) = 1$$.
 
