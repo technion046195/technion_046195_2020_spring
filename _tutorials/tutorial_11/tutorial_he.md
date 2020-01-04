@@ -1,6 +1,6 @@
 ---
 number: 11
-title: "SVM ופונרציות גרעין" 
+title: "SVM ופונקציות גרעין (Kernels)" 
 ---
 {% raw %}
 
