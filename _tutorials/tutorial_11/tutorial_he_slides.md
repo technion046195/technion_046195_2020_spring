@@ -1,12 +1,12 @@
 ---
 number: 11
-title: "SVM" 
+title: "SVM ופונקציות גרעין (Kernels)" 
 ---
 {% raw %}
 
 <section markdown="1">
+<center><h1 class="workshop-title">מוטיבציה</h1></center>
 
-<center><h1 class="workshop-title">תרגול 11 - SVM ופונקציות גרעין (Kernels)</h1></center>
 <br>
 
 * עסקנו בתרגולים קודמים בסיווג לינארי:
