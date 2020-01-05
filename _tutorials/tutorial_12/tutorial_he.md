@@ -11,11 +11,11 @@ title: "Decision Trees & Boosting"
 
 :דוגמא לשימוש בעץ החלטה לצורך סיווג פירות לפי מספר מאפיינים
 
-![Decision_trees_1](./figs/decsion_trees_example_1.png){: width=75%}
+![Decision_trees_1](./figs/decsion_trees_example_1.png){: width="75%"}
 
 דוגמא לשימוש בעץ החלטה כאשר מרחק הקלט הוא רציף:
 
-![Decision_trees_2](./figs/decsion_trees_example_2.png){: width=75%}
+![Decision_trees_2](./figs/decsion_trees_example_2.png){: width="75%"}
 
 מטרת חלק זה היא להדגים בנייה של עץ החלטה, על סמך אוסף דוגמאות מתויג, כאשר נבנה את עץ ההחלטה עם התכונות הבאות:
 1.	סיווג נכון של מרבית הדוגמאות.
@@ -69,104 +69,345 @@ $$
 ניתן לראות כי זהו הגידול באחידות (או הקטנה בחוסר-האחידות) של האוסף $$\{S_m\}$$
 לעומת קבוצת הדוגמאות המקורית $$D$$. כאשר  $$Q(\dot)$$ הינו האנטרופיה,  $$\Delta Q(D|A)$$ נקרא גם תוספת המידע (information gain)  של המאפיין  $$A$$. 
 
+---
+
+המאפיין $$A$$ שנבחר הוא (כעיקרון) זה שעבורו השיפור  $$\Delta Q(D|A)$$ הינו **מקסימלי**, כלומר $$\Delta Q(D|A)$$ **מינימלי**.
+
+---
+
+## שאלה 12.1 – בניית עץ החלטה#
+בנה עץ החלטה המבוסס על קריטריון האנטרופיה, אשר בהינתן נתוני צבע שער, גובה, משקל, משתמש בקרם הגנה, קובע האם עתיד האדם להכוות מהשמש היוקדת.  
+סט דוגמאות הלימוד לצורך בניית העץ מוצג בטבלה הבאה:
+
+<div dir="ltr" markdown="1">
+
+| Name	| Hair	  | Height	| Weight	| Lotion	| Result (Label)       |   
+| ---   |   ---   | ---     | ---       | ---       | ---                  |
+| Sarah	| blonde  |	average	| light	    | no	    | sunburned (positive) |
+| Dana	| blonde  |	tall	| average	| yes	    | none (negative)      |
+| Alex	| brown	  | short	| average	| yes	    | none                 |
+| Annie	| blonde  |	short	| average	| no	    | sunburned            |
+| Emily	| red     |	average	| heavy	    | no	    | sunburned            |
+| Pete	| brown	  | tall	| heavy	    | no	    | none                 |
+| John	| brown	  | average	| heavy	    | no	    | none                 |
+| Katie	| blonde  |	short	| light	    | yes	    | none                 |
+
+</div>
 
 
-## AdaBoost
+### פתרון שאלה 1
+אנו נמצאים בשורש ולכן ##D## הוא קבוצת כל האנשים. ראשית נחשב את האנטרופיה על פני כלל הדוגמאות:
 
-AdaBoost (Adaptive Boosting) is a technique for improving the performance of a given classification algorithm by taking a smart weighted sum of multiple instances of the classifier.
+$$
+H(D) = -\frac{3}{8} \log{\frac{3}{8}} -\frac{5}{8} \log{\frac{5}{8}} = 0.954
+$$
 
-This technique is based on iteratively building the series of classifier while keeping a vector of weights of how good was each point classified by previous classifiers. In each step the algorithm tries to build a classifier which corrects the errors made by previous classifiers.
+כעת נבחן את האנטרופיה שתושרה לאחר פיצול לפי כל אחד מהמאפיינים האפשריים:
 
-Using the following notation:
-- $$N$$ - Is the size of the dataset
-- $$\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$ - Are the measurements and the labels.
-- The labels $$\left\lbrace y_i\right\rbrace$$ have $$1,-1$$ values.
+**Hair:**
 
-the steps of this algorithm are as follow:
-- Initialize a uniform weights vector for each data points: $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
-- Iterate over the following steps, with a index $$t$$, until reaching some stopping criteria:
-  1. Build an optimal classifier $$h_t$$ according to the given weighted dataest.
-  2. Calculate the prediction error of $$h_t$$ on the weighted dataset: $$\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
-  3. Calculate the the weight for the $$h_t$$ classifier according to: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
-  4. Update the weights of the data according to $$w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
-  5. Normalize the weight by $$Z=\sum_iw^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
+<div dir="ltr" markdown="1">
 
-The final prediction will then be the following linear combination of the trained classifiers:
+| Feature	| Distribution	  | $$H(D \lvertA)$$	| 
+| ---   |   ---   | ---     | 
+| Blonde	| $$+2/-2$$  |	$$H(D \lvert Hair = blonde ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
+| Brown	| $$0/-3$$   |	$$ H(D \lvert Hair = brown ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 0	$$ | 
+| Red	| $$+1/0$$  |	$$ H(D \lvert Hair = red ) = -1 \log 1 -0 \log{0} = 0	$$| 
+
+</div>
+
+ומדד הטיב של מאפיין Hair יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
+
+$$
+\Delta H(D \lvert Hair ) = H(S) -( \frac{1}{2} \cdot 1 +  \frac{3}{8} \cdot 0 \frac{1}{8} \cdot 0 = H(D) - \frac{1}{2}
+$$
+
+**Height:**
+
+<div dir="ltr" markdown="1">
+
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
+| ---       |   ---   | ---     | 
+| Short     | $$+1/-2$$  |	$$H(D \lvert Height = Short ) = -\frac{1}{3} \log{\frac{1}{3}} -\frac{2}{3} \log{\frac{2}{3}} = 0.918 $$	| 
+| Average	| $$2/-1$$   |	$$ H(D \lvert Height = Average ) = -\frac{2}{3} \log{\frac{2}{3}} -\frac{1}{3} \log{\frac{1}{3}} = 0.918	$$ | 
+| Tall	    | $$0/-2$$  |	$$ H(D \lvert Height = Tall )  = 0	$$| 
+
+</div>
+
+ומדד הטיב של מאפיין Height יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
+
+$$
+\Delta H(D \lvert Height ) = H(S) -( \frac{3}{8} \cdot 0.918 +  \frac{3}{8} \cdot 0.918 \frac{2}{8} \cdot 0 = H(D) - 0.69
+$$
+
+**Weight:**
+
+<div dir="ltr" markdown="1">
+
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
+| ---       |   ---   | ---     | 
+| Light     | $$+1/-1$$  |	$$H(D \lvert Weight = Light ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
+| Average	| $$1/-2$$   |	$$ H(D \lvert Weight = Average ) = -\frac{1}{3} \log{\frac{1}{3}} -\frac{2}{3} \log{\frac{2}{3}} = 0.918	$$ | 
+| Heavy	    | $$+1/-2$$  |	$$ H(D \lvert Weight = Heavy )  = -\frac{1}{3} \log{\frac{1}{3}} -\frac{2}{3} \log{\frac{2}{3}}  = 0.918	$$| 
+
+</div>
+
+ומדד הטיב של מאפיין weight יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
+
+$$
+\Delta H(D \lvert Weight ) = H(S) -( \frac{2}{8} \cdot 1 + \frac{3}{8} \cdot 0.918 \frac{3}{8} \cdot 0.918 = H(D) - 0.9385
+$$
+
+**Lotion:**
+
+<div dir="ltr" markdown="1">
+
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
+| ---       |   ---   | ---     | 
+| No     | $$+3/-2$$  |	$$H(D \lvert Lotion = No ) = -\frac{3}{5} \log{\frac{3}{5}} -\frac{2}{5} \log{\frac{2}{5}} = 0.97 $$	| 
+| Yes	| $$0/-3$$   |	$$ H(D \lvert Lotion = Yes ) = 0	$$ | 
+
+</div>
+
+ומדד הטיב של מאפיין lotion יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
+
+$$
+\Delta H(D \lvert Lotion ) = H(S) -( \frac{5}{8} \cdot 0.97 + \frac{3}{8} \cdot 0 ) = H(D) - 0.606
+$$
+
+מכאן שהמאפיין האופטימלי לפיצול הראשון (על פי קריטריון האנטרופיה) הוא **Hair**.
+
+עבור הפיצול של הרמה השנייה נשים לב כי הענפים של Hair=brown  ו  Hair=red בעלי אנטרופיה מקסימלית. כלומר, ניתן לסווג את הדוגמאות בצורה מושלמת לכן אין צורך בפיצולים נוספים. לגבי הענף Hair=blonde:
+קבוצת הדוגמאות בענף זה היא: 
+
+<div dir="ltr" markdown="1">
+
+| Name	| Hair	  | Height	| Weight	| Lotion	| Result (Label)       |   
+| ---   |   ---   | ---     | ---       | ---       | ---                  |
+| Sarah	| blonde  |	average	| light	    | no	    | sunburned (positive) |
+| Dana	| blonde  |	tall	| average	| yes	    | none (negative)      |
+| Annie	| blonde  |	short	| average	| no	    | sunburned            |
+| Katie	| blonde  |	short	| light	    | yes	    | none                 |
+
+</div>
+
+פיצול לפי מאפיין height ייתן:
+
+<div dir="ltr" markdown="1">
+
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
+| ---       |   ---   | ---     | 
+| Short     | $$+1/-1$$  |	$$H(D \lvert Height = Short ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
+| Average	| $$1/0$$   |	$$ H(D \lvert Height = Average ) = 0	$$ | 
+| Tall	    | $$0/-1$$  |	$$ H(D \lvert Height = Tall )  = 0	$$| 
+
+</div>
+
+לפי weight:
+<div dir="ltr" markdown="1">
+
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
+| ---       |   ---   | ---     | 
+| Light     | $$+1/-1$$  |	$$H(D \lvert Weight = Light ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
+| Average	| $$1/-1$$   |	$$ H(D \lvert Weight = Average ) =  -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1	$$ | 
+| Heavy	    | $$0/0$$  |	$$ H(D \lvert Weight = Heavy )  = 0	$$| 
+
+</div>
+
+לפי Lotion:
+<div dir="ltr" markdown="1">
+
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
+| ---       |   ---   | ---     | 
+| No     | $$+2/0$$  |	$$H(D \lvert Lotion = No ) = 0 $$	| 
+| Yes	| $$0/-2$$   |	$$ H(D \lvert Lotion = Yes ) = 0	$$ | 
+
+</div>
+
+לפיכך הקריטריון האופטימלי (זה שממזער את קריטריון הגידול) הוא Lotion.
+
+עץ ההחלטה הסופי יראה כך:
+![Q10_tree](figs/question_10_1.png){: width= "50%"}
+
+### בעיית התאמת היתר (overfitting):
+ניתן לסווג את הדוגמאות באופן מושלם רק על סמך "מאפיין"  **שם** ו"מאפיין" זה בוודאי ייבחר בצומת הראשונה לפי קריטריון "תוספת המידע". **אולם לקריטריון זה ערך מועט לצורך חיזוי**.
+
+**מקור הבעיה:** בקריטריון שבו השתמשנו קיימת העדפה מובנית למאפיינים בעלי מספר ערכים רב.
+
+**פתרון אפשרי:** נרמול "תוספת המידע" של מאפיין $$A$$  באופן הבא:
+
+$$
+\Delta \widetilde{Q}(D \lvert A ) = \frac{\Delta Q(D \lvert A )}{\text{Split}(D , A)}
+$$
+
+$$ \text{Split}(D , A)$$ כאשר 
+הינו מקדם פיצול מתאים. הגדרה מקובלת:
+
+$$
+\text{Split}(D , A) = \log n(A)
+$$
+
+$$ n(A) $$ כאשר,
+היינו מספר הערכים השונים של הנאפיין $$A$$, המתקבלים על פני איברי הקבוצה $$D$$
+
+
+### מאפיינים רציפים:
+נניח כי וקטור המאפיינים $$x=(x_1,…,x_d )^T$$ כולל רכיבים $$x_j$$ בעלי ערכים רציפים.
+ במקרה זה, המבחן המקובל לגבי $$x_j$$ הינו מהצורה $$x_j \leq t_j$$.
+ לפיכך, לבחירת המאפיין בכל צומת יש להוסיף את בחירת ערך הסף  $$t_j$$.  
+עבור כל מבחן $$A=\{ x_j \leq t_j \}$$ ניתן להגדיר את תוספת המידע באופן הרגיל:
+
+$$
+\Delta Q(S \lvert x_j,t_j )= \Delta Q(S \levert A)
+$$
+
+השלב הבא הוא מקסימיזציה על הסף $$t_i$$:
+
+$$
+\Delta Q(S \lvert x_j ,t_j^* )= \max_{t_j} \Delta Q(S \lvert x_j, t_j)
+$$
+
+ולאחר מכן בחירת המאפיין $$x_j$$ שעבורו מדד זה הינו מקסימלי.
+
+
+## Boosting - Adaboost
+AdaBoost (Adaptive Boosting) הינה טכניקה לשיפור ביצועים של אלגוריתם סיווג על ידי שילוב ממושקל של מספר מסווגים.
+עיקרון מבוסס על בנייה איטרטיבית של מסווג אשר מורכב ממספר מסווגים, כשאר בתהליך הבנייה נשמר ווקטור של משקולות המעיד על טיב הסיווג של כל נקודה בסט על ידי סך הסיווגים הקודמים (מכל המסווגים).
+בכל שלב האלגוריתם מנסה לבנות מסווג שיתקן את הטעויות שנעשו מהמסווגים הקודמים.
+
+נסמן:
+- $$N$$ - גודל ה dataset
+- $$\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$ - המדידות ותגיות.
+- ערכי התגיות הם  $$1,-1$$
+
+**אלגוריתם:**
+- $$w^{\left(t=0\right)}_i=\frac{1}{N}$$אתחל באופן אחיד את המשקולות עבור כל נקודה ב dataset:
+- המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
+  1. בנה מסווג אופטימלי $$h_t$$ ביחס ל- dataset הממושקל 
+  2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
+  3. חשב את משקל עבור המסווג $$h_t$$ לפי: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
+  4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
+  5. נרמל את המשקולות לפי: $$Z=\sum_iw^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
+
+הסיווג הסופי נעשה על ידי קומבינציה לינארית של כל מסווגים והמשקל שלהם.
+
 $$
 h\left(\boldsymbol{x}_i\right)=\text{sign}\left(\sum_t\alpha_th_t\left(\boldsymbol{x}_i\right)\right)
 $$
 
+## תרגיל 12.2: הדגמת האלגוריתם 
 
-<center><h1 class="workshop-title">Workshop 12<br>AdaBoost</h1></center>
+נתבונן בבעיית סיווג חד מימדית עבור סט דוגמאות האימון:
 
-## Problem:  Back to the Titanic
+$$
+\{(x_i,y_i)\}_{(i=1}^3=\{(0,-1), (1,1), (2,-1) \}.
+$$
 
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg" width=400px></center>
+יהי המודל:
+$$
+H\left(\boldsymbol{x}_i\right)=\text{sign}\left(\sum_t\alpha_th_t\left(\boldsymbol{x}_i\right)\right)
+$$
 
-We will return to the problem from workshop 1 of trying to predict whether a passenger on board the Titanic has survived or not based on the data from the passengers manifest.
+
+1. האם קיימים מסווגים ליניאריים $$\{h_t\}$$  ופרמטרים  $$\{\alpha\}$$ כך שהשגיאה של היפותזה $$H(x)$$ היא אפס על כל סט האימון? אם כן, מה ה-T  המינימאלי לקבל שגיאה אפס?
+
+2. רשום את שלבי אלגוריתם AdaBoost עבור הדוגמא.
+
+## פתרון 
+
+1. ראשית נסתכל בבעיה:
+![Q10_2](figs/question_10_2.png){: width = "50%"}
+
+נשים לב, שמסווג בודד לא יפתור את הבעיה משום שלא קיימת הפרדה לינארית בין המחלקות.
+ עבור שני מסווגים לא ניתן למצוא מקדמים $$\alpha_t$$ שעבור נקבל שגיאת אימון אפס. ניתן לקבל שגיאה אפס עבור שלושה מסווגים חלשים בהן נתייג נכון את כל הדוגמאות.
+
+2.
+נאתחל את הפילוג: 
+
+$$
+D_1=\frac{1}{3}
+$$
+
+נקח את המסווג הבא:
+$$
+h_1 (x_i )=\{-1,-1,-1\}
+$$
+
+עבורו נקבל:
+
+$$
+\epsilon_1=P_{D_1} (h_1 (x_i ) \neq y_i ) = \frac{1}{3} \\
+a_1= \frac{1}{2}  \log \frac{1 - \epsilon_1}{\epsilon_1} = 0.3466
+$$
+
+וכרגע ניתן לעדכן את התפלגות הדוגמאות:
+
+$$
+D_2 (i) = D_1 \cdot \exp frac{-a_1 y_i h_1 (x_i )}{Z_1} = \{0.25,0.5,0.25\} \\
+Z_1= \sum_i D_1 (i) \cdot  \exp (-a_1 y_i h_1 (x_i ))
+$$
+
+באיטרציה הבאה נבחר את המסווג הבא:
+
+$$
+h_2 (x_i )=\{-1,+1,+1\}
+$$
+
+עבורו נקבל:
+
+$$
+\epsilon_2=P_{D_2} (h_2 (x_i ) \neq y_i ) = 0.25 \\
+a_2 = \frac{1}{2} \log \frac{1-\epsilon_2}{\epsilon_2} = 0.5493
+$$
+
+נעדכן את הפילוג לפי המסווג הנוסף:
+
+$$
+D_3(i) = D_2 \cdot \exp \frac{-a_2 y_i h_2 (x_i )}{Z_2} = \{0.1667,0.333,0.5\} \\
+Z_2 = \sum_i D_2 (i) \cdot \exp (-a_2 y_i h_2 (x_i ))
+$$
+
+עבור הבעיה בדוגמה, מספיק עוד מסווג חלש אחד אותו נבחר כך:
+
+$$
+h_3 (x_i )=\{+1,+1,-1\}
+$$
+
+עבורו נקבל:
+
+$$
+\epsilon_3=P_(D_3 ) (h_3 (x_i ) \neq y_i ) = 0.1667 \\
+a_3 = \frac{1}{2} \log \frac{1-ϵ_3}{ϵ_3} = 0.8047
+$$
+
+נעדכן את הפילוג לפי המסווג הנוסף:
+
+$$
+D_4 (i) = D_3 \cdot \exp \frac{-a_3 y_i h_3 (x_i )}{Z_3}  = \{0.5,0.2,0.3\} \\
+Z_3 = \sum_i D_3 (i) \cdot  \exp (-a_3 y_i h_3 (x_i ))
+$$
+
+לבסוף המסווג עם שגיאה אפס המתקבל היינו:
+
+$$
+H(x) = sign(\sum_{t=1}^3 (\alpha_t h_t (x)))= \{-1,+1,-1\}
+$$
+
+
+## AdaBoost חלק מעשי
+
+##האתגר: בחזרה לטיטניק
+
+![titanic_img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg) {:width= "50%"}
+
+ננסה לחזות האם נוסע בטיטניק ישרוד או לא על סמך רישום ונתונים של הנוסעים.
 
 ## Dataset: The Titanic Manifest
+ניתן להוריד את הdataset מהקישור [הזה](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic.html)
 
-The full manifest data can be found [here](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic.html) with some additional details  regarding the dataset.
-
-A cleaner version of it for our needs can be found [here](https://yairomer.github.io/ml_course/datasets/titanic_manifest.csv).
-
-
-## 🔃 The Workflow
-
-We will follow the usual work follow to build our digits classifier
-
-<center><img src="../media/diagrams/workflow/workflow_full.png" width="300px" style="width:300px"/></center>
-
-## 🛠️ Preparations
-
-
-```python
-# Importing packages
-import numpy as np  # Numerical package (mainly multi-dimensional arrays and linear algebra)
-import pandas as pd  # A package for working with data frames
-import matplotlib.pyplot as plt  # A plotting package
-
-## Setup matplotlib to output figures into the notebook
-## - To make the figures interactive (zoomable, tooltip, etc.) use ""%matplotlib notebook" instead
-%matplotlib inline
-
-plt.rcParams['figure.figsize'] = (5.0, 5.0)  # Set default plot's sizes
-plt.rcParams['figure.dpi'] =120  # Set default plot's dpi (increase fonts' size)
-plt.rcParams['axes.grid'] = True  # Show grid by default in figures
-
-## A function to add Latex (equations) to output which works also in Google Colabrtroy
-## In a regular notebook this could simply be replaced with "display(Markdown(x))"
-from IPython.display import HTML
-def print_math(x):  # Define a function to preview markdown outputs as HTML using mathjax
-    display(HTML(''.join(['<p><script src=\'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS_CHTML\'></script>',x,'</p>'])))
-```
 
 ## 🕵️ Data Inspection
-
-Like always, we will start by loading the data and taking a look at it by printing out the 10 first rows.
-
-
-```python
-data_file = 'https://yairomer.github.io/ml_course/datasets/titanic_manifest.csv'
-
-## Loading the data
-dataset = pd.read_csv(data_file)
-
-## Print the number of rows in the data set
-number_of_rows = len(dataset)
-print_math('Number of rows in the dataset: $$N={}$$'.format(number_of_rows))
-
-## Show the first 10 rows
-dataset.head(10)
-```
-
-
-Number of rows in the dataset: $$N=1001$$
-
-
-
-
+התרשמות ראשונית ממאגר המידע, עשר שורות ראשונות מהרשומות:
 
 <div>
 <style scoped>
@@ -388,96 +629,49 @@ Number of rows in the dataset: $$N=1001$$
 </table>
 </div>
 
+סה"כ ישנם $$N=1001$$ רשומות במאגר מידע.
 
 
 ### The Data Fields and Types
-In this workshop we will use the following fields:
-- **pclass**: the ticket's class: 1st, 2nd or 3rd: 1, 2 or 3
-- **sex**: the sex of the passenger as a string: male or female
-- **age**: the passenger's age: an integer
-- **sibsp**: the number of Siblings/Spouses aboard for each passenger: an integer
-- **parch**: the number of Parents/Children aboard for each passenger: an integer
-- **fare**: The price the passenger payed for the ticket: a positive real number
-- **embarked**: The port in which the passenger embarked the ship: (C = Cherbourg; Q = Queenstown; S = Southampton)
-
-- **survived**: The label for whether or not this passenger has survived: 0 or 1
-
-(A full description for each of the other columns can be found [here](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic3info.txt))
-
-###  📉 Some Plots
-
-Let us plot the survival of passengers as a function of each of the features.
+נעשה שימוש בשדות (מאפיינים) הבאים:
+- **pclass**: מחלקת הנוסע: 1, 2 או 3
+- **sex**: מין הנוסע
+- **age**: גיל הנוסע
+- **sibsp**: מס' של אחים ובני זוג של כל נוסע על האוניה
+- **parch**: מס' של ילדים או הורים של כל נוסע על האונייה
+- **fare**: המחיר שהנוסע שילם על הכרטיס
+- **embarked**: הנמל בו עלה הנוסע על האונייה (C = Cherbourg; Q = Queenstown; S = Southampton)
+- **survived**: התיוג, האם הנוסע שרד או לא
 
 
-```python
-discrete_columns = ['pclass', 'sex', 'sibsp', 'parch', 'embarked']
-continuous_columns = ['age', 'fare']
-
-## Plotting the histograms
-fig, ax_list = plt.subplots(2, 4, figsize=(10, 5))
-for i, feature in enumerate(discrete_columns):
-    ax = ax_list.flat[i]
-    dataset.groupby([feature, 'survived']).size().unstack('survived').plot.bar(ax=ax, stacked=True, legend=False)
-    ax.set_title(feature)
-
-for i, feature in enumerate(continuous_columns):
-    ax = ax_list.flat[i + len(discrete_columns)]
-    ax.hist(dataset.query('survived == 0')[feature].values, bins=20, alpha=0.5, label='0')
-    ax.hist(dataset.query('survived == 1')[feature].values, bins=20, alpha=0.5, label='1')
-    ax.set_title(feature)
-    
-for ax_list2 in ax_list:
-    ax_list2[0].set_ylabel('Number of passengers')
-    
-ax_list.flat[-2].legend()
-plt.tight_layout()
-```
+###  📉 התרשמות ראשונית בעזרת גרפים 
+נציג את היחס בין המחלקות (שורדים ונספים) עבור המאפיינים:  
 
 
-![png](output_13_0.png)
+![plots](figs/output_13_0.png){: width = "100%"}
 
 
-To make the dataset more useful to work with we will change all the discrete features to be numeric and start at 0 (we  will treat **sibsp** and **parch** as finite discrete features):
+## 📜 הגדרת הבעיה :
 
-
-```python
-dataset2 = pd.DataFrame({
-    'survived': dataset['survived'],
-    'pclass': dataset['pclass'].map({1:0, 2:1, 3:2}),
-    'sex': dataset['sex'].map({'male':0, 'female':1}),
-    'sibsp': dataset['sibsp'],
-    'parch': dataset['parch'],
-    'embarked': dataset['embarked'].map({'C':0, 'Q':1, 'S':2}),
-    'age': dataset['age'],
-    'fare': dataset['fare'],
-    })
-
-dataset2.dropna(axis=0, inplace=True)
-dataset2['embarked'] = dataset2['embarked'].astype(int)
-dataset2['weights'] = np.ones(len(dataset2)) / len(dataset2)
-```
-
-## 📜 Problem Definition
-
-For the following given random system:
-
-- Random sample: $$\omega$$ - A passenger on board the Titanic.
-- Random variables:
-  - $$\boldsymbol{x}=X\left(\omega\right)$$: The passenger parameters extracted from the manifest.
-  - $$y=Y\left(\omega\right)$$: An indicator of whether or not the passenger survived.
-
-Find a binary discrimination function $$\hat{y}=h^*\left(\boldsymbol{x}\right)$$ which minimizes the misclassification rate:
+- משתנים אקראיים:
+  - $$ x_i $$ : מאפייני הנוסע
+  - $$ y_i $$ : תיוג הנוסע, שרד או נספה
+  
+נמצא מסווג $$\hat{y}=h^*\left(\boldsymbol{x}\right)$$ אשר מביא למינימום את ה- miscalssification rate:
 
 $$
 h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
 $$
 
+
 ## 💡 Model & Learning Method Suggestion: Stumps + AdaBoost
-
-We will use Stumps classifiers (one level decision trees) which are boosted using AdaBoost. 
-
-We will use the **weighted Gini index** to build our classifiers using the weighted data. For a given split of the data in to $$\mathcal{C}_1$$ and $$\mathcal{C}_2$$ and a set of weights $$\left\lbrace w_i\right\rbrace$$, the **weighted Gini index** will be:
-
+ .נשתמש בעץ בעל עומק אחד (נקרא Stump), שבעצם מסווג על פי מאפיין בודד בשילוב של אלגוריתם AdaBoost
+ 
+ **הערה:** ניתן להגיד שהשילוב הנ"ל הוא וריאציה של Random Forest, אלגוריתם שמשלב מספר עצים. כמו כן הטכניקה הזאת נקראת גם Ensemble.
+ 
+ עבור קריטריון בניית עץ נשתמש ב**Gini אינדקס ממושקל** הנובע מה-data הממושקל.
+ עבור חלוקה של ה-data לשני סטים $$\mathcal{C}_1$$ and $$\mathcal{C}_2$$ , וסט המשקולות של הדגימות $$\left\lbrace w_i\right\rbrace$$ נקבל את Gini אינדקס ממושקל:  
+ 
 $$
 N_1=\sum_{i\in\mathcal{C}_1}w_i\\
 N_2=\sum_{i\in\mathcal{C}_2}w_i\\
@@ -486,226 +680,21 @@ p_2=\frac{1}{N_2}\sum_{i\in\mathcal{C}_2}w_iI\left\lbrace y_i=1\right\rbrace\\
 G=N_1p_1\left(1-p_1\right)+N_2p_2\left(1-p_2\right)
 $$
 
-### Parameters:
 
-- The splitting performed by each stump.
-- The weighting of the stumps. $$\alpha_i$$.
+### פרמטרים נלמדים:
+
+- החלוקה המתבצעת על ידי כל עץ.
+- משקול כל עץ: $$\alpha_i$$.
 
 ### Hyper-parameters
+ההיפר פרמטרי היחידי הינו קריטריון העצירה עבור אלגוריתם Adaboost שעבורו מוחלט מס' עצי ההחלטה שמשולבים במסווג הסופי.
 
-The only parameter in this case is the stopping criteria of the the AdaBoost algorithm which defines the number of Stumps.
+### 📚 חלוקת ה-dataset
+נחלק ל 80% סט אימון ו 20% סט בוחן.
 
-## Data preprocessing
+## ⚙️ אימון 
 
-### 📚 Splitting the dataset
-
-We will split the dataset into 80% train - 20% test.
-
-
-```python
-n_samples = len(dataset2)
-
-## Generate a random generator with a fixed seed
-rand_gen = np.random.RandomState(0)
-
-## Generating a vector of indices
-indices = np.arange(n_samples)
-
-## Shuffle the indices
-rand_gen.shuffle(indices)
-
-## Split the indices into 80% train / 20% test
-n_samples_train = int(n_samples * 0.8)
-n_samples_test = n_samples - n_samples_train
-train_indices = indices[:n_samples_train]
-test_indices = indices[n_samples_train:]
-
-train_set = dataset2.iloc[train_indices]
-test_set = dataset2.iloc[test_indices]
-```
-
-## ⚙️ Learning
-
-### Implementing a single stump
-
-
-```python
-def calc_gini_on_split(split, y, weights):
-    """
-    A function for calculating the the weighted Gini index for a given split of the data.
-    """
-    
-    ## Handle the case of a degenerated split
-    if np.count_nonzero(split) == 0 or np.count_nonzero(split) == len(split):
-        return np.inf
-    
-    ## The ratio of positive labels in branch 1
-    p1 = (split * y * weights).sum() / (split * weights).sum()
-    ## The ratio of positive labels in branch 2
-    p2 = ((1 - split) * y * weights).sum() / ((1 - split) * weights).sum()
-    ## The Gini index
-    res = p1 * (1 - p1) * (split * weights).sum() + p2 * (1 - p2) * ((1 - split) * weights).sum()
-    return res
-
-class Stump:
-    """
-    A class for fitting and predicting a single stump
-    """
-    def __init__(self):
-        self.split_mask = None
-        self.threshold = None
-        self.field = None
-    
-    def fit(self, dataset, field):
-
-        self.field = field
-        self.is_discrete = field in ['pclass', 'sex', 'sibsp', 'parch', 'embarked']
-        
-        ## Extrac relevat data for the dataset
-        x = dataset[self.field].values
-        y = dataset['survived'].values
-        weights = dataset['weights'].values
-        n_unique_vals = len(np.unique(x))
-        
-        if self.is_discrete:
-            ## The finit discrete case
-            ## A trick for generating all possible splits
-            tmp = np.arange(2 ** n_unique_vals, dtype=np.uint8)
-            all_possibles_splits = np.unpackbits(tmp[:, None], axis=1)[1:-1, -n_unique_vals:].astype(int)
-            
-            ## Loop over possible splits to look for the optimal split
-            gini_min = np.inf
-            for split_mask in all_possibles_splits:
-                cls = split_mask[x]
-                gini = calc_gini_on_split(cls, y, weights)
-                if gini < gini_min:
-                    gini_min = gini
-                    self.split_mask = split_mask
-        
-        else:
-            ## The continues case
-            
-            ## Al relevant thresholds
-            all_possibles_thresholds = (x[:-1] + x[1:]) / 2
-            
-            ## Looping over thresholds
-            gini_min = np.inf
-            for threshold in all_possibles_thresholds:
-                cls = x > threshold
-                gini = calc_gini_on_split(cls, y, weights)
-                if gini < gini_min:
-                    gini_min = gini
-                    self.threshold = threshold
-        
-        self.gini = gini_min
-        
-        return self
-    
-    def predict(self, dataset):
-        x = dataset[self.field].values
-        if self.is_discrete:
-            y = self.split_mask[x]
-        else:
-            y = x > self.threshold
-        
-        return y
-    
-    def print_stump(self):
-        if self.is_discrete:
-            print('Classifing {} according to: {}'.format(self.field,
-                                                          {0: np.where(1 - self.split_mask)[0].tolist(),
-                                                           1: np.where(self.split_mask)[0].tolist()}))
-        else:
-            print('Classifing according to: {} > {}'.format(self.field, self.threshold))
-```
-
-### Implementing AdaBoost
-
-
-```python
-class AdaBoost:
-    """
-    A class which implaments the AdaBoost algorithm
-    """
-    def __init__(self, dataset):
-        self.dataset = dataset.copy()
-        self.y = self.dataset['survived'].values
-        self.stumps_list = []
-        self.alpha_list = []
-        
-        self.dataset['weights'] = np.ones(len(self.dataset)) / len(self.dataset)
-    
-    def fit_step(self, field):
-        stump = Stump().fit(self.dataset, field)
-        y_hat = stump.predict(self.dataset)
-        err = (self.dataset['weights'].values * (self.y != y_hat)).sum()
-        alpha = 0.5 * np.log((1 - err) / err)
-        self.dataset['weights'] *= np.exp(-alpha * ((self.y == y_hat) * 2 - 1))
-        self.dataset['weights'] /= self.dataset['weights'].sum()
-        self.stumps_list.append(stump)
-        self.alpha_list.append(alpha)
-
-        print('Error: {}'.format(err))
-        print('Alpha: {}'.format(alpha))
-        stump.print_stump()
-        
-    def plot(self):
-        discrete_columns = ['pclass', 'sex', 'sibsp', 'parch', 'embarked']
-        continuous_columns = ['age', 'fare']
-
-        ## Plotting the histograms
-        fig, ax_list = plt.subplots(2, 4, figsize=(10, 5))
-        for i, feature in enumerate(discrete_columns):
-            stump = Stump().fit(self.dataset, feature)
-            ax = ax_list.flat[i]
-            self.dataset.groupby([feature, 'survived'])['weights'].sum().unstack('survived')\
-                                                        .plot.bar(ax=ax, stacked=True, legend=False)
-            ax.set_title('{}\n{:.3f}'.format(feature, stump.gini))
-
-        for i, feature in enumerate(continuous_columns):
-            stump = Stump().fit(self.dataset, feature)
-            ax = ax_list.flat[i + len(discrete_columns)]
-            ax.hist(self.dataset.query('survived == 0')[feature].values, 
-                    weights=self.dataset.query('survived == 0')['weights'].values,
-                    bins=20, alpha=0.5, label='0')
-            ax.hist(self.dataset.query('survived == 1')[feature].values,
-                    weights=self.dataset.query('survived == 1')['weights'].values,
-                    bins=20, alpha=0.5, label='1')
-            ax.set_title('{}\n{:.3f}'.format(feature, stump.gini))
-
-        for ax_list2 in ax_list:
-            ax_list2[0].set_ylabel('Number of passengers')
-
-        ax_list.flat[-2].legend()
-        plt.tight_layout()
-    
-    def predict(self, dataset):
-        y_hat = np.zeros(len(dataset))
-        for alpha, stump in zip(self.alpha_list, self.stumps_list):
-            y_hat += alpha * (stump.predict(dataset) * 2 - 1)
-        y_hat = y_hat > 0
-        return y_hat
-```
-
-### Training
-
-#### Initializing the Algorithm
-
-
-```python
-adaboost = AdaBoost(train_set)
-```
-
-Let us print the data weights and plot the distributions according to the weighted data:
-
-
-```python
-adaboost.plot()
-adaboost.dataset.head(10)
-```
-
-
-
+נאתחל את המודל ונציג את העשר שורות הראשונות של הdataset הממושקל וההתפלגות לפי המאפיינים:
 
 <div>
 <style scoped>
@@ -862,29 +851,18 @@ adaboost.dataset.head(10)
 </div>
 
 
+![png](figs/output_30_1.png){: width = "100%"}
 
-
-![png](output_30_1.png)
-
-
-The Weighted Gini Indexes are plotted in the title. In each step we will select the feature with the lowest index. In this case this will be the **sex**.
+אינדקס Gini המושקלל מצויין בכותרת של כל גרף. בכל איטרציה של Adaboost נבחר את עץ שיפעל על המאפיין בעל האינדקס הנמוך ביותר. כשאר במקרה זה נבחר לפי **מין** הנוסע.
 
 #### Iteration: $$t=1$$
-
-Classiffing according to the sex
-
-
-```python
-adaboost.fit_step('sex')
-adaboost.plot()
-adaboost.dataset.head(10)
-```
-
-    Error: 0.22027534418022526
-    Alpha: 0.6320312618746508
-    Classifing sex according to: {0: [0], 1: [1]}
+לאחר איטרציה בודדת של סיווג לפי מין קיבלנו:
+* שגיאה: 0.22
+* $$\alpha$$: 0.6320312618746508
+* Classifing pclass according to: {0: [0], 1: [1, 2]}
 
 
+ נציג את המשוקל של ה-data מחדש, וההתפלגויות החדשות:
 
 
 
@@ -1043,35 +1021,20 @@ adaboost.dataset.head(10)
 </div>
 
 
+![png](figs/output_33_2.png){: width= "100%"}
 
+נבחין בכך, שככל שנתקדם באיטרציות של האלגוריתם, ה-data הממושקל יתפלג באופן אחיד כפונקציה של התגיות, כלומר ההתפלגות של הדגימות שעבורן $$y=1 $$ זהה להתפלגות של הדגימות שעבורןן $$y=-1$$.
 
-![png](output_33_2.png)
+ כתוצאה מכך, הסיווג על פי מאפיין בודד יהיה קשה יותר והשגיאה למסווג בודד תתקרב ל-0.5, ובאופן ישיר המשקל של כל מסווג $$ \alpha_t $$ ידעך.
+ 
+ בשלב הבא נסווג לפי **pclass**:
 
+#### Iteration $$t=2$$
 
-We will see that as we advance through the algorithm the weighted data becomes more uniformly distributed as a function of the labels, i.e. the distributions of the data with $$y=1$$ will be as the same as the distribution of the data with $$y=-1$$.
-
-As a consequences of that, the classification task will become harder and the classifier's classification error will go to 0.5.
-
-In addition the weighting parameter $$\alpha_t$$ will decrease over time.
-
-Next we will classify according to the **pclass** which has the lowest index.
-
-#### Iteration $$T=2$$
-
-
-```python
-adaboost.fit_step('pclass')
-adaboost.plot()
-adaboost.dataset.head(10)
-```
-
-    Error: 0.6677960382314314
-    Alpha: -0.3491168359813891
-    Classifing pclass according to: {0: [0], 1: [1, 2]}
-
-
-
-
+לאחר איטרציה נוספת של סיווג לפי מחלקת נוסע קיבלנו:
+* שגיאה: 0.66
+* $$\alpha$$: -0.34
+* Classifing embarked according to: {0: [0], 1: [1, 2]}
 
 <div>
 <style scoped>
@@ -1230,27 +1193,15 @@ adaboost.dataset.head(10)
 
 
 
-![png](output_36_2.png)
+![png](figs/output_36_2.png){:width = "100%"}
 
 
-Next we will classify according to the **embarked** which has the lowest index.
+באיטרציה השלישית נסווג לפי **embarked**:
 
-#### Iteration $$T=3$$
-
-
-```python
-adaboost.fit_step('embarked')
-adaboost.plot()
-adaboost.dataset.head(10)
-```
-
-    Error: 0.5323984758056922
-    Alpha: -0.06488786721923188
-    Classifing embarked according to: {0: [0], 1: [1, 2]}
-
-
-
-
+#### Iteration $$t=3$$
+* שגיאה: 0.53
+* $$\alpha$$: -0.06
+* Classifing pclass according to: {0: [0], 1: [1, 2]}
 
 <div>
 <style scoped>
@@ -1409,24 +1360,16 @@ adaboost.dataset.head(10)
 
 
 
-![png](output_39_2.png)
+![png](figs/output_39_2.png){:width = "100%"}
 
 
-
-```python
-adaboost.fit_step('embarked')
-adaboost.plot()
-adaboost.dataset.head(10)
-```
+### Iteration $$t=4$$
 
     Error: 0.5000000000000001
     Alpha: -2.2204460492503136e-16
     Classifing embarked according to: {0: [0], 1: [1, 2]}
 
 
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1584,46 +1527,13 @@ adaboost.dataset.head(10)
 
 
 
-![png](output_40_2.png)
+![png](figs/output_40_2.png){:width = "100%"}
 
+באיטרציה האחרונה קיבלנו ששגיאת המסווג קרובה ל 0.5 והמשקל שלו $$ alpha_t=\approx 0$$, לכן ניתן להפסיק את תהליך הלימוד.
 
-We eventually reached a point where the classifier's classification error is very close to 0.5 and $$alpha_t$$ is very small.
+## ⏱️ ביצועים:#
 
-## ⏱️ Performance evaluation
-
-Let us calculate the risk on the test set
-
-
-```python
-x_train = train_set[discrete_columns + continuous_columns].values
-y_train = train_set['survived'].values
-
-x_test = test_set[discrete_columns + continuous_columns].values
-y_test = test_set['survived'].values
-```
-
-
-```python
-predictions = adaboost.predict(test_set)
-# predictions = adaboost.stumps_list[0].predict(test_set)
-
-test_risk = (y_test != predictions).mean()
-print_math('The test risk is: $${:.3}$$'.format(test_risk))
-```
-
-
-The test risk is: $$0.225$$
-
-
-
-```python
-%%html
-<link rel="stylesheet" href="../css/style.css"> <!--Setting styles - You can simply ignore this line-->
-```
-
-
-<link rel="stylesheet" href="../css/style.css"> <!--Setting styles - You can simply ignore this line-->
-
+נריץ את האלגוריתם המאומן על סט המבחן ונקבל שהסיכון היינו: **$$0.225$$**
 
 
 {% endraw %}
