@@ -29,41 +29,50 @@ title: "Decision Trees & Boosting"
 יהי $$D$$ אוסף של $$N$$ דוגמאות מסווגות $$D=\{x_i,y_i\}_{i=1}^N$$,
 כך ש- $$y_i \in \{1, \dots, K \}$$ כאשר $$K$$ הינו מספר המחלקות האפשריות.
 **השכיחות היחסית** (או "הפילוג האמפירי") של כל אחד מהסיווגים האפשריים בקבוצת הדוגמאות נתונה ע"י: 
+
 $$
-\hat{p}_j = \frac{1}{N} \sum_{i=1}^N I\{y_i = j \}\,, \quad j = 1,\cdots, K
+\hat{p}_j = \frac{1}{N} \sum_{i=1}^N I\{y_i = j \}\,, \quad \forall j = 1,\cdots, K
 $$
 
 **מדדים לחוסר אחידות של $$D$$:**
 
-1. שגיאת הסיווג: 
+* שגיאת הסיווג: 
+
 $$ 
 Q(D) = 1 - \max_{j \in \{1, \dots, K \}} \hat{p}_j
 $$
-2. אינדקס Gini: 
+
+* אינדקס Gini: 
+
 $$
 Q(D) = \sum_{j \in \{1, \dots, K \}} \hat{p}_j(1 - \hat{p}_j)
 $$
-3. אנטרופיה: 
+
+* אנטרופיה: 
+
 $$
 Q(D) = H(D) = \sum_{j \in \{1, \dots, K \}} \hat{p}_j \log \frac{1}{\hat{p}_j} = -\sum_{j \in \{1, \dots, K \}} \hat{p}_j \log {\hat{p}_j}
 $$
 
 **תכונות של $$Q(D)$$ :**
 1.	$$Q(D)=0$$  עבור פילוג חד-ערכי ( $$\hat{p}_j=1$$ עבור $$j$$ כלשהו). 
-2. $$Q(D)=0$$  מקבל את ערכו המכסימלי עבור פילוג אחיד ($$\hat{p}_j=\frac{1}{K}$$ ).
+2. $$Q(D)$$  מקבל את ערכו המכסימלי עבור פילוג אחיד ($$\hat{p}_j=\frac{1}{K}$$ ).
 
 **תוספת המידע של מאפיין:**
 נניח כי מאפיין $$A$$ כלשהו מחלק את $$D$$ למספר תת-קבוצות. נסמן תת-קבוצות אלו על ידי $$\{D_m\,, m \in 1, \cdots, M\}$$ , כאשר $$M$$ הינו אוסף הערכים האפשריים של $$A$$.
-* __מדד חוסר-האחידות המשוקלל עבור האוסף__ $$\{S_m\}$$ יוגדר עתה על ידי:
+
+ __מדד חוסר-האחידות המשוקלל עבור האוסף__ $$\{S_m\}$$ יוגדר עתה על ידי:
+
 $$
-Q(D|A) = \sum_{m=1}^M \frac{\lvert D_m \rvert }{N} Q(D_m)
+Q(D \lvert A) = \sum_{m=1}^M \frac{\lvert D_m \rvert }{N} Q(D_m)
 $$
  
-כאשר $$\({S_m\})Q$$ הוא מדד לחוסר האחידות של  תת-הקבוצה $$\{S_m\}$$.
+כאשר $$Q(S_m)$$ הוא מדד לחוסר האחידות של  תת-הקבוצה $$S_m$$.
 
 מדד הטיב של המאפיין $$A$$ ביחס לקבוצת הדוגמאות $$D$$ יוגדר עתה על ידי
+
 $$
-\Delta Q(D|A) = Q(D) - Q(D|A)
+\Delta Q(D \lvert A) = Q(D) - Q(D \lvert A)
 $$
  
 ניתן לראות כי זהו הגידול באחידות (או הקטנה בחוסר-האחידות) של האוסף $$\{S_m\}$$
@@ -71,11 +80,13 @@ $$
 
 ---
 
-המאפיין $$A$$ שנבחר הוא (כעיקרון) זה שעבורו השיפור  $$\Delta Q(D|A)$$ הינו **מקסימלי**, כלומר $$\Delta Q(D|A)$$ **מינימלי**.
+המאפיין $$A$$ שנבחר הוא (כעיקרון) זה שעבורו השיפור $$\Delta Q(D \lvert A) $$ הינו **מקסימלי** כלומר $$Q(D \lvert A)$$ **מינימלי**.
 
 ---
 
-## שאלה 12.1 – בניית עץ החלטה#
+
+
+### שאלה 12.1 – בניית עץ החלטה
 בנה עץ החלטה המבוסס על קריטריון האנטרופיה, אשר בהינתן נתוני צבע שער, גובה, משקל, משתמש בקרם הגנה, קובע האם עתיד האדם להכוות מהשמש היוקדת.  
 סט דוגמאות הלימוד לצורך בניית העץ מוצג בטבלה הבאה:
 
@@ -108,7 +119,7 @@ $$
 
 <div dir="ltr" markdown="1">
 
-| Feature	| Distribution	  | $$H(D \lvertA)$$	| 
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
 | ---   |   ---   | ---     | 
 | Blonde	| $$+2/-2$$  |	$$H(D \lvert Hair = blonde ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
 | Brown	| $$0/-3$$   |	$$ H(D \lvert Hair = brown ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 0	$$ | 
@@ -258,7 +269,7 @@ $$ n(A) $$ כאשר,
 עבור כל מבחן $$A=\{ x_j \leq t_j \}$$ ניתן להגדיר את תוספת המידע באופן הרגיל:
 
 $$
-\Delta Q(S \lvert x_j,t_j )= \Delta Q(S \levert A)
+\Delta Q(S \lvert x_j,t_j )= \Delta Q(S \lvert A)
 $$
 
 השלב הבא הוא מקסימיזציה על הסף $$t_i$$:
@@ -278,10 +289,11 @@ AdaBoost (Adaptive Boosting) הינה טכניקה לשיפור ביצועים �
 נסמן:
 - $$N$$ - גודל ה dataset
 - $$\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$ - המדידות ותגיות.
-- ערכי התגיות הם  $$1,-1$$
+- ערכי המחלקות הם  $$1,-1$$
 
 **אלגוריתם:**
-- $$w^{\left(t=0\right)}_i=\frac{1}{N}$$אתחל באופן אחיד את המשקולות עבור כל נקודה ב dataset:
+- אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
+$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
 - המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
   1. בנה מסווג אופטימלי $$h_t$$ ביחס ל- dataset הממושקל 
   2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
@@ -396,9 +408,9 @@ $$
 
 ## AdaBoost חלק מעשי
 
-##האתגר: בחזרה לטיטניק
+### האתגר: בחזרה לטיטניק
 
-![titanic_img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg) {:width= "50%"}
+![titanic_img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg){: width="200px"}
 
 ננסה לחזות האם נוסע בטיטניק ישרוד או לא על סמך רישום ונתונים של הנוסעים.
 
@@ -409,7 +421,7 @@ $$
 ## 🕵️ Data Inspection
 התרשמות ראשונית ממאגר המידע, עשר שורות ראשונות מהרשומות:
 
-<div>
+<div dir="ltr">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -648,7 +660,7 @@ $$
 נציג את היחס בין המחלקות (שורדים ונספים) עבור המאפיינים:  
 
 
-![plots](figs/output_13_0.png){: width = "100%"}
+![plots](figs/output_13_0.png){: width="400px"}
 
 
 ## 📜 הגדרת הבעיה :
@@ -696,7 +708,7 @@ $$
 
 נאתחל את המודל ונציג את העשר שורות הראשונות של הdataset הממושקל וההתפלגות לפי המאפיינים:
 
-<div>
+<div dir="ltr">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -851,7 +863,7 @@ $$
 </div>
 
 
-![png](figs/output_30_1.png){: width = "100%"}
+![png](figs/output_30_1.png){: width="500px"}
 
 אינדקס Gini המושקלל מצויין בכותרת של כל גרף. בכל איטרציה של Adaboost נבחר את עץ שיפעל על המאפיין בעל האינדקס הנמוך ביותר. כשאר במקרה זה נבחר לפי **מין** הנוסע.
 
@@ -866,7 +878,7 @@ $$
 
 
 
-<div>
+<div dir="ltr">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1021,7 +1033,7 @@ $$
 </div>
 
 
-![png](figs/output_33_2.png){: width= "100%"}
+![png](figs/output_33_2.png){: width="500px"}
 
 נבחין בכך, שככל שנתקדם באיטרציות של האלגוריתם, ה-data הממושקל יתפלג באופן אחיד כפונקציה של התגיות, כלומר ההתפלגות של הדגימות שעבורן $$y=1 $$ זהה להתפלגות של הדגימות שעבורןן $$y=-1$$.
 
@@ -1036,7 +1048,7 @@ $$
 * $$\alpha$$: -0.34
 * Classifing embarked according to: {0: [0], 1: [1, 2]}
 
-<div>
+<div dir="ltr">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1193,7 +1205,7 @@ $$
 
 
 
-![png](figs/output_36_2.png){:width = "100%"}
+![png](figs/output_36_2.png){: width="500px"}
 
 
 באיטרציה השלישית נסווג לפי **embarked**:
@@ -1203,7 +1215,7 @@ $$
 * $$\alpha$$: -0.06
 * Classifing pclass according to: {0: [0], 1: [1, 2]}
 
-<div>
+<div dir="ltr">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1360,7 +1372,7 @@ $$
 
 
 
-![png](figs/output_39_2.png){:width = "100%"}
+![png](figs/output_39_2.png){: width="500px"}
 
 
 ### Iteration $$t=4$$
@@ -1370,7 +1382,7 @@ $$
     Classifing embarked according to: {0: [0], 1: [1, 2]}
 
 
-<div>
+<div dir="ltr">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1527,7 +1539,7 @@ $$
 
 
 
-![png](figs/output_40_2.png){:width = "100%"}
+![png](figs/output_40_2.png){: width="500px"}
 
 באיטרציה האחרונה קיבלנו ששגיאת המסווג קרובה ל 0.5 והמשקל שלו $$ alpha_t=\approx 0$$, לכן ניתן להפסיק את תהליך הלימוד.
 
