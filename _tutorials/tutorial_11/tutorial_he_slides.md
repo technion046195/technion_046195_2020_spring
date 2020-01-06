@@ -636,6 +636,7 @@ $$
 לעומת זאת, ניתן להשתמש ב- Kernel Trick: חישוב ישיר של הסיווג דרך ה- Kernel, באמצעות הנוסחא
 
 
+
 $$
 \hat{y}=sign\left( \underset{i=1}{\overset{n}{\mathop \sum }}\,{{{\tilde{\alpha }}}_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)+\tilde{b} \right)
 $$
