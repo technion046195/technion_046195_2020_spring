@@ -769,6 +769,8 @@ $$
 \underset{\alpha }{\mathop{\max }}\,\ \ 2{{\alpha }_{1}}-{{\alpha }_{1}}^{2}\ \left( 1+{{c}_{0}} \right) \\
 \text{s.t. }\ \text{ }{{\alpha }_{1}}\ge 0
 $$
+
+
 <br>
 
 
@@ -781,6 +783,7 @@ $$
 {{\alpha }_{1}}^{{}}\ \left( 1+{{c}_{0}} \right)=1 \\ 
 {{\alpha }_{1}}=\frac{1}{1+{{c}_{0}}}
 $$
+
 
 
  </section><section markdown="1">
