@@ -378,6 +378,7 @@ $$
 ## הבעיה הדואלית:
 
 
+
 $$
 \left\lbrace\alpha_i\right\rbrace^*=\underset{\left\lbrace\alpha_i\right\rbrace}{\arg\max} \sum_i\alpha_i-\frac{1}{2}\sum_{i,j}y_iy_j\alpha_i\alpha_j\left<\boldsymbol{x}_i,\boldsymbol{x}_j\right> \\
 \begin{align*}
@@ -385,6 +386,8 @@ $$
 &\sum_i\alpha_iy_i=0
 \end{align*}
 $$
+
+
 כאשר, הקשר הבא עדיין מתקיים:
 $$
 \boldsymbol{w}=\sum_i\alpha_iy_i\boldsymbol{x}_i\\
@@ -717,7 +720,6 @@ $$
   
 
   
-
 * על מנת לחשב את המשטח יש למצוא את המקדמים $$\left\{ {{\alpha }_{k}} \right\}$$. לצורך כך, נפתור את הבעיה הדואלית (הפרידה):
 
   
