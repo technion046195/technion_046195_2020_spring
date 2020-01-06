@@ -137,7 +137,7 @@ $$
 ומדד הטיב של מאפיין Hair יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
 
 $$
-\Delta H(D \lvert Hair ) = H(S) -( \frac{1}{2} \cdot 1 +  \frac{3}{8} \cdot 0 \frac{1}{8} \cdot 0 = H(D) - \frac{1}{2}
+\Delta H(D \lvert Hair ) = H(S) -( \frac{1}{2} \cdot 1 +  \frac{3}{8} \cdot 0 + \frac{1}{8} \cdot 0 = H(D) - \frac{1}{2}
 $$
 
 **Height:**
@@ -155,7 +155,7 @@ $$
 ומדד הטיב של מאפיין Height יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
 
 $$
-\Delta H(D \lvert Height ) = H(S) -( \frac{3}{8} \cdot 0.918 +  \frac{3}{8} \cdot 0.918 \frac{2}{8} \cdot 0 = H(D) - 0.69
+\Delta H(D \lvert Height ) = H(S) -( \frac{3}{8} \cdot 0.918 +  \frac{3}{8} \cdot 0.918 + \frac{2}{8} \cdot 0 = H(D) - 0.69
 $$
 
 **Weight:**
@@ -173,7 +173,7 @@ $$
 ומדד הטיב של מאפיין weight יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
 
 $$
-\Delta H(D \lvert Weight ) = H(S) -( \frac{2}{8} \cdot 1 + \frac{3}{8} \cdot 0.918 \frac{3}{8} \cdot 0.918 = H(D) - 0.9385
+\Delta H(D \lvert Weight ) = H(S) -( \frac{2}{8} \cdot 1 + \frac{3}{8} \cdot 0.918 + \frac{3}{8} \cdot 0.918 = H(D) - 0.9385
 $$
 
 **Lotion:**
@@ -1553,6 +1553,3 @@ Classifing embarked according to: {0: [0], 1: [1, 2]}
 ## ⏱️ ביצועים:#
 
 נריץ את האלגוריתם המאומן על סט המבחן ונקבל שהסיכון היינו: **$$0.225$$**
-
-
-{% endraw %}
