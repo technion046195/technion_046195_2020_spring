@@ -518,7 +518,7 @@ $$
 
 ### **פתרון**
 
-נזכר כי כלל ההחלטה הוא $$\text{ sign}({{w}^{T}}\phi (x))=\text{ sign}\left( \sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)} \right)$$ ולכן משטח גבול ההחלטה מקיים $$\sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)}=0$$. 
+נזכר כי כלל ההחלטה הוא $$\text{ sign}({{w}^{T}}\phi (x))=\text{ sign}\left( \sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x \right)}+b \right)$$ ולכן משטח גבול ההחלטה מקיים $$\sum\limits_{i=1}^{n}{{{\alpha }_{i}}{{y}_{i}}K\left( {{x}_{i}},x +b\right)}=0$$. 
 
 על מנת לחשב את המשטח יש למצוא את המקדמים $$\left\{ {{\alpha }_{k}} \right\}$$. לצורך כך, נפתור את הבעיה הדואלית (הפרידה):
 
@@ -537,7 +537,7 @@ $$
  
 
 $$
-\underset{\alpha }{\mathop{\max }}\,\ \ {{\alpha }_{1}}+{{\alpha }_{2}}-\frac{1}{2}\ \left( {{\alpha }_{1}}^{2}K\left( {{x}_{1}},{{x}_{1}} \right)+{{\alpha }_{2}}^{2}K\left( {{x}_{2}},{{x}_{2}} \right)+2{{\alpha }_{1}}{{\alpha }_{2}}K\left( {{x}_{1}},{{x}_{2}} \right) \right) \\ 
+\underset{\alpha }{\mathop{\max }}\,\ \ {{\alpha }_{1}}+{{\alpha }_{2}}-\frac{1}{2}\ \left( {{\alpha }_{1}}^{2}K\left( {{x}_{1}},{{x}_{1}} \right)+{{\alpha }_{2}}^{2}K\left( {{x}_{2}},{{x}_{2}} \right)-2{{\alpha }_{1}}{{\alpha }_{2}}K\left( {{x}_{1}},{{x}_{2}} \right) \right) \\ 
  \text{s.t.  }{{\alpha }_{k}}\ge 0,\quad k=1,2 \\ 
 {{\alpha }_{1}}-{{\alpha }_{2}}=0 \
 $$
@@ -553,7 +553,7 @@ $$
 
 
 $$
-\underset{\alpha }{\mathop{\max }}\,\ \ 2{{\alpha }_{1}}-{{\alpha }_{1}}^{2}\ \left( 1+{{c}_{0}} \right) \\
+\underset{\alpha }{\mathop{\max }}\,\ \ 2{{\alpha }_{1}}-{{\alpha }_{1}}^{2}\ \left( 1-{{c}_{0}} \right) \\
 \text{s.t. }\ \text{ }{{\alpha }_{1}}\ge 0
 $$
 
@@ -564,16 +564,38 @@ $$
 
 
 $$
-{{\alpha }_{1}}^{{}}\ \left( 1+{{c}_{0}} \right)=1 \\ 
-{{\alpha }_{1}}=\frac{1}{1+{{c}_{0}}}
+{{\alpha }_{1}}^{{}}\ \left( 1-{{c}_{0}} \right)=1 \\ 
+{{\alpha }_{1}}=\frac{1}{1-{{c}_{0}}}
 $$
+
+
+
+כעת, נמצא את b:
+
+
+$$
+w^T \phi(x)=\sum_i \alpha_i y_i K(x_i,x) \\
+w^T \phi(x)= \frac{1}{1-c_0}\left( \exp{(-\lVert (x - 1, x-1)\rVert^2)} -\exp{(-\lVert (x + 1, x+1)\rVert^2)} \right)
+$$
+
+
+כדי למצוא את $b$ נדרוש שאחת מהנקודות הינה SV:
+
+
+$$
+w^T \phi(x_1)+b=1 \\
+\frac{1}{1-c_0}\left( \exp{(-\lVert (1 - 1, 1-1)\rVert^2)} -\exp{(-\lVert (1 + 1, 1+1)\rVert^2)} \right)+b = 1\\
+\frac{1-c_0}{1-c_0}+b=1\\
+b = 0
+$$
+
 
 
 
 ומכאן הפתרון הוא למשטח ההפרדה הוא
-
 $$
-0=\sum\limits_{k=1}^{n}{{{\alpha }_{k}}{{y}_{k}}K\left( {{x}_{k}},x \right)}={{\alpha }_{1}}{{y}_{1}}K({{x}_{1}},x)+{{\alpha }_{2}}{{y}_{2}}K({{x}_{2}},x)={{\alpha }_{1}}\left( K({{x}_{1}},x)-K({{x}_{2}},x) \right) \\ 
+0=\sum\limits_{k=1}^{n}{{{\alpha }_{k}}{{y}_{k}}K\left( {{x}_{k}},x \right)}+b={{\alpha }_{1}}{{y}_{1}}K({{x}_{1}},x)+{{\alpha }_{2}}{{y}_{2}}K({{x}_{2}},x)+b\\
+\Leftrightarrow 0={{\alpha }_{1}}\left( K({{x}_{1}},x)-K({{x}_{2}},x) \right) + b\\ 
   \Leftrightarrow K({{x}_{1}},x)=K({{x}_{2}},x) \\ 
  \Leftrightarrow{{e}^{-\left\| x-{{x}_{1}} \right\|}}={{e}^{-\left\| x-{{x}_{2}} \right\|}} \\ 
  \Leftrightarrow \left\| x-{{x}_{1}} \right\|=\left\| x-{{x}_{2}} \right\|
