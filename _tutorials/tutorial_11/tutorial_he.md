@@ -573,13 +573,16 @@ $$
 כעת, נמצא את b:
 
 
+
 $$
 w^T \phi(x)=\sum_i \alpha_i y_i K(x_i,x) \\
 w^T \phi(x)= \frac{1}{1-c_0}\left( \exp{(-\lVert (x - 1, x-1)\rVert^2)} -\exp{(-\lVert (x + 1, x+1)\rVert^2)} \right)
 $$
 
 
+
 כדי למצוא את $b$ נדרוש שאחת מהנקודות הינה SV:
+
 
 
 $$
@@ -591,8 +594,9 @@ $$
 
 
 
-
 ומכאן הפתרון הוא למשטח ההפרדה הוא
+
+
 $$
 0=\sum\limits_{k=1}^{n}{{{\alpha }_{k}}{{y}_{k}}K\left( {{x}_{k}},x \right)}+b={{\alpha }_{1}}{{y}_{1}}K({{x}_{1}},x)+{{\alpha }_{2}}{{y}_{2}}K({{x}_{2}},x)+b\\
 \Leftrightarrow 0={{\alpha }_{1}}\left( K({{x}_{1}},x)-K({{x}_{2}},x) \right) + b\\ 
