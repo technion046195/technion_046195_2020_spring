@@ -160,7 +160,8 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+
+#### המשך פתרון: 
 
 כעת נבחן את האנטרופיה שתושרה לאחר פיצול לפי כל אחד מהמאפיינים האפשריים:
 
@@ -184,7 +185,8 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
+
 
 **Height:**
 
@@ -207,7 +209,7 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
 
 **Weight:**
 
@@ -229,7 +231,7 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
 
 **Lotion:**
 
@@ -250,7 +252,7 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
 
 <br><br>
 
@@ -258,7 +260,8 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
+
 
 עבור הפיצול של הרמה השנייה נשים לב כי הענפים של Hair=brown  ו  Hair=red בעלי אנטרופיה מקסימלית. כלומר, ניתן לסווג את הדוגמאות בצורה מושלמת לכן אין צורך בפיצולים נוספים. לגבי הענף Hair=blonde:
 קבוצת הדוגמאות בענף זה היא: 
@@ -276,7 +279,8 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
+
 
 פיצול לפי מאפיין height ייתן:
 
@@ -292,7 +296,8 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
+
 
 לפי weight:
 <div dir="ltr" markdown="1">
@@ -307,7 +312,8 @@ $$
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### המשך פתרון: 
+
 
 לפי Lotion:
 <div dir="ltr" markdown="1">
@@ -319,18 +325,16 @@ $$
 
 </div>
 
-</section><section markdown="1">
 
-####המשך פתרון: 
+<br>
 
 לפיכך הקריטריון האופטימלי (זה שממזער את קריטריון הגידול) הוא Lotion.
 
 </section><section markdown="1">
 
-####המשך פתרון: 
+#### עץ ההחלטה הסופי יראה כך:
 
-עץ ההחלטה הסופי יראה כך:
-![Q10_tree](figs/question_10_1.png){: width="600px"}
+![Q10_tree](figs/question_10_1.png){: width="1100px"}
 
 </section><section markdown="1">
 
@@ -446,6 +450,8 @@ $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
   5. נרמל את המשקולות לפי: $$Z=\sum_iw^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
 
 
+</section><section markdown="1">
+
 #### Adaboost algorithm
 
 <br>
@@ -493,15 +499,15 @@ $$
 
 ראשית נסתכל בבעיה:
 
-![Q10_2](figs/question_10_2.png){: width="400px"}
+![Q10_2](figs/question_10_2.png){: width="1000px"}
 
 נשים לב, שמסווג בודד לא יפתור את הבעיה משום שלא קיימת הפרדה לינארית בין המחלקות.
  עבור שני מסווגים לא ניתן למצוא מקדמים $$\alpha_t$$ שעבור נקבל שגיאת אימון אפס. ניתן לקבל שגיאה אפס עבור שלושה מסווגים חלשים בהן נתייג נכון את כל הדוגמאות.
  
  </section><section markdown="1">
 
-##### פתרון סעיף ב'
-
+#### פתרון סעיף ב'
+<br><br>
 נאתחל את הפילוג: 
 
 $$
@@ -510,7 +516,7 @@ $$
 
 </section><section markdown="1">
 
-##### המשך פתרון סעיף ב' 
+#### המשך פתרון סעיף ב' 
 
 
 נקח את המסווג הבא:
@@ -536,7 +542,7 @@ $$
 
 </section><section markdown="1">
 
-##### המשך פתרון סעיף ב' 
+#### המשך פתרון סעיף ב' 
 
 <br>
 
@@ -563,7 +569,7 @@ $$
 
 </section><section markdown="1">
 
-##### המשך פתרון סעיף ב' 
+#### המשך פתרון סעיף ב' 
 <br>
 
 עבור הבעיה בדוגמה, מספיק עוד מסווג חלש אחד אותו נבחר כך:
@@ -588,7 +594,7 @@ $$
 
 </section><section markdown="1">
 
-##### המשך פתרון סעיף ב' 
+#### המשך פתרון סעיף ב' 
 <br>
 
 לבסוף המסווג עם שגיאה אפס המתקבל היינו:
@@ -609,7 +615,7 @@ $$
 ננסה לחזות האם נוסע בטיטניק ישרוד או לא על סמך רישום ונתונים של הנוסעים.
 
 
-![titanic_img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg){: width="200px"}
+![titanic_img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg){: width="600px"}
 
 
 </section><section markdown="1">
@@ -867,7 +873,7 @@ $$
 נציג את היחס בין המחלקות (שורדים ונספים) עבור המאפיינים:  
 
 
-![plots](figs/output_13_0.png){: width="400px"}
+![plots](figs/output_13_0.png){: width="1200px"}
 
 </section><section markdown="1">
 <br>
@@ -888,13 +894,15 @@ $$
 <br>
 
 #### 💡 Model & Learning Method Suggestion: Stumps + AdaBoost
+
+<br><br>
  .נשתמש בעץ בינארי בעל עומק אחד (נקרא Stump), שבעצם מסווג על פי מאפיין בודד בשילוב של אלגוריתם AdaBoost
  
  **הערה:** ניתן להגיד שהשילוב הנ"ל הוא וריאציה של Random Forest, אלגוריתם שמשלב מספר עצים. כמו כן הטכניקה הזאת נקראת גם Ensemble.
  
 </section><section markdown="1">
  
- #### קריטריון בניית עץ 
+#### קריטריון בניית עץ 
  
 <br>
  עבור קריטריון בניית עץ נשתמש ב**Gini אינדקס ממושקל** הנובע מה-data הממושקל.
@@ -1090,7 +1098,7 @@ $$
 
 #### Gini-Index $$t=0$$
 
-![png](figs/output_30_1.png){: width="600px"}
+![png](figs/output_30_1.png){: width="1200px"}
 
 אינדקס Gini המושקלל מצויין בכותרת של כל גרף. בכל איטרציה של Adaboost נבחר את עץ שיפעל על המאפיין בעל האינדקס הנמוך ביותר. כשאר במקרה זה נבחר לפי **מין** הנוסע.
 
@@ -1101,7 +1109,7 @@ $$
 * שגיאה: 0.22
 * $$\alpha$$: 0.6320312618746508
 * Classifing pclass according to: {0: [0], 1: [1, 2]}
-
+<br>
 
  נציג את המשוקל של ה-data מחדש, וההתפלגויות החדשות:
 
@@ -1265,11 +1273,11 @@ $$
 #### Gini-Index $$t=1$$
 
 
-![png](figs/output_33_2.png){: width="500px"}
+![png](figs/output_33_2.png){: width="1200px"}
 
 </section><section markdown="1">
 
-#### :bulb: 
+###  נשים לב
 
 נבחין בכך, שככל שנתקדם באיטרציות של האלגוריתם, ה-data הממושקל יתפלג באופן אחיד כפונקציה של המחלקות, כלומר ההתפלגות של הדגימות שעבורן $$y=1 $$ זהה להתפלגות של הדגימות שעבורןן $$y=-1$$.
 
@@ -1448,7 +1456,7 @@ $$
 #### Gini-Index $$t=2$$
 
 
-![png](figs/output_36_2.png){: width="500px"}
+![png](figs/output_36_2.png){: width="1200px"}
 
 
 באיטרציה השלישית נסווג לפי **embarked**:
@@ -1621,16 +1629,18 @@ $$
 #### Gini-Index $$t=3$$
 
 
-![png](figs/output_39_2.png){: width="500px"}
+![png](figs/output_39_2.png){: width="1200px"}
 
 </section><section markdown="1">
 
 #### Iteration $$t=4$$
 
-Error: 0.5000000000000001
-Alpha: -2.2204460492503136e-16
-Classifing embarked according to: {0: [0], 1: [1, 2]}
 
+* שגיאה : 0.5000000000000001
+* $$\alpha$$: -2.2204460492503136e-16
+* Classifing embarked according to: {0: [0], 1: [1, 2]}
+
+<br>
 
 <div dir="ltr">
 <style scoped>
@@ -1791,7 +1801,7 @@ Classifing embarked according to: {0: [0], 1: [1, 2]}
 #### Gini-Index $$t=4$$
 
 
-![png](figs/output_40_2.png){: width="500px"}
+![png](figs/output_40_2.png){: width="1200px"}
 
 באיטרציה האחרונה קיבלנו ששגיאת המסווג קרובה ל 0.5 והמשקל שלו $$ \alpha_t \approx 0$$, לכן ניתן להפסיק את תהליך הלימוד.
 
