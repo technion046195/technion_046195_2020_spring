@@ -45,17 +45,20 @@ title: "Decision Trees & Boosting"
 
 </section><section markdown="1">
 
+#### בחירת מאפיין מיטבי 
 
-נציג מספר הגדרות ומספר קריטריונים שונים לבחירת המאפיין המיטבי.
 יהי $$D$$ אוסף של $$N$$ דוגמאות מסווגות $$D=\{x_i,y_i\}_{i=1}^N$$,
 כך ש- $$y_i \in \{1, \dots, K \}$$ כאשר $$K$$ הינו מספר המחלקות האפשריות.
+<br>
 **השכיחות היחסית** (או "הפילוג האמפירי") של כל אחד מהסיווגים האפשריים בקבוצת הדוגמאות נתונה ע"י: 
 
 $$
 \hat{p}_j = \frac{1}{N} \sum_{i=1}^N I\{y_i = j \}\,, \quad \forall j = 1,\cdots, K
 $$
 
-**מדדים לחוסר אחידות של $$D$$:**
+</section><section markdown="1">
+
+####  מדדים לחוסר אחידות של $$D$$: 
 
 * שגיאת הסיווג: 
 
@@ -75,20 +78,36 @@ $$
 Q(D) = H(D) = \sum_{j \in \{1, \dots, K \}} \hat{p}_j \log \frac{1}{\hat{p}_j} = -\sum_{j \in \{1, \dots, K \}} \hat{p}_j \log {\hat{p}_j}
 $$
 
-**תכונות של $$Q(D)$$ :**
+</section><section markdown="1">
+
+####  תכונות של $$Q(D)$$ : 
+
+
 1.	$$Q(D)=0$$  עבור פילוג חד-ערכי ( $$\hat{p}_j=1$$ עבור $$j$$ כלשהו). 
 2. $$Q(D)$$  מקבל את ערכו המכסימלי עבור פילוג אחיד ($$\hat{p}_j=\frac{1}{K}$$ ).
 
-**תוספת המידע של מאפיין:**
-נניח כי מאפיין $$A$$ כלשהו מחלק את $$D$$ למספר תת-קבוצות. נסמן תת-קבוצות אלו על ידי $$\{D_m\,, m \in 1, \cdots, M\}$$ , כאשר $$M$$ הינו אוסף הערכים האפשריים של $$A$$.
+<br>
 
- __מדד חוסר-האחידות המשוקלל עבור האוסף__ $$\{S_m\}$$ יוגדר עתה על ידי:
+![info_plot](figs/info_plot.png){: width="1100px"}
+
+</section><section markdown="1">
+
+#### תוספת המידע של מאפיין: 
+
+נניח כי מאפיין $$A$$ כלשהו מחלק את $$D$$ למספר תת-קבוצות.
+ נסמן תת-קבוצות אלו על ידי $$\{D_m\,, m \in 1, \cdots, M\}$$ , כאשר $$M$$ הינו אוסף הערכים האפשריים של $$A$$.
+
+ __מדד חוסר-האחידות המשוקלל עבור האוסף__ $$\{D_m\}$$ יוגדר עתה על ידי:
 
 $$
 Q(D \lvert A) = \sum_{m=1}^M \frac{\lvert D_m \rvert }{N} Q(D_m)
 $$
  
-כאשר $$Q(S_m)$$ הוא מדד לחוסר האחידות של  תת-הקבוצה $$S_m$$.
+כאשר $$Q(D_m)$$ הוא מדד לחוסר האחידות של  תת-הקבוצה $$D_m$$.
+
+</section><section markdown="1">
+
+#### מדד טיב: 
 
 מדד הטיב של המאפיין $$A$$ ביחס לקבוצת הדוגמאות $$D$$ יוגדר עתה על ידי
 
@@ -96,8 +115,12 @@ $$
 \Delta Q(D \lvert A) = Q(D) - Q(D \lvert A)
 $$
  
-ניתן לראות כי זהו הגידול באחידות (או הקטנה בחוסר-האחידות) של האוסף $$\{S_m\}$$
-לעומת קבוצת הדוגמאות המקורית $$D$$. כאשר  $$Q(\dot)$$ הינו האנטרופיה,  $$\Delta Q(D|A)$$ נקרא גם תוספת המידע (information gain)  של המאפיין  $$A$$. 
+ניתן לראות כי זהו הגידול באחידות (או הקטנה בחוסר-האחידות) של האוסף $$\{D_m\}$$
+לעומת קבוצת הדוגמאות המקורית $$D$$. כאשר  $$Q(\cdot)$$ הינה האנטרופיה,  $$\Delta Q(D|A)$$ נקרא גם תוספת המידע (information gain)  של המאפיין  $$A$$. 
+
+</section><section markdown="1">
+
+<br>
 
 ---
 
@@ -105,7 +128,7 @@ $$
 
 ---
 
-
+</section><section markdown="1">
 
 ### שאלה 12.1 – בניית עץ החלטה
 בנה עץ החלטה המבוסס על קריטריון האנטרופיה, אשר בהינתן נתוני צבע שער, גובה, משקל, משתמש בקרם הגנה, קובע האם עתיד האדם להכוות מהשמש היוקדת.  
@@ -126,6 +149,7 @@ $$
 
 </div>
 
+</section><section markdown="1">
 
 ### פתרון שאלה 12.1
 אנו נמצאים בשורש ולכן $$D$$ הוא קבוצת כל האנשים. ראשית נחשב את האנטרופיה על פני כלל הדוגמאות:
@@ -133,6 +157,10 @@ $$
 $$
 H(D) = -\frac{3}{8} \log{\frac{3}{8}} -\frac{5}{8} \log{\frac{5}{8}} = 0.954
 $$
+
+</section><section markdown="1">
+
+####המשך פתרון: 
 
 כעת נבחן את האנטרופיה שתושרה לאחר פיצול לפי כל אחד מהמאפיינים האפשריים:
 
@@ -154,6 +182,10 @@ $$
 \Delta H(D \lvert Hair ) = H(S) -( \frac{1}{2} \cdot 1 +  \frac{3}{8} \cdot 0 + \frac{1}{8} \cdot 0 = H(D) - \frac{1}{2}
 $$
 
+</section><section markdown="1">
+
+####המשך פתרון: 
+
 **Height:**
 
 <div dir="ltr" markdown="1">
@@ -166,11 +198,16 @@ $$
 
 </div>
 
+
 ומדד הטיב של מאפיין Height יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
 
 $$
 \Delta H(D \lvert Height ) = H(S) -( \frac{3}{8} \cdot 0.918 +  \frac{3}{8} \cdot 0.918 + \frac{2}{8} \cdot 0 = H(D) - 0.69
 $$
+
+</section><section markdown="1">
+
+####המשך פתרון: 
 
 **Weight:**
 
@@ -190,6 +227,10 @@ $$
 \Delta H(D \lvert Weight ) = H(S) -( \frac{2}{8} \cdot 1 + \frac{3}{8} \cdot 0.918 + \frac{3}{8} \cdot 0.918 = H(D) - 0.9385
 $$
 
+</section><section markdown="1">
+
+####המשך פתרון: 
+
 **Lotion:**
 
 <div dir="ltr" markdown="1">
@@ -207,7 +248,17 @@ $$
 \Delta H(D \lvert Lotion ) = H(S) -( \frac{5}{8} \cdot 0.97 + \frac{3}{8} \cdot 0 ) = H(D) - 0.606
 $$
 
+</section><section markdown="1">
+
+####המשך פתרון: 
+
+<br><br>
+
 מכאן שהמאפיין האופטימלי לפיצול הראשון (על פי קריטריון האנטרופיה) הוא **Hair**.
+
+</section><section markdown="1">
+
+####המשך פתרון: 
 
 עבור הפיצול של הרמה השנייה נשים לב כי הענפים של Hair=brown  ו  Hair=red בעלי אנטרופיה מקסימלית. כלומר, ניתן לסווג את הדוגמאות בצורה מושלמת לכן אין צורך בפיצולים נוספים. לגבי הענף Hair=blonde:
 קבוצת הדוגמאות בענף זה היא: 
@@ -223,6 +274,10 @@ $$
 
 </div>
 
+</section><section markdown="1">
+
+####המשך פתרון: 
+
 פיצול לפי מאפיין height ייתן:
 
 <div dir="ltr" markdown="1">
@@ -235,6 +290,10 @@ $$
 
 </div>
 
+</section><section markdown="1">
+
+####המשך פתרון: 
+
 לפי weight:
 <div dir="ltr" markdown="1">
 
@@ -246,6 +305,10 @@ $$
 
 </div>
 
+</section><section markdown="1">
+
+####המשך פתרון: 
+
 לפי Lotion:
 <div dir="ltr" markdown="1">
 
@@ -256,15 +319,46 @@ $$
 
 </div>
 
+</section><section markdown="1">
+
+####המשך פתרון: 
+
 לפיכך הקריטריון האופטימלי (זה שממזער את קריטריון הגידול) הוא Lotion.
+
+</section><section markdown="1">
+
+####המשך פתרון: 
 
 עץ ההחלטה הסופי יראה כך:
 ![Q10_tree](figs/question_10_1.png){: width="600px"}
 
+</section><section markdown="1">
+
 ### בעיית התאמת היתר (overfitting):
 ניתן לסווג את הדוגמאות באופן מושלם רק על סמך "מאפיין"  **שם** ו"מאפיין" זה בוודאי ייבחר בצומת הראשונה לפי קריטריון "תוספת המידע". **אולם לקריטריון זה ערך מועט לצורך חיזוי**.
 
+<div dir="ltr" markdown="1">
+
+| Name	| Hair	  | Height	| Weight	| Lotion	| Result (Label)       |   
+| ---   |   ---   | ---     | ---       | ---       | ---                  |
+| **Sarah**	| blonde  |	average	| light	    | no	    | sunburned (positive) |
+|**Dana**	| blonde  |	tall	| average	| yes	    | none (negative)      |
+| **Alex**	| brown	  | short	| average	| yes	    | none                 |
+| **Annie**	| blonde  |	short	| average	| no	    | sunburned            |
+| **Emily**	| red     |	average	| heavy	    | no	    | sunburned            |
+| **Pete**	| brown	  | tall	| heavy	    | no	    | none                 |
+| **John**	| brown	  | average	| heavy	    | no	    | none                 |
+| **Katie**	| blonde  |	short	| light	    | yes	    | none                 |
+
+</div>
+
 **מקור הבעיה:** בקריטריון שבו השתמשנו קיימת העדפה מובנית למאפיינים בעלי מספר ערכים רב.
+
+</section><section markdown="1">
+
+#### overfitting:
+
+<br>
 
 **פתרון אפשרי:** נרמול "תוספת המידע" של מאפיין $$A$$  באופן הבא:
 
@@ -283,8 +377,10 @@ $$ n(A) $$ כאשר,
 היינו מספר הערכים השונים של הנאפיין $$A$$, המתקבלים על פני איברי הקבוצה $$D$$
 
 
+</section><section markdown="1">
+
 ### מאפיינים רציפים:
-נניח כי וקטור המאפיינים $$x=(x_1,…,x_d )^T$$ כולל רכיבים $$x_j$$ בעלי ערכים רציפים.
+  $$x=(x_1,…,x_d )^T$$ כולל רכיבים $$x_j$$ בעלי ערכים רציפים.
  במקרה זה, המבחן המקובל לגבי $$x_j$$ הינו מהצורה $$x_j \leq t_j$$.
  לפיכך, לבחירת המאפיין בכל צומת יש להוסיף את בחירת ערך הסף  $$t_j$$.  
 עבור כל מבחן $$A=\{ x_j \leq t_j \}$$ ניתן להגדיר את תוספת המידע באופן הרגיל:
@@ -301,18 +397,59 @@ $$
 
 ולאחר מכן בחירת המאפיין $$x_j$$ שעבורו מדד זה הינו מקסימלי.
 
+</section><section markdown="1">
 
 ## Boosting - Adaboost
-AdaBoost (Adaptive Boosting) הינה טכניקה לשיפור ביצועים של אלגוריתם סיווג על ידי שילוב ממושקל של מספר מסווגים.
-עיקרון מבוסס על בנייה איטרטיבית של מסווג אשר מורכב ממספר מסווגים, כשאר בתהליך הבנייה נשמר ווקטור של משקולות המעיד על טיב הסיווג של כל נקודה בסט על ידי סך הסיווגים הקודמים (מכל המסווגים).
-בכל שלב האלגוריתם מנסה לבנות מסווג שיתקן את הטעויות שנעשו מהמסווגים הקודמים.
+
+<br>
 
 נסמן:
 - $$N$$ - גודל ה dataset
 - $$\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$ - המדידות ותגיות.
 - ערכי המחלקות הם  $$1,-1$$
 
-**אלגוריתם:**
+</section><section markdown="1">
+
+#### Adaboost algorithm
+
+<br>
+
+- אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
+$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+
+
+</section><section markdown="1">
+
+#### Adaboost algorithm
+
+<br>
+
+- אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
+$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+- המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
+  1. בנה מסווג אופטימלי $$h_t$$ ביחס ל- dataset הממושקל 
+
+
+</section><section markdown="1">
+
+#### Adaboost algorithm
+
+<br>
+
+- אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
+$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+- המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
+  1. בנה מסווג אופטימלי $$h_t$$ ביחס ל- dataset הממושקל 
+  2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
+  3. חשב את משקל עבור המסווג $$h_t$$ לפי: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
+  4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
+  5. נרמל את המשקולות לפי: $$Z=\sum_iw^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
+
+
+#### Adaboost algorithm
+
+<br>
+
 - אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
 $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
 - המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
@@ -325,8 +462,10 @@ $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
 הסיווג הסופי נעשה על ידי קומבינציה לינארית של כל מסווגים והמשקל שלהם.
 
 $$
-h\left(\boldsymbol{x}_i\right)=\text{sign}\left(\sum_t\alpha_th_t\left(\boldsymbol{x}_i\right)\right)
+H\left(\boldsymbol{x}_i\right)=\text{sign}\left(\sum_t\alpha_th_t\left(\boldsymbol{x}_i\right)\right)
 $$
+
+</section><section markdown="1">
 
 ## תרגיל 12.2: הדגמת האלגוריתם 
 
@@ -346,20 +485,33 @@ $$
 
 2. רשום את שלבי אלגוריתם AdaBoost עבור הדוגמא.
 
-## פתרון 
+</section><section markdown="1">
 
-1. ראשית נסתכל בבעיה:
+##### פתרון סעיף א'
+ 
+<br>
+
+ראשית נסתכל בבעיה:
+
 ![Q10_2](figs/question_10_2.png){: width="400px"}
 
 נשים לב, שמסווג בודד לא יפתור את הבעיה משום שלא קיימת הפרדה לינארית בין המחלקות.
  עבור שני מסווגים לא ניתן למצוא מקדמים $$\alpha_t$$ שעבור נקבל שגיאת אימון אפס. ניתן לקבל שגיאה אפס עבור שלושה מסווגים חלשים בהן נתייג נכון את כל הדוגמאות.
+ 
+ </section><section markdown="1">
 
-2.
+##### פתרון סעיף ב'
+
 נאתחל את הפילוג: 
 
 $$
 D_1=\frac{1}{3}
 $$
+
+</section><section markdown="1">
+
+##### המשך פתרון סעיף ב' 
+
 
 נקח את המסווג הבא:
 $$
@@ -373,12 +525,20 @@ $$
 a_1= \frac{1}{2}  \log \frac{1 - \epsilon_1}{\epsilon_1} = 0.3466
 $$
 
-וכרגע ניתן לעדכן את התפלגות הדוגמאות:
+ לעדכן את התפלגות הדוגמאות:
+<br>
 
 $$
 D_2 (i) = D_1 \cdot \exp frac{-a_1 y_i h_1 (x_i )}{Z_1} = \{0.25,0.5,0.25\} \\
 Z_1= \sum_i D_1 (i) \cdot  \exp (-a_1 y_i h_1 (x_i ))
 $$
+
+
+</section><section markdown="1">
+
+##### המשך פתרון סעיף ב' 
+
+<br>
 
 באיטרציה הבאה נבחר את המסווג הבא:
 
@@ -393,12 +553,18 @@ $$
 a_2 = \frac{1}{2} \log \frac{1-\epsilon_2}{\epsilon_2} = 0.5493
 $$
 
+
 נעדכן את הפילוג לפי המסווג הנוסף:
 
 $$
 D_3(i) = D_2 \cdot \exp \frac{-a_2 y_i h_2 (x_i )}{Z_2} = \{0.1667,0.333,0.5\} \\
 Z_2 = \sum_i D_2 (i) \cdot \exp (-a_2 y_i h_2 (x_i ))
 $$
+
+</section><section markdown="1">
+
+##### המשך פתרון סעיף ב' 
+<br>
 
 עבור הבעיה בדוגמה, מספיק עוד מסווג חלש אחד אותו נבחר כך:
 
@@ -420,6 +586,11 @@ D_4 (i) = D_3 \cdot \exp \frac{-a_3 y_i h_3 (x_i )}{Z_3}  = \{0.5,0.2,0.3\} \\
 Z_3 = \sum_i D_3 (i) \cdot  \exp (-a_3 y_i h_3 (x_i ))
 $$
 
+</section><section markdown="1">
+
+##### המשך פתרון סעיף ב' 
+<br>
+
 לבסוף המסווג עם שגיאה אפס המתקבל היינו:
 
 $$
@@ -427,19 +598,28 @@ H(x) = sign(\sum_{t=1}^3 (\alpha_t h_t (x)))= \{-1,+1,-1\}
 $$
 
 
+</section><section markdown="1">
+
 ## AdaBoost חלק מעשי
 
-### האתגר: בחזרה לטיטניק
+<br>
 
-![titanic_img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg){: width="200px"}
+#### האתגר: בחזרה לטיטניק
 
 ננסה לחזות האם נוסע בטיטניק ישרוד או לא על סמך רישום ונתונים של הנוסעים.
 
-## Dataset: The Titanic Manifest
+
+![titanic_img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/RMS_Titanic_3.jpg/1200px-RMS_Titanic_3.jpg){: width="200px"}
+
+
+</section><section markdown="1">
+
+
+#### Dataset: The Titanic Manifest
 ניתן להוריד את הdataset מהקישור [הזה](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic.html)
 
 
-## 🕵️ Data Inspection
+#### 🕵️ Data Inspection
 התרשמות ראשונית ממאגר המידע, עשר שורות ראשונות מהרשומות:
 
 <div dir="ltr">
@@ -665,7 +845,12 @@ $$
 סה"כ ישנם $$N=1001$$ רשומות במאגר מידע.
 
 
-### The Data Fields and Types
+</section><section markdown="1">
+
+#### The Data Fields and Types
+
+<br>
+
 נעשה שימוש בשדות (מאפיינים) הבאים:
 - **pclass**: מחלקת הנוסע: 1, 2 או 3
 - **sex**: מין הנוסע
@@ -676,15 +861,18 @@ $$
 - **embarked**: הנמל בו עלה הנוסע על האונייה (C = Cherbourg; Q = Queenstown; S = Southampton)
 - **survived**: התיוג, האם הנוסע שרד או לא
 
+</section><section markdown="1">
 
-###  📉 התרשמות ראשונית בעזרת גרפים 
+####  📉 התרשמות ראשונית בעזרת גרפים 
 נציג את היחס בין המחלקות (שורדים ונספים) עבור המאפיינים:  
 
 
 ![plots](figs/output_13_0.png){: width="400px"}
 
+</section><section markdown="1">
+<br>
 
-## 📜 הגדרת הבעיה :
+### 📜 הגדרת הבעיה :
 
 - משתנים אקראיים:
   - $$ x_i $$ : מאפייני הנוסע
@@ -696,12 +884,19 @@ $$
 h^*=\underset{h}{\arg\min}\ E\left[I\left\lbrace h\left(\boldsymbol{x}\right)\neq y\right\rbrace\right]
 $$
 
+</section><section markdown="1">
+<br>
 
-## 💡 Model & Learning Method Suggestion: Stumps + AdaBoost
- .נשתמש בעץ בעל עומק אחד (נקרא Stump), שבעצם מסווג על פי מאפיין בודד בשילוב של אלגוריתם AdaBoost
+#### 💡 Model & Learning Method Suggestion: Stumps + AdaBoost
+ .נשתמש בעץ בינארי בעל עומק אחד (נקרא Stump), שבעצם מסווג על פי מאפיין בודד בשילוב של אלגוריתם AdaBoost
  
  **הערה:** ניתן להגיד שהשילוב הנ"ל הוא וריאציה של Random Forest, אלגוריתם שמשלב מספר עצים. כמו כן הטכניקה הזאת נקראת גם Ensemble.
  
+</section><section markdown="1">
+ 
+ #### קריטריון בניית עץ 
+ 
+<br>
  עבור קריטריון בניית עץ נשתמש ב**Gini אינדקס ממושקל** הנובע מה-data הממושקל.
  עבור חלוקה של ה-data לשני סטים $$\mathcal{C}_1$$ and $$\mathcal{C}_2$$ , וסט המשקולות של הדגימות $$\left\lbrace w_i\right\rbrace$$ נקבל את Gini אינדקס ממושקל:  
  
@@ -713,19 +908,27 @@ p_2=\frac{1}{N_2}\sum_{i\in\mathcal{C}_2}w_iI\left\lbrace y_i=1\right\rbrace\\
 G=N_1p_1\left(1-p_1\right)+N_2p_2\left(1-p_2\right)
 $$
 
+</section><section markdown="1">
 
-### פרמטרים נלמדים:
+#### פרמטרים נלמדים:
+
+<br>
 
 - החלוקה המתבצעת על ידי כל עץ.
 - משקול כל עץ: $$\alpha_i$$.
 
-### Hyper-parameters
+#### Hyper-parameters
+
+<br>
+
 ההיפר פרמטרי היחידי הינו קריטריון העצירה עבור אלגוריתם Adaboost שעבורו מוחלט מס' עצי ההחלטה שמשולבים במסווג הסופי.
 
-### 📚 חלוקת ה-dataset
+#### 📚 חלוקת ה-dataset
 נחלק ל 80% סט אימון ו 20% סט בוחן.
 
-## ⚙️ אימון 
+</section><section markdown="1">
+
+#### ⚙️ אימון 
 
 נאתחל את המודל ונציג את העשר שורות הראשונות של הdataset הממושקל וההתפלגות לפי המאפיינים:
 
@@ -883,10 +1086,15 @@ $$
 </table>
 </div>
 
+</section><section markdown="1">
+
+#### Gini-Index $$t=0$$
 
 ![png](figs/output_30_1.png){: width="600px"}
 
 אינדקס Gini המושקלל מצויין בכותרת של כל גרף. בכל איטרציה של Adaboost נבחר את עץ שיפעל על המאפיין בעל האינדקס הנמוך ביותר. כשאר במקרה זה נבחר לפי **מין** הנוסע.
+
+</section><section markdown="1">
 
 #### Iteration: $$t=1$$
 לאחר איטרציה בודדת של סיווג לפי מין קיבלנו:
@@ -896,7 +1104,6 @@ $$
 
 
  נציג את המשוקל של ה-data מחדש, וההתפלגויות החדשות:
-
 
 
 <div dir="ltr">
@@ -1053,16 +1260,28 @@ $$
 </table>
 </div>
 
+</section><section markdown="1">
+
+#### Gini-Index $$t=1$$
+
 
 ![png](figs/output_33_2.png){: width="500px"}
 
-נבחין בכך, שככל שנתקדם באיטרציות של האלגוריתם, ה-data הממושקל יתפלג באופן אחיד כפונקציה של התגיות, כלומר ההתפלגות של הדגימות שעבורן $$y=1 $$ זהה להתפלגות של הדגימות שעבורןן $$y=-1$$.
+</section><section markdown="1">
+
+#### :bulb: 
+
+נבחין בכך, שככל שנתקדם באיטרציות של האלגוריתם, ה-data הממושקל יתפלג באופן אחיד כפונקציה של המחלקות, כלומר ההתפלגות של הדגימות שעבורן $$y=1 $$ זהה להתפלגות של הדגימות שעבורןן $$y=-1$$.
 
  כתוצאה מכך, הסיווג על פי מאפיין בודד יהיה קשה יותר והשגיאה למסווג בודד תתקרב ל-0.5, ובאופן ישיר המשקל של כל מסווג $$ \alpha_t $$ ידעך.
  
  בשלב הבא נסווג לפי **pclass**:
+ 
+ </section><section markdown="1">
 
 #### Iteration $$t=2$$
+
+<br>
 
 לאחר איטרציה נוספת של סיווג לפי מחלקת נוסע קיבלנו:
 * שגיאה: 0.66
@@ -1224,6 +1443,9 @@ $$
 </div>
 
 
+</section><section markdown="1">
+
+#### Gini-Index $$t=2$$
 
 
 ![png](figs/output_36_2.png){: width="500px"}
@@ -1231,7 +1453,10 @@ $$
 
 באיטרציה השלישית נסווג לפי **embarked**:
 
+</section><section markdown="1">
+
 #### Iteration $$t=3$$
+<br>
 * שגיאה: 0.53
 * $$\alpha$$: -0.06
 * Classifing pclass according to: {0: [0], 1: [1, 2]}
@@ -1391,10 +1616,14 @@ $$
 </div>
 
 
+</section><section markdown="1">
+
+#### Gini-Index $$t=3$$
 
 
 ![png](figs/output_39_2.png){: width="500px"}
 
+</section><section markdown="1">
 
 #### Iteration $$t=4$$
 
@@ -1557,13 +1786,19 @@ Classifing embarked according to: {0: [0], 1: [1, 2]}
 </table>
 </div>
 
+</section><section markdown="1">
 
+#### Gini-Index $$t=4$$
 
 
 ![png](figs/output_40_2.png){: width="500px"}
 
 באיטרציה האחרונה קיבלנו ששגיאת המסווג קרובה ל 0.5 והמשקל שלו $$ \alpha_t \approx 0$$, לכן ניתן להפסיק את תהליך הלימוד.
 
-## ⏱️ ביצועים:#
+</section><section markdown="1">
+
+### ⏱️ ביצועים:
 
 נריץ את האלגוריתם המאומן על סט המבחן ונקבל שהסיכון היינו: **$$0.225$$**
+
+</section>
