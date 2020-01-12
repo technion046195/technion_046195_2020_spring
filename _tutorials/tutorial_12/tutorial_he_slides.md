@@ -146,7 +146,7 @@ $$
 | Pete	| brown	  | tall	| heavy	    | no	    | none                 |
 | John	| brown	  | average	| heavy	    | no	    | none                 |
 | Katie	| blonde  |	short	| light	    | yes	    | none                 |
-
+{: style="font-size:35px !important"}
 </div>
 
 </section><section markdown="1">
@@ -174,7 +174,7 @@ $$
 | Blonde	| $$+2/-2$$  |	$$H(D \lvert Hair = blonde ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
 | Brown	| $$0/-3$$   |	$$ H(D \lvert Hair = brown ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 0	$$ | 
 | Red	| $$+1/0$$  |	$$ H(D \lvert Hair = red ) = -1 \log 1 -0 \log{0} = 0	$$| 
-
+{: style="font-size:35px !important"}
 </div>
 
 ומדד הטיב של מאפיין Hair יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
@@ -197,7 +197,7 @@ $$
 | Short     | $$+1/-2$$  |	$$H(D \lvert Height = Short ) = -\frac{1}{3} \log{\frac{1}{3}} -\frac{2}{3} \log{\frac{2}{3}} = 0.918 $$	| 
 | Average	| $$2/-1$$   |	$$ H(D \lvert Height = Average ) = -\frac{2}{3} \log{\frac{2}{3}} -\frac{1}{3} \log{\frac{1}{3}} = 0.918	$$ | 
 | Tall	    | $$0/-2$$  |	$$ H(D \lvert Height = Tall )  = 0	$$| 
-
+{: style="font-size:35px !important"}
 </div>
 
 
@@ -220,6 +220,7 @@ $$
 | Light     | $$+1/-1$$  |	$$H(D \lvert Weight = Light ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
 | Average	| $$1/-2$$   |	$$ H(D \lvert Weight = Average ) = -\frac{1}{3} \log{\frac{1}{3}} -\frac{2}{3} \log{\frac{2}{3}} = 0.918	$$ | 
 | Heavy	    | $$+1/-2$$  |	$$ H(D \lvert Weight = Heavy )  = -\frac{1}{3} \log{\frac{1}{3}} -\frac{2}{3} \log{\frac{2}{3}}  = 0.918	$$| 
+{: style="font-size:35px !important"}
 
 </div>
 
@@ -241,6 +242,7 @@ $$
 | ---       |   ---   | ---     | 
 | No     | $$+3/-2$$  |	$$H(D \lvert Lotion = No ) = -\frac{3}{5} \log{\frac{3}{5}} -\frac{2}{5} \log{\frac{2}{5}} = 0.97 $$	| 
 | Yes	| $$0/-3$$   |	$$ H(D \lvert Lotion = Yes ) = 0	$$ | 
+{: style="font-size:35px !important"}
 
 </div>
 
@@ -274,7 +276,7 @@ $$
 | Dana	| blonde  |	tall	| average	| yes	    | none (negative)      |
 | Annie	| blonde  |	short	| average	| no	    | sunburned            |
 | Katie	| blonde  |	short	| light	    | yes	    | none                 |
-
+{: style="font-size:35px !important"}
 </div>
 
 </section><section markdown="1">
@@ -290,7 +292,8 @@ $$
 | ---       |   ---   | ---     | 
 | Short     | $$+1/-1$$  |	$$H(D \lvert Height = Short ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
 | Average	| $$1/0$$   |	$$ H(D \lvert Height = Average ) = 0	$$ | 
-| Tall	    | $$0/-1$$  |	$$ H(D \lvert Height = Tall )  = 0	$$| 
+| Tall	    | $$0/-1$$  |	$$ H(D \lvert Height = Tall )  = 0	$$|  
+{: style="font-size:35px !important"}
 
 </div>
 
@@ -307,6 +310,7 @@ $$
 | Light     | $$+1/-1$$  |	$$H(D \lvert Weight = Light ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
 | Average	| $$1/-1$$   |	$$ H(D \lvert Weight = Average ) =  -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1	$$ | 
 | Heavy	    | $$0/0$$  |	$$ H(D \lvert Weight = Heavy )  = 0	$$| 
+{: style="font-size:35px !important"}
 
 </div>
 
@@ -322,6 +326,8 @@ $$
 | ---       |   ---   | ---     | 
 | No     | $$+2/0$$  |	$$H(D \lvert Lotion = No ) = 0 $$	| 
 | Yes	| $$0/-2$$   |	$$ H(D \lvert Lotion = Yes ) = 0	$$ | 
+{: style="font-size:35px !important"}
+
 
 </div>
 
@@ -352,7 +358,8 @@ $$
 | **Emily**	| red     |	average	| heavy	    | no	    | sunburned            |
 | **Pete**	| brown	  | tall	| heavy	    | no	    | none                 |
 | **John**	| brown	  | average	| heavy	    | no	    | none                 |
-| **Katie**	| blonde  |	short	| light	    | yes	    | none                 |
+| **Katie**	| blonde  |	short	| light	    | yes	    | none            |
+{: style="font-size:35px !important"}
 
 </div>
 
@@ -470,6 +477,10 @@ $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
 $$
 H\left(\boldsymbol{x}_i\right)=\text{sign}\left(\sum_t\alpha_th_t\left(\boldsymbol{x}_i\right)\right)
 $$
+
+</section><section markdown="1">
+
+![adboost_example](figs/Adaboost_Ex.png)
 
 </section><section markdown="1">
 
@@ -940,7 +951,7 @@ $$
 
 נאתחל את המודל ונציג את העשר שורות הראשונות של הdataset הממושקל וההתפלגות לפי המאפיינים:
 
-<div dir="ltr">
+<div dir="ltr" >
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
