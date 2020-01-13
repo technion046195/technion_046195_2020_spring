@@ -1127,7 +1127,7 @@ $$
 
 ![png](figs/output_30_1.png){: width="1200px"}
 
-אינדקס Gini המושקלל מצויין בכותרת של כל גרף. בכל איטרציה של Adaboost נבחר את עץ שיפעל על המאפיין בעל האינדקס הנמוך ביותר. כשאר במקרה זה נבחר לפי **מין** הנוסע.
+אינדקס Gini המושקלל מצויין בכותרת של כל גרף. בכל איטרציה של Adaboost נבחר את העץ שיפעל על המאפיין בעל האינדקס הנמוך ביותר. כאשר במקרה זה נבחר לפי **מין** הנוסע.
 
 </section><section markdown="1">
 
@@ -1308,7 +1308,7 @@ $$
 לאחר איטרציה נוספת של סיווג לפי מחלקת נוסע קיבלנו:
 * שגיאה: 0.66
 * $$\alpha$$: -0.34
-* Classifing embarked according to: {0: [0], 1: [1, 2]}
+* Classifing pclass  according to: {0: [0], 1: [1, 2]}
 
 <div dir="ltr">
 <table border="1" class="dataframe" style="font-size:30px!important">
@@ -1468,7 +1468,7 @@ $$
 <br>
 * שגיאה: 0.53
 * $$\alpha$$: -0.06
-* Classifing pclass according to: {0: [0], 1: [1, 2]}
+* Classifing embarked according to: {0: [0], 1: [1, 2]}
 
 <div dir="ltr">
 <table border="1" class="dataframe" style="font-size:30px !important">
@@ -1617,6 +1617,8 @@ $$
 
 
 ![png](figs/output_39_2.png){: width="1200px"}
+
+נשים לב שגם אחרי האאינטרציה השלישית קיבלנו את האינדקס הנמוך ביותר עבור **embarked**. על כן באיטרציה הבאה נסווג עלפיו (ואפשר כבר לנחש שלא נשתפר בביצועים)
 
 </section><section markdown="1">
 
