@@ -496,7 +496,7 @@ $$D^{\left(t=0\right)}_i=\frac{1}{N}$$
   2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i D^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
   3. חשב את משקל עבור המסווג $$h_t$$ לפי: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
   4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$D^t_i=D^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
-  5. נרמל את המשקולות לפי: $$Z=\sum_i D^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
+  5. נרמל את המשקולות לפי: $$Z=\sum_i D^t_i$$ according to: $$D^t_i=\frac{D^t_i}{Z}$$
 
 
 </section><section markdown="1">
@@ -512,7 +512,7 @@ $$D^{\left(t=0\right)}_i=\frac{1}{N}$$
   2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i D^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
   3. חשב את משקל עבור המסווג $$h_t$$ לפי: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
   4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$ D^t_i=D^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
-  5. נרמל את המשקולות לפי: $$Z=\sum_i D^t_i$$ according to: $$D^t_i=\frac{w^t_i}{Z}$$
+  5. נרמל את המשקולות לפי: $$Z=\sum_i D^t_i$$ according to: $$D^t_i=\frac{D^t_i}{Z}$$
 
 הסיווג הסופי נעשה על ידי קומבינציה לינארית של כל מסווגים והמשקל שלהם.
 
@@ -1293,7 +1293,7 @@ $$
 
 ###  נשים לב
 
-נבחין בכך, שככל שנתקדם באיטרציות של האלגוריתם, ה-data הממושקל יתפלג באופן אחיד כפונקציה של המחלקות, כלומר ההתפלגות של הדגימות שעבורן $$y=1 $$ זהה להתפלגות של הדגימות שעבורןן $$y=-1$$.
+נבחין בכך, שככל שנתקדם באיטרציות של האלגוריתם, ה-data הממושקל יתפלג באופן אחיד כפונקציה של המחלקות, כלומר ההתפלגות של הדגימות שעבורן $$y=1 $$ זהה להתפלגות של הדגימות שעבורן $$y=-1$$.
 
  כתוצאה מכך, הסיווג על פי מאפיין בודד יהיה קשה יותר והשגיאה למסווג בודד תתקרב ל-0.5, ובאופן ישיר המשקל של כל מסווג $$ \alpha_t $$ ידעך.
  
