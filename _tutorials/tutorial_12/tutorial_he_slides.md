@@ -175,6 +175,7 @@ $$
 | Brown	| $$0/-3$$   |	$$ H(D \lvert Hair = brown ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 0	$$ | 
 | Red	| $$+1/0$$  |	$$ H(D \lvert Hair = red ) = -1 \log 1 -0 \log{0} = 0	$$| 
 {: style="font-size:35px !important"}
+
 </div>
 
 ומדד הטיב של מאפיין Hair יחושב לפי האנטרופיה המשוקללת על פני הפיצולים האפשריים:
@@ -198,6 +199,7 @@ $$
 | Average	| $$2/-1$$   |	$$ H(D \lvert Height = Average ) = -\frac{2}{3} \log{\frac{2}{3}} -\frac{1}{3} \log{\frac{1}{3}} = 0.918	$$ | 
 | Tall	    | $$0/-2$$  |	$$ H(D \lvert Height = Tall )  = 0	$$| 
 {: style="font-size:35px !important"}
+
 </div>
 
 
@@ -277,6 +279,7 @@ $$
 | Annie	| blonde  |	short	| average	| no	    | sunburned            |
 | Katie	| blonde  |	short	| light	    | yes	    | none                 |
 {: style="font-size:35px !important"}
+
 </div>
 
 </section><section markdown="1">
@@ -640,19 +643,6 @@ $$
 התרשמות ראשונית ממאגר המידע, עשר שורות ראשונות מהרשומות:
 
 <div dir="ltr">
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -951,21 +941,8 @@ $$
 
 נאתחל את המודל ונציג את העשר שורות הראשונות של הdataset הממושקל וההתפלגות לפי המאפיינים:
 
-<div dir="ltr" >
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
+<div dir="ltr">
+<table border="1" class="dataframe" style="font-size:30px!important">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1126,20 +1103,7 @@ $$
 
 
 <div dir="ltr">
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
+<table border="1" class="dataframe" style="font-size:30px!important">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1308,20 +1272,7 @@ $$
 * Classifing embarked according to: {0: [0], 1: [1, 2]}
 
 <div dir="ltr">
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
+<table border="1" class="dataframe" style="font-size:30px!important">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1481,20 +1432,7 @@ $$
 * Classifing pclass according to: {0: [0], 1: [1, 2]}
 
 <div dir="ltr">
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
+<table border="1" class="dataframe" style="font-size:30px !important">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1634,7 +1572,6 @@ $$
 </table>
 </div>
 
-
 </section><section markdown="1">
 
 #### Gini-Index $$t=3$$
@@ -1654,20 +1591,7 @@ $$
 <br>
 
 <div dir="ltr">
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
+<table border="1" class="dataframe" style="font-size:30px!important">
   <thead>
     <tr style="text-align: right;">
       <th></th>
