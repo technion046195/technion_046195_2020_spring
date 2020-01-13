@@ -160,6 +160,46 @@ $$
 
 </section><section markdown="1">
 
+#### המשך פתרון: 
+
+<div dir="ltr" markdown="1">
+
+**Hair:**
+
+| Name		| Result (Label)       |   
+| ---    | ---                  |
+| Sarah	 | sunburned (positive) |
+| Dana	 | none (negative)      |
+| Alex	 | none                 |
+| Annie	 | sunburned            |
+| Emily	 | sunburned            |
+| Pete	 | none                 |
+| John	 | none                 |
+| Katie	 | none                 |
+{: style="font-size:35px !important"}
+</div>
+
+
+</section><section markdown="1">
+
+#### המשך פתרון: 
+
+**Hair:**
+
+<div dir="ltr" markdown="1">
+
+| Feature	| Distribution	  | $$H(D \lvert A)$$	| 
+| ---   |   ---   | ---     | 
+| Blonde	| $$+2/-2$$  |	| 
+| Brown	| $$0/-3$$   |	 | 
+| Red	| $$+1/0$$  |	| 
+{: style="font-size:35px !important"}
+
+</div>
+
+
+</section><section markdown="1">
+
 
 #### המשך פתרון: 
 
