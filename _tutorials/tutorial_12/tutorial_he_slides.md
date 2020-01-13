@@ -589,7 +589,7 @@ $$
 
 $$
 Z_1= \sum_i D_1 (i) \cdot  \exp (-a_1 y_i h_1 (x_i )) \\
-D_2 (i) = D_1 \cdot \exp \frac{-a_1 y_i h_1 (x_i )}{Z_1} = \{0.25,0.5,0.25\} 
+D_2 (i) = D_1 \cdot  \frac{\exp (-a_1 y_i h_1 (x_i ))}{Z_1} = \{0.25,0.5,0.25\} 
 $$
 
 
@@ -617,7 +617,7 @@ $$
 
 $$
 Z_2 = \sum_i D_2 (i) \cdot \exp (-a_2 y_i h_2 (x_i ))  \\
-D_3(i) = D_2 \cdot \exp \frac{-a_2 y_i h_2 (x_i )}{Z_2} = \{0.1667,0.333,0.5\}
+D_3(i) = D_2 \cdot \frac{\exp (-a_2 y_i h_2 (x_i ))}{Z_2} = \{0.1667,0.333,0.5\}
 $$
 
 </section><section markdown="1">
@@ -642,7 +642,7 @@ $$
 
 $$
 Z_3 = \sum_i D_3 (i) \cdot  \exp (-a_3 y_i h_3 (x_i )) \\
-D_4 (i) = D_3 \cdot \exp \frac{-a_3 y_i h_3 (x_i )}{Z_3}  = \{0.5,0.2,0.3\} 
+D_4 (i) = D_3 \cdot \frac{\exp (-a_3 y_i h_3 (x_i ))}{Z_3}  = \{0.5,0.2,0.3\} 
 $$
 
 </section><section markdown="1">
