@@ -468,7 +468,7 @@ $$
 <br>
 
 - אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
-$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+$$D^{\left(t=0\right)}_i=\frac{1}{N}$$
 
 
 </section><section markdown="1">
@@ -478,7 +478,7 @@ $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
 <br>
 
 - אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
-$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+$$D^{\left(t=0\right)}_i=\frac{1}{N}$$
 - המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
   1. בנה מסווג אופטימלי $$h_t$$ ביחס ל- dataset הממושקל 
 
@@ -490,13 +490,13 @@ $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
 <br>
 
 - אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
-$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+$$D^{\left(t=0\right)}_i=\frac{1}{N}$$
 - המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
   1. בנה מסווג אופטימלי $$h_t$$ ביחס ל- dataset הממושקל 
-  2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
+  2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i D^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
   3. חשב את משקל עבור המסווג $$h_t$$ לפי: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
-  4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
-  5. נרמל את המשקולות לפי: $$Z=\sum_iw^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
+  4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$D^t_i=D^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
+  5. נרמל את המשקולות לפי: $$Z=\sum_i D^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
 
 
 </section><section markdown="1">
@@ -506,13 +506,13 @@ $$w^{\left(t=0\right)}_i=\frac{1}{N}$$
 <br>
 
 - אתחל באופן אחיד את המשקולות עבור כל נקודה  ב dataset:
-$$w^{\left(t=0\right)}_i=\frac{1}{N}$$
+$$D^{\left(t=0\right)}_i=\frac{1}{N}$$
 - המשך באופן איטרטיבי עבור אינדקס $$t$$ עד להגעת תנאי עצירה: 
   1. בנה מסווג אופטימלי $$h_t$$ ביחס ל- dataset הממושקל 
-  2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i w^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
+  2. חשב את שגיאת הסיווג של $$h_t$$ עבור ה dataset הממושקל: $$\varepsilon=\sum_i D^t_iI\left\lbrace h\left(\boldsymbol{x}_i\right)\neq y_i\right\rbrace$$
   3. חשב את משקל עבור המסווג $$h_t$$ לפי: $$\alpha_t=\frac{1}{2}\ln\left(\frac{1-\varepsilon}{\varepsilon}\right)$$
-  4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$w^t_i=w^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
-  5. נרמל את המשקולות לפי: $$Z=\sum_iw^t_i$$ according to: $$w^t_i=\frac{w^t_i}{Z}$$
+  4. עדכן את המשקולות עבור כל נקודה ב-dataset : $$ D^t_i=D^{t-1}_i\exp\left(-\alpha_ty_ih_t\left(\boldsymbol{x}_i\right)\right)$$
+  5. נרמל את המשקולות לפי: $$Z=\sum_i D^t_i$$ according to: $$D^t_i=\frac{w^t_i}{Z}$$
 
 הסיווג הסופי נעשה על ידי קומבינציה לינארית של כל מסווגים והמשקל שלהם.
 
@@ -531,7 +531,7 @@ $$
 נתבונן בבעיית סיווג חד מימדית עבור סט דוגמאות האימון:
 
 $$
-\{(x_i,y_i)\}_{(i=1}^3=\{(0,-1), (1,1), (2,-1) \}.
+\{(x_i,y_i)\}_{i=1}^3=\{(0,-1), (1,1), (2,-1) \}.
 $$
 
 יהי המודל:
@@ -588,8 +588,8 @@ $$
 <br>
 
 $$
-D_2 (i) = D_1 \cdot \exp \frac{-a_1 y_i h_1 (x_i )}{Z_1} = \{0.25,0.5,0.25\} \\
 Z_1= \sum_i D_1 (i) \cdot  \exp (-a_1 y_i h_1 (x_i ))
+D_2 (i) = D_1 \cdot \exp \frac{-a_1 y_i h_1 (x_i )}{Z_1} = \{0.25,0.5,0.25\} \\
 $$
 
 
@@ -616,8 +616,8 @@ $$
 נעדכן את הפילוג לפי המסווג הנוסף:
 
 $$
-D_3(i) = D_2 \cdot \exp \frac{-a_2 y_i h_2 (x_i )}{Z_2} = \{0.1667,0.333,0.5\} \\
 Z_2 = \sum_i D_2 (i) \cdot \exp (-a_2 y_i h_2 (x_i ))
+D_3(i) = D_2 \cdot \exp \frac{-a_2 y_i h_2 (x_i )}{Z_2} = \{0.1667,0.333,0.5\} \\
 $$
 
 </section><section markdown="1">
@@ -641,8 +641,8 @@ $$
 נעדכן את הפילוג לפי המסווג הנוסף:
 
 $$
-D_4 (i) = D_3 \cdot \exp \frac{-a_3 y_i h_3 (x_i )}{Z_3}  = \{0.5,0.2,0.3\} \\
 Z_3 = \sum_i D_3 (i) \cdot  \exp (-a_3 y_i h_3 (x_i ))
+D_4 (i) = D_3 \cdot \exp \frac{-a_3 y_i h_3 (x_i )}{Z_3}  = \{0.5,0.2,0.3\} \\
 $$
 
 </section><section markdown="1">
