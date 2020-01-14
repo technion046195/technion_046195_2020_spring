@@ -167,16 +167,16 @@ $$
 
 **Hair:**
 
-| Name		| Result (Label)       |   
-| ---    | ---                  |
-| Sarah	 | sunburned (positive) |
-| Dana	 | none (negative)      |
-| Alex	 | none                 |
-| Annie	 | sunburned            |
-| Emily	 | sunburned            |
-| Pete	 | none                 |
-| John	 | none                 |
-| Katie	 | none                 |
+| Hair	 	| Result (Label)       |   
+|   ---   | ---                  |
+| blonde  | sunburned (positive) |
+| blonde  | none (negative)      |
+| brown	  | none                 |
+| blonde  | sunburned            |
+| red     | sunburned            |
+| brown	  | none                 |
+| brown	  | none                 |
+| blonde  | none                 |
 {: style="font-size:35px !important"}
 </div>
 
@@ -211,7 +211,7 @@ $$
 | Feature	| Distribution	  | $$H(D \lvert A)$$	| 
 | ---   |   ---   | ---     | 
 | Blonde	| $$+2/-2$$  |	$$H(D \lvert Hair = blonde ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 1 $$	| 
-| Brown	| $$0/-3$$   |	$$ H(D \lvert Hair = brown ) = -\frac{1}{2} \log{\frac{1}{2}} -\frac{1}{2} \log{\frac{1}{2}} = 0	$$ | 
+| Brown	| $$0/-3$$   |	$$ H(D \lvert Hair = brown ) = - 0 \log{0} - 1 \log{1} = 0	$$ | 
 | Red	| $$+1/0$$  |	$$ H(D \lvert Hair = red ) = -1 \log 1 -0 \log{0} = 0	$$| 
 {: style="font-size:35px !important"}
 
@@ -458,7 +458,7 @@ $$
 
 נסמן:
 - $$N$$ - גודל ה dataset
-- $$\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$ - המדידות ותגיות.
+- $$\left\lbrace\boldsymbol{x}_i,y_i\right\rbrace$$ - המדידות והמחלקות.
 - ערכי המחלקות הם  $$1,-1$$
 
 </section><section markdown="1">
@@ -540,7 +540,7 @@ H\left(\boldsymbol{x}_i\right)=\text{sign}\left(\sum_t\alpha_th_t\left(\boldsymb
 $$
 
 
-1. האם קיימים מסווגים ליניאריים $$\{h_t\}$$  ופרמטרים  $$\{\alpha\}$$ כך שהשגיאה של היפותזה $$H(x)$$ היא אפס על כל סט האימון? אם כן, מה ה-T  המינימאלי לקבל שגיאה אפס?
+1. האם קיימים מסווגים ליניאריים $$\{h_t\}$$  ופרמטרים  $$\{\alpha_t\}$$ כך שהשגיאה של היפותזה $$H(x)$$ היא אפס על כל סט האימון? אם כן, מה ה-T  המינימאלי לקבל שגיאה אפס?
 
 2. רשום את שלבי אלגוריתם AdaBoost עבור הדוגמא.
 
@@ -1135,7 +1135,7 @@ $$
 לאחר איטרציה בודדת של סיווג לפי מין קיבלנו:
 * שגיאה: 0.22
 * $$\alpha$$: 0.6320312618746508
-* Classifing pclass according to: {0: [0], 1: [1, 2]}
+* Classifing sex according to: {0: [0], 1: [1]}
 <br>
 
  נציג את המשוקל של ה-data מחדש, וההתפלגויות החדשות:
@@ -1308,7 +1308,7 @@ $$
 לאחר איטרציה נוספת של סיווג לפי מחלקת נוסע קיבלנו:
 * שגיאה: 0.66
 * $$\alpha$$: -0.34
-* Classifing pclass  according to: {0: [0], 1: [1, 2]}
+* Classifing pclass  according to: {1: [0], 0: [1, 2]}
 
 <div dir="ltr">
 <table border="1" class="dataframe" style="font-size:30px!important">
@@ -1468,7 +1468,7 @@ $$
 <br>
 * שגיאה: 0.53
 * $$\alpha$$: -0.06
-* Classifing embarked according to: {0: [0], 1: [1, 2]}
+* Classifing embarked according to: {1: [0], 0: [1, 2]}
 
 <div dir="ltr">
 <table border="1" class="dataframe" style="font-size:30px !important">
@@ -1627,7 +1627,7 @@ $$
 
 * שגיאה : 0.5000000000000001
 * $$\alpha$$: -2.2204460492503136e-16
-* Classifing embarked according to: {0: [0], 1: [1, 2]}
+* Classifing embarked according to: {1: [0], 0: [1, 2]}
 
 <br>
 
