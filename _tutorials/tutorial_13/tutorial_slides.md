@@ -4,44 +4,81 @@ title: "Summary"
 hide: True
 ---
 
+<section markdown="1">
+
+<div class="hebrew" markdown="1">
+## תקציר הנושאים בקורס
+
+<br><br>
+
+**הבהרה**: זהו רק תקציר בראשי פרקים של **רוב** החומרים שנלמדו בקורס. החומר למבחן כולל את כל הנושאים אשר נלמדו (גם אם לא הופיעו בתקציר זה)
+
+</div>
+
+</section><section markdown="1">
+
 ## Background
 
 ### Mathematical Notations
 
-- **Scalar**: Non-bold lower case letter. Example $$y$$
-- **Column vector**: Bold lower case letter. Example $$\boldsymbol{x}$$
-- **Matrix**: Upper case letter. Example $$A$$
-- **A set of scalars/vectors**: Curly brackets. Example $$\left\lbrace\boldsymbol{x}_i\right\rbrace$$ or $$\left\lbrace y_i\right\rbrace$$
-- **An element of a vector, a matrix or a set**: Subscript index. Example $$x_i$$ or $$a_{i,j}$$
-- **The value in an iterative process**: Superscript index in parentheses. Example $$\theta^{\left(t\right)}$$
+- **Scalar**: $$y$$
+  <br><br>
+- **Column vector**: $$\boldsymbol{x}$$
+  <br><br>
+- **Matrix**: $$A$$
+  <br><br>
+- **A set of scalars/vectors**: $$\left\lbrace\boldsymbol{x}_i\right\rbrace$$ or $$\left\lbrace y_i\right\rbrace$$
+  <br><br>
+- **An element of a vector, a matrix or a set**: $$x_i$$ or $$a_{i,j}$$
+  <br><br>
+- **The value in an iterative process**: $$\theta^{\left(t\right)}$$
+
+</section><section markdown="1">
 
 ### Probability Notations
 
 - **A single random sample**: $$\omega$$
+  <br><br>
 - **A random variable (RV)**: $$X\left(\omega\right)$$ (usually shorten to $$X$$. Note that capital letters are also used for matrices)
+  <br><br>
 - **A realization of an RV**: $$x=X\left(\omega\right)$$
+  <br><br>
 - **The probability of an event** $$Pr\left(0.2<X<0.6\right)$$
+  <br><br>
 - **Probability Mass Function (PMF)**: (for a discrete RV) $$p_X\left(x\right)=Pr\left(X=x\right)$$
+  <br><br>
 - **Cumulative Distribution Function (CDF)**: $$F_X\left(x\right)=Pr\left(X\leq x\right)$$
+  <br><br>
 - **Probability Density Function (PDF)**: $$f_X\left(x\right)$$ define by $$F_X\left(x\right)=\int_{-\infty}^xf_Xdx$$
+
+</section><section markdown="1">
 
 ### Common notation to describe a dataset:
 
 - $$N$$ - The number of samples in a dataset.
+  <br><br>
+- **A realization of an RV**: $$x=X\left(\omega\right)$$
+  <br><br>
 - $$d$$ The dimension of the data.
+  <br><br>
 - $$\boldsymbol{x}$$ - A vector of measured values related to a single sample.
+  <br><br>
 - $$\left\lbrace\boldsymbol{x}_i\right\rbrace$$ - The set of measurements in a dataset.
+  <br><br>
 - $$X$$ - The matrix of measurements $$\left[\boldsymbol{x}_0,\boldsymbol{x}_1,\ldots,\boldsymbol{x}_{N-1}\right]^T$$.
-
- (Note that $$X$$ is also used as the a random variable generating $$\boldsymbol{x}$$).
+  <br><br>
 - $$x_{i,j}$$ - The $$j$$-th element of the $$i$$-th measurement (which is the $$\left(i,j\right)$$-th element of the matrix $$X$$).
+  <br><br>
 - $$\left\lbrace  y_i\right\rbrace$$ - The set of labels in a dataset.
+  <br><br>
 - $$\boldsymbol{y}$$ - the vector of labels $$\left[y_0,y_1,\ldots,y_{N-1}\right]^T$$.
+  <br><br>
 - $$y_i$$ - The $$i$$-th label (which is the $$i$$-th element of the vector $$\boldsymbol{y}$$).
+
+</section><section markdown="1">
 
 ### Optimization Problems
 
-Optimization problems have the following form:
 
 $$
 \boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\quad f\left(\boldsymbol{x}\right) \\
@@ -54,11 +91,11 @@ $$
 
 Where:
 
-- $$\boldsymbol{x}$$ is either a scalar or a vector.
-- $$f$$ is some arbitrary function (usually referred to as the objective function)
-- The $$g_i$$s and $$h_i$$s are optional additional equality and inequality constraints on $$\boldsymbol{x}$$.
+- $$\boldsymbol{x}$$ is a scalar or a vector.
+- $$f$$ the objective function
+- The $$g_i$$s and $$h_i$$s are equality and inequality constraints.
 
-The optimal solution of an optimization problem is commonly denoted by "$$*$$": for example: $$x^*$$
+</section><section markdown="1">
 
 #### Some method to solve optimization problems
 
@@ -67,17 +104,23 @@ With out constraints:
 - Analytic solution
 - Gradient descent / Stochastic gradient descent
 
+<br>
+
 With only equality constraints:
 
 - Lagrangian multipliers
+
+<br>
 
 With general constraints + convex:
 
 - Convex optimization methods
 
+</section><section markdown="1">
+
 #### Lagrange Multipliers
 
-An optimization problem with equality constraints can be solved by adding a set of variables $$\lambda_i$$, one for each constraint, and define the lagrangian:
+We add a set of variables $$\lambda_i$$ and define the lagrangian:
 
 $$
 \mathcal{L}\left(\boldsymbol{x},\boldsymbol{\lambda}\right) = f\left(\boldsymbol{x}\right) + \sum_i \lambda_i h_i\left(\boldsymbol{x}\right)
@@ -91,20 +134,27 @@ $$
 
 Therefore candidates for $$\boldsymbol{x}^*$$ can be found by differentiating and solving the above equation.
 
+</section><section markdown="1">
+
 ### Prediction Theory
 
-The problem of coming up with a mapping $$\hat{y}=h\left(\boldsymbol{x}\right)$$ which is optimal under some criteria, based on the joint distribution $$f_{X,Y}\left(\boldsymbol{x},y\right)$$.
+Finding a mapping $$\hat{y}=h\left(\boldsymbol{x}\right)$$ which is optimal under some criteria, based on $$f_{X,Y}\left(\boldsymbol{x},y\right)$$.
 
 - **Classification**: $$y$$ is discrete.
+  <br><br>
 - **Regression**: $$y$$ is continues.
+
+</section><section markdown="1">
 
 #### The Common Criteria - Minimal Expected Loss
 
-Minimizing the **risk**/**cost** function $$R$$, which is defined as defined as the expectation value of some loss function $$l$$:
+Minimizing a **risk**/**cost** function $$R$$:
 
 $$
 h^* = \underset{h}{\arg\min}\quad R\left(h\right) = \underset{h}{\arg\min}\quad E\left[l\left(h\left(\boldsymbol{x}\right),y\right)\right]
 $$
+
+<br>
 
 If $$h$$ can be any function than:
 
@@ -112,11 +162,15 @@ $$
 h^*\left(x\right) = \underset{\hat{y}}{\arg\min}\quad R\left(h\right) = E\left[l\left(\hat{y},y\right)\lvert X \right]
 $$
 
+<br>
+
 If $$h$$ is a parametric function than:
 
 $$
 \theta^* = \underset{\theta}{\arg\min}\quad E\left[l\left(h_{\theta}\left(\boldsymbol{x}\right),y\right)\right]
 $$
+
+</section><section markdown="1">
 
 #### Common Loss Function and Their Optimal Predictors
 
@@ -125,8 +179,11 @@ $$
 | Zero-One loss | Misclassification rate | $$l\left(y_1,y_2\right)=I\left\lbrace  y_1\neq y_2\right\rbrace$$ | $$h^*\left(x\right)=\underset{y}{\arg\max}\ f_{Y\mid X}\left(y\mid X=x\right)$$ |
 | L1 | Mean absolute<br>error| $$l\left(y_1,y_2\right)=\left\vert y_1-y_2\right\vert$$ | Median: $$h^*\left(x\right)=\hat{y}$$<br>$$s.t.\ F_{Y\mid X}\left(\hat{y}\mid X=x\right)=0.5$$ |
 | L2 | Mean squared<br>error (MSE) |$$l\left(y_1,y_2\right)=\left(y_1-y_2\right)^2$$ | $$h^*\left(x\right)=E_{Y\mid X}\left[y\right]$$ |
+{: style="font-size:25px !important"}
 
 Zero-one loss is usually used for classification problems and L1 & L2 for regression problems.
+
+</section><section markdown="1">
 
 ## Distribution Estimation
 
@@ -140,6 +197,8 @@ $$
 \hat{p}_{X}\left(x\right)=\tfrac{1}{N}\sum_{i=1}^N I\left\lbrace x_i = x\right\rbrace
 $$
 
+</section><section markdown="1">
+
 #### The Empirical Cumulative Distribution Function (the ECDF)
 
 The ECDF is an estimation of the CDF and is given by:
@@ -149,6 +208,8 @@ $$
 $$
 
 The ECDF results in a non-continuous CDF which is a sum of step functions.
+
+</section><section markdown="1">
 
 #### Histogram
 
@@ -161,6 +222,8 @@ h_X\left(l_k \leq x < r_k\right) = \tfrac{1}{N\cdot\left(r_k-l_k\right)}\sum_{i=
 $$
 
 A common rule of thumb for selecting the bins is to divide the range of values into $$\sqrt{N}$$ equal bins.
+
+</section><section markdown="1">
 
 #### Kernel Density Estimation (KDE)
 
@@ -179,15 +242,25 @@ Two commonly used Parzen windows are:
 
 A rule of thumb for selecting the bandwidth $$h$$ for the Gaussian window is: $$\left(\frac{4\cdot\text{std}\left\lbrace x_i\right\rbrace}{3N}\right)^\frac{1}{5}$$
 
+</section><section markdown="1">
+
 ### Parametric Estimation
 
-In parametric estimation we assume that $$f$$ has a known form up to some parameters $$\boldsymbol{\theta}$$. For example, a Gaussian with unknown mean and STD (in this case $$\boldsymbol{\theta}=\left[\mu, \sigma\right]^T$$).
+<br><br>
+
+We assume that $$f$$ has a known form up to some parameters $$\boldsymbol{\theta}$$.
+
+For example, a Gaussian with unknown mean and STD $$\boldsymbol{\theta}=\left[\mu, \sigma\right]^T$$.
+
+</section><section markdown="1">
 
 #### Estimating the parameters as random variables (the Bayesian point of view)
 
 ##### Maximum A Posteriori (MAP) Estimation
 
-We have an assumption on the a priori distribution $$f_{\boldsymbol{\Theta}}\left(\boldsymbol{\theta}\right)$$ of $$\boldsymbol{\theta}$$ and we would like to find the most probable $$\boldsymbol{\theta}$$ given the data in the dataset. I.e. we would like to solve the following optimization problem:
+We assume / have a priori distribution $$f_{\boldsymbol{\Theta}}\left(\boldsymbol{\theta}\right)$$.
+
+we would like to find the most probable $$\boldsymbol{\theta}$$:
 
 $$
 \boldsymbol{\theta}^*=\underset{\boldsymbol{\theta}}{\arg\max}\ f_{\boldsymbol{\Theta}\lvert\boldsymbol{X}}\left(\boldsymbol{\theta}\lvert\boldsymbol{x}\right)=\underset{\boldsymbol{\theta}}{\arg\max}\ 
@@ -195,16 +268,18 @@ f_{\boldsymbol{X}\lvert\boldsymbol{\Theta}}\left(\boldsymbol{x}\lvert\boldsymbol
 f_{\boldsymbol{\Theta}}\left(\boldsymbol{\theta}\right)
 $$
 
+</section><section markdown="1">
+
 #### Estimating the parameter as fixed unknowns (the Frequentist point of view)
 
 ##### Maximum Likelihood Estimation (MLE)
 
-Here we have no prior assumption on $$\boldsymbol{\theta}^*$$ and we would like to find the most likely $$\boldsymbol{\theta}^*$$ given the data.
+No prior assumption on $$\boldsymbol{\theta}^*$$.
 
-- The likelyhood function is defined as: $$\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)=p_{\boldsymbol{X}}\left(\boldsymbol{x}\ ;\boldsymbol{\theta}\right)$$
-- The log-likelyhood is define as $$l\left(\boldsymbol{\theta};\boldsymbol{x}\right)=\log\left(\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)\right)$$
+We would like to find the most likely $$\boldsymbol{\theta}^*$$ given the data.
 
-We would there for want to solve the following optimization problem:
+- The likelyhood function:  $$\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)=p_{\boldsymbol{X}}\left(\boldsymbol{x}\ ;\boldsymbol{\theta}\right)$$
+- The log-likelyhood function: $$l\left(\boldsymbol{\theta};\boldsymbol{x}\right)=\log\left(\mathcal{L}\left(\boldsymbol{\theta};\boldsymbol{x}\right)\right)$$
 
 $$
 \begin{aligned}
@@ -214,55 +289,86 @@ $$
 \end{aligned}
 $$
 
+</section><section markdown="1">
+
 ## Supervised Learning Principles
 
-Making Predictions for an Unknown Distribution Using a Dataset. There are 3 approaches for using the dataset to solve the problem:
+3 approaches for using the dataset to solve the problem:
 
-1. **The generative approach**: Use the dataset to infer the joint distribution $$f_{X,Y}\left(x,y\right)$$. Then use the joint distribution to find the optimal predictor $$h^*$$.
-  In classification problems we will usually decompose $$f_{X,Y}$$ into $$f_{X,Y}\left(x,y\right)=f_{X\lvert Y}\left(x\lvert y\right)f_Y\left(y\right)$$
-2. **The type I discriminative approach**: Use the data to infer the conditional distribution $$f_{Y\lvert X}\left(y\lvert x\right)$$. Then use the conditional distribution to find the optimal predictor $$h^*$$.
-3. **The type II discriminative approach**: Use the data to directly find $$h^*$$ by using some direct method or by solving the optimization problem through replacing the risk's expectation value with an empirical equivalent.
+1. **The generative approach**: dataset -> $$f_{X,Y}\left(x,y\right)$$ -> $$h^*$$.
+  <br><br>
+2. **The type I discriminative approach**: dataset -> $$f_{Y\lvert X}\left(y\lvert x\right)$$ -> $$h^*$$.
+  <br><br>
+3. **The type II discriminative approach**: dataset -> $$h^*$$
 
-For example, empirical risk minimization (ERM):
-
-$$
-h^*=\underset{h}{\arg\min}\ \frac{1}{N}\sum_il\left(h\left(x_i\right),y_i\right)
-$$
+</section><section markdown="1">
 
 ### Overfitting
 
-When looking for the optimal function $$f_{X,Y}\left(x,y\right)$$, $$f_{Y\lvert X}\left(y\lvert x\right)$$ or $$h\left(x_i\right)$$ in the range of all function, we are most likely find a solution which is extremely optimal for the specific dataset but is far from optimal for any other dataset drawn from the same distribution. We would like to find a solution which generalizes well, i.e. will produce reasonable results for any dataset drawn from the data's (usually unknown) distribution.
+<br><br>
+
+The optimal function $$f_{X,Y}\left(x,y\right)$$, $$f_{Y\lvert X}\left(y\lvert x\right)$$ or $$h\left(x_i\right)$$ over the dataset is different than the optimal in general, therefore the optimal solution over the dataset will not generalize well to new data.
+
+</section><section markdown="1">
 
 #### Ways to Reduce Overfitting
 
 ##### Restricting the Search Space
 
-We can limit the space in which we look for a solution. The smaller space might not contain the optimal solution, but will hopefully contain a "good enough" approximation of it. One way to do so is by using a parametric family of functions.
+Limit the space in which we look for a solution and hope to find a "good enough" solution. 
+
+Usually done by using a parametric family of functions.
+
+</section><section markdown="1">
+
+#### Ways to Reduce Overfitting
 
 ##### Regularization
 
-Add a penalty term to the optimization problem to encourage it to converge to a "simpler" solution. Common penalty terms are:
+Add a penalty term to the optimization problem to encourage it to converge to a "simpler" solution. 
 
-- **Tikhonov Regularization**: adding the $$L2$$ norm of the parameters vector to the optimization. Encourages the algorithm to select a solution with smaller parameters.
-- **$$L1$$ Regularization**: adding the $$L1$$ norm of the parameters vector to the optimization. Encourages the algorithm to select a solution with smaller and sparser set of parameters.
+Common penalty terms are:
+
+- **Tikhonov Regularization**: $$L2$$ norm. Encourages solutions with smaller parameters.
+- **$$L1$$ Regularization**: Encourages solutions with smaller and sparser parameters.
+
+</section><section markdown="1">
+
+#### Ways to Reduce Overfitting
+
+##### Bagging
+
+Not covered in this tutorial
+
+</section><section markdown="1">
 
 #### The Bias vs. Variance Trade Off
 
-Since the data is randomly generated the resulting prediction function, which is calculated from the data is random as well.
+The data is random therefore the generated model in random and has a:
 
 - **Bias**: The difference between the mean (over different datasets) of the prediction and the optimal one.
+
 - **Variance**: The variance of the prediction (over different datasets).
 
-When pushing/limiting the algorithm to a specific subset of solutions, the result will usually by a worse approximation of the optimal solution, and will increase the bias of the solution. On the other hand, it will make the algorithm less sensitive to the specific value of each single data point and therefore will reduce the variance. This is known as the bias vs. variance trade off.
+By using regularization or limiting the model to a small space the bias will **increase** but the variance will usually decrease. This is known as the bias vs. variance trade off.
+
+</section><section markdown="1">
 
 ### Pre-Processing and Using Features
 
-When selecting a model we can always change the input to the model from the measurements themselves to any set of functions of the measurements, $$\varphi_i\left(\boldsymbol{x}\right)$$, called features.
+We can replace inputs from the measurements to any set of functions of them:
+
+$$\varphi_i\left(\boldsymbol{x}\right)$$
+
+<br><br>
 
 The vector of measurements will be replace by the vector of features:
+
 $$
 \boldsymbol{\varphi}\left(\boldsymbol{x}\right)=\left[\phi_0\left(\boldsymbol{x}\right),\phi_0\left(\boldsymbol{x}\right),\ldots,\phi_{m-1}\left(\boldsymbol{x}\right)\right]^T
 $$
+
+<br><br>
 
 And the measurements matrix will be replaced by the features matrix:
 
@@ -270,7 +376,7 @@ $$
 \Phi=\left[\boldsymbol{\varphi}\left(\boldsymbol{x}_0\right),\boldsymbol{\varphi}\left(\boldsymbol{x}_1\right),\ldots,\boldsymbol{\varphi}\left(\boldsymbol{x}_{N-1}\right)\right]^T
 $$
 
-An example: we take $$h$$ to be a linear function of the features and use the powers of $$x$$ up to the $$10$$-th order as our features.
+</section><section markdown="1">
 
 #### Normalizing
 
@@ -280,53 +386,53 @@ $$
 \varphi_j\left(\boldsymbol{x}\right) = \frac{x_j-\bar{x}_j}{\sigma_j}\qquad\bar{x}_j=\frac{1}{N}\sum_ix_{i,j}\qquad\sigma_j=\sqrt{\frac{1}{N}\sum_i\left(x_{i,j}-\bar{x}_j\right)^2}
 $$
 
-This is important when the data comes in arbitrary scale (or units) and the algorithm is sensitive to distances between points.
+<br><br>
+
+Important when the data comes in arbitrary scale (or units).
+
+</section><section markdown="1">
 
 #### Dimensionality reduction
 
-One way of making the model "simpler" is to use a smaller but more meaningful set of input features. One way of doing so is by using the PCA algorithm.
+One way of making the model "simpler" is to use smaller but more meaningful features. One way of doing so is by using the PCA algorithm.
 
 ##### Principal Component Analysis (PCA)
 
-A linear projection of the data on to the $$m$$ most significant direction in the data space.
+Finds the $$m$$ significant direction to project the data on.
 
-The sample-covariance matrix:
+- The sample-covariance matrix: $$P=\frac{1}{N}X^TX$$ (a positive semi-definite (PSD) matrix)
+<br><br>
+- The eigen-decomposition of $$P$$: $$P=V\Lambda V^T$$.<br>
+  $$V$$ was the eigen-vectors, $$\boldsymbol{v}_i$$, of $$P$$ on each column.<br>
+  $$\Lambda$$ is the a diagonal matrix of sorted eigen-values.
+<br><br>
+- The PCA features: $$\varphi_i\left(x\right) = \boldsymbol{v}_i^Tx\qquad i\in\left[0,\ldots,m-1\right]$$
 
-$$
-P=\frac{1}{N}X^TX
-$$
-
-($$P$$ is a positive semi-definite (PSD) matrix)
-
-The eigen-decomposition of $$P$$:
-
-$$
-P=V\Lambda V^T
-$$
-
-Where $$V$$ is the unitary matrix with the eigen-vectors, $$\boldsymbol{v}_i$$, of $$P$$ on each column and $$\Lambda$$ is the a diagonal matrix with the eigen-values on the diagonal sorted from large to small.
-
-The PCA projection is performed by projecting a measurements vector onto the $$m$$ first columns of $$V$$ (the eiven-vector which correspond to the largest eigen-values).
-
-$$
-\varphi_i\left(x\right) = \boldsymbol{v}_i^Tx\qquad i\in\left[0,\ldots,m-1\right]
-$$
+</section><section markdown="1">
 
 ### Parameters and Hyper-Parameters
 
-Usually an algorithm will have some parameters which can be optimally selected using an analytic or numeric method, and some parameter which will have to be selected by running a grid search or a by trail and error. These parameters are refer to to as **hyper-parameters**.
+- **Parameters**: can be optimally selected using an analytic or numeric method.
+<br><br>
+- **Hyper-parameters**: need to be selected by running a grid search or a by trail and error.
 
 #### Validation Set
 
-Evaluation of the hyper-parameters is usually done on a validation set different then the train and the test sets.
+A dataset different than the train or test set used to evaluate and select the best hyper-parameters.
 
 #### Cross Validation
 
-In stead of using a designated validation-set we can divide the train set into $$K$$ subsets and repeat the evaluation $$K$$ times, each time using a different subset as the validation set and average the results.
+In stead of using a single validation set for selecting the hyper-parameters we can do the following:
+
+- Divide the train set into $$K$$ subsets
+- For a given set of hyper-parameters, fit the model and evaluate $$K$$ times, using a different set as a validation set each time.
+- Evaluate the score of the model as the average of the K evaluations
+
+</section><section markdown="1">
 
 ## Supervised Learning Algorithms
 
-### Linear Least Squares (LLS, also known as ordinary least squares-OLS)
+### Linear Least Squares<br>(LLS, also known as ordinary least squares-OLS)
 
 - Solves: Regression problems with MSE risk
 - Approach: Discriminative type II
@@ -344,6 +450,8 @@ Has a closed form solution:
 $$
 \boldsymbol{\theta}^*=\left(X^TX\right)^{-1}X\boldsymbol{y}
 $$
+
+</section><section markdown="1">
 
 #### Ridge Regression -  LLS with Tikhonov Regularization ($$L2$$)
 
@@ -364,6 +472,8 @@ $$
 
 - Very naive model. CAn be useful in very simple problems or when very good features are used.
 
+</section><section markdown="1">
+
 #### Least Absolute Shrinkage and Selection Operator (LASSO) -  LLS with $$L1$$ Regularization
 
 Optimization problem:
@@ -377,6 +487,8 @@ $$
 
 Has an efficient numerical solution.
 
+</section><section markdown="1">
+
 ### K-Nearest Neighbors (K-NN)
 
 - Solves: Classification and regression problems
@@ -384,9 +496,15 @@ Has an efficient numerical solution.
 - Non-Parametric Model
 - Hyper-Parameters: $$K$$
 
+<br><br>
+
 $$h\left(\boldsymbol{x}\right)$$ finds the $$K$$ euclidean nearest neighbors to $$\boldsymbol{x}$$ form the training set, and return the mean value for regression, or the majority vote value for classification of the the labels of the $$K$$ neighbors.
 
+<br><br>
+
 - Requires amount of data which is exponential in the dimension.
+
+</section><section markdown="1">
 
 ### Linear Discriminant Analysis (LDA)
 
@@ -394,6 +512,8 @@ $$h\left(\boldsymbol{x}\right)$$ finds the $$K$$ euclidean nearest neighbors to 
 - Approach: Generative
 - Model: $$f_{X\lvert Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left\lvert\Sigma\right\lvert}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$$
 - Parameters: $$\Sigma$$ and $$\left\lbrace\boldsymbol{\mu}_k\right\rbrace$$
+
+<br><br>
 
 Computing the model's parameters:
 
@@ -405,11 +525,15 @@ $$\boldsymbol{\mu}_k = \frac{1}{N_k}\sum_{i\ \text{s.t.}\ y_i=k}\boldsymbol{x}_i
 
 $$\Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T$$
 
+</section><section markdown="1">
+
 For misclassification rate:
 
 $$
 h^*\left(\boldsymbol{x}\right)=\underset{k}{\arg\max}\ f_{X\lvert Y}\left(\boldsymbol{x}\lvert y=k\right)p_Y\left(y=k\right)
 $$
+
+<br><br>
 
 Which in the binary case reduces to:
 
@@ -429,7 +553,11 @@ $$\boldsymbol{a}=\Sigma^{-1}\left(\boldsymbol{\mu}_1-\boldsymbol{\mu}_0\right)$$
 
 $$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \boldsymbol{\mu}_1^T\Sigma^{-1}\boldsymbol{\mu}_1\right) + \log\left(\frac{p\left(y=1\right)}{p\left(y=0\right)}\right)$$
 
-- Produces good results when the data distribution of each class can be well approximated by a Gaussian (mainly when it is concentrated in and oval like area)
+<br><br>
+
+- Produces good results when the classes are distributed in localized groups.
+
+</section><section markdown="1">
 
 ### Quadric Discriminant Analysis (QDA)
 
@@ -440,17 +568,23 @@ Similar to LDA but with a different covariance matrix for each class.
 - Model: $$f_{X\lvert Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left\lvert\Sigma_y\right\rVert}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}_y\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$$
 - Parameters: $$\left\lbrace\Sigma_y\right\rbrace$$ and $$\left\lbrace\boldsymbol{\mu}_k\right\rbrace$$
 
+<br><br>
+
 Computing the model's parameters is similar to LDA but with:
 
 $$
 \Sigma_k = \frac{1}{N_k}\sum_{i\ \text{s.t.}\ y_i=k}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_k\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_k\right)^T
 $$
 
+</section><section markdown="1">
+
 For misclassification rate:
 
 $$
 h^*\left(\boldsymbol{x}\right)=\underset{k}{\arg\max}\ f_{X\lvert Y}\left(\boldsymbol{x}\lvert y=k\right)p_Y\left(y=k\right)
 $$
+
+<br><br>
 
 Which in the binary case reduces to:
 
@@ -473,6 +607,8 @@ $$\boldsymbol{a}=\Sigma_1^{-1}\boldsymbol{\mu}_1-\Sigma_0^{-1}\boldsymbol{\mu}_0
 
 $$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma_1^{-1}\boldsymbol{\mu}_1 - \boldsymbol{\mu}_0^T\Sigma_0^{-1}\boldsymbol{\mu}_0\right) + \log\left(\frac{\left\lvert\Sigma_0\right\rVert^{1/2}p\left(y=1\right)}{\left\lvert\Sigma_1\right\rVert^{1/2}p\left(y=0\right)}\right)$$
 
+</section><section markdown="1">
+
 ### Linear Logistic Regression
 
 - Solves: Classification problems
@@ -484,17 +620,23 @@ $$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma_1^{-1}\boldsymbol{\mu}_1 - \bol
 - Parameters: $$\left\lbrace\boldsymbol{\theta}_k\right\rbrace$$. Without loss of generality we can set $$\boldsymbol{\theta}_0=0$$
 - Hyper-Parameters: the optimization solver parameters.
 
+<br><br>
+
 Optimization problem (MLE):
 
 $$
-\boldsymbol{\theta}^* =\underset{\boldsymbol{\theta}}{\arg\max}\ \prod_i\frac{e^{\boldsymbol{\theta}_y^T\boldsymbol{x_i}}}{\sum_\tilde{y}e^{\boldsymbol{\theta}_\tilde{y}^T\boldsymbol{x_i}}}$$
+\boldsymbol{\theta}^* =\underset{\boldsymbol{\theta}}{\arg\max}\ \prod_i\frac{e^{\boldsymbol{\theta}_y^T\boldsymbol{x_i}}}{\sum_\tilde{y}e^{\boldsymbol{\theta}_\tilde{y}^T\boldsymbol{x_i}}}
 $$
 
-- Solved using gradient decent
+Solved using gradient decent
+
+</section><section markdown="1">
 
 in the binary case reduces to:
 
 $$f_{Y\lvert X}=\frac{1}{1+e^{-\boldsymbol{\theta}^T\boldsymbol{x}}}$$
+
+<br><br>
 
 For misclassification rate:
 
@@ -502,82 +644,140 @@ $$
 h^*\left(\boldsymbol{x}\right)=\underset{k}{\arg\max}\ \boldsymbol{\theta}_k^T\boldsymbol{x}
 $$
 
+</section><section markdown="1">
+
 ### Multi Layer Perceptron (MLP)
 
 - Solves:
   - Regression - By using a discriminative type II approach
   - Classification - By using a discriminative type I approach
+<br><br>
 - Model: A neural network of fully connected layers.
+<br><br>
 - Parameters: The weights of the fully connected layers
+<br><br>
 - Hyper-Parameters: The number of layers and the width of each layer + the optimization solver parameters.
+<br><br>
 - Solved using gradient decent (using back-propagation).
 
 - Usually has a lot of parameters and tends to overfit.
+
+</section><section markdown="1">
 
 ### Convolutional Neural Network (CNN)
 
 - Solves:
   - Regression - By using a discriminative type II approach
   - Classification - By using a discriminative type I approach
+<br><br>
 - Model: A neural network of convolutional layers and fully connected layers.
+<br><br>
 - Parameters: The weights of the layers
+<br><br>
 - Hyper-Parameters: The number of layers and the parameters of each layer.
+<br><br>
 - Solved using gradient decent (using back-propagation).
 
-- Works very well when the data has some spatial structure.
+<br><br>
+
+Works very well when the data has some spatial structure.
+
+</section><section markdown="1">
 
 ### Support Vector Machine (SVM)
 
 #### Hard SVM
 
 - Solves: Binary Classification problems.
+<br><br>
 - Approach: Discriminative type II.
+<br><br>
 - Model: $$h^*\left(\boldsymbol{x}\right)=\text{sign}\left(\boldsymbol{\theta}^T\boldsymbol{x}\right)$$
+<br><br>
 - Parameters: $$\boldsymbol{\theta}$$
+<br><br>
 - Solved using convex optimization methods.
 
 - Works very well when the data is linearly separable.
 
+</section><section markdown="1">
+
+### Support Vector Machine (SVM)
+
 #### Soft SVM
 
 - Solves: Binary Classification problems.
+<br><br>
 - Approach: Discriminative type II.
+<br><br>
 - Model: $$h^*\left(\boldsymbol{x}\right)=\text{sign}\left(\boldsymbol{\theta}^T\boldsymbol{x}\right)$$
+<br><br>
 - Adds slack variables in the optimization process to deal with data which is not linearly separable.
+<br><br>
 - Parameters: $$\boldsymbol{\theta}$$
+<br><br>
 - Hyper-parameters: The weighting of the slack variables.
+<br><br>
 - Solved using convex optimization methods.
 
-- Works very well when the data is close to being linearly separable.
+Works very well when the data is close to being linearly separable.
+
+</section><section markdown="1">
 
 ### Decision Trees
 
 - Solves: Regression or classification
+<br><br>
 - Discriminative type II
+<br><br>
 - Model a decision tree
+<br><br>
 - Parameters: the decision on brach branch
+<br><br>
 - Hyper-parameters: The number of branches / stopping criteria and the metric.
-- Tree is constructed top down in a greedy approach by selecting at each branch the decision in the following way:
+
+</section><section markdown="1">
+
+construction by a top down greedy approach for the branches:
+
+<br><br>
 
 1. For each possible decision i$$A$$ calculate the resulting sub-datasets $$\left\lbrace D_1,D_2,\ldots,D_M\right\rbrace$$.
+<br><br>
 2. Evaluate the selected impurity metric on each sub dataset: $$Q\left(D_m\right)$$
+<br><br>
 3. Evaluate the weighted impurity of the decision as $$\sum_{m=1}^M \frac{\left\lvert D_m\right\rvert}{N}Q\left(D_m\right)$$
+<br><br>
 4. Select the decision with the lowest weighted impurity
+
+</section><section markdown="1">
 
 #### Popular metrics
 
 We define the empirical probability of class $$j$$ in a dataset as $$p_j=\frac{1}{N}\sum_{i=1}^N I\left\lbrace y_i=j\right\rbrace$$.
 
+<br>
+
 Some popular impurity metrics are:
 
 - Misclassification: $$Q\left(D\right)=1-\underset{j}\max\ p_j$$
+<br><br>
 - Gini: $$Q\left(D\right)=\sum_j p_j\left(1-p_j\right)$$
+<br><br>
 - Entropy: $$Q\left(D\right)\left(=H\left(D\right)\right)=\sum_j p_j\log\left(\frac{1}{p_j}\right)$$
+
+</section><section markdown="1">
 
 ## Other subjects which are missing out
 
 - Perceptron
+<br><br>
 - Bagging
+<br><br>
 - Boosting
+<br><br>
 - K-Means
+<br><br>
 - Kernel methods
+
+</section>
