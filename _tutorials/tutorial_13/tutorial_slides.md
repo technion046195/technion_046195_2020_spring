@@ -79,7 +79,6 @@ hide: True
 
 ### Optimization Problems
 
-
 $$
 \boldsymbol{x}^*=\underset{\boldsymbol{x}}{\arg\min}\quad f\left(\boldsymbol{x}\right) \\
 \begin{aligned}
@@ -101,20 +100,26 @@ Where:
 
 With out constraints:
 
+<div class="fragment" markdown="1">
 - Analytic solution
 - Gradient descent / Stochastic gradient descent
+</div><div class="fragment" markdown="1">
 
 <br>
 
 With only equality constraints:
 
+</div><div class="fragment" markdown="1">
 - Lagrangian multipliers
+</div><div class="fragment" markdown="1">
 
 <br>
 
 With general constraints + convex:
 
+</div><div class="fragment" markdown="1">
 - Convex optimization methods
+</div>
 
 </section><section markdown="1">
 
@@ -295,11 +300,17 @@ $$
 
 3 approaches for using the dataset to solve the problem:
 
-1. **The generative approach**: dataset -> $$f_{X,Y}\left(x,y\right)$$ -> $$h^*$$.
-  <br><br>
-2. **The type I discriminative approach**: dataset -> $$f_{Y\lvert X}\left(y\lvert x\right)$$ -> $$h^*$$.
-  <br><br>
-3. **The type II discriminative approach**: dataset -> $$h^*$$
+<ol class="fragment">
+<li markdown="1">
+**The generative approach**: dataset -> $$f_{X,Y}\left(x,y\right)$$ -> $$h^*$$.
+<br><br>
+</li><li markdown="1" class="fragment">
+**The type I discriminative approach**: dataset -> $$f_{Y\lvert X}\left(y\lvert x\right)$$ -> $$h^*$$.
+<br><br>
+</li><li markdown="1" class="fragment">
+**The type II discriminative approach**: dataset -> $$h^*$$.
+</li>
+</ol>
 
 </section><section markdown="1">
 
@@ -434,11 +445,12 @@ In stead of using a single validation set for selecting the hyper-parameters we 
 
 ### Linear Least Squares<br>(LLS, also known as ordinary least squares-OLS)
 
-- Solves: Regression problems with MSE risk
-- Approach: Discriminative type II
-- Model: $$h\left(x\right)=\boldsymbol{\theta}^T\boldsymbol{x}$$
-- Parameters: $$\theta$$
+- Solves: <span class="fragment" markdown="1">Regression problems with MSE risk</span>
+- Approach: <span class="fragment" markdown="1">Discriminative type II</span>
+- Model: <span class="fragment" markdown="1">$$h\left(x\right)=\boldsymbol{\theta}^T\boldsymbol{x}$$</span>
+- Parameters: <span class="fragment" markdown="1">$$\theta$$</span>
 
+<div class="fragment" markdown="1">
 Optimization problem:
 
 $$
@@ -450,6 +462,7 @@ Has a closed form solution:
 $$
 \boldsymbol{\theta}^*=\left(X^TX\right)^{-1}X\boldsymbol{y}
 $$
+</div>
 
 </section><section markdown="1">
 
@@ -491,11 +504,12 @@ Has an efficient numerical solution.
 
 ### K-Nearest Neighbors (K-NN)
 
-- Solves: Classification and regression problems
-- Approach: Discriminative type II
-- Non-Parametric Model
-- Hyper-Parameters: $$K$$
+- Solves: <span class="fragment" markdown="1">Classification and regression problems</span>
+- Approach: <span class="fragment" markdown="1">Discriminative type II</span>
+- <span class="fragment" markdown="1">Non-Parametric Model</span>
+- Hyper-Parameters: <span class="fragment" markdown="1">$$K$$</span>
 
+<div class="fragment" markdown="1">
 <br><br>
 
 $$h\left(\boldsymbol{x}\right)$$ finds the $$K$$ euclidean nearest neighbors to $$\boldsymbol{x}$$ form the training set, and return the mean value for regression, or the majority vote value for classification of the the labels of the $$K$$ neighbors.
@@ -503,16 +517,18 @@ $$h\left(\boldsymbol{x}\right)$$ finds the $$K$$ euclidean nearest neighbors to 
 <br><br>
 
 - Requires amount of data which is exponential in the dimension.
+</div>
 
 </section><section markdown="1">
 
 ### Linear Discriminant Analysis (LDA)
 
-- Solves: Classification problems
-- Approach: Generative
-- Model: $$f_{X\lvert Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left\lvert\Sigma\right\lvert}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$$
-- Parameters: $$\Sigma$$ and $$\left\lbrace\boldsymbol{\mu}_k\right\rbrace$$
+- Solves: <span class="fragment" markdown="1">Classification problems</span>
+- Approach: <span class="fragment" markdown="1">Generative</span>
+- Model: <span class="fragment" markdown="1">$$f_{X\lvert Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left\lvert\Sigma\right\lvert}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$$</span>
+- Parameters: <span class="fragment" markdown="1">$$\Sigma$$ and $$\left\lbrace\boldsymbol{\mu}_k\right\rbrace$$</span>
 
+<div class="fragment" markdown="1">
 <br><br>
 
 Computing the model's parameters:
@@ -524,6 +540,7 @@ $$p_Y\left(y=k\right)=\frac{N_k}{N}$$
 $$\boldsymbol{\mu}_k = \frac{1}{N_k}\sum_{i\ \text{s.t.}\ y_i=k}\boldsymbol{x}_i$$
 
 $$\Sigma = \frac{1}{N}\sum_{i}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_{y_i}\right)^T$$
+</div>
 
 </section><section markdown="1">
 
@@ -563,11 +580,12 @@ $$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_0^T\Sigma^{-1}\boldsymbol{\mu}_0 - \bolds
 
 Similar to LDA but with a different covariance matrix for each class.
 
-- Solves: Classification problems
-- Approach: Generative
-- Model: $$f_{X\lvert Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left\lvert\Sigma_y\right\rVert}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}_y\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$$
-- Parameters: $$\left\lbrace\Sigma_y\right\rbrace$$ and $$\left\lbrace\boldsymbol{\mu}_k\right\rbrace$$
+- Solves: <span class="fragment" markdown="1">Classification problems</span>
+- Approach: <span class="fragment" markdown="1">Generative</span>
+- Model: <span class="fragment" markdown="1">$$f_{X\lvert Y}=\frac{1}{\sqrt{\left(2\pi\right)^d\left\lvert\Sigma_y\right\rVert}}e^{-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)^T\Sigma^{-1}_y\left(\boldsymbol{x}-\boldsymbol{\mu}_y\right)}$$</span>
+- Parameters: <span class="fragment" markdown="1">$$\left\lbrace\Sigma_y\right\rbrace$$ and $$\left\lbrace\boldsymbol{\mu}_k\right\rbrace$$</span>
 
+<div class="fragment" markdown="1">
 <br><br>
 
 Computing the model's parameters is similar to LDA but with:
@@ -575,6 +593,7 @@ Computing the model's parameters is similar to LDA but with:
 $$
 \Sigma_k = \frac{1}{N_k}\sum_{i\ \text{s.t.}\ y_i=k}\left(\boldsymbol{x}_i-\boldsymbol{\mu}_k\right)\left(\boldsymbol{x}_i-\boldsymbol{\mu}_k\right)^T
 $$
+</div>
 
 </section><section markdown="1">
 
@@ -611,15 +630,18 @@ $$b=\tfrac{1}{2}\left(\boldsymbol{\mu}_1^T\Sigma_1^{-1}\boldsymbol{\mu}_1 - \bol
 
 ### Linear Logistic Regression
 
-- Solves: Classification problems
-- Approach: Discriminative type I
+- Solves: <span class="fragment" markdown="1">Classification problems</span>
+- Approach: <span class="fragment" markdown="1">Discriminative type I</span>
 - Model:
+  <div class="fragment" markdown="1">
   
   $$f_{Y\lvert X}\left(Y=y\lvert X=x\right)=\frac{e^{\boldsymbol{\theta}_y^T\boldsymbol{x}}}{\sum_\tilde{y}e^{\boldsymbol{\theta}_\tilde{y}^T\boldsymbol{x}}}$$
 
-- Parameters: $$\left\lbrace\boldsymbol{\theta}_k\right\rbrace$$. Without loss of generality we can set $$\boldsymbol{\theta}_0=0$$
-- Hyper-Parameters: the optimization solver parameters.
+  </div>
+- Parameters: <span class="fragment" markdown="1">$$\left\lbrace\boldsymbol{\theta}_k\right\rbrace$$. Without loss of generality we can set $$\boldsymbol{\theta}_0=0$$</span>
+- Hyper-Parameters: <span class="fragment" markdown="1">the optimization solver parameters.</span>
 
+<div class="fragment" markdown="1">
 <br><br>
 
 Optimization problem (MLE):
@@ -629,6 +651,7 @@ $$
 $$
 
 Solved using gradient decent
+</div>
 
 </section><section markdown="1">
 
@@ -649,38 +672,44 @@ $$
 ### Multi Layer Perceptron (MLP)
 
 - Solves:
-  - Regression - By using a discriminative type II approach
-  - Classification - By using a discriminative type I approach
+  <ul class="fragment" markdown="1">
+  <li>Regression - By using a discriminative type II approach</li>
+  <li>Classification - By using a discriminative type I approach</li>
+  </ul>
+- Model: <span class="fragment" markdown="1">A neural network of fully connected layers.</span>
 <br><br>
-- Model: A neural network of fully connected layers.
+- Parameters: <span class="fragment" markdown="1">The weights of the fully connected layers</span>
 <br><br>
-- Parameters: The weights of the fully connected layers
-<br><br>
-- Hyper-Parameters: The number of layers and the width of each layer + the optimization solver parameters.
+- Hyper-Parameters: <span class="fragment" markdown="1">The number of layers and the width of each layer + the optimization solver parameters.</span>
+<div class="fragment" markdown="1">
 <br><br>
 - Solved using gradient decent (using back-propagation).
 
 - Usually has a lot of parameters and tends to overfit.
+</div>
 
 </section><section markdown="1">
 
 ### Convolutional Neural Network (CNN)
 
 - Solves:
-  - Regression - By using a discriminative type II approach
-  - Classification - By using a discriminative type I approach
+  <ul class="fragment" markdown="1">
+  <li>Regression - By using a discriminative type II approach</li>
+  <li>Classification - By using a discriminative type I approach</li>
+  </ul>
+- Model: <span class="fragment" markdown="1">A neural network of convolutional layers and fully connected layers.</span>
 <br><br>
-- Model: A neural network of convolutional layers and fully connected layers.
+- Parameters: <span class="fragment" markdown="1">The weights of the layers</span>
 <br><br>
-- Parameters: The weights of the layers
-<br><br>
-- Hyper-Parameters: The number of layers and the parameters of each layer.
+- Hyper-Parameters: <span class="fragment" markdown="1">The number of layers and the parameters of each layer.</span>
+<div class="fragment" markdown="1">
 <br><br>
 - Solved using gradient decent (using back-propagation).
 
 <br><br>
 
 Works very well when the data has some spatial structure.
+</div>
 
 </section><section markdown="1">
 
@@ -688,17 +717,19 @@ Works very well when the data has some spatial structure.
 
 #### Hard SVM
 
-- Solves: Binary Classification problems.
+- Solves: <span class="fragment" markdown="1">Binary Classification problems.</span>
 <br><br>
-- Approach: Discriminative type II.
+- Approach: <span class="fragment" markdown="1">Discriminative type II.</span>
 <br><br>
-- Model: $$h^*\left(\boldsymbol{x}\right)=\text{sign}\left(\boldsymbol{\theta}^T\boldsymbol{x}\right)$$
+- Model: <span class="fragment" markdown="1">$$h^*\left(\boldsymbol{x}\right)=\text{sign}\left(\boldsymbol{\theta}^T\boldsymbol{x}\right)$$</span>
 <br><br>
-- Parameters: $$\boldsymbol{\theta}$$
+- Parameters: <span class="fragment" markdown="1">$$\boldsymbol{\theta}$$</span>
+<div markdown="1" class="fragment">
 <br><br>
 - Solved using convex optimization methods.
 
 - Works very well when the data is linearly separable.
+</div>
 
 </section><section markdown="1">
 
@@ -706,35 +737,37 @@ Works very well when the data has some spatial structure.
 
 #### Soft SVM
 
-- Solves: Binary Classification problems.
+- Solves: <span class="fragment" markdown="1">Binary Classification problems.</span>
 <br><br>
-- Approach: Discriminative type II.
+- Approach: <span class="fragment" markdown="1">Discriminative type II.</span>
 <br><br>
-- Model: $$h^*\left(\boldsymbol{x}\right)=\text{sign}\left(\boldsymbol{\theta}^T\boldsymbol{x}\right)$$
+- Model: <span class="fragment" markdown="1">$$h^*\left(\boldsymbol{x}\right)=\text{sign}\left(\boldsymbol{\theta}^T\boldsymbol{x}\right)$$</span>
 <br><br>
 - Adds slack variables in the optimization process to deal with data which is not linearly separable.
 <br><br>
-- Parameters: $$\boldsymbol{\theta}$$
+- Parameters: <span class="fragment" markdown="1">$$\boldsymbol{\theta}$$</span>
 <br><br>
-- Hyper-parameters: The weighting of the slack variables.
-<br><br>
+- Hyper-parameters: <span class="fragment" markdown="1">The weighting of the slack variables.</span>
+<div class="fragment" markdown="1">
+<br>
 - Solved using convex optimization methods.
 
 Works very well when the data is close to being linearly separable.
 
+</div>
 </section><section markdown="1">
 
 ### Decision Trees
 
-- Solves: Regression or classification
+- Solves: <span class="fragment" markdown="1">Regression or classification</span>
 <br><br>
-- Discriminative type II
+- Approach: <span class="fragment" markdown="1">Discriminative type II</span>
 <br><br>
-- Model a decision tree
+- Model: <span class="fragment" markdown="1">a decision tree</span>
 <br><br>
-- Parameters: the decision on brach branch
+- Parameters: <span class="fragment" markdown="1">the decision on brach branch</span>
 <br><br>
-- Hyper-parameters: The number of branches / stopping criteria and the metric.
+- Hyper-parameters: <span class="fragment" markdown="1">The number of branches / stopping criteria and the metric.</span>
 
 </section><section markdown="1">
 
