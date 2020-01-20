@@ -1,7 +1,6 @@
 ---
 number: 13
 title: "Summary" 
-hide: True
 ---
 
 ## Background

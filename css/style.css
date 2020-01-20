@@ -33,13 +33,16 @@
     cursor: default;
 }
 
+.main-content {
+    text-align: initial !important;
+}
+
 /* Hebrew */
 /* ====== */
 
 .hebrew {
     direction: rtl;
     unicode-bidi: bidi-override;
-    text-align: initial !important;
 }
 
 .highlighter-rouge {
