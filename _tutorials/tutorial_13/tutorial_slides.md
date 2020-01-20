@@ -813,4 +813,14 @@ Some popular impurity metrics are:
 <br><br>
 - Kernel methods
 
+</section><section markdown="1">
+<div class="hebrew" markdown="1">
+## שאלה ממבחן
+
+<br><br>
+
+[אביב 2019 מועד ב'](./s2019Bsol.pdf)
+
+
+</div>
 </section>
