@@ -811,7 +811,7 @@ $$
 
 $$
 \frac{\partial}{\partial\mu}l\left(\mu\right)=-\frac{N}{\mu}+\frac{1}{\mu^2}\sum_{i=1}^N\left(x_i-\theta\right)=0 \\
-\Rightarrow \hat{\mu}_{\text{MLE}}=\frac{1}{N}\sum_{i=1}^N\left(x_i-\theta\right)=0
+\Rightarrow \hat{\mu}_{\text{MLE}}=\frac{1}{N}\sum_{i=1}^N\left(x_i-\theta\right)
 $$
 
 הנגזרת השנייה שלילית ולכן זוהי אכן נקודת מקסימום.
