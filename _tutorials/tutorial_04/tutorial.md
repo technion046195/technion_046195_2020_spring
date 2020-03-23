@@ -1,7 +1,7 @@
 ---
 number: 4
 title: "K-Means" 
-hide: true
+hide: True
 ---
 ## Hands-on: K-Means
 

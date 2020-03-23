@@ -3,39 +3,33 @@ number: 1
 title: "Probability Theory and Predictions" 
 ---
 
-<section markdown="1">
+<section class="center" markdown="1">
+
+## Example
+
+</section><section markdown="1">
+
+### Example
+
+<br><br><br>
+
+![random_process](./media/supervised.png){: .no-background width="1200px"}
+
+</section><section class="center" markdown="1">
 
 ## Background - Probability Theory Review
 
-<br>
+</section><section markdown="1">
 
-- Goal: produce a system which makes predictions based on observed data.
-
-- Method: build a model of the relationship the observed and the target data.
-
-- One common ways is to use a probabilistic model.
+### Example
 
 <br>
 
-- Most of the course: we will focus on building the model.
-
-- In this tutorial: we will focus on making predictions given a probabilistic model.
+![Pouring coffee](./media/coffee.jpeg){: .no-background}
 
 </section><section markdown="1">
 
 ### 🎰 Basic Concepts
-
-<br>
-
-An example for a random phenomenon:
-
-<br>
-<br>
-We take a glass full of juice and pour it on the floor (don't try this at home) and look at the shape of the resulting spill.
-
-</section><section markdown="1">
-
-### 🎰 Basic Concepts - Cont.
 
 <div>
   <div class="slide-image" style="position:absolute;width:100%;background-color:white;border-radius:20px">
@@ -60,7 +54,23 @@ We take a glass full of juice and pour it on the floor (don't try this at home) 
 
 </section><section markdown="1">
 
-### 🎰 Basic Concepts - Cont. 2
+### 🎰 Basic Concepts
+
+#### Conditional Probability
+
+<br><br><br>
+
+$$Pr\left(A\lvert B\right)$$ is the probability of event A to occur given that event B has occurred.
+
+<br><br>
+
+By definition:
+
+$$Pr\left(A\lvert B\right)=\frac{Pr\left(A\cap B\right)}{Pr\left(B\right)}$$
+
+</section><section markdown="1">
+
+### 🎰 Basic Concepts
 
 | name | Usually donated by | Definition | Example  |
 | :--- | --- | --- | --- |
@@ -68,36 +78,37 @@ We take a glass full of juice and pour it on the floor (don't try this at home) 
 | **A sample** | $$\omega$$ | A single outcome of the process |  Some specific spill shape |
 | **Sample space** | $$\Omega$$ | The space of all possible outcomes of the given process. $$\Omega=\left\lbrace\forall\omega\right\rbrace$$ |  The space of all possible spill shapes |
 | **Random Variables (RV)** | $$X\left(\omega\right)$$,$$Y\left(\omega\right)$$,... | A function $$X:\Omega\rightarrow\mathbb{R}$$ which assigns a real number to a given sample | A function which returns the perimeter of a spill:<br>$$X_1\left(\omega\right)$$<br>A function which returns the area of a spill:<br> $$X_2\left(\omega\right)$$ |
-> **An event** | $$A$$,$$B$$,... | A collection of events, i.e., a subset of the sample space $$A\subseteq\Omega$$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$$A=\left\lbrace\omega: X_1\left(\omega\right)<2 \right\rbrace$$<br>The collection of all spills with an area larger than 1:<br>$$B=\left\lbrace\omega: X_2\left(\omega\right)>1 \right\rbrace$$ |
+| **An event** | $$A$$,$$B$$,... | A collection of events, i.e., a subset of the sample space $$A\subseteq\Omega$$.<br>We would often define an event through a condition on random variables. |  The collection of all spills with a perimeter smaller than 2:<br>$$A=\left\lbrace\omega: X_1\left(\omega\right)<2 \right\rbrace$$<br>The collection of all spills with an area larger than 1:<br>$$B=\left\lbrace\omega: X_2\left(\omega\right)>1 \right\rbrace$$ |
 | **Event space** | $$\mathcal{F}$$ | A space of events. $$A\in\mathcal{F}$$  | The space of all possible collections of spills shape |
 | **Probability measure** | $$Pr\left(A\right)$$ | A function $$Pr:\mathcal{F}\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in some event $$A$$ | $$Pr\left(A\right)=Pr\left(X_1<2\right)=0.1$$<br>$$Pr\left(X_1<0\right)=Pr\left(\emptyset\right)=0$$<br>$$Pr\left(0\leq X_1\right)=Pr\left(\Omega\right)=1$$<br>$$Pr\left(A\cup B\right)=Pr\left(X_1<2\ \text{or}\ X_2>1\right)=0.6$$<br>$$Pr\left(A\cap B\right)=Pr\left(X_1<2\ \text{and}\ X_2>1\right)=0.01$$ |
 | **Conditional probability measure** | $$Pr\left(AǀB\right)$$ | A function $$Pr:\mathcal{F}_1\times\mathcal{F}_2\rightarrow\left[0,1\right]$$ which returns the probability of a random sample to be an element in event $$A$$ given that it is an element in event $$B$$ | The probability of a spill to have a diameter smaller than 2, given that it has an area larger than 1:<br>$$Pr\left(AǀB\right)=Pr\left(X_1<2ǀX_2>1\right)=0.02$$ |
+{: style="font-size: 20px !important"}
 
 </section><section markdown="1">
 
-### 🎰 Basic Concepts - Notations
+### 🎰 Basic Concepts
 
-- Realizations: The outcome of an RV (random variable) for a given sample:
+#### Common abuse of notation
 
+<br>
+
+<ul><li markdown="1">
+Realizations: The outcome of an RV (random variable) for a given sample: 
 <br>
 
 $$x=X\left(\omega\right)$$
 
-<br>
-
-- We will use $$X<2$$ as a shorthand for $$\left\lbrace\omega:X\left(\omega\right)<2\right\rbrace$$
-
-<br>
-
-- Any function of an random variable (RV) is also a RV. <br>For example $$X\left(\omega\right)^2$$ or $$g\left(X\left(\omega\right)\right)$$.
+It is common to refer to the realization as the samples or the random variables.
+<br><br>
+</li><li class="fragment" markdown="1">
+It is common to use $$X<2$$ as a shorthand for $$\left\lbrace\omega:X\left(\omega\right)<2\right\rbrace$$
+</li></ul>
 
 <br>
-
-**Slight abuse of notation**: We will use the name samples to refer to the realizations.
 
 </section><section markdown="1">
 
-### 🎰 Basic Concepts - Cont. 4
+### 🎰 Basic Concepts
 
 #### Random Vectors
 
@@ -119,7 +130,9 @@ $$
 
 </section><section markdown="1">
 
-### Toy Model:<br>The 🍕 Pizza & Pancakes 🥞 Drive-Thru
+### ✍️ Exercise 1.1 - Warm-Up
+
+#### Toy Model:<br>The 🍕 Pizza & Pancakes 🥞 Drive-Thru
 
 <br>
 <br>
@@ -129,7 +142,7 @@ We would like to help a new local drive-thru business that sells pizzas and panc
 
 </section><section markdown="1">
 
-#### ✍️ Exercise 1.1 - Warm-Up
+### ✍️ Exercise 1.1 - Warm-Up
 
 The random phenomenon we will be interested in is that of a customer making an order. Our sample will a single customer making an order. Give examples for:
 
@@ -146,7 +159,9 @@ Make sure that all the probability measures are consistent with one another.
 
 </section><section markdown="1">
 
-##### 💡 Solution
+### ✍️ Exercise 1.1 - Warm-Up
+
+#### 💡 Solution
 
 <ul>
   <li>
@@ -154,7 +169,7 @@ Make sure that all the probability measures are consistent with one another.
     <br><br>
     <ul class="fragment">
       <li>$X\left(\omega\right)$: The number of pizza slices the customer ordered.🍕</li>
-      <li>$Y\left(\omega\right)$: The number of pancakes slices the customer ordered.🥞</li>
+      <li>$Y\left(\omega\right)$: The number of pancakes the customer ordered.🥞</li>
     </ul><br>
   </li>
   <li class="fragment">
@@ -177,14 +192,16 @@ Make sure that all the probability measures are consistent with one another.
 
 </section><section markdown="1">
 
-##### 💡 Solution - Cont
+### ✍️ Exercise 1.1 - Warm-Up
+
+#### 💡 Solution - Cont.
 
 <ul>
   <li>
     2 possible probability measures.
     <br><br>
     <ul class="fragment">
-      <li>The prob. a customer will order 1 slice: $$Pr\left(X=1\right)=0.2$$.</li>
+      <li>The prob. a customer will order 1 slice: $$Pr\left(X=1\right)=0.2$$</li>
       <li>The prob. a customer will leave more than 2 USD tip: $$Pr\left(T>2\right)=0.5$$</li>
     </ul><br>
   </li>
@@ -199,7 +216,9 @@ Make sure that all the probability measures are consistent with one another.
 
 </section><section markdown="1">
 
-##### 💡 Solution - Cont 2
+### ✍️ Exercise 1.1 - Warm-Up
+
+#### 💡 Solution - Cont. 2
 
 <ul>
   <li>
@@ -213,121 +232,185 @@ Make sure that all the probability measures are consistent with one another.
     A possible probability measure using the <strong>exclusion</strong> of the 2 events.
     <br><br>
     <ul class="fragment">
-      <li>The prob. of "order 1 slice" <strong>but not</strong> "tip more than 2 USD" $$Pr\left(X=1 - T>2\right)=0.4$$</li>
-    </ul><br>
-  </li>
-  <li class="fragment">
-    A possible <strong>conditional</strong> probability measure.
-    <br><br>
-    <ul class="fragment">
-      <li>The prob. of "order 1 slice" <strong>given that</strong> "tip more than 2 USD" $$Pr\left(X=1 \lvert T>2\right)=0.5$$</li>
+      <li>The prob. of "order 1 slice" <strong>but not</strong> "tip more than 2 USD" $$Pr\left(X=1 - T>2\right)=0.1$$</li>
     </ul><br>
   </li>
 </ul>
-  
-</section><section markdown="1">
-
-### 📊 Distributions
-
-#### Distribution Functions
-
-<br><br>
-
-##### CDF (Cumulative Distribution Function)
-
-$$
-F_{\boldsymbol{X}}\left(\boldsymbol{x}\right)=Pr\left(X_1\leq x_1 \cap X_2\leq x_2 \ldots \cap X_n\leq x_n\right)
-$$
 
 </section><section markdown="1">
 
-#### Distribution Functions - Cont.
+### ✍️ Exercise 1.1 - Warm-Up
 
-##### PMF (Probability Mass Function) - (Discrete)
+#### 💡 Solution - Cont. 3
 
-$$
-p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)=Pr\left(X_1=x_1 \cap X_2=x_2 \ldots \cap X_n=x_n\right)
-$$
-
-<div class="fragment" markdown="1">
+##### Venn Diagram
 
 <br>
 
-##### PDF (Probability Density Function) - (Continuous)
+![Venn diagram](./media/venn.png){: .no-background}
+  
+</section><section markdown="1">
 
-$$ p_\boldsymbol{X}\left(\boldsymbol{x}\right)=\frac{\partial}{\partial x_1}\frac{\partial}{\partial x_3}\ldots\frac{\partial}{\partial x_n}F_{\boldsymbol{X}}\left(\boldsymbol{x}\right) $$
+### ✍️ Exercise 1.1 - Warm-Up
 
-Or:
+#### 💡 Solution - Cont. 4
+
+<ul>
+  <li>
+    A possible <strong>conditional</strong> probability measure.
+    <br><br>
+    <ul class="fragment">
+      <li>The prob. of "order 1 slice" <strong>given that</strong> "tip more than 2 USD" $$Pr\left(X=1 \lvert T>2\right)=\frac{Pr\left(X=1\cap T>2\right)}{Pr\left(T>2\right)}=0.2$$</li>
+    </ul><br>
+  </li>
+</ul>
+
+</section><section markdown="1">
+
+### 📊 Distribution Function
+
+<div class="fragment" markdown="1">
+
+#### CDF (Cumulative Distribution Function)
 
 $$
-F_\boldsymbol{X}\left(\boldsymbol{x}\right)=\int_{-\infty}^{x_1}\int_{-\infty}^{x_2}\ldots\int_{-\infty}^{x_n}p_\boldsymbol{X}\left(\boldsymbol{x}\right)dx_n\ldots dx_2 dx_1
+F_X\left(x\right)=Pr\left(X\leq x\right)\left(=Pr\left(\omega:\left\lbrace X\left(\omega\right)\leq x\right\rbrace\right)\right)
+$$
+
+</div><div class="fragment" markdown="1">
+
+<br>
+
+#### PMF (Probability Mass Function) - (Discrete)
+
+$$
+p_{X}\left(x\right)=Pr\left(X=x\right)
+$$
+
+</div><div class="fragment" markdown="1">
+
+<br>
+
+#### PDF (Probability Density Function) - (Continuous)
+
+$$
+p_{X}\left(x\right)=\frac{\partial}{\partial x}F_{X}\left(x\right)
+$$
+
+Or (more accurately):
+
+$$
+F_{X}\left(x\right)=\int_{-\infty}^{x}p_{X}\left(x\right)dx
 $$
   
 </div>
 </section><section markdown="1">
 
-#### Conditional Distribution
+### 📊 Multivariate Distributions
 
-##### CDF
+#### CDF (Cumulative Distribution Function)
+
+$$
+F_{\boldsymbol{X}}\left(\boldsymbol{x}\right)=F_{X_1,X_2,\ldots,X_n}\left(x_1,x_2,\ldots,x_n\right)=\\
+Pr\left(X_1\leq x_1 \cap X_2\leq x_2 \ldots \cap X_n\leq x_n\right)
+$$
+
+<br>
+
+#### PMF (Probability Mass Function) - (Discrete)
+
+$$
+p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)=p_{X_1,X_2,\ldots,X_n}\left(x_1,x_2,\ldots,x_n\right)=\\
+Pr\left(X_1=x_1 \cap X_2=x_2 \ldots \cap X_n=x_n\right)
+$$
+
+<br>
+
+#### PDF (Probability Density Function) - (Continuous)
+
+$$
+p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)=p_{X_1,X_2,\ldots,X_n}\left(x_1,x_2,\ldots,x_n\right)=\\
+=\frac{\partial}{\partial x_1}\frac{\partial}{\partial x_3}\ldots\frac{\partial}{\partial x_n}F_{\boldsymbol{X}}\left(\boldsymbol{x}\right)
+$$
+  
+</section><section markdown="1">
+
+### Conditional Distribution
+
+#### CDF
 
 $$
 F_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\boldsymbol{y}\right)=Pr\left(X_1\leq x_1 \cap X_2\leq x_2 \ldots \cap X_n\leq x_n\lvert \boldsymbol{Y}=\boldsymbol{y}\right)
 $$
 
-##### PMF
+#### PMF
 
 $$
 p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\boldsymbol{y}\right)=Pr\left(X_1=x_1 \cap X_2=x_2 \ldots \cap X_n=x_n\lvert \boldsymbol{Y}=\boldsymbol{y}\right)
 $$
 
-##### PDF
+#### PDF
 
 $$
 p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\boldsymbol{y}\right)=\frac{\partial}{\partial x_1}\frac{\partial}{\partial x_3}\ldots\frac{\partial}{\partial x_n}F_{X}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\boldsymbol{y}\right)
 $$
 
-**Note**: A scalar RV is simply a random vector of length 1.
-
 </section><section markdown="1">
 
-#### Some Basic Rules
+### Some Basic Rules
 
-##### The law of total probability (Marginal Probability)
+<div class="fragment" markdown="1">
+
+#### The law of total probability (Marginal Probability)
 
 $$
 p_\boldsymbol{X}\left(\boldsymbol{x}\right)=\underbrace{\sum_{\boldsymbol{y}\in\left\lbrace \boldsymbol{Y}\left(\omega\right),\omega\in\Omega\right\rbrace}p_{\boldsymbol{X},\boldsymbol{Y}}\left(\boldsymbol{x},\boldsymbol{y}\right)}_\text{For discrete RV}=\underbrace{\int_{-\infty}^{\infty}p_{\boldsymbol{X},\boldsymbol{Y}}\left(\boldsymbol{x},\boldsymbol{y}\right)d\boldsymbol{y}}_\text{For cont. RV}
 $$
 
+</div><div class="fragment" markdown="1">
 <br>
 
-##### The Conditional Distributions (Definition):
+#### The Conditional Distributions (Definition):
 
 $$
 p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\boldsymbol{y}\right)=\frac{p_{\boldsymbol{X},\boldsymbol{Y}}\left(\boldsymbol{x},\boldsymbol{y}\right)}{p_{\boldsymbol{Y}}\left(\boldsymbol{y}\right)}
 $$
 
+</div>
+
 </section><section markdown="1">
 
-#### Some Basic Rules - Cont.
+### Some Basic Rules - Cont.
 
-##### Bayes' Theorem:
+#### Bayes' Theorem:
 
 <br>
 
 $$
-\begin{aligned}
 p_{\boldsymbol{Y}\lvert \boldsymbol{X}}\left(\boldsymbol{y}\lvert \boldsymbol{X}=\boldsymbol{x}\right)
-& =\frac{p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(x\lvert \boldsymbol{Y}=\boldsymbol{y}\right)p_{\boldsymbol{Y}}\left(\boldsymbol{y}\right)}{p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)} \\
-& =\underbrace{\frac{p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\boldsymbol{y}\right)p_{\boldsymbol{Y}}\left(\boldsymbol{y}\right)}{\sum_{\tilde{\boldsymbol{y}}} p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\tilde{\boldsymbol{y}}\right)p_{\boldsymbol{Y}}\left(\tilde{\boldsymbol{y}}\right)}}_\text{For discrete RV} \\
-& =\underbrace{\frac{p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\boldsymbol{y}\right)p_{\boldsymbol{Y}}\left(\boldsymbol{y}\right)}{\int_{-\infty}^{\infty}p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(\boldsymbol{x}\lvert \boldsymbol{Y}=\tilde{\boldsymbol{y}}\right)p_{\boldsymbol{Y}}\left(\tilde{\boldsymbol{y}}\right)d\tilde{\boldsymbol{y}}}}_\text{For cont. RV}
-\end{aligned}
+=\frac{p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(x\lvert \boldsymbol{Y}=\boldsymbol{y}\right)p_{\boldsymbol{Y}}\left(\boldsymbol{y}\right)}{p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)}
+\left(=\frac{p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(x\lvert \boldsymbol{Y}=\boldsymbol{y}\right)p_{\boldsymbol{Y}}\left(\boldsymbol{y}\right)}{\sum_{\tilde{y}}p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(x\lvert \boldsymbol{Y}=\boldsymbol{\tilde{y}}\right)p_{\boldsymbol{Y}}\left(\boldsymbol{\tilde{y}}\right)}\right)
 $$
+
+<div class="fragment" markdown="1">
+<br>
+
+Interpertation
+
+- $$Y=y$$: proposition
+- $$X=x$$: evidence
+
+- $$p_{\boldsymbol{Y}}\left(\boldsymbol{y}\right)$$: Prior
+- $$p_{\boldsymbol{X}\lvert \boldsymbol{Y}}\left(x\lvert \boldsymbol{Y}=\boldsymbol{y}\right)$$: Likelihood of $$y$$.
+- $$p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)$$: Normalization
+
+</div>
 
 </section><section markdown="1">
 
-### Back to The 🍕 Pizza & Pancakes 🥞 Drive-Thru
+### ✍️ Exercise 1.2 - Discrete Distributions
 
-#### ✍️ Exercise 1.2 - Discrete Distributions
+#### Back to The 🍕 Pizza & Pancakes 🥞 Drive-Thru
 
 We are given the following joint distribution:
 
@@ -337,6 +420,7 @@ We are given the following joint distribution:
 |          1          | 0.08 | 0.03 | ???  | 0.04 |
 |          2          | 0.02 | 0.03 | 0.04 | 0.01 |
 |          3          | 0.1  | 0.05 | 0.05 | 0.1  |
+{: style="font-size:25px !important"}
 
 **A**) What is the missing number in the table?
 
@@ -346,16 +430,19 @@ We are given the following joint distribution:
 
 </section><section markdown="1">
 
+### ✍️ Exercise 1.2 - Discrete Distributions
+
 | $$X$$ 🍕 \ $$Y$$ 🥞 |  0   |  1   |  2   |  3   |
 | ------------------- | ---- | ---- | ---- | ---- |
 |          0          | 0    | 0.15 | 0.2  | 0.05 |
 |          1          | 0.08 | 0.03 | ???  | 0.04 |
 |          2          | 0.02 | 0.03 | 0.04 | 0.01 |
 |          3          | 0.1  | 0.05 | 0.05 | 0.1  |
+{: style="font-size:25px !important"}
 
 **A**) What is the missing number in the table?
 
-##### 💡 Solution
+#### 💡 Solution
 
 <div class="fragment" markdown="1">
 
@@ -369,16 +456,19 @@ $$
 
 </section><section markdown="1">
 
+### ✍️ Exercise 1.2 - Discrete Distributions
+
 | $$X$$ 🍕 \ $$Y$$ 🥞 |  0   |  1   |  2   |  3   |
 | ------------------- | ---- | ---- | ---- | ---- |
 |          0          | 0    | 0.15 | 0.2  | 0.05 |
 |          1          | 0.08 | 0.03 | 0.05 | 0.04 |
 |          2          | 0.02 | 0.03 | 0.04 | 0.01 |
 |          3          | 0.1  | 0.05 | 0.05 | 0.1  |
+{: style="font-size:25px !important"}
 
 **B**) What is the probability of 1 slice of pizza, given that 0 pancakes?
 
-##### 💡 Solution
+#### 💡 Solution
 
 <div class="fragment" markdown="1">
 
@@ -395,29 +485,37 @@ $$
 
 </section><section markdown="1">
 
-| $$X$$ 🍕 \ $$Y$$ 🥞 |  0   |  1   |  2   |  3   |
-| ------------------- | ---- | ---- | ---- | ---- |
-|          0          | 0    | 0.15 | 0.2  | 0.05 |
-|          1          | 0.08 | 0.03 | 0.05 | 0.04 |
-|          2          | 0.02 | 0.03 | 0.04 | 0.01 |
-|          3          | 0.1  | 0.05 | 0.05 | 0.1  |
+### ✍️ Exercise 1.2 - Discrete Distributions
 
 **C**) what is the probability that 2 independent customers will buy 3 pizza slices?
 
-##### 💡 Solution
+#### 💡 Solution
 
 <div class="fragment" markdown="1">
 
-**C**)
+**C**) We shall note that
 
-- Two events -> independent -> The probability is the product of the two probabilities.
-- We must sum over all the combinations: (0 & 3, 1 & 2, etc.. ).
+- We take the sum over all the combinations: (0 & 3, 1 & 2, etc.. ).
+- The probabilityies are i.i.d -> each probability is the product of the two identical probabilities.
+
+Therefore:
+
+$$
+\begin{aligned}
+Pr\left(X_1+X_2=3\right)
+& = Pr\left(X_1=0 \cap X_2=3\right) + Pr\left(X_1=1 \cap X_2=2\right) \\
+& \quad + Pr\left(X_1=2 \cap X_2=1\right) + Pr\left(X_1=3 \cap X_2=0\right) \\
+& \\
+& = P_X\left(0\right)\cdot P_X\left(3\right) + P_X\left(1\right)\cdot P_X\left(2\right) \\
+& \quad + P_X\left(2\right)\cdot P_X\left(1\right) + P_X\left(3\right)\cdot P_X\left(0\right)
+\end{aligned}
+$$
 
 </div>
 
 </section><section markdown="1">
 
-##### 💡 Solution - Cont.
+### ✍️ Exercise 1.2 - Discrete Distributions
 
 | $$X$$ 🍕 \ $$Y$$ 🥞 |  0   |  1   |  2   |  3   |
 | ------------------- | ---- | ---- | ---- | ---- |
@@ -425,8 +523,11 @@ $$
 |          1          | 0.08 | 0.03 | 0.05 | 0.04 |
 |          2          | 0.02 | 0.03 | 0.04 | 0.01 |
 |          3          | 0.1  | 0.05 | 0.05 | 0.1  |
+{: style="font-size:25px !important"}
 
-We shall start by calculating the marginal distribution:
+#### 💡 Solution
+
+We shall calculate the marginal distribution:
 
 $$
 p_X\left(x\right)=\sum_y p_{X,Y}\left(x,y\right)=\begin{cases}
@@ -439,7 +540,9 @@ $$
 
 </section><section markdown="1">
 
-##### 💡 Solution - Cont. 2
+### ✍️ Exercise 1.2 - Discrete Distributions
+
+#### 💡 Solution - Cont. 2
 
 $$
 p_X\left(x\right)=\sum_y p_{X,Y}\left(x,y\right)=\begin{cases}
@@ -468,14 +571,14 @@ $$
 
 </section><section markdown="1">
 
-#### ✍️ Exercise 1.3 - Mixed Distributions
+### ✍️ Exercise 1.3 - Mixed Distributions
 
-- There is a correlation between the length of a car and the number of pizza slices.
+We shell look at the joint distribution of the length of a customer's car and the number of pizza slices he orders.
 
-- The length the car, $$L$$, conditioned on the number of slices $$X$$, has a normal distribution:
+It is known that the length of a car, $$L$$, conditioned on the number of slices $$X$$, has the following normal distribution:
 
 $$
-L \lvert X=x \sim N\left(4 + 0.2\cdot x, 0.1^2\right)
+L \lvert \left(X=x\right) \sim N\left(4 + 0.2\cdot x, 0.1^2\right)
 $$
 
 Find the conditional distribution of the number of pizza slices given a car length of 4.4m:
@@ -484,25 +587,32 @@ $$p_{X\lvert L}\left(x\lvert L=4.4\right)$$
 
 </section><section markdown="1">
 
-##### 💡 Solution
+### ✍️ Exercise 1.3 - Mixed Distributions
+
+#### 💡 Solution
 
 According to Bayes' theorem:
 
 $$
 \begin{aligned}
-p_{X\lvert L}\left(x,l=4.4\right)
+p_{X\lvert L}\left(x,L=4.4\right)
 & =\frac{p_{L\lvert X}\left(4.4\lvert X=x\right)p_X\left(x\right)}{p_L\left(4.4\right)} \\
+& \\
 & =\frac{p_{L\lvert X}\left(4.4\lvert X=x\right)p_X\left(x\right)}{\sum_{\tilde{x}} p_{L\lvert X}\left(4.4\lvert X=\tilde{x}\right)p_X\left(\tilde{x}\right)}
 \end{aligned}
 $$
 
 <br>
 
-We shell start by calculating the nominator, $$p_{L\lvert X}\left(4.4\lvert X=x\right)p_X\left(x\right)$$:
+We shell calculate the nominator, $$p_{L\lvert X}\left(4.4\lvert X=x\right)p_X\left(x\right)$$, for every possible value of $$x$$.
+
+The denominator will be the normalization factor.
 
 </section><section markdown="1">
 
-##### 💡 Solution - Cont.
+### ✍️ Exercise 1.3 - Mixed Distributions
+
+#### 💡 Solution
 
 $$
 \begin{aligned}
@@ -514,17 +624,37 @@ p_{L|X}\left(4.4\lvert X=x\right)p_X\left(x\right)
 \frac{1}{0.1\sqrt{2\pi}}\exp\left(-\frac{\left(4.4-4-0.2\cdot 3\right)^2}{2\cdot0.1^2}\right)\cdot0.3 & x=3
 \end{cases}\\
 & = \begin{cases}
-0.11 & x=0 \\
-0.24 & x=1 \\
-0.2 & x=2 \\
-0.36 & x=3
+0.26\cdot 0.4=0.11 & x=0 \\
+1.2\cdot 0.2=0.24 & x=1 \\
+2\cdot 0.1=0.2 & x=2 \\
+1.2\cdot 0.3=0.36 & x=3
 \end{cases}\\
 \end{aligned}
 $$
 
 </section><section markdown="1">
 
-##### 💡 Solution - Cont. 2
+### ✍️ Exercise 1.3 - Mixed Distributions
+
+#### 💡 Solution
+
+$$
+p_{L|X}\left(4.4\lvert X=x\right)p_X\left(x\right)
+= \begin{cases}
+0.26\cdot 0.4=0.11 & x=0 \\
+1.2\cdot 0.2=0.24 & x=1 \\
+2\cdot 0.1=0.2 & x=2 \\
+1.2\cdot 0.3=0.36 & x=3
+\end{cases}
+$$
+
+![Likelihood](./media/likelihood.png){: width="800px"}
+
+</section><section markdown="1">
+
+### ✍️ Exercise 1.3 - Mixed Distributions
+
+#### 💡 Solution
 
 Now we can easily calculate the denominator (the normalization factor):
 
@@ -561,10 +691,25 @@ $$
 $$
 \mu_{\boldsymbol{X}}=\mathbb{E}\left[\boldsymbol{X}\right]
 =\underbrace{\sum_{\boldsymbol{x}\in\left\lbrace \boldsymbol{X}\left(\omega\right),\omega\in\Omega\right\rbrace} \boldsymbol{x}\cdot p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)}_\text{For discrete RV}
-=\underbrace{\int_{-\infty}^\infty \boldsymbol{x}\cdot p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)d\boldsymbol{x}}_\text{For cont. RV}
+\left(=\underbrace{\int_{-\infty}^\infty \boldsymbol{x}\cdot p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)d\boldsymbol{x}}_\text{For cont. RV}\right)
 $$
 
-<br>
+<div class="fragment" markdown="1">
+<br><br>
+
+it can also be shown that:
+
+$$
+\mathbb{E}\left[\boldsymbol{g}\left(\boldsymbol{X}\right)\right]
+=\sum_{\boldsymbol{x}\in\left\lbrace \boldsymbol{X}\left(\omega\right),\omega\in\Omega\right\rbrace} \boldsymbol{g}\left(\boldsymbol{x}\right)\cdot p_{{\boldsymbol{X}}\left(\boldsymbol{x}\right)
+\left(=\int_{-\infty}^\infty \boldsymbol{g}\left(\boldsymbol{x}\right)\cdot p_{\boldsymbol{X}}\left(\boldsymbol{x}\right)d\boldsymbol{x}\right)
+$$
+
+</div>
+
+</section><section markdown="1">
+
+### 🗜️ Expectations - Cont.
 
 #### Variance
 
@@ -576,9 +721,8 @@ $$
 
 $$\sigma_X=\sqrt{\text{var}\left(X\right)}$$ is the standard deviation
 
-</section><section markdown="1">
-
-### 🗜️ Expectations - Cont.
+<div class="fragment" markdown="1">
+<br>
 
 #### Covariance
 
@@ -588,7 +732,11 @@ $$
 \text{cov}\left(X,Y\right)=\mathbb{E}\left[\left(X-\mu_X\right)\left(Y-\mu_Y\right)\right]=\mathbb{E}\left[\left(XY\right)\right]-\mu_X\mu_Y
 $$
 
-<br>
+</div>
+
+</section><section markdown="1">
+
+### 🗜️ Expectations - Cont.
 
 #### Covariance Matrix
 
@@ -608,17 +756,21 @@ $$
 
 ### Gaussian Vectors<br>(Multivariate Normal Distribution)
 
-<br>
-
 A random vector where any linear combination of its components has a normal distribution.
-
-<br>
 
 $$
 p_\boldsymbol{X}\left(\boldsymbol{x}\right)=\frac{1}{\sqrt{\left(2\pi\right)^n\left\lvert\Sigma\right\rvert}}\exp\left(-\tfrac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu}_X\right)^T\Sigma^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu}_X\right)\right)
 $$
 
-</section><section markdown="1">
+<div style="display:grid">
+<div style="grid-column:1/2" markdown="1">
+![Mutlivariate gaussian 3D](./media/mvg1.png)
+</div><div style="grid-column:2/2" markdown="1">
+![Mutlivariate gaussian contours](./media/mvg2.png)
+</div>
+</div>
+
+<!-- </section><section markdown="1">
 
 ### Gaussian Vectors<br>(Multivariate Normal Distribution) - Cont.
 
@@ -763,11 +915,13 @@ Therefore:
 $$
 \bar{\boldsymbol{\mu}}=\begin{bmatrix}0\end{bmatrix}+\begin{bmatrix}1 & 1\end{bmatrix}\begin{bmatrix}2 & 1 \\ 1 & 2\end{bmatrix}^{-1}\left(\boldsymbol{x}_b-\begin{bmatrix}0 \\ 0\end{bmatrix}\right)=\tfrac{1}{3}x_2+\tfrac{1}{3}x_3 \\
 \bar{\Sigma}=\begin{bmatrix}1\end{bmatrix}-\begin{bmatrix}1 & 1\end{bmatrix}\begin{bmatrix}2 & 1 \\ 1 & 2\end{bmatrix}^{-1}\begin{bmatrix}1 \\ 1\end{bmatrix}=\tfrac{1}{3}
-$$
+$$ -->
 
-</section><section markdown="1">
+</section><section class="center" markdown="1">
 
 ## Prediction Theory
+
+</section><section markdown="1">
 
 ### 🔮 The Problem
 
@@ -845,7 +999,7 @@ The "optimal" prediction is the solution to the following optimization problem:
 <br>
 
 $$
-\hat{\boldsymbol{x}}=\underset{\hat{\boldsymbol{x}}}{\arg\min}\quad R\left(\hat{\boldsymbol{x}}\right)=\underset{\hat{\boldsymbol{x}}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{\boldsymbol{x}},\boldsymbol{X}\right)\right]\\
+\hat{\boldsymbol{x}}^*=\underset{\hat{\boldsymbol{x}}}{\arg\min}\quad R\left(\hat{\boldsymbol{x}}\right)=\underset{\hat{\boldsymbol{x}}}{\arg\min}\quad \mathbb{E}\left[l\left(\hat{\boldsymbol{x}},\boldsymbol{X}\right)\right]\\
 $$
 
 </section><section markdown="1">
@@ -863,6 +1017,7 @@ Back to the 3 examples for before:
 | lowest probability to be wrong | $$l\left(x,\hat{x}\right)=I\left\lbrace\hat{x}\neq x\right\rbrace$$ | Zero-one loss | Misclassification rate |
 | lowest error on average | $$l\left(x,\hat{x}\right)=\left\lvert\hat{x}-x\right\rvert$$ | $$l_1$$ | MAE (mean absolute error) |
 | lowest squared error on average | $$l\left(x,\hat{x}\right)=\left(\hat{x}-x\right)^2$$ | $$l_2$$ | MSE (mean squared error) |
+{: style="font-size: 25px !important"}
 
 </section><section markdown="1">
 
@@ -988,7 +1143,7 @@ $$
 
 <br>
 
-We will solve this by differentiating according to zero
+We will solve this by differentiating according to $$\hat{x}$$ and comparing to zero
 
 </section><section markdown="1">
 
@@ -1100,7 +1255,7 @@ $$\hat{x}^*=\mathbb{E}\left[X\lvert L=0.44\right]=1.896$$
 </div>
 </div>
 
-</section><section markdown="1">
+<!-- </section><section markdown="1">
 
 #### ✍️ Exercise 1.7  Heart Rate and Blinking
 
@@ -1155,11 +1310,11 @@ $$
 
 <br><br>
 
-This will always be true for symmetrical distributions such as the normal distribution.
+This will always be true for symmetrical distributions such as the normal distribution. -->
 
 </section><section markdown="1">
 
-#### Lagrange Multipliers
+### Lagrange Multipliers
 
 A method of for solving optimization problems with only equality constraints:
 
@@ -1181,7 +1336,7 @@ $$f$$ and the $$h_i$$s must all be differentiable.
 
 </section><section markdown="1">
 
-### Lagrange Multipliers - Cont
+### Lagrange Multipliers
 
 <br>
 

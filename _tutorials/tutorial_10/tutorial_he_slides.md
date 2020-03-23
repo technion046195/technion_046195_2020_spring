@@ -1,6 +1,7 @@
 ---
 number: 10
 title: "CNN" 
+hide: True
 ---
 
 <section markdown="1">

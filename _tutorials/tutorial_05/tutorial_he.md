@@ -1,7 +1,7 @@
 ---
 number: 5
 title: "מבוא ללמידה מודרכת וK-NN" 
-hide: false
+hide: True
 ---
 
 ## תיאוריה

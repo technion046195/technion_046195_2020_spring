@@ -1,6 +1,7 @@
 ---
 number: 3
 title: "שיערוך פילוג בשיטות פרמטריות"
+hide: True
 ---
 
 <section markdown="1">

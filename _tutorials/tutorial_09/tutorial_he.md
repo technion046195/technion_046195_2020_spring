@@ -1,6 +1,7 @@
 ---
 number: 9
 title: "MLP & Back propagation"
+hide: True
 ---
 
 ## תיאוריה

@@ -1,7 +1,7 @@
 ---
 number: 3
 title: "Parametric Probability Density Estimation" 
-hide: true
+hide: True
 ---
 ## Hands-on
 

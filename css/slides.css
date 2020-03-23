@@ -56,9 +56,13 @@
 .reveal .main-content section img {
     border:none !important;
     box-shadow:none !important;
-    background-color :rgba(255, 255, 255, 0.7) !important;
+    background-color:  transparent;
     margin-left: auto;
     margin-right: auto
+}
+
+.reveal .main-content section img:not(.no-background) {
+    background-color :rgba(255, 255, 255, 0.7) !important;
 }
 
 /* .slide-image {
@@ -79,7 +83,7 @@
 /* ======================= */
 
 .reveal .main-content table {
-    font-size:16px !important;
+    font-size:16px;
 }
 
 /* Code Block */

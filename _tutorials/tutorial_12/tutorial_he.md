@@ -1,6 +1,7 @@
 ---
 number: 12
 title: "Decision Trees & Boosting" 
+hide: True
 ---
 {% raw %}
 ## עצי החלטה 

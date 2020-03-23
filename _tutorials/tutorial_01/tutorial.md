@@ -5,6 +5,8 @@ title: "Probability Theory and Predictions"
 
 ## Background - Probability Theory Review
 
+![random_process](./media/supervised.png)
+
 One of the most common tasks in machine learning is to produce a system that can make predictions based on some observed data. This is done by building a model to describes the relationship between the observed data and the quantity which we would like to predict. One of the common ways to describe this relationship is through a probabilistic model.
 
 A large portion of this course will be devoted to the problem of building the model. In this tutorial, however, we will only focus on the part of making predictions based on a given probabilistic model.
@@ -13,7 +15,7 @@ A large portion of this course will be devoted to the problem of building the mo
 
 We shall start with a quick recap of the basics of probability theory. As an example, we will take a look at the following random phenomenon:
 
-> We take a glass full of juice and pour it on the floor (don't try this at home) and look at the shape of the resulting spill.
+> We take a glass full of coffee and pour it on the floor (don't try this at home) and look at the shape of the resulting spill.
 
 Below is a table and a schematic diagram of some probabilistic concepts which we can define related to this phenomenon:
 
@@ -108,6 +110,8 @@ Make sure that all the probability measures are consistent with one another.
 - An example of a possible conditional probability measure.
   - The probability that the customer ordered 1 slice **given that** he left more than 2$ tip $$Pr\left(X=1 \lvert T>2\right)=0.5$$.
   
+![Venn diagram](./media/venn.png)
+
 ### 📊 Distributions
 
 The following definitions/rules describe the case of random vector, but they hold just as well for a scalar RV in the degenerate case of a random vector of length 1.

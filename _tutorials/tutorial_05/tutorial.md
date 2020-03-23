@@ -1,7 +1,7 @@
 ---
 number: 5
 title: "K-NN" 
-hide: true
+hide: True
 ---
 {% raw %}
 ## 👨 1-Nearest Neighbors (1-NN)

@@ -1,6 +1,7 @@
 ---
 number: 11
 title: "SVM ופונקציות גרעין (Kernels)" 
+hide: True
 ---
 {% raw %}
 
