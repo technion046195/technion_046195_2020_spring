@@ -1,23 +1,22 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.min.css") not print;
-@import url("https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.min.css") print;
-
 /* Title slide */
 /* =========== */
 
-@media not print {
-    .reveal{
-        background:
-            linear-gradient(
-              rgba(0, 0, 0, 0.5), 
-              rgba(0, 0, 0, 0.5)
-            ),
-            url("../media/black-board.jpg");
-        background-size: cover;
-    }
-    .reveal .title-slide h1{
-        color:white;
-    }
+.dark-theme.reveal{
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.5), 
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("../media/black-board.jpg");
+    background-size: cover;
 }
+.dark-theme.reveal .title-slide h1{
+    color:white;
+}
+
+.white-theme.reveal .title-slide h1{
+    color:black !important;
+} */
 
 .reveal .title-slide h1{
     font-size:150px;
