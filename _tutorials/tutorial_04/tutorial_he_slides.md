@@ -52,17 +52,17 @@ hide: True
 סימונים:
 
 - $$K$$ - מספר האשכולות (גודל אשר נקבע מראש).
-- $$G_i$$ - אוסף האינדקסים של האשכול ה-$$i$$. לדוגמא: $$G_5=\left\lbrace3, 6, 9, 13\right\rbrace$$
-- $$\left\lvert G_i\right\rvert$$ - גודל האשכול ה-$$i$$ (מספר הפרטים בקבוצה)
-- $$\left\lbrace G_i\right\rbrace$$ - חלוקה מסויימת לאשכולות
-- $$\left\lbrace G_i\right\rbrace^*$$ - החלוקה האופטימאלית (תחת קריטריון מסויים)
+- $$G_k$$ - אוסף האינדקסים של האשכול ה-$$k$$. לדוגמא: $$G_5=\left\lbrace3, 6, 9, 13\right\rbrace$$
+- $$\left\lvert G_k\right\rvert$$ - גודל האשכול ה-$$k$$ (מספר הפרטים בקבוצה)
+- $$\left\lbrace G_k\right\rbrace$$ - חלוקה מסויימת לאשכולות
+- $$\left\lbrace G_k\right\rbrace^*$$ - החלוקה האופטימאלית (תחת קריטריון מסויים)
 
 <br>
 
 מנסה למזער את המרחק הריבועי הממוצע בין וקטור לבין שאר חברי האשכול שלו:
 
 $$
-\underset{\left\{G_i\right\}}{\arg\min}\sum_{i=1}^K\frac{1}{\left\lvert G_i\right\rvert}\sum_{j,k\in S_i}\left\lVert \boldsymbol{x}_j-\boldsymbol{x}_k \right\rVert^2
+\underset{\left\{G_k\right\}}{\arg\min}\sum_{i=k}^K\frac{1}{\left\lvert G_i\right\rvert}\sum_{i,j\in G_k}\left\lVert \boldsymbol{x}_i-\boldsymbol{x}_j \right\rVert^2
 $$
 
 </section><section markdown="1">
@@ -77,13 +77,31 @@ $$
 \boldsymbol{\mu}_i=\frac{1}{\left\lvert G_i\right\rvert}\sum_{\boldsymbol{x}\in G_i}\boldsymbol{x}
 $$
 
-<br>
-<br>
-
 בעיית האופטימיזציה שקולה לבעיה של מיזעור המרחק הריבועי בין וקטור למרכז המסה של האשכול שלו:
 
 $$
-\underset{\left\{G_i\right\}}{\arg\min}\sum_{i=1}^K\sum_{j\in G_i}\left\lVert \boldsymbol{x}_j-\boldsymbol{\mu}_i \right\rVert^2
+\underset{\left\{G_k\right\}}{\arg\min}\sum_{i=k}^K\frac{1}{\left\lvert G_i\right\rvert}\sum_{i,j\in G_k}\left\lVert \boldsymbol{x}_i-\boldsymbol{x}_j \right\rVert^2 \\
+=\underset{\left\{G_k\right\}}{\arg\min}\sum_{k=1}^K\sum_{i\in G_k}\left\lVert \boldsymbol{x}_i-\boldsymbol{\mu}_k \right\rVert^2
+$$
+
+</section><section markdown="1">
+
+### האלגוריתם K-means
+
+#### הבעיה השקולה - המשך
+
+נגיד חלוקה לקבוצות לפי $K$ מרכזי מסה:
+
+$$
+G_k=\left\lbrace  i: \left\lVert\boldsymbol{x}_i-\boldsymbol{\mu}_k\right\rVert^2<\left\lVert\boldsymbol{x}_i-\boldsymbol{\mu}_l\right\rVert^2 \quad\forall l\neq k\right\rbrace
+$$
+
+זאת אומרת, שיוך כל נקודה למרכז המסה הקרוב עליה ביותר.
+
+ניתן להראות כי הבעיה הבאה שקולה לבעיית האופטמיזציה המקורית:
+
+$$
+\underset{\left\{\mu_k\right\}}{\arg\min}\sum_{k=1}^K\sum_{i\in G_k}\left\lVert \boldsymbol{x}_i-\boldsymbol{\mu}_k \right\rVert^2
 $$
 
 </section><section markdown="1">
@@ -520,7 +538,7 @@ $$
 נרצה למזער את:
 
 $$
-\sum_{i=1}^K\frac{1}{2\left\lvert G_i\right\rvert}\sum_{j,k\in S_i}\left\lVert \boldsymbol{x}_j-\boldsymbol{x}_k \right\rVert^2
+\sum_{k=1}^K\frac{1}{\left\lvert G_k\right\rvert}\sum_{i,j\in G_k}\left\lVert \boldsymbol{x}_i-\boldsymbol{x}_j \right\rVert^2
 $$
 
 <br>
@@ -541,20 +559,20 @@ $$
 התרומה של האכולות עם נקודה בודדת הינה 0, ולכן יש לחשב רק את התרומה של האשכול שמכיל זוג נקודות. למשל בעבור (A,B), (C), (D):
 
 $$
-\sum_{i=1}^K\frac{1}{2\left\lvert G_i\right\rvert}\sum_{j,k\in S_i}\left\lVert \boldsymbol{x}_j-\boldsymbol{x}_k \right\rVert^2
-=\frac{1}{N_A+N_B}\left(N_A N_B\left\lVert\vec{B}-\vec{A}\right\rVert^2\right)
+\sum_{k=1}^K\frac{1}{\left\lvert G_i\right\rvert}\sum_{i,j\in G_k}\left\lVert \boldsymbol{x}_i-\boldsymbol{x}_j \right\rVert^2
+=\frac{1}{N_A+N_B}\left(2N_A N_B\left\lVert\vec{B}-\vec{A}\right\rVert^2\right)
 $$
 
 בעבור כל שאר האשכולות:
 
 | Clusters | Objective |
 | -------- | --------- |
-| (A,B), (C), (D) | $$\frac{\alpha n^2}{\left(\alpha+1\right)n}12^2=144\frac{\alpha n}{\alpha+1}$$ |
-| (A,C), (B), (D) | $$\frac{\alpha n^2}{\left(\alpha+1\right)n}\left(7^2+12^2\right)=193\frac{\alpha n}{\alpha+1}$$ |
-| (A,D), (B), (C) | $$\frac{\alpha n^2}{\left(\alpha+1\right)n}14^2=196\frac{\alpha n}{\alpha+1}$$ |
-| (B,C), (A), (D) | $$\frac{\alpha^2 n^2}{2\alpha n}2^2=2\alpha n$$ |
-| (B,D), (A), (C) | $$\frac{\alpha^2 n^2}{2\alpha n}\left(5^2+6^2\right)=30.5\alpha n$$ |
-| (C,D), (A), (B) | $$\frac{\alpha^2 n^2}{2\alpha n}\left(7^2+6^2\right)=42.5\alpha n$$ |
+| (A,B), (C), (D) | $$\frac{2\alpha n^2}{\left(\alpha+1\right)n}12^2=288\frac{\alpha n}{\alpha+1}$$ |
+| (A,C), (B), (D) | $$\frac{2\alpha n^2}{\left(\alpha+1\right)n}\left(7^2+12^2\right)=386\frac{\alpha n}{\alpha+1}$$ |
+| (A,D), (B), (C) | $$\frac{2\alpha n^2}{\left(\alpha+1\right)n}14^2=392\frac{\alpha n}{\alpha+1}$$ |
+| (B,C), (A), (D) | $$\frac{2\alpha^2 n^2}{2\alpha n}2^2=4\alpha n$$ |
+| (B,D), (A), (C) | $$\frac{2\alpha^2 n^2}{2\alpha n}\left(5^2+6^2\right)=70\alpha n$$ |
+| (C,D), (A), (B) | $$\frac{2\alpha^2 n^2}{2\alpha n}\left(7^2+6^2\right)=85\alpha n$$ |
 
 <br>
 
@@ -580,7 +598,7 @@ $$
 
 <br>
 
-- בעבור $$\alpha>71$$ הפתרון האופטימאלי הינו (A,B),(C),(D), אך עבור 3 מתוך 4 האיחולים שבדקנו האלגוריתם התכנס לפתרון של  (B,C),(A),(D).
+- בעבור $$\alpha>71$$ הפתרון האופטימאלי הינו (A,B),(C),(D), אך עבור 3 מתוך 4 האיתחולים שבדקנו האלגוריתם התכנס לפתרון של  (B,C),(A),(D).
   <br><br>
 - בעבור $$\alpha<71$$ הפתרון האופטימאלי הינו  (B,C),(A),(D), אך במקרה של $$\alpha>5$$ ואתחול של מרכזים ב B,C ו D מתקבל הפתרון של (A,B),(C),(D).
 
@@ -831,7 +849,7 @@ $$
 נשתמש בסימונים הבאים:
 
 - $$X$$ הוקטור האקראי של מיקום סיום הנסיעה
-- $$\boldsymbol{c}_i$$: המיקום של החניות ה-$$i$$.
+- $$\boldsymbol{c}_k$$: המיקום של החניון ה-$$k$$.
 - $$N$$: מספר הנסיעות במדגם.
 
 <br>
@@ -839,7 +857,7 @@ $$
 המטרה: למצוא את מיקומי החניונים האופטימאליים אשר ממזערים את:
 
 $$
-R\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\mathbb{E}\left[\min_{i}\left\lVert\boldsymbol{x}-\boldsymbol{c}_i\right\rVert\right]
+R\left(\left\lbrace\boldsymbol{c}_k\right\rbrace\right)=\mathbb{E}\left[\min_{k}\left\lVert\boldsymbol{x}-\boldsymbol{c}_k\right\rVert\right]
 $$
 
 <br>
@@ -847,7 +865,7 @@ $$
 מכיוון שאנו לא יודעים משהו הפילוג של $$X$$ נחליף את התחולת על $$X$$ בתוחלת האימפירית
 
 $$
-\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{j}\min_{i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_k\right\rbrace\right)=\frac{1}{N}\sum_{i}\min_{k}\left\lVert\boldsymbol{x}_i-\boldsymbol{c}_k\right\rVert
 $$
 
 </section><section markdown="1">
@@ -855,18 +873,18 @@ $$
 ### הגדרה פורמאלית של הבעיה - המשך
 
 $$
-\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{j}\min_{i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_k\right\rbrace\right)=\frac{1}{N}\sum_{i}\min_{k}\left\lVert\boldsymbol{x}_i-\boldsymbol{c}_k\right\rVert
 $$
 
 <br>
 
 את הבעיה שקיבלנו ניתן לרשום כבעיית אשכול.
-נגדיר את האשכול $$G_i$$, כאוסף כל הנסיעות שהחניון ה$$i$$ הוא הקרוב ביותר.
+נגדיר את האשכול $$G_k$$, כאוסף כל הנסיעות שהחניון ה$$k$$ הוא הקרוב ביותר.
 
 <br>
 
 $$
-\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{i=1}^K\sum_{j\in G_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_k\right\rbrace\right)=\frac{1}{N}\sum_{k=1}^K\sum_{i\in G_k}\left\lVert\boldsymbol{x}_i-\boldsymbol{c}_k\right\rVert
 $$
 
 </section><section markdown="1">
@@ -874,7 +892,7 @@ $$
 ### פתרון באמצעות K-Means
 
 $$
-\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace\right)=\frac{1}{N}\sum_{i=1}^K\sum_{j\in G_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_k\right\rbrace\right)=\frac{1}{N}\sum_{i=k}^K\sum_{i\in G_k}\left\lVert\boldsymbol{x}_i-\boldsymbol{c}_k\right\rVert
 $$
 
 <br>
@@ -938,13 +956,13 @@ $$
 נרשום תחת הנחות אלו את העלות החודשית של אחזקת החניונים והנסיעה אליהם:
 
 $$
-R\left(\left\lbrace\boldsymbol{c}_i\right\rbrace, K\right)= 10\cdot K+100\cdot3\cdot\mathbb{E}\left[\min_{j}\left\lVert\boldsymbol{x}-\boldsymbol{c}_j\right\rVert\right]
+R\left(\left\lbrace\boldsymbol{c}_k\right\rbrace, K\right)= 10\cdot K+100\cdot3\cdot\mathbb{E}\left[\min_{k}\left\lVert\boldsymbol{x}-\boldsymbol{c}_k\right\rVert\right]
 $$
 
 והמקבילה האמפירית:
 
 $$
-\hat{R}\left(\left\lbrace\boldsymbol{c}_i\right\rbrace, K\right)= 10\cdot K+300\cdot\frac{1}{N}\sum_{i=1}^K\sum_{\boldsymbol{x}_j\in G_i}\left\lVert\boldsymbol{x}_j-\boldsymbol{c}_i\right\rVert
+\hat{R}\left(\left\lbrace\boldsymbol{c}_k\right\rbrace, K\right)= 10\cdot K+300\cdot\frac{1}{N}\sum_{i=k}^K\sum_{\boldsymbol{x}_i\in G_k}\left\lVert\boldsymbol{x}_i-\boldsymbol{c}_k\right\rVert
 $$
 
 </section><section markdown="1">
@@ -953,7 +971,7 @@ $$
 
 - כעת עלינו לבצע אופטימיזציה גם על מספר החניונים וגם המיקום שלהם.
 - ראינו כיצד ניתן למצוא פתרון בעבור $$K$$ נתון.
-- חל נעבור על כל ערכי $$K$$ הרלוונטים, וניקח הפתרון הטוב ביותר.
+- נוכל נעבור על כל ערכי $$K$$ הרלוונטים, וניקח הפתרון הטוב ביותר.
 
 <br>
 
