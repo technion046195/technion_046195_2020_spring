@@ -1,7 +1,6 @@
 ---
 number: 4
 title: "K-Means"
-hide: True
 ---
 
 ## תיאוריה -אשכול
