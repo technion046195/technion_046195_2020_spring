@@ -114,7 +114,7 @@ $$
 
 ניתן לתאר זאת מבחינה גאומטרית באופן הבא:
 
-![Estimation Approximation](./media/estapprox.png)
+<img src="./media/estapprox.png" alt="Estimation Approximation" style="zoom:33%;" />
 
 
 ### 
@@ -138,7 +138,7 @@ $$
 $$
 Y=f(X)+\epsilon
 $$
-כאשר $$\epsilon$$ הוא רעש אקראי במדידות שאינו תלוי ב- $X,Y$ בעלת תוחלת 0.
+כאשר $$\epsilon$$ הוא רעש אקראי במדידות שאינו תלוי ב- $$X,Y$$ בעלת תוחלת 0.
 
 
 
